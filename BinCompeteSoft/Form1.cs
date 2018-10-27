@@ -22,9 +22,9 @@ namespace BinCompeteSoft
             Project[] projects = new Project[1];
             AHP testAHP = new AHP(projects);
 
-            double[,,] projectsScores = new double[2, 3, 3] {
-                { { 1, 8, 4 }, { 4, 5, 7 }, { 7, 3, 6 } },
-                { { 9, 7, 8 }, { 1, 5, 3 }, { 6, 7, 4 } }
+            double[,,] projectsScores = new double[2, 3, 4] {
+                { { 1, 8, 4, 5 }, { 4, 5, 7, 7 }, { 7, 3, 6, 9 } },
+                { { 9, 7, 8, 3 }, { 1, 5, 3, 2 }, { 6, 7, 4, 8 } }
             };
 
             double[] criteriaScores = new double[2] { 2, 5 };

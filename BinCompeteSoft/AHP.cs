@@ -22,7 +22,7 @@ namespace BinCompeteSoft
         /// <param name="projectsScores">A matrix containing the projects scores.</param>
         /// <param name="criteriaScores">An array containing the criteria scores.</param>
         /// <returns>The projects final score.</returns>
-        public /*double[]*/ void CalculateAHP(double[,,] projectsScores, double[] criteriaScores)
+        public double[] CalculateAHP(double[,,] projectsScores, double[] criteriaScores)
         {
             double[,,] criteriaMatrix = new double[projectsScores.GetLength(0), projectsScores.GetLength(1), projectsScores.GetLength(2)];
             double[,] scoresMatrix = new double[projectsScores.GetLength(0), projectsScores.GetLength(1)];
@@ -100,6 +100,8 @@ namespace BinCompeteSoft
             double[] criteriaScoresRatio = CalculateRatio(criteriaScoresStep);
 
             double[] prioritiesArray = CalculatePriorities(ratioMatrix, criteriaScoresRatio);
+
+            return prioritiesArray;
         }
 
         /// <summary>
