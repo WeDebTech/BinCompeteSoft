@@ -11,15 +11,16 @@ using System.Windows.Forms;
 
 namespace BinCompeteSoft
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: delete this, it's only for testing
             Project[] projects = new Project[1];
             AHP testAHP = new AHP(projects);
 
@@ -31,6 +32,11 @@ namespace BinCompeteSoft
             double[] criteriaScores = new double[2] { 2, 5 };
 
             double[] finalResults = testAHP.CalculateAHP(projectsScores, criteriaScores, 0.25f);
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
