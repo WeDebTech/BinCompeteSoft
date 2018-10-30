@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,35 +30,7 @@ namespace BinCompeteSoft
 
             double[] criteriaScores = new double[2] { 2, 5 };
 
-            testAHP.CalculateAHP(projectsScores, criteriaScores);
-
-            double[,,] matrix = new double[2, 3, 3] { { { 1, 1d / 3d, 1d / 7d }, { 3, 1, 1d / 3d }, { 7, 3, 1 } }, { { 1, 3, 5 }, { 1d / 3d, 1, 5 }, { 1d / 5d, 1d / 5d, 1 } } };
-            double[,] ratios = new double[2, 3];
-            double[,] tempMatrix = new double[3, 3];
-
-            for(int i = 0; i < 2; i++) {
-                for (int j = 0; j < 3; j++)
-                {
-                    for(int k = 0; k < 3; k++)
-                    {
-                        tempMatrix[j, k] = matrix[i, j, k];
-                    }
-                }
-
-                
-                double[] steps = testAHP.CalculateStep(tempMatrix);
-                double[] temp = testAHP.CalculateRatio(steps);
-
-                for (int j = 0; j < 3; j++)
-                {
-                    ratios[i, j] = temp[j];
-                }
-            }
-            
-            double[,] criteriaMatrix = new double[2, 2] { { 1, 5 }, { 1d / 5d, 1 } };
-            double[] criteriaSteps = testAHP.CalculateStep(criteriaMatrix);
-            double[] criteriaRatios = testAHP.CalculateRatio(criteriaSteps);
-            double[] priorities = testAHP.CalculatePriorities(ratios, criteriaRatios);
+            double[] finalResults = testAHP.CalculateAHP(projectsScores, criteriaScores, 0.25f);
         }
     }
 }
