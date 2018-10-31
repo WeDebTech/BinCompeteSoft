@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Classes\AHP.cs" />
     <Compile Include="Classes\Contest.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="EditContestDescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +68,12 @@
       <DependentUpon>EditProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\JudgeMember.cs" />
+    <Compile Include="JudgeMemberDashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JudgeMemberDashboardForm.Designer.cs">
+      <DependentUpon>JudgeMemberDashboardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -36,6 +36,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.openContestButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.contestDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,11 +128,23 @@
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
             // 
+            // refreshButton
+            // 
+            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refreshButton.Location = new System.Drawing.Point(12, 60);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(168, 38);
+            this.refreshButton.TabIndex = 8;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            // 
             // MainJudgeDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.openContestButton);
             this.Controls.Add(this.button1);
@@ -161,5 +174,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button openContestButton;
         private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.Button refreshButton;
     }
 }

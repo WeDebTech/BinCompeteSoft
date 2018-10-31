@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinCompeteSoft
+namespace BinCompeteSoft.Classes
 {
-    class Project
+    class Criteria
     {
-        int id;
-        public String name, description;
+        int id, criteriaValue;
+        String name, description;
 
-        public Project(int id, String name, String description)
+        public Criteria(int id, String name, String description, int criteriaValue)
         {
             this.id = id;
             this.name = name;
             this.description = description;
+            this.criteriaValue = criteriaValue;
         }
 
         public int Id
@@ -34,6 +35,12 @@ namespace BinCompeteSoft
         {
             get { return description; }
             set { description = value; }
+        }
+
+        public int CriteriaValue
+        {
+            get { return criteriaValue; }
+            set { criteriaValue = value; }
         }
     }
 }

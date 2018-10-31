@@ -45,9 +45,6 @@ namespace BinCompeteSoft
 
         private void EditContestForm_Load(object sender, EventArgs e)
         {
-            // Load the DataGridViews with some data
-            JudgeMember[] judgeMembers = new JudgeMember[3] { new JudgeMember("Juiz 1"), new JudgeMember("Juiz 2"), new JudgeMember("Juiz 3") };
-
             // Add the appropriate columns to the DataGridViews
             projectsDataGridView.ColumnCount = 1;
             projectsDataGridView.Columns[0].Name = "Project name";
@@ -64,12 +61,6 @@ namespace BinCompeteSoft
             btn.HeaderText = "Delete";
             btn.Text = "X";
             btn.UseColumnTextForButtonValue = true;
-
-            // Add judge names to the DataGridView combobox
-            for (int i = 0; i < judgeMembers.Length; i++)
-            {
-                cmb.Items.Add(judgeMembers[i].GetName());
-            }
 
             // Make it so the DataGridViews are filled horizontally
             judgesDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
