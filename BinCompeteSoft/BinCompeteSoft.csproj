@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AHP.cs" />
-    <Compile Include="Contest.cs" />
+    <Compile Include="Classes\AHP.cs" />
+    <Compile Include="Classes\Contest.cs" />
     <Compile Include="EditContestDescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,7 +60,13 @@
     <Compile Include="EditContestForm.Designer.cs">
       <DependentUpon>EditContestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="JudgeMember.cs" />
+    <Compile Include="EditProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProjectForm.Designer.cs">
+      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\JudgeMember.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,13 +86,16 @@
       <DependentUpon>MainJudgeDashboardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Project.cs" />
+    <Compile Include="Classes\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditContestDescriptionForm.resx">
       <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditContestForm.resx">
       <DependentUpon>EditContestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProjectForm.resx">
+      <DependentUpon>EditProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

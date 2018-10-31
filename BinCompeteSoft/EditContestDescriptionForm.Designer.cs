@@ -31,7 +31,7 @@
             this.acceptButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.contestDescriptionLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.contestDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // acceptButton
@@ -67,26 +67,26 @@
             this.contestDescriptionLabel.TabIndex = 24;
             this.contestDescriptionLabel.Text = "Contest description";
             // 
-            // textBox1
+            // contestDescriptionTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 43);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(776, 351);
-            this.textBox1.TabIndex = 25;
+            this.contestDescriptionTextBox.Location = new System.Drawing.Point(12, 43);
+            this.contestDescriptionTextBox.Multiline = true;
+            this.contestDescriptionTextBox.Name = "contestDescriptionTextBox";
+            this.contestDescriptionTextBox.Size = new System.Drawing.Size(776, 351);
+            this.contestDescriptionTextBox.TabIndex = 25;
             // 
             // EditContestDescriptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.contestDescriptionTextBox);
             this.Controls.Add(this.contestDescriptionLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "EditContestDescriptionForm";
-            this.Text = "EditContestDescriptionForm";
+            this.Text = "Edit Contest Description";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,6 +97,6 @@
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label contestDescriptionLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox contestDescriptionTextBox;
     }
 }

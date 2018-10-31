@@ -12,8 +12,6 @@ namespace BinCompeteSoft
 {
     public partial class MainJudgeDashboardForm : Form
     {
-
-
         public MainJudgeDashboardForm()
         {
             InitializeComponent();

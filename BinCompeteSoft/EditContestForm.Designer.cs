@@ -35,10 +35,9 @@
             this.softwareNameLabel = new System.Windows.Forms.Label();
             this.contestNameTextBox = new System.Windows.Forms.TextBox();
             this.dateLabel = new System.Windows.Forms.Label();
-            this.contestDateLabel = new System.Windows.Forms.Label();
             this.contestDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.judgesDataGridView = new System.Windows.Forms.DataGridView();
+            this.projectsDataGridView = new System.Windows.Forms.DataGridView();
             this.addJudgeButton = new System.Windows.Forms.Button();
             this.addProjectButton = new System.Windows.Forms.Button();
             this.addDescriptionButton = new System.Windows.Forms.Button();
@@ -46,8 +45,8 @@
             this.acceptButton = new System.Windows.Forms.Button();
             this.stepLabel = new System.Windows.Forms.Label();
             this.conteststepNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.judgesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.conteststepNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,44 +121,35 @@
             this.dateLabel.TabIndex = 13;
             this.dateLabel.Text = "Contest date";
             // 
-            // contestDateLabel
-            // 
-            this.contestDateLabel.AutoSize = true;
-            this.contestDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contestDateLabel.Location = new System.Drawing.Point(189, 109);
-            this.contestDateLabel.Name = "contestDateLabel";
-            this.contestDateLabel.Size = new System.Drawing.Size(160, 31);
-            this.contestDateLabel.TabIndex = 14;
-            this.contestDateLabel.Text = "dd/mm/yyyy";
-            // 
             // contestDateTimePicker
             // 
             this.contestDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contestDateTimePicker.Location = new System.Drawing.Point(355, 116);
+            this.contestDateTimePicker.Location = new System.Drawing.Point(195, 110);
             this.contestDateTimePicker.Name = "contestDateTimePicker";
             this.contestDateTimePicker.Size = new System.Drawing.Size(259, 30);
             this.contestDateTimePicker.TabIndex = 16;
             // 
-            // dataGridView1
+            // judgesDataGridView
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.judgesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 196);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(380, 198);
-            this.dataGridView1.TabIndex = 17;
+            this.judgesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.judgesDataGridView.Location = new System.Drawing.Point(12, 196);
+            this.judgesDataGridView.Name = "judgesDataGridView";
+            this.judgesDataGridView.Size = new System.Drawing.Size(217, 198);
+            this.judgesDataGridView.TabIndex = 17;
+            this.judgesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.judgesDataGridView_CellContentClick);
             // 
-            // dataGridView2
+            // projectsDataGridView
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.projectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(408, 196);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(380, 198);
-            this.dataGridView2.TabIndex = 18;
+            this.projectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.projectsDataGridView.Location = new System.Drawing.Point(235, 196);
+            this.projectsDataGridView.Name = "projectsDataGridView";
+            this.projectsDataGridView.Size = new System.Drawing.Size(553, 198);
+            this.projectsDataGridView.TabIndex = 18;
             // 
             // addJudgeButton
             // 
@@ -252,10 +242,9 @@
             this.Controls.Add(this.addDescriptionButton);
             this.Controls.Add(this.addProjectButton);
             this.Controls.Add(this.addJudgeButton);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.projectsDataGridView);
+            this.Controls.Add(this.judgesDataGridView);
             this.Controls.Add(this.contestDateTimePicker);
-            this.Controls.Add(this.contestDateLabel);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.contestNameTextBox);
             this.Controls.Add(this.logoutButton);
@@ -266,8 +255,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EditContestForm";
             this.Text = "Edit Contest";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.Load += new System.EventHandler(this.EditContestForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.judgesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.conteststepNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -283,10 +273,9 @@
         private System.Windows.Forms.Label softwareNameLabel;
         private System.Windows.Forms.TextBox contestNameTextBox;
         private System.Windows.Forms.Label dateLabel;
-        private System.Windows.Forms.Label contestDateLabel;
         private System.Windows.Forms.DateTimePicker contestDateTimePicker;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView judgesDataGridView;
+        private System.Windows.Forms.DataGridView projectsDataGridView;
         private System.Windows.Forms.Button addJudgeButton;
         private System.Windows.Forms.Button addProjectButton;
         private System.Windows.Forms.Button addDescriptionButton;
