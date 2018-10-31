@@ -37,13 +37,13 @@ namespace BinCompeteSoft
         private void loginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            MainJudgeDashboardForm dashboardForm = new MainJudgeDashboardForm();
+            MainForm mainForm = new MainForm();
 
             // Make it so when the next form is closed, everything gets closed
-            dashboardForm.FormClosed += (s, args) => this.Close();
+            mainForm.FormClosed += (s, args) => this.Close();
 
             // Show the dashboard form
-            dashboardForm.Show();
+            mainForm.Show();
         }
     }
 }

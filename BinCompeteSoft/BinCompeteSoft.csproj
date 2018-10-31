@@ -48,12 +48,30 @@
   <ItemGroup>
     <Compile Include="AHP.cs" />
     <Compile Include="Contest.cs" />
+    <Compile Include="EditContestDescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditContestDescriptionForm.Designer.cs">
+      <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditContestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditContestForm.Designer.cs">
+      <DependentUpon>EditContestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="JudgeMember.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainJudgeDashboardForm.cs">
       <SubType>Form</SubType>
@@ -64,8 +82,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditContestDescriptionForm.resx">
+      <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditContestForm.resx">
+      <DependentUpon>EditContestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainJudgeDashboardForm.resx">
       <DependentUpon>MainJudgeDashboardForm.cs</DependentUpon>

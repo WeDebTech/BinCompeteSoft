@@ -12,6 +12,8 @@ namespace BinCompeteSoft
 {
     public partial class MainJudgeDashboardForm : Form
     {
+
+
         public MainJudgeDashboardForm()
         {
             InitializeComponent();
@@ -33,6 +35,15 @@ namespace BinCompeteSoft
                 String[] row = new String[] { contests[i].GetName(), contests[i].GetProjectsCount().ToString(), contests[i].GetJudgeMembersCount().ToString() };
                 contestDataGridView.Rows.Add(row);
             }
+        }
+
+        private void createContestutton_Click(object sender, EventArgs e)
+        {
+            EditContestForm editContestForm = new EditContestForm(this);
+            editContestForm.MdiParent = this.MdiParent;
+            editContestForm.Dock = DockStyle.Fill;
+            this.Hide();
+            editContestForm.Show();
         }
     }
 }
