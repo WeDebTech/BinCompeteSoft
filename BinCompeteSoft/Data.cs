@@ -18,6 +18,8 @@ namespace BinCompeteSoft
         Data()
         {
             // Well, nothing to do here
+            judgeMembers.Add(new JudgeMember(0, "Juiz 1", "bla@bla.com", "ju1"));
+            judgeMembers.Add(new JudgeMember(1, "Juiz 2", "ble@ble.pt", "ju2"));
         }
 
         public List<JudgeMember> JudgeMembers
@@ -36,6 +38,45 @@ namespace BinCompeteSoft
         {
             get { return projects; }
             set { projects = value; }
+        }
+
+        /// <summary>
+        /// Add a judge member to the judge members list.
+        /// </summary>
+        /// <param name="judgeMember"></param>
+        /// <returns>1 if successful, 0 if an error occured when inserting.</returns>
+        public int addJudgeMember(JudgeMember judgeMember)
+        {
+            judgeMembers.Add(judgeMember);
+
+            // TODO: add actual error codes
+            return 1;
+        }
+
+        /// <summary>
+        /// Add a contest to the contests list.
+        /// </summary>
+        /// <param name="contest"></param>
+        /// <returns>1 if successful, 0 if an error occured when inserting.</returns>
+        public int addContest(Contest contest)
+        {
+            contests.Add(contest);
+
+            // TODO: add actual errors codes
+            return 1;
+        }
+
+        /// <summary>
+        /// Add a project to the projects list.
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns>1 if successful, 0 if an error occured when inserting.</returns>
+        public int addProject(Project project)
+        {
+            projects.Add(project);
+
+            // TODO: add actual errors codes
+            return 1;
         }
     }
 }

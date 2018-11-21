@@ -24,7 +24,7 @@ namespace BinCompeteSoft.Classes
         public JudgeMember Judge
         {
             get { return judge; }
-            set { judge = value}
+            set { judge = value; }
         }
 
         public Project Project

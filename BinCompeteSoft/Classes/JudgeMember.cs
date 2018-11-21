@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
-    class JudgeMember
+    public class JudgeMember
     {
         int id;
         String name, email, username;
@@ -37,9 +37,14 @@ namespace BinCompeteSoft
         }
 
         public String Username
-        {
+        { 
             get { return username; }
             set { username = value; }
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

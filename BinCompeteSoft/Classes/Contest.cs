@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
-    class Contest
+    public class Contest
     {
         int id;
         String name;

@@ -22,6 +22,7 @@ namespace BinCompeteSoft
             MainJudgeDashboardForm mainJudgeDashboardForm = new MainJudgeDashboardForm();
             mainJudgeDashboardForm.MdiParent = this;
             mainJudgeDashboardForm.Dock = DockStyle.Fill;
+            this.Text = "Dashboard";
             mainJudgeDashboardForm.Show();
         }
     }

@@ -55,7 +55,7 @@
             this.usernameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.usernameLabel.AutoSize = true;
             this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLabel.Location = new System.Drawing.Point(418, 19);
+            this.usernameLabel.Location = new System.Drawing.Point(618, 19);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(196, 25);
             this.usernameLabel.TabIndex = 1;
@@ -69,7 +69,7 @@
             this.separatorLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.separatorLabel.Location = new System.Drawing.Point(0, 55);
             this.separatorLabel.Name = "separatorLabel";
-            this.separatorLabel.Size = new System.Drawing.Size(800, 2);
+            this.separatorLabel.Size = new System.Drawing.Size(1000, 2);
             this.separatorLabel.TabIndex = 2;
             // 
             // createContestutton
@@ -92,14 +92,14 @@
             this.contestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.contestDataGridView.Location = new System.Drawing.Point(12, 104);
             this.contestDataGridView.Name = "contestDataGridView";
-            this.contestDataGridView.Size = new System.Drawing.Size(776, 290);
+            this.contestDataGridView.Size = new System.Drawing.Size(976, 290);
             this.contestDataGridView.TabIndex = 4;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(620, 60);
+            this.button1.Location = new System.Drawing.Point(820, 60);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(168, 38);
             this.button1.TabIndex = 5;
@@ -110,7 +110,7 @@
             // 
             this.openContestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.openContestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openContestButton.Location = new System.Drawing.Point(620, 400);
+            this.openContestButton.Location = new System.Drawing.Point(820, 400);
             this.openContestButton.Name = "openContestButton";
             this.openContestButton.Size = new System.Drawing.Size(168, 38);
             this.openContestButton.TabIndex = 6;
@@ -121,7 +121,7 @@
             // 
             this.logoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.logoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutButton.Location = new System.Drawing.Point(620, 12);
+            this.logoutButton.Location = new System.Drawing.Point(820, 12);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(168, 38);
             this.logoutButton.TabIndex = 7;
@@ -130,7 +130,6 @@
             // 
             // refreshButton
             // 
-            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refreshButton.Location = new System.Drawing.Point(12, 60);
             this.refreshButton.Name = "refreshButton";
@@ -143,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1000, 450);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.openContestButton);

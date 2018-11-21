@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinCompeteSoft.Classes
+namespace BinCompeteSoft
 {
-    class Criteria
+    public class Criteria
     {
         int id, criteriaValue;
         String name, description;
@@ -18,6 +18,8 @@ namespace BinCompeteSoft.Classes
             this.description = description;
             this.criteriaValue = criteriaValue;
         }
+
+        public Criteria() : this(0, "", "", 1) { }
 
         public int Id
         {

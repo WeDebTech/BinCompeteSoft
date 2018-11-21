@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
-    class Project
+    public class Project
     {
         int id;
         public String name, description;
+
+        public Project(): this(0, "", ""){}
 
         public Project(int id, String name, String description)
         {

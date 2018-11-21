@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
-    class AHP
+    public class AHP
     {
         private Project[] projects;
 

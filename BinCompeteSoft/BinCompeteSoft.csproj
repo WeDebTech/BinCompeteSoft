@@ -46,8 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCriteriaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCriteriaForm.Designer.cs">
+      <DependentUpon>AddCriteriaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddJudgeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddJudgeForm.Designer.cs">
+      <DependentUpon>AddJudgeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\AHP.cs" />
     <Compile Include="Classes\Contest.cs" />
+    <Compile Include="Classes\Criteria.cs" />
+    <Compile Include="Classes\Evaluation.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="EditContestDescriptionForm.cs">
       <SubType>Form</SubType>
@@ -95,6 +109,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddCriteriaForm.resx">
+      <DependentUpon>AddCriteriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddJudgeForm.resx">
+      <DependentUpon>AddJudgeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditContestDescriptionForm.resx">
       <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
     </EmbeddedResource>
