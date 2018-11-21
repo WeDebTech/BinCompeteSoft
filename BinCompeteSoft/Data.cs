@@ -20,6 +20,8 @@ namespace BinCompeteSoft
             // Well, nothing to do here
             judgeMembers.Add(new JudgeMember(0, "Juiz 1", "bla@bla.com", "ju1"));
             judgeMembers.Add(new JudgeMember(1, "Juiz 2", "ble@ble.pt", "ju2"));
+
+            contests.Add(new Contest(0, "Contest1", new List<Project> { new Project() }, new List<JudgeMember> { new JudgeMember(0, "Judge1", "email@bla.com", "ju1") }, new List<Criteria> { new Criteria() }, 0.01));
         }
 
         public List<JudgeMember> JudgeMembers

@@ -146,7 +146,6 @@
             this.judgesDataGridView.Size = new System.Drawing.Size(320, 198);
             this.judgesDataGridView.TabIndex = 17;
             this.judgesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.judgesDataGridView_CellContentClick);
-            this.judgesDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.judgesDataGridView_DataError);
             // 
             // projectsDataGridView
             // 
@@ -185,7 +184,8 @@
             // 
             // addDescriptionButton
             // 
-            this.addDescriptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addDescriptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.addDescriptionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addDescriptionButton.Location = new System.Drawing.Point(820, 107);
             this.addDescriptionButton.Name = "addDescriptionButton";
@@ -230,6 +230,7 @@
             // 
             // contestStepNumericUpDown
             // 
+            this.contestStepNumericUpDown.DecimalPlaces = 2;
             this.contestStepNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contestStepNumericUpDown.Increment = new decimal(new int[] {
             1,
@@ -253,6 +254,7 @@
             this.criteriaDataGridView.ReadOnly = true;
             this.criteriaDataGridView.Size = new System.Drawing.Size(320, 198);
             this.criteriaDataGridView.TabIndex = 26;
+            this.criteriaDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.criteriaDataGridView_CellContentClick);
             // 
             // addCriteriaButton
             // 

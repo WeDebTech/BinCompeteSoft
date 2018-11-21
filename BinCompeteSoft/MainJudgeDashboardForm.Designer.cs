@@ -33,7 +33,7 @@
             this.separatorLabel = new System.Windows.Forms.Label();
             this.createContestutton = new System.Windows.Forms.Button();
             this.contestDataGridView = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.filterContestButton = new System.Windows.Forms.Button();
             this.openContestButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
@@ -95,16 +95,17 @@
             this.contestDataGridView.Size = new System.Drawing.Size(976, 290);
             this.contestDataGridView.TabIndex = 4;
             // 
-            // button1
+            // filterContestButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(820, 60);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 38);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Filter Contests";
-            this.button1.UseVisualStyleBackColor = true;
+            this.filterContestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterContestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterContestButton.Location = new System.Drawing.Point(820, 60);
+            this.filterContestButton.Name = "filterContestButton";
+            this.filterContestButton.Size = new System.Drawing.Size(168, 38);
+            this.filterContestButton.TabIndex = 5;
+            this.filterContestButton.Text = "Filter Contests";
+            this.filterContestButton.UseVisualStyleBackColor = true;
+            this.filterContestButton.Click += new System.EventHandler(this.filterContestButton_Click);
             // 
             // openContestButton
             // 
@@ -137,6 +138,7 @@
             this.refreshButton.TabIndex = 8;
             this.refreshButton.Text = "Refresh";
             this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
             // MainJudgeDashboardForm
             // 
@@ -146,7 +148,7 @@
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.openContestButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.filterContestButton);
             this.Controls.Add(this.contestDataGridView);
             this.Controls.Add(this.createContestutton);
             this.Controls.Add(this.separatorLabel);
@@ -170,7 +172,7 @@
         private System.Windows.Forms.Label separatorLabel;
         private System.Windows.Forms.Button createContestutton;
         private System.Windows.Forms.DataGridView contestDataGridView;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button filterContestButton;
         private System.Windows.Forms.Button openContestButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Button refreshButton;

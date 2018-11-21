@@ -63,26 +63,29 @@ namespace BinCompeteSoft
                         // Check if contest step is bigger than 0
                         if(step > 0)
                         {
-                            List<JudgeMember> judgeMembers = new List<JudgeMember>();
-
-                            foreach(DataGridViewRow row in judgesDataGridView.Rows)
+                            // Check if there's any judge member
+                            if(judgeMembers.Count > 0)
                             {
-                                DataGridViewComboBoxCell cell = row.Cells[0] as DataGridViewComboBoxCell;
-                                // Check if it's empty
-                                if(cell != null)
+                                // Check if there's any criteria
+                                if(criterias.Count > 0)
                                 {
-                                    judgeMembers.Add((JudgeMember)cell.Items[0]);
+                                    Contest contest = new Contest(0, contestName, projects, judgeMembers, criterias, step);
+
+                                    Data._instance.addContest(contest);
+                                    mainJudgeDashboardForm.Show();
+                                    mainJudgeDashboardForm.UpdateContestsDataGridView();
+
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(null, "There must be criterias assigned to the contest.", "Error");
                                 }
                             }
-
-                            // Check if there's any judge member
-
-
-                            Contest contest = new Contest(0, contestName, projects, judgeMembers, step);
-
-                            Data._instance.addContest(contest);
-                            mainJudgeDashboardForm.Show();
-                            this.Close();
+                            else
+                            {
+                                MessageBox.Show(null, "There must be judges assigned to the contest.", "Error");
+                            }
                         }
                         else
                         {
@@ -160,14 +163,9 @@ namespace BinCompeteSoft
                 if(e.RowIndex < judgesDataGridView.RowCount)
                 {
                     judgesDataGridView.Rows.RemoveAt(e.RowIndex);
+                    judgeMembers.RemoveAt(e.RowIndex);
                 }
             }
-        }
-
-        // Silently ignore the error, otherwise it'll start throwing errors left and right
-        private void judgesDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.Cancel = true;
         }
 
         private void projectsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -177,9 +175,25 @@ namespace BinCompeteSoft
             {
                 // TODO: Actually delete project
                 // Verify if we're deleting a real row
-                if (e.RowIndex < projectsDataGridView.RowCount - 1)
+                if (e.RowIndex < projectsDataGridView.RowCount)
                 {
                     projectsDataGridView.Rows.RemoveAt(e.RowIndex);
+                    projects.RemoveAt(e.RowIndex);
+                }
+            }
+        }
+
+        private void criteriaDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if we're clicking the button column
+            if (e.ColumnIndex == 2)
+            {
+                // TODO: Actually delete project
+                // Verify if we're deleting a real row
+                if (e.RowIndex < criteriaDataGridView.RowCount)
+                {
+                    criteriaDataGridView.Rows.RemoveAt(e.RowIndex);
+                    criterias.RemoveAt(e.RowIndex);
                 }
             }
         }
