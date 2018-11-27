@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -36,6 +38,12 @@ namespace BinCompeteSoft
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            string username = emailTextBox.Text;
+            string password = passwordTextBox.Text;
+
+            // Ask database if user exists and data is correct
+            GetUserDataFromDB(username, password);
+
             this.Hide();
             MainForm mainForm = new MainForm();
 
@@ -44,6 +52,44 @@ namespace BinCompeteSoft
 
             // Show the dashboard form
             mainForm.Show();
+        }
+
+        private void GetUserDataFromDB(string username, string password)
+        {
+            try
+            {
+                // TODO: Hash password with SHA-256 or 512
+                string query = "SELECT username, email, fullname, administrator, first_time_login FROM user_table WHERE (username = @username OR email = @username) AND pw = @password";
+
+                SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd.CommandText = query;
+
+                SqlParameter sqlUsername = new SqlParameter("@username", SqlDbType.NVarChar);
+                sqlUsername.Value = username;
+                cmd.Parameters.Add(sqlUsername);
+
+                SqlParameter sqlPassword = new SqlParameter("@password", SqlDbType.NVarChar);
+                sqlPassword.Value = password;
+                cmd.Parameters.Add(sqlPassword);
+
+                // Execute query
+                using(DbDataReader reader = cmd.ExecuteReader())
+                {
+                    // Check if user exists
+                    if (reader.HasRows)
+                    {
+                        MessageBox.Show("User logged in successfully!");
+                    }
+                    else
+                    {
+                        MessageBox.Show(null, "Login informations are incorrect.", "Error");
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(null, "Error: " + e, "Error");
+            }
         }
     }
 }
