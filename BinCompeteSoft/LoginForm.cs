@@ -41,25 +41,42 @@ namespace BinCompeteSoft
             string username = emailTextBox.Text;
             string password = passwordTextBox.Text;
 
-            // Ask database if user exists and data is correct
-            GetUserDataFromDB(username, password);
+            if (username == "" || password == "")
+            {
+                MessageBox.Show(null, "All login informations must be filled out.", "Error");
+            }
+            else
+            {
+                // Ask database if user exists and data is correct
+                User loggedUser = GetUserDataFromDB(username, password);
+                if (loggedUser != null)
+                {
+                    Data._instance.loggedInUser = loggedUser;
 
-            this.Hide();
-            MainForm mainForm = new MainForm();
+                    this.Hide();
+                    MainForm mainForm = new MainForm();
 
-            // Make it so when the next form is closed, everything gets closed
-            mainForm.FormClosed += (s, args) => this.Close();
+                    // Make it so when the next form is closed, everything gets closed
+                    mainForm.FormClosed += (s, args) => this.Close();
 
-            // Show the dashboard form
-            mainForm.Show();
+                    // Show the dashboard form
+                    mainForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show(null, "Login informations are incorrect.", "Error");
+
+                    passwordTextBox.Text = "";
+                }
+            }
         }
 
-        private void GetUserDataFromDB(string username, string password)
+        private User GetUserDataFromDB(string username, string password)
         {
             try
             {
                 // TODO: Hash password with SHA-256 or 512
-                string query = "SELECT username, email, fullname, administrator, first_time_login FROM user_table WHERE (username = @username OR email = @username) AND pw = @password";
+                string query = "SELECT id_user, fullname, email, username, administrator, first_time_login, valid FROM user_table WHERE (username = @username OR email = @username) AND pw = @password";
 
                 SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
                 cmd.CommandText = query;
@@ -78,17 +95,24 @@ namespace BinCompeteSoft
                     // Check if user exists
                     if (reader.HasRows)
                     {
-                        MessageBox.Show("User logged in successfully!");
+                        // Construct user information from database
+                        reader.Read();
+
+                        User loggedUser = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetBoolean(4), reader.GetBoolean(5), reader.GetBoolean(6));
+
+                        return loggedUser;
                     }
                     else
                     {
-                        MessageBox.Show(null, "Login informations are incorrect.", "Error");
+                        return null;
                     }
                 }
             }
             catch(Exception e)
             {
                 MessageBox.Show(null, "Error: " + e, "Error");
+
+                return null;
             }
         }
     }

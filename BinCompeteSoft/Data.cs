@@ -11,6 +11,8 @@ namespace BinCompeteSoft
         // Make it so the class is a singleton
         public static readonly Data _instance = new Data();
 
+        public User loggedInUser { get; set; }
+
         List<JudgeMember> judgeMembers = new List<JudgeMember>();
         List<Contest> contests = new List<Contest>();
         List<Project> projects = new List<Project>();
