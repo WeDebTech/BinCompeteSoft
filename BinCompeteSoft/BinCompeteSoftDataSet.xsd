@@ -420,6 +420,7 @@ SELECT id_user, username, email, pw, fullname FROM user_table WHERE (id_user = @
                 </xs:simpleType>
               </xs:element>
               <xs:element name="step" msprop:Generator_ColumnVarNameInTable="columnstep" msprop:Generator_ColumnPropNameInRow="step" msprop:Generator_ColumnPropNameInTable="stepColumn" msprop:Generator_UserColumnName="step" type="xs:decimal" minOccurs="0" />
+              <xs:element name="limit_date" msprop:Generator_ColumnVarNameInTable="columnlimit_date" msprop:Generator_ColumnPropNameInRow="limit_date" msprop:Generator_ColumnPropNameInTable="limit_dateColumn" msprop:Generator_UserColumnName="limit_date" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

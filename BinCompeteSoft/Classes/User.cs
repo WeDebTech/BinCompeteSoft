@@ -9,7 +9,7 @@ namespace BinCompeteSoft
     class User
     {
         int id { get; }
-        string name { get; }
+        public string name { get; }
         string email { get; }
         string username { get; }
         bool administrator { get; }

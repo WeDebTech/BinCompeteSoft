@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -63,28 +65,44 @@ namespace BinCompeteSoft
                         // Check if contest step is bigger than 0
                         if(step > 0)
                         {
-                            // Check if there's any judge member
-                            if(judgeMembers.Count > 0)
+                            // Check if contest's limit date is after today
+                            if (contestDateTimePicker.Value.Date > DateTime.Today)
                             {
-                                // Check if there's any criteria
-                                if(criterias.Count > 0)
+                                // Check if there's any judge member
+                                if (judgeMembers.Count > 0)
                                 {
-                                    Contest contest = new Contest(0, contestName, projects, judgeMembers, criterias, step);
+                                    // Check if there's any criteria
+                                    if (criterias.Count > 0)
+                                    {
+                                        Contest contest = new Contest(0, contestName, description, projects, judgeMembers, criterias, step, contestDateTimePicker.Value);
 
-                                    Data._instance.addContest(contest);
-                                    mainJudgeDashboardForm.Show();
-                                    mainJudgeDashboardForm.UpdateContestsDataGridView();
+                                        if (InsertContestToDB(contest))
+                                        {
+                                            MessageBox.Show(null, "Contest created successfully.", "Success");
 
-                                    this.Close();
+                                            Data._instance.addContest(contest);
+                                            mainJudgeDashboardForm.Show();
+                                            mainJudgeDashboardForm.UpdateContestsDataGridView();
+
+                                            this.Close();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(null, "Error inserting contest.", "Error");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(null, "There must be criterias assigned to the contest.", "Error");
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show(null, "There must be criterias assigned to the contest.", "Error");
+                                    MessageBox.Show(null, "There must be judges assigned to the contest.", "Error");
                                 }
                             }
-                            else
-                            {
-                                MessageBox.Show(null, "There must be judges assigned to the contest.", "Error");
+                            else{
+                                MessageBox.Show(null, "Limit date must be after today's date.", "Error");
                             }
                         }
                         else
@@ -266,6 +284,56 @@ namespace BinCompeteSoft
             criteriaDataGridView.Rows.Add(criteria.Name, criteria.CriteriaValue);
 
             UpdateDataGridView(criteriaDataGridView);
+        }
+
+        /// <summary>
+        /// Inserts a Contest into the database.
+        /// </summary>
+        /// <param name="contestToInsert">The Constest to insert into the database.</param>
+        /// <returns>True if inserted successfully, false otherwise.</returns>
+        public bool InsertContestToDB(Contest contestToInsert)
+        {
+            try
+            {
+                string query = "INSERT INTO contest_table (contest_name, descript, step, limit_date) " +
+                    "VALUES (@contest_name, @descript, @step, @limit_date)";
+
+                SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd.CommandText = query;
+
+                SqlParameter sqlContestName = new SqlParameter("@contest_name", SqlDbType.NVarChar);
+                sqlContestName.Value = contestToInsert.name;
+                cmd.Parameters.Add(sqlContestName);
+
+                SqlParameter sqlDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
+                sqlDescript.Value = contestToInsert.description;
+                cmd.Parameters.Add(sqlDescript);
+
+                SqlParameter sqlStep = new SqlParameter("@step", SqlDbType.Decimal);
+                sqlStep.Value = contestToInsert.step;
+                cmd.Parameters.Add(sqlStep);
+
+                SqlParameter sqlLimitdate = new SqlParameter("@limit_date", SqlDbType.DateTime);
+                sqlLimitdate.Value = contestToInsert.limitDate;
+                cmd.Parameters.Add(sqlLimitdate);
+
+                // Execute query
+                int affectedRows = cmd.ExecuteNonQuery();
+
+                // Verify if query was executed successfully
+                if (affectedRows > 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(null, "Error: " + e, "Error");
+
+                return false;
+            }
         }
     }
 }

@@ -1129,6 +1129,8 @@ namespace BinCompeteSoft {
             
             private global::System.Data.DataColumn columnstep;
             
+            private global::System.Data.DataColumn columnlimit_date;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_tableDataTable() {
@@ -1196,6 +1198,14 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn limit_dateColumn {
+                get {
+                    return this.columnlimit_date;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1231,13 +1241,14 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public contest_tableRow Addcontest_tableRow(int id_contest, string contest_name, string descript, decimal step) {
+            public contest_tableRow Addcontest_tableRow(int id_contest, string contest_name, string descript, decimal step, System.DateTime limit_date) {
                 contest_tableRow rowcontest_tableRow = ((contest_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id_contest,
                         contest_name,
                         descript,
-                        step};
+                        step,
+                        limit_date};
                 rowcontest_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcontest_tableRow);
                 return rowcontest_tableRow;
@@ -1271,6 +1282,7 @@ namespace BinCompeteSoft {
                 this.columncontest_name = base.Columns["contest_name"];
                 this.columndescript = base.Columns["descript"];
                 this.columnstep = base.Columns["step"];
+                this.columnlimit_date = base.Columns["limit_date"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1284,6 +1296,8 @@ namespace BinCompeteSoft {
                 base.Columns.Add(this.columndescript);
                 this.columnstep = new global::System.Data.DataColumn("step", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstep);
+                this.columnlimit_date = new global::System.Data.DataColumn("limit_date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlimit_date);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_contest}, true));
                 this.columnid_contest.AllowDBNull = false;
@@ -3206,6 +3220,22 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime limit_date {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablecontest_table.limit_dateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'limit_date\' in table \'contest_table\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecontest_table.limit_dateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Iscontest_nameNull() {
                 return this.IsNull(this.tablecontest_table.contest_nameColumn);
             }
@@ -3238,6 +3268,18 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstepNull() {
                 this[this.tablecontest_table.stepColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Islimit_dateNull() {
+                return this.IsNull(this.tablecontest_table.limit_dateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setlimit_dateNull() {
+                this[this.tablecontest_table.limit_dateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -147,6 +147,8 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddCriteriaForm";
             this.Text = "Add Criteria";
             ((System.ComponentModel.ISupportInitialize)(this.criteriaValueTrackBar)).EndInit();

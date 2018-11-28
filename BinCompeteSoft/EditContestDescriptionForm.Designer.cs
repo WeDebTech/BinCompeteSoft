@@ -70,6 +70,7 @@
             // 
             // contestDescriptionTextBox
             // 
+            this.contestDescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contestDescriptionTextBox.Location = new System.Drawing.Point(12, 43);
             this.contestDescriptionTextBox.Multiline = true;
             this.contestDescriptionTextBox.Name = "contestDescriptionTextBox";

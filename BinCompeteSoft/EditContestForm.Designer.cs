@@ -241,6 +241,11 @@
             this.contestStepNumericUpDown.Name = "contestStepNumericUpDown";
             this.contestStepNumericUpDown.Size = new System.Drawing.Size(120, 38);
             this.contestStepNumericUpDown.TabIndex = 25;
+            this.contestStepNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             // 
             // criteriaDataGridView
             // 

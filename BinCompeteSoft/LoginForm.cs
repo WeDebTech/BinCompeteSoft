@@ -115,5 +115,17 @@ namespace BinCompeteSoft
                 return null;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm mainForm = new MainForm();
+
+            // Make it so when the next form is closed, everything gets closed
+            mainForm.FormClosed += (s, args) => this.Close();
+
+            // Show the dashboard form
+            mainForm.Show();
+        }
     }
 }

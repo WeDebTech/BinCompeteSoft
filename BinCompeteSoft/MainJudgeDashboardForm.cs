@@ -24,8 +24,14 @@ namespace BinCompeteSoft
             contestDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            contestDataGridView.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
             contestDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             contestDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+            // Fill out user informations
+            //usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.name;
+
+            UpdateContestsDataGridView();
         }
 
         private void createContestutton_Click(object sender, EventArgs e)
