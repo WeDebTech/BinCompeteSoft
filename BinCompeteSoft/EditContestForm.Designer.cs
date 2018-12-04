@@ -34,8 +34,8 @@
             this.usernameLabel = new System.Windows.Forms.Label();
             this.softwareNameLabel = new System.Windows.Forms.Label();
             this.contestNameTextBox = new System.Windows.Forms.TextBox();
-            this.dateLabel = new System.Windows.Forms.Label();
-            this.contestDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.limitDateLabel = new System.Windows.Forms.Label();
+            this.contestLimitDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.judgesDataGridView = new System.Windows.Forms.DataGridView();
             this.projectsDataGridView = new System.Windows.Forms.DataGridView();
             this.addJudgeButton = new System.Windows.Forms.Button();
@@ -47,6 +47,8 @@
             this.contestStepNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.criteriaDataGridView = new System.Windows.Forms.DataGridView();
             this.addCriteriaButton = new System.Windows.Forms.Button();
+            this.contestStartDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.startDateLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.judgesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contestStepNumericUpDown)).BeginInit();
@@ -116,23 +118,24 @@
             this.contestNameTextBox.Size = new System.Drawing.Size(793, 38);
             this.contestNameTextBox.TabIndex = 12;
             // 
-            // dateLabel
+            // limitDateLabel
             // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(6, 109);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(169, 31);
-            this.dateLabel.TabIndex = 13;
-            this.dateLabel.Text = "Contest date";
+            this.limitDateLabel.AutoSize = true;
+            this.limitDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.limitDateLabel.Location = new System.Drawing.Point(262, 108);
+            this.limitDateLabel.Name = "limitDateLabel";
+            this.limitDateLabel.Size = new System.Drawing.Size(131, 31);
+            this.limitDateLabel.TabIndex = 13;
+            this.limitDateLabel.Text = "Limit date";
             // 
-            // contestDateTimePicker
+            // contestLimitDateTimePicker
             // 
-            this.contestDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contestDateTimePicker.Location = new System.Drawing.Point(195, 110);
-            this.contestDateTimePicker.Name = "contestDateTimePicker";
-            this.contestDateTimePicker.Size = new System.Drawing.Size(259, 30);
-            this.contestDateTimePicker.TabIndex = 16;
+            this.contestLimitDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contestLimitDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.contestLimitDateTimePicker.Location = new System.Drawing.Point(392, 109);
+            this.contestLimitDateTimePicker.Name = "contestLimitDateTimePicker";
+            this.contestLimitDateTimePicker.Size = new System.Drawing.Size(122, 30);
+            this.contestLimitDateTimePicker.TabIndex = 16;
             // 
             // judgesDataGridView
             // 
@@ -222,7 +225,7 @@
             // 
             this.stepLabel.AutoSize = true;
             this.stepLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stepLabel.Location = new System.Drawing.Point(512, 109);
+            this.stepLabel.Location = new System.Drawing.Point(520, 108);
             this.stepLabel.Name = "stepLabel";
             this.stepLabel.Size = new System.Drawing.Size(168, 31);
             this.stepLabel.TabIndex = 24;
@@ -274,11 +277,32 @@
             this.addCriteriaButton.UseVisualStyleBackColor = true;
             this.addCriteriaButton.Click += new System.EventHandler(this.addCriteriaButton_Click);
             // 
+            // contestStartDateTimePicker
+            // 
+            this.contestStartDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contestStartDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.contestStartDateTimePicker.Location = new System.Drawing.Point(133, 110);
+            this.contestStartDateTimePicker.Name = "contestStartDateTimePicker";
+            this.contestStartDateTimePicker.Size = new System.Drawing.Size(123, 30);
+            this.contestStartDateTimePicker.TabIndex = 29;
+            // 
+            // startDateLabel
+            // 
+            this.startDateLabel.AutoSize = true;
+            this.startDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDateLabel.Location = new System.Drawing.Point(6, 108);
+            this.startDateLabel.Name = "startDateLabel";
+            this.startDateLabel.Size = new System.Drawing.Size(132, 31);
+            this.startDateLabel.TabIndex = 28;
+            this.startDateLabel.Text = "Start date";
+            // 
             // EditContestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
+            this.Controls.Add(this.contestStartDateTimePicker);
+            this.Controls.Add(this.startDateLabel);
             this.Controls.Add(this.addCriteriaButton);
             this.Controls.Add(this.criteriaDataGridView);
             this.Controls.Add(this.contestStepNumericUpDown);
@@ -290,8 +314,8 @@
             this.Controls.Add(this.addJudgeButton);
             this.Controls.Add(this.projectsDataGridView);
             this.Controls.Add(this.judgesDataGridView);
-            this.Controls.Add(this.contestDateTimePicker);
-            this.Controls.Add(this.dateLabel);
+            this.Controls.Add(this.contestLimitDateTimePicker);
+            this.Controls.Add(this.limitDateLabel);
             this.Controls.Add(this.contestNameTextBox);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.separatorLabel);
@@ -319,8 +343,8 @@
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label softwareNameLabel;
         private System.Windows.Forms.TextBox contestNameTextBox;
-        private System.Windows.Forms.Label dateLabel;
-        private System.Windows.Forms.DateTimePicker contestDateTimePicker;
+        private System.Windows.Forms.Label limitDateLabel;
+        private System.Windows.Forms.DateTimePicker contestLimitDateTimePicker;
         private System.Windows.Forms.DataGridView judgesDataGridView;
         private System.Windows.Forms.DataGridView projectsDataGridView;
         private System.Windows.Forms.Button addJudgeButton;
@@ -332,5 +356,7 @@
         private System.Windows.Forms.NumericUpDown contestStepNumericUpDown;
         private System.Windows.Forms.DataGridView criteriaDataGridView;
         private System.Windows.Forms.Button addCriteriaButton;
+        private System.Windows.Forms.DateTimePicker contestStartDateTimePicker;
+        private System.Windows.Forms.Label startDateLabel;
     }
 }

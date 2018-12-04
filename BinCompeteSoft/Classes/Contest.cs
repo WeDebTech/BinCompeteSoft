@@ -24,10 +24,12 @@ namespace BinCompeteSoft
         public int criteriasCount => criterias.Count;
         [System.ComponentModel.DisplayName("Step")]
         public double step { get; set; }
+        [System.ComponentModel.DisplayName("Start date")]
+        public DateTime startDate { get; set; }
         [System.ComponentModel.DisplayName("Limit date")]
         public DateTime limitDate { get; set; }
 
-        public Contest(int id, string name, string description, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias, double step, DateTime limitDate)
+        public Contest(int id, string name, string description, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias, double step, DateTime startDate, DateTime limitDate)
         {
             this.id = id;
             this.name = name;
@@ -36,6 +38,7 @@ namespace BinCompeteSoft
             this.judgeMembers = judgeMembers;
             this.criterias = criterias;
             this.step = step;
+            this.startDate = startDate.Date;
             this.limitDate = limitDate.Date;
         }
 

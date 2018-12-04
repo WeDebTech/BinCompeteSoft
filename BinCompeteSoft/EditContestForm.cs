@@ -67,44 +67,53 @@ namespace BinCompeteSoft
                         // Check if contest step is bigger than 0
                         if(step > 0)
                         {
-                            // Check if contest's limit date is after today
-                            if (contestDateTimePicker.Value.Date > DateTime.Today)
+                            // Check if contest's start date is after today
+                            if (contestStartDateTimePicker.Value.Date >= DateTime.Today)
                             {
-                                // Check if there's any judge member
-                                if (judgeMembers.Count > 0)
+                                // Check if contest's limit date is after today and after the start date
+                                if (contestLimitDateTimePicker.Value.Date > DateTime.Today && contestLimitDateTimePicker.Value.Date > contestStartDateTimePicker.Value.Date)
                                 {
-                                    // Check if there's any criteria
-                                    if (criterias.Count > 0)
+                                    // Check if there's any judge member
+                                    if (judgeMembers.Count > 0)
                                     {
-                                        Contest contest = new Contest(0, contestName, description, projects, judgeMembers, criterias, step, contestDateTimePicker.Value);
-
-                                        if (InsertContestToDB(contest))
+                                        // Check if there's any criteria
+                                        if (criterias.Count > 0)
                                         {
-                                            MessageBox.Show(null, "Contest created successfully.", "Success");
+                                            Contest contest = new Contest(0, contestName, description, projects, judgeMembers, criterias, step, contestStartDateTimePicker.Value, contestLimitDateTimePicker.Value);
 
-                                            Data._instance.addContest(contest);
-                                            mainJudgeDashboardForm.Show();
-                                            mainJudgeDashboardForm.UpdateContestsDataGridView();
+                                            if (InsertContestToDB(contest))
+                                            {
+                                                MessageBox.Show(null, "Contest created successfully.", "Success");
 
-                                            this.Close();
+                                                Data._instance.addContest(contest);
+                                                mainJudgeDashboardForm.Show();
+                                                mainJudgeDashboardForm.UpdateContestsDataGridView();
+
+                                                this.Close();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(null, "Error inserting contest.", "Error");
+                                            }
                                         }
                                         else
                                         {
-                                            MessageBox.Show(null, "Error inserting contest.", "Error");
+                                            MessageBox.Show(null, "There must be criterias assigned to the contest.", "Error");
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show(null, "There must be criterias assigned to the contest.", "Error");
+                                        MessageBox.Show(null, "There must be judges assigned to the contest.", "Error");
                                     }
                                 }
                                 else
                                 {
-                                    MessageBox.Show(null, "There must be judges assigned to the contest.", "Error");
+                                    MessageBox.Show(null, "Limit date must be after today's date.", "Error");
                                 }
                             }
-                            else{
-                                MessageBox.Show(null, "Limit date must be after today's date.", "Error");
+                            else
+                            {
+                                MessageBox.Show(null, "Start date must be after today's date.", "Error");
                             }
                         }
                         else
@@ -297,8 +306,9 @@ namespace BinCompeteSoft
         {
             try
             {
-                string query = "INSERT INTO contest_table (contest_name, descript, step, limit_date) " +
-                    "OUTPUT INSERT.ID VALUES (@contest_name, @descript, @step, @limit_date)";
+                string query = "INSERT INTO contest_table ([contest_name], [descript], [step], [start_date], [limit_date]) " +
+                    "VALUES (@contest_name, @descript, @step, @start_date, @limit_date);" +
+                    "SELECT CAST(scope_identity() AS int)";
 
                 SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
                 cmd.CommandText = query;
@@ -315,6 +325,10 @@ namespace BinCompeteSoft
                 sqlStep.Value = contestToInsert.step;
                 cmd.Parameters.Add(sqlStep);
 
+                SqlParameter sqlStartdate = new SqlParameter("@start_date", SqlDbType.DateTime);
+                sqlStartdate.Value = contestToInsert.startDate;
+                cmd.Parameters.Add(sqlStartdate);
+
                 SqlParameter sqlLimitdate = new SqlParameter("@limit_date", SqlDbType.DateTime);
                 sqlLimitdate.Value = contestToInsert.limitDate;
                 cmd.Parameters.Add(sqlLimitdate);
@@ -322,30 +336,19 @@ namespace BinCompeteSoft
                 // Execute query
                 int insertedId = (int)cmd.ExecuteScalar();
 
-                // This will be used a lot, so let's just declare it here
-                SqlParameter sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
-                sqlContestId.Value = insertedId;
-
-                // Insert projects into database
-                query = "INSERT INTO project_table (id_contest, id_category, descript, project_name, promoter_name) VALUES ";
-                bool firstProject = true;
-
-                cmd = DBSqlHelper._instance.conn.CreateCommand();
-                cmd.CommandText = query;
+                SqlParameter sqlContestId;
 
                 foreach (Project project in projects)
                 {
-                    if (!firstProject)
-                    {
-                        query += ", ";
-                    }
-                    else
-                    {
-                        firstProject = false;
-                    }
-                    // Add the project to the query
-                    query += "(@id_contest, @id_category, @descript, @project_name, @promoter_name)";
+                    // Insert projects into database
+                    query = "INSERT INTO project_table ([id_contest], [id_category], [descript], [project_name], [promoter_name]) " +
+                        "VALUES (@id_contest, @id_category, @descript, @project_name, @promoter_name)";
 
+                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd.CommandText = query;
+
+                    sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+                    sqlContestId.Value = insertedId;
                     cmd.Parameters.Add(sqlContestId);
 
                     SqlParameter sqlProjectCategory = new SqlParameter("@id_category", SqlDbType.Int);
@@ -363,27 +366,26 @@ namespace BinCompeteSoft
                     SqlParameter sqlPromoterName = new SqlParameter("@promoter_name", SqlDbType.NVarChar);
                     sqlPromoterName.Value = project.promoterName;
                     cmd.Parameters.Add(sqlPromoterName);
+
+                    // Execute query
+                    cmd.ExecuteNonQuery();
                 }
 
-                // Execute query
-                int success = cmd.ExecuteNonQuery();
-
-                // Execute judges into database
-                query = "INSERT INTO contest_juri_table (id_contest, id_user, has_voted, president) VALUES ";
-
-                // Insert judges president (current user)
-                query += "(@id_contest, @id_user, 0, 1), ";
+                // Insert main judge into database
+                query = "INSERT INTO contest_juri_table (id_contest, id_user, has_voted, president) VALUES (@id_contest, @id_user, 0, 1)";
 
                 cmd = DBSqlHelper._instance.conn.CreateCommand();
                 cmd.CommandText = query;
 
+                sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+                sqlContestId.Value = insertedId;
                 cmd.Parameters.Add(sqlContestId);
 
                 SqlParameter sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
                 sqlUserId.Value = Data._instance.loggedInUser.id;
                 cmd.Parameters.Add(sqlUserId);
 
-                bool firstJudge = true;
+                cmd.ExecuteNonQuery();
 
                 cmd = DBSqlHelper._instance.conn.CreateCommand();
                 cmd.CommandText = query;
@@ -391,28 +393,27 @@ namespace BinCompeteSoft
                 // Now let's add the remaining judges
                 foreach (JudgeMember judgeMember in judgeMembers)
                 {
-                    if (!firstJudge)
-                    {
-                        query += ", ";
-                    }
-                    else
-                    {
-                        firstJudge = false;
-                    }
-                    // Add the judge to the query
-                    query += "(@id_contest, @id_user, 0, 1)";
+                    // Insert judge into database
+                    query = "INSERT INTO contest_juri_table (id_contest, id_user, has_voted, president) VALUES (@id_contest, @id_user, 0, 0)";
 
+                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd.CommandText = query;
+
+                    sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+                    sqlContestId.Value = insertedId;
                     cmd.Parameters.Add(sqlContestId);
 
                     sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
                     sqlUserId.Value = judgeMember.Id;
                     cmd.Parameters.Add(sqlUserId);
+
+                    // Execute query
+                    cmd.ExecuteNonQuery();
                 }
 
-                // Execute query
-                success = cmd.ExecuteNonQuery();
+                // TODO: Insert criteria
 
-                return false;
+                return true;
             }
             catch(Exception e)
             {

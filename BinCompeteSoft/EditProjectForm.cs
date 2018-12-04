@@ -39,7 +39,7 @@ namespace BinCompeteSoft
             else
             {
                 // TODO: get actual project category
-                Project project = new Project(0, projectName, projectDescription, promoterName, 0);
+                Project project = new Project(0, projectName, projectDescription, promoterName, 1);
 
                 editContestForm.AddProject(project);
 
@@ -56,6 +56,9 @@ namespace BinCompeteSoft
         private void EditProjectForm_Load(object sender, EventArgs e)
         {
             // TODO: load all project categories
+            projectDescriptionTextBox.Text = "Sample project description.";
+            projectPromoterTextBox.Text = "Sample promoter name";
+            projectNameTextBox.Text = "Sample project name";
         }
     }
 }

@@ -151,6 +151,7 @@
             this.MinimizeBox = false;
             this.Name = "AddCriteriaForm";
             this.Text = "Add Criteria";
+            this.Load += new System.EventHandler(this.AddCriteriaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.criteriaValueTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

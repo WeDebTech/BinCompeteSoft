@@ -60,5 +60,11 @@ namespace BinCompeteSoft
 
             this.Close();
         }
+
+        private void AddCriteriaForm_Load(object sender, EventArgs e)
+        {
+            criteriaDescriptionTextBox.Text = "Sample criteria description.";
+            criteriaNameTextBox.Text = "Sample criteria name";
+        }
     }
 }

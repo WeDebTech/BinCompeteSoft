@@ -15,6 +15,8 @@ namespace BinCompeteSoft
 {
     public partial class LoginForm : Form
     {
+        int N = 1;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -34,6 +36,24 @@ namespace BinCompeteSoft
             double[] criteriaScores = new double[2] { 2, 5 };
 
             double[] finalResults = testAHP.CalculateAHP(projectsScores, criteriaScores, 0.25f);
+
+            double average = 0;
+
+            average = CalculateAverage(average, 5);
+
+            average = CalculateAverage(average, 8);
+
+            average = CalculateAverage(average, 12);
+        }
+
+        private double CalculateAverage(double average, double new_value)
+        {
+            average -= average / N;
+            average += new_value / N;
+
+            N++;
+
+            return average;
         }
 
         private void loginButton_Click(object sender, EventArgs e)
