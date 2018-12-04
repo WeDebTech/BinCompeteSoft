@@ -34,7 +34,7 @@ namespace BinCompeteSoft
             UpdateContestsDataGridView();
         }
 
-        private void createContestutton_Click(object sender, EventArgs e)
+        private void createContestButton_Click(object sender, EventArgs e)
         {
             EditContestForm editContestForm = new EditContestForm(this);
             editContestForm.MdiParent = this.MdiParent;

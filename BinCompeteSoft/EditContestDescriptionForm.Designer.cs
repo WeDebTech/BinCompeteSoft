@@ -89,6 +89,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "EditContestDescriptionForm";
             this.Text = "Edit Contest Description";
+            this.Load += new System.EventHandler(this.EditContestDescriptionForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

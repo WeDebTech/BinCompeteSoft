@@ -8,34 +8,21 @@ namespace BinCompeteSoft
 {
     public class Project
     {
-        int id;
-        public String name, description;
+        public int id { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public string promoterName { get; set; }
+        public int category { get; set; }
 
-        public Project(): this(0, "", ""){}
+        public Project(): this(0, "", "", "", 0){}
 
-        public Project(int id, String name, String description)
+        public Project(int id, string name, string description, string promoterName, int category)
         {
             this.id = id;
             this.name = name;
             this.description = description;
-        }
-
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public String Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public String Description
-        {
-            get { return description; }
-            set { description = value; }
+            this.promoterName = promoterName;
+            this.category = category;
         }
     }
 }

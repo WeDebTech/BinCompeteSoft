@@ -8,7 +8,7 @@ namespace BinCompeteSoft
 {
     class User
     {
-        int id { get; }
+        public int id { get; }
         public string name { get; }
         string email { get; }
         string username { get; }

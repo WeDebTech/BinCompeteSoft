@@ -26,13 +26,15 @@ namespace BinCompeteSoft
         {
             this.mainJudgeDashboardForm = mainJudgeDashboardForm;
 
+            description = "Sample contest description.";
+
             InitializeComponent();
         }
 
         private void addDescriptionButton_Click(object sender, EventArgs e)
         {
             // Open description form
-            EditContestDescriptionForm editContestDescriptionForm = new EditContestDescriptionForm(this);
+            EditContestDescriptionForm editContestDescriptionForm = new EditContestDescriptionForm(this, "Sample contest description.");
             editContestDescriptionForm.Show();
         }
 
@@ -231,7 +233,7 @@ namespace BinCompeteSoft
         {
             projects.Add(project);
 
-            projectsDataGridView.Rows.Add(project.Name);
+            projectsDataGridView.Rows.Add(project.name);
 
             UpdateDataGridView(projectsDataGridView);
         }
@@ -296,7 +298,7 @@ namespace BinCompeteSoft
             try
             {
                 string query = "INSERT INTO contest_table (contest_name, descript, step, limit_date) " +
-                    "VALUES (@contest_name, @descript, @step, @limit_date)";
+                    "OUTPUT INSERT.ID VALUES (@contest_name, @descript, @step, @limit_date)";
 
                 SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
                 cmd.CommandText = query;
@@ -318,13 +320,97 @@ namespace BinCompeteSoft
                 cmd.Parameters.Add(sqlLimitdate);
 
                 // Execute query
-                int affectedRows = cmd.ExecuteNonQuery();
+                int insertedId = (int)cmd.ExecuteScalar();
 
-                // Verify if query was executed successfully
-                if (affectedRows > 0)
+                // This will be used a lot, so let's just declare it here
+                SqlParameter sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+                sqlContestId.Value = insertedId;
+
+                // Insert projects into database
+                query = "INSERT INTO project_table (id_contest, id_category, descript, project_name, promoter_name) VALUES ";
+                bool firstProject = true;
+
+                cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd.CommandText = query;
+
+                foreach (Project project in projects)
                 {
-                    return true;
+                    if (!firstProject)
+                    {
+                        query += ", ";
+                    }
+                    else
+                    {
+                        firstProject = false;
+                    }
+                    // Add the project to the query
+                    query += "(@id_contest, @id_category, @descript, @project_name, @promoter_name)";
+
+                    cmd.Parameters.Add(sqlContestId);
+
+                    SqlParameter sqlProjectCategory = new SqlParameter("@id_category", SqlDbType.Int);
+                    sqlProjectCategory.Value = project.category;
+                    cmd.Parameters.Add(sqlProjectCategory);
+
+                    sqlDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
+                    sqlDescript.Value = project.description;
+                    cmd.Parameters.Add(sqlDescript);
+
+                    SqlParameter sqlProjectName = new SqlParameter("@project_name", SqlDbType.NVarChar);
+                    sqlProjectName.Value = project.name;
+                    cmd.Parameters.Add(sqlProjectName);
+
+                    SqlParameter sqlPromoterName = new SqlParameter("@promoter_name", SqlDbType.NVarChar);
+                    sqlPromoterName.Value = project.promoterName;
+                    cmd.Parameters.Add(sqlPromoterName);
                 }
+
+                // Execute query
+                int success = cmd.ExecuteNonQuery();
+
+                // Execute judges into database
+                query = "INSERT INTO contest_juri_table (id_contest, id_user, has_voted, president) VALUES ";
+
+                // Insert judges president (current user)
+                query += "(@id_contest, @id_user, 0, 1), ";
+
+                cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd.CommandText = query;
+
+                cmd.Parameters.Add(sqlContestId);
+
+                SqlParameter sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
+                sqlUserId.Value = Data._instance.loggedInUser.id;
+                cmd.Parameters.Add(sqlUserId);
+
+                bool firstJudge = true;
+
+                cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd.CommandText = query;
+
+                // Now let's add the remaining judges
+                foreach (JudgeMember judgeMember in judgeMembers)
+                {
+                    if (!firstJudge)
+                    {
+                        query += ", ";
+                    }
+                    else
+                    {
+                        firstJudge = false;
+                    }
+                    // Add the judge to the query
+                    query += "(@id_contest, @id_user, 0, 1)";
+
+                    cmd.Parameters.Add(sqlContestId);
+
+                    sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
+                    sqlUserId.Value = judgeMember.Id;
+                    cmd.Parameters.Add(sqlUserId);
+                }
+
+                // Execute query
+                success = cmd.ExecuteNonQuery();
 
                 return false;
             }

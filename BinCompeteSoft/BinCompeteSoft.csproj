@@ -58,6 +58,9 @@
     <Compile Include="AddJudgeForm.Designer.cs">
       <DependentUpon>AddJudgeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BinCompeteSoftDataSet.cs">
+      <DependentUpon>BinCompeteSoftDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="BinCompeteSoftDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -14,9 +14,13 @@ namespace BinCompeteSoft
     {
         EditContestForm editContestForm;
 
-        public EditContestDescriptionForm(EditContestForm editContestForm)
+        string description;
+
+        public EditContestDescriptionForm(EditContestForm editContestForm, string description)
         {
             this.editContestForm = editContestForm;
+
+            this.description = description;
 
             InitializeComponent();
         }
@@ -41,6 +45,11 @@ namespace BinCompeteSoft
 
                 this.Close();
             }
+        }
+
+        private void EditContestDescriptionForm_Load(object sender, EventArgs e)
+        {
+            contestDescriptionTextBox.Text = description;
         }
     }
 }

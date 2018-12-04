@@ -31,7 +31,7 @@
             this.softwareNameLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.separatorLabel = new System.Windows.Forms.Label();
-            this.createContestutton = new System.Windows.Forms.Button();
+            this.createContestButton = new System.Windows.Forms.Button();
             this.contestDataGridView = new System.Windows.Forms.DataGridView();
             this.filterContestButton = new System.Windows.Forms.Button();
             this.openContestButton = new System.Windows.Forms.Button();
@@ -71,17 +71,17 @@
             this.separatorLabel.Size = new System.Drawing.Size(1000, 2);
             this.separatorLabel.TabIndex = 2;
             // 
-            // createContestutton
+            // createContestButton
             // 
-            this.createContestutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.createContestutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createContestutton.Location = new System.Drawing.Point(12, 400);
-            this.createContestutton.Name = "createContestutton";
-            this.createContestutton.Size = new System.Drawing.Size(191, 38);
-            this.createContestutton.TabIndex = 3;
-            this.createContestutton.Text = "Create new contest";
-            this.createContestutton.UseVisualStyleBackColor = true;
-            this.createContestutton.Click += new System.EventHandler(this.createContestutton_Click);
+            this.createContestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.createContestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createContestButton.Location = new System.Drawing.Point(12, 400);
+            this.createContestButton.Name = "createContestButton";
+            this.createContestButton.Size = new System.Drawing.Size(191, 38);
+            this.createContestButton.TabIndex = 3;
+            this.createContestButton.Text = "Create new contest";
+            this.createContestButton.UseVisualStyleBackColor = true;
+            this.createContestButton.Click += new System.EventHandler(this.createContestButton_Click);
             // 
             // contestDataGridView
             // 
@@ -149,7 +149,7 @@
             this.Controls.Add(this.openContestButton);
             this.Controls.Add(this.filterContestButton);
             this.Controls.Add(this.contestDataGridView);
-            this.Controls.Add(this.createContestutton);
+            this.Controls.Add(this.createContestButton);
             this.Controls.Add(this.separatorLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.softwareNameLabel);
@@ -169,7 +169,7 @@
         private System.Windows.Forms.Label softwareNameLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label separatorLabel;
-        private System.Windows.Forms.Button createContestutton;
+        private System.Windows.Forms.Button createContestButton;
         private System.Windows.Forms.DataGridView contestDataGridView;
         private System.Windows.Forms.Button filterContestButton;
         private System.Windows.Forms.Button openContestButton;
