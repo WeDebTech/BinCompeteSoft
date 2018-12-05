@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace BinCompeteSoft
 
         List<JudgeMember> judgeMembers = new List<JudgeMember>();
         List<Contest> contests = new List<Contest>();
+        List<ContestPreview> contestPreviews = new List<ContestPreview>();
         List<Project> projects = new List<Project>();
         List<Category> categories = new List<Category>();
 
@@ -35,6 +37,12 @@ namespace BinCompeteSoft
         {
             get { return contests; }
             set { contests = value; }
+        }
+
+        public List<ContestPreview> ContestPreviews
+        {
+            get { return contestPreviews; }
+            set { contestPreviews = value; }
         }
 
         public List<Project> Projects
@@ -108,7 +116,7 @@ namespace BinCompeteSoft
                     {
                         // Construct user information from database
                         JudgeMember judge = new JudgeMember(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
-                        Data._instance.JudgeMembers.Add(judge);
+                        judgeMembers.Add(judge);
                     }
 
                     return true;
@@ -131,7 +139,7 @@ namespace BinCompeteSoft
             // Execute query
             using (DbDataReader reader = cmd.ExecuteReader())
             {
-                // Check if user exists
+                // Check if category exists
                 if (reader.HasRows)
                 {
                     categories.Clear();
@@ -139,7 +147,45 @@ namespace BinCompeteSoft
                     while (reader.Read())
                     {
                         Category category = new Category(reader.GetInt32(0), reader.GetString(1));
-                        Data._instance.Categories.Add(category);
+                        categories.Add(category);
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool refreshContests()
+        {
+            // Load the contest that the users has part in from the Database
+            string query = "SELECT * FROM contest_table " +
+                "WHERE id_contest IN (" +
+                "SELECT id_contest FROM contest_juri_table " +
+                "WHERE id_user = @id_user)";
+
+            SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+            cmd.CommandText = query;
+
+            SqlParameter sqlUserId = new SqlParameter("id_user", SqlDbType.Int);
+            sqlUserId.Value = Data._instance.loggedInUser.id;
+            cmd.Parameters.Add(sqlUserId);
+
+            // Execute query
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if contest exists
+                if (reader.HasRows)
+                {
+                    contestPreviews.Clear();
+
+                    while (reader.Read())
+                    {
+                        ContestPreview contest = new ContestPreview(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), decimal.ToDouble(reader.GetDecimal(3)), reader.GetDateTime(4), reader.GetDateTime(5));
+                        contestPreviews.Add(contest);
                     }
 
                     return true;

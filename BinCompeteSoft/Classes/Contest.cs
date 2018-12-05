@@ -8,11 +8,7 @@ namespace BinCompeteSoft
 {
     public class Contest
     {
-        public int id { get; set; }
-        [System.ComponentModel.DisplayName("Contest name")]
-        public string name { get; set; }
-        [System.ComponentModel.DisplayName("Contest description")]
-        public string description { get; set; }
+        public ContestPreview contest;
         public List<Project> projects { get; set; }
         [System.ComponentModel.DisplayName("Projects count")]
         public int projectCount => projects.Count;
@@ -22,34 +18,13 @@ namespace BinCompeteSoft
         public List<Criteria> criterias { get; set; }
         [System.ComponentModel.DisplayName("Criterias count")]
         public int criteriasCount => criterias.Count;
-        [System.ComponentModel.DisplayName("Step")]
-        public double step { get; set; }
-        [System.ComponentModel.DisplayName("Start date")]
-        public DateTime startDate { get; set; }
-        [System.ComponentModel.DisplayName("Limit date")]
-        public DateTime limitDate { get; set; }
 
-        public Contest(int id, string name, string description, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias, double step, DateTime startDate, DateTime limitDate)
+        public Contest(ContestPreview contest, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias)
         {
-            this.id = id;
-            this.name = name;
-            this.description = description;
+            this.contest = contest;
             this.projects = projects;
             this.judgeMembers = judgeMembers;
             this.criterias = criterias;
-            this.step = step;
-            this.startDate = startDate.Date;
-            this.limitDate = limitDate.Date;
-        }
-
-        public int GetProjectsCount()
-        {
-            return projects.Count;
-        }
-
-        public int GetJudgeMembersCount()
-        {
-            return judgeMembers.Count;
         }
     }
 }

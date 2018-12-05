@@ -19,19 +19,26 @@ namespace BinCompeteSoft
 
         private void MainJudgeDashboardForm_Load(object sender, EventArgs e)
         {
-            contestDataGridView.DataSource = Data._instance.Contests;
+            if (Data._instance.refreshContests())
+            {
+                contestDataGridView.DataSource = Data._instance.ContestPreviews;
 
-            contestDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            contestDataGridView.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
-            contestDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            contestDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                contestDataGridView.Columns[0].Visible = false;
+                contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[4].DefaultCellStyle.Format = "MM/dd/yyyy";
+                contestDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[5].DefaultCellStyle.Format = "MM/dd/yyyy";
+                contestDataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-            // Fill out user informations
-            usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.name;
-
-            UpdateContestsDataGridView();
+                // Fill out user informations
+                usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.name;
+            }
+            else
+            {
+                MessageBox.Show(null, "Couldn't retrieve contests list.", "Error");
+            }
         }
 
         private void createContestButton_Click(object sender, EventArgs e)
@@ -43,15 +50,34 @@ namespace BinCompeteSoft
             editContestForm.Show();
         }
 
-        public void UpdateContestsDataGridView()
-        {
-            contestDataGridView.Update();
-            contestDataGridView.Refresh();
-        }
-
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            UpdateContestsDataGridView();
+            UpdateContestDataGridview();
+        }
+
+        public void UpdateContestDataGridview()
+        {
+            if (!Data._instance.refreshContests())
+            {
+                MessageBox.Show(null, "Couldn't retrieve contests list.", "Error");
+            }
+            else
+            {
+                contestDataGridView.DataSource = null;
+                contestDataGridView.DataSource = Data._instance.ContestPreviews;
+
+                contestDataGridView.Columns[0].Visible = false;
+                contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[4].DefaultCellStyle.Format = "MM/dd/yyyy";
+                contestDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[5].DefaultCellStyle.Format = "MM/dd/yyyy";
+                contestDataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+                contestDataGridView.Update();
+                contestDataGridView.Refresh();
+            }
         }
 
         private void filterContestButton_Click(object sender, EventArgs e)

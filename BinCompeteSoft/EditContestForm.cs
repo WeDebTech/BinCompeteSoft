@@ -81,15 +81,15 @@ namespace BinCompeteSoft
                                         // Check if there's any criteria
                                         if (criterias.Count > 0)
                                         {
-                                            Contest contest = new Contest(0, contestName, description, projects, judgeMembers, criterias, step, contestStartDateTimePicker.Value, contestLimitDateTimePicker.Value);
+                                            ContestPreview contestPreview = new ContestPreview(0, contestName, description, step, contestStartDateTimePicker.Value, contestLimitDateTimePicker.Value);
+                                            Contest contest = new Contest(contestPreview, projects, judgeMembers, criterias);
 
                                             if (InsertContestToDB(contest))
                                             {
                                                 MessageBox.Show(null, "Contest created successfully.", "Success");
 
-                                                Data._instance.addContest(contest);
                                                 mainJudgeDashboardForm.Show();
-                                                mainJudgeDashboardForm.UpdateContestsDataGridView();
+                                                mainJudgeDashboardForm.UpdateContestDataGridview();
 
                                                 this.Close();
                                             }
@@ -327,23 +327,23 @@ namespace BinCompeteSoft
                 cmd.CommandText = query;
 
                 SqlParameter sqlContestName = new SqlParameter("@contest_name", SqlDbType.NVarChar);
-                sqlContestName.Value = contestToInsert.name;
+                sqlContestName.Value = contestToInsert.contest.name;
                 cmd.Parameters.Add(sqlContestName);
 
                 SqlParameter sqlDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
-                sqlDescript.Value = contestToInsert.description;
+                sqlDescript.Value = contestToInsert.contest.description;
                 cmd.Parameters.Add(sqlDescript);
 
                 SqlParameter sqlStep = new SqlParameter("@step", SqlDbType.Decimal);
-                sqlStep.Value = contestToInsert.step;
+                sqlStep.Value = Convert.ToDecimal(contestToInsert.contest.step, System.Globalization.CultureInfo.CurrentCulture);
                 cmd.Parameters.Add(sqlStep);
 
                 SqlParameter sqlStartdate = new SqlParameter("@start_date", SqlDbType.DateTime);
-                sqlStartdate.Value = contestToInsert.startDate;
+                sqlStartdate.Value = contestToInsert.contest.startDate;
                 cmd.Parameters.Add(sqlStartdate);
 
                 SqlParameter sqlLimitdate = new SqlParameter("@limit_date", SqlDbType.DateTime);
-                sqlLimitdate.Value = contestToInsert.limitDate;
+                sqlLimitdate.Value = contestToInsert.contest.limitDate;
                 cmd.Parameters.Add(sqlLimitdate);
 
                 // Execute query
