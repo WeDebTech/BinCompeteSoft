@@ -67,6 +67,7 @@
       <DependentUpon>BinCompeteSoftDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Classes\AHP.cs" />
+    <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\Contest.cs" />
     <Compile Include="Classes\Criteria.cs" />
     <Compile Include="Classes\User.cs" />

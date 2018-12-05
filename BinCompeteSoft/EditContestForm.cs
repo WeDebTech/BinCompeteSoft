@@ -17,8 +17,10 @@ namespace BinCompeteSoft
         MainJudgeDashboardForm mainJudgeDashboardForm;
 
         List<Project> projects = new List<Project>();
-        List<JudgeMember> judgeMembers = new List<JudgeMember>();
+        public List<JudgeMember> judgeMembers = new List<JudgeMember>();
         List<Criteria> criterias = new List<Criteria>();
+
+        public List<JudgeMember> judgeMembersToAdd = new List<JudgeMember>();
 
         String description;
 
@@ -180,6 +182,15 @@ namespace BinCompeteSoft
 
             criteriaDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             criteriaDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+            if (Data._instance.refreshJudges())
+            {
+                judgeMembersToAdd = Data._instance.JudgeMembers;
+            }
+            else
+            {
+                MessageBox.Show(null, "Couldn't retrieve judges list.", "Error");
+            }
         }
 
         private void judgesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -277,7 +288,9 @@ namespace BinCompeteSoft
         {
             judgeMembers.Add(judgeMember);
 
-            judgesDataGridView.Rows.Add(judgeMember.Name, judgeMember.Email, judgeMember.Username);
+            judgeMembersToAdd.Remove(judgeMember);
+
+            judgesDataGridView.Rows.Add(judgeMember.Name, judgeMember.Email);
 
             UpdateDataGridView(judgesDataGridView);
         }
@@ -411,7 +424,49 @@ namespace BinCompeteSoft
                     cmd.ExecuteNonQuery();
                 }
 
-                // TODO: Insert criteria
+                foreach (Criteria criteria in criterias)
+                {
+                    // Insert criterias into database
+                    query = "INSERT INTO criteria_data_table ([criteria_name], [criteria_value], [descript]) " +
+                        "VALUES (@criteria_name, @criteria_value, @descript); " +
+                        "SELECT CAST(scope_identity() AS int)";
+
+                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd.CommandText = query;
+
+                    SqlParameter sqlCriteriaName = new SqlParameter("@criteria_name", SqlDbType.NVarChar);
+                    sqlCriteriaName.Value = criteria.Name;
+                    cmd.Parameters.Add(sqlCriteriaName);
+
+                    SqlParameter sqlCriteriaValue = new SqlParameter("@criteria_value", SqlDbType.Int);
+                    sqlCriteriaValue.Value = criteria.CriteriaValue;
+                    cmd.Parameters.Add(sqlCriteriaValue);
+
+                    SqlParameter sqlCriteriaDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
+                    sqlCriteriaDescript.Value = criteria.Description;
+                    cmd.Parameters.Add(sqlCriteriaDescript);
+
+                    // Execute query
+                    int insertedCriteriaId = (int)cmd.ExecuteScalar();
+
+                    // Insert criteria into relationship table
+                    query = "INSERT INTO contest_criteria_table ([id_criteria], [id_contest]) " +
+                        "VALUES (@id_criteria, @id_contest)";
+
+                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd.CommandText = query;
+
+                    SqlParameter sqlCriteriaId = new SqlParameter("@id_criteria", SqlDbType.Int);
+                    sqlCriteriaId.Value = insertedCriteriaId;
+                    cmd.Parameters.Add(sqlCriteriaId);
+
+                    sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+                    sqlContestId.Value = insertedId;
+                    cmd.Parameters.Add(sqlContestId);
+
+                    // Execute query
+                    cmd.ExecuteNonQuery();
+                }
 
                 return true;
             }

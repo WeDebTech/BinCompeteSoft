@@ -31,6 +31,7 @@
             this.judgesGridView = new System.Windows.Forms.DataGridView();
             this.acceptButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.refreshJudgesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.judgesGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,10 +40,10 @@
             this.judgesGridView.AllowUserToAddRows = false;
             this.judgesGridView.AllowUserToDeleteRows = false;
             this.judgesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.judgesGridView.Location = new System.Drawing.Point(12, 12);
+            this.judgesGridView.Location = new System.Drawing.Point(12, 56);
             this.judgesGridView.Name = "judgesGridView";
             this.judgesGridView.ReadOnly = true;
-            this.judgesGridView.Size = new System.Drawing.Size(776, 382);
+            this.judgesGridView.Size = new System.Drawing.Size(776, 338);
             this.judgesGridView.TabIndex = 0;
             // 
             // acceptButton
@@ -69,11 +70,24 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // refreshJudgesButton
+            // 
+            this.refreshJudgesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshJudgesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refreshJudgesButton.Location = new System.Drawing.Point(12, 12);
+            this.refreshJudgesButton.Name = "refreshJudgesButton";
+            this.refreshJudgesButton.Size = new System.Drawing.Size(191, 38);
+            this.refreshJudgesButton.TabIndex = 6;
+            this.refreshJudgesButton.Text = "Refresh judges list";
+            this.refreshJudgesButton.UseVisualStyleBackColor = true;
+            this.refreshJudgesButton.Click += new System.EventHandler(this.refreshJudgesButton_Click);
+            // 
             // AddJudgeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.refreshJudgesButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.judgesGridView);
@@ -93,5 +107,6 @@
         private System.Windows.Forms.DataGridView judgesGridView;
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button refreshJudgesButton;
     }
 }

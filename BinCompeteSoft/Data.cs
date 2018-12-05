@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +18,11 @@ namespace BinCompeteSoft
         List<JudgeMember> judgeMembers = new List<JudgeMember>();
         List<Contest> contests = new List<Contest>();
         List<Project> projects = new List<Project>();
+        List<Category> categories = new List<Category>();
 
         Data()
         {
             // Well, nothing to do here
-            judgeMembers.Add(new JudgeMember(0, "Juiz 1", "bla@bla.com", "ju1"));
-            judgeMembers.Add(new JudgeMember(1, "Juiz 2", "ble@ble.pt", "ju2"));
-
-            contests.Add(new Contest(0, "Contest1", "Sample description", new List<Project> { new Project() }, new List<JudgeMember> { new JudgeMember(0, "Judge1", "email@bla.com", "ju1") }, new List<Criteria> { new Criteria() }, 0.01, DateTime.Today, DateTime.Today));
         }
 
         public List<JudgeMember> JudgeMembers
@@ -42,6 +41,12 @@ namespace BinCompeteSoft
         {
             get { return projects; }
             set { projects = value; }
+        }
+
+        public List<Category> Categories
+        {
+            get { return categories; }
+            set { categories = value; }
         }
 
         /// <summary>
@@ -81,6 +86,69 @@ namespace BinCompeteSoft
 
             // TODO: add actual errors codes
             return 1;
+        }
+
+        public bool refreshJudges()
+        {
+            // Load the judges from the Database
+            string query = "SELECT id_user, fullname, email FROM user_table";
+
+            SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+            cmd.CommandText = query;
+
+            // Execute query
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if user exists
+                if (reader.HasRows)
+                {
+                    judgeMembers.Clear();
+
+                    while (reader.Read())
+                    {
+                        // Construct user information from database
+                        JudgeMember judge = new JudgeMember(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+                        Data._instance.JudgeMembers.Add(judge);
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool refreshCategories()
+        {
+            // Load the categories from the Database
+            string query = "SELECT id_category, category_name FROM project_category";
+
+            SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+            cmd.CommandText = query;
+
+            // Execute query
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if user exists
+                if (reader.HasRows)
+                {
+                    categories.Clear();
+
+                    while (reader.Read())
+                    {
+                        Category category = new Category(reader.GetInt32(0), reader.GetString(1));
+                        Data._instance.Categories.Add(category);
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }

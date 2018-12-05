@@ -25,25 +25,35 @@ namespace BinCompeteSoft
         {
             string projectName, projectDescription, promoterName;
 
+            int categoryId;
+
             projectName = projectNameTextBox.Text;
             projectDescription = projectDescriptionTextBox.Text;
             promoterName = projectPromoterTextBox.Text;
 
-            // TODO: verify if any project category has been selected
-
-            // Let's check if everything is filled out
-            if(String.IsNullOrEmpty(projectName) || String.IsNullOrEmpty(projectDescription) || String.IsNullOrEmpty(promoterName))
+            // Verify if any project category has been selected
+            if (projectCategoryComboBox.SelectedIndex > -1)
             {
-                MessageBox.Show(null, "All values must be filled!", "Error");
+                categoryId = (projectCategoryComboBox.SelectedItem as Category).id;
+
+                // Let's check if everything is filled out
+                if (String.IsNullOrEmpty(projectName) || String.IsNullOrEmpty(projectDescription) || String.IsNullOrEmpty(promoterName))
+                {
+                    MessageBox.Show(null, "All values must be filled!", "Error");
+                }
+                else
+                {
+                    // TODO: get actual project category
+                    Project project = new Project(0, projectName, projectDescription, promoterName, categoryId);
+
+                    editContestForm.AddProject(project);
+
+                    this.Close();
+                }
             }
             else
             {
-                // TODO: get actual project category
-                Project project = new Project(0, projectName, projectDescription, promoterName, 1);
-
-                editContestForm.AddProject(project);
-
-                this.Close();
+                MessageBox.Show(null, "You must select a category for the project.", "Error");
             }
         }
 
@@ -55,7 +65,18 @@ namespace BinCompeteSoft
 
         private void EditProjectForm_Load(object sender, EventArgs e)
         {
-            // TODO: load all project categories
+            if (Data._instance.refreshCategories())
+            {
+                foreach(Category category in Data._instance.Categories)
+                {
+                    projectCategoryComboBox.Items.Add(category);
+                }
+            }
+            else
+            {
+                MessageBox.Show(null, "Couldn't retrieve categories list.", "Error");
+            }
+
             projectDescriptionTextBox.Text = "Sample project description.";
             projectPromoterTextBox.Text = "Sample promoter name";
             projectNameTextBox.Text = "Sample project name";

@@ -36,31 +36,37 @@ namespace BinCompeteSoft {
         
         private final_result_tableDataTable tablefinal_result_table;
         
+        private general_statisticsDataTable tablegeneral_statistics;
+        
         private project_categoryDataTable tableproject_category;
+        
+        private project_category_statsDataTable tableproject_category_stats;
         
         private project_tableDataTable tableproject_table;
         
         private user_tableDataTable tableuser_table;
         
-        private global::System.Data.DataRelation relationFK__contest_c__id_co__5D95E53A;
+        private global::System.Data.DataRelation relationFK__contest_c__id_co__03BB8E22;
         
-        private global::System.Data.DataRelation relationFK__contest_c__id_cr__5CA1C101;
+        private global::System.Data.DataRelation relationFK__contest_c__id_cr__02C769E9;
         
-        private global::System.Data.DataRelation relationFK__contest_j__id_co__5224328E;
+        private global::System.Data.DataRelation relationFK__contest_j__id_co__7849DB76;
         
-        private global::System.Data.DataRelation relationFK__contest_j__id_us__531856C7;
+        private global::System.Data.DataRelation relationFK__contest_j__id_us__793DFFAF;
         
-        private global::System.Data.DataRelation relationFK__evaluatio__id_cr__6166761E;
+        private global::System.Data.DataRelation relationFK__evaluatio__id_cr__078C1F06;
         
-        private global::System.Data.DataRelation relationFK__evaluatio__id_pr__607251E5;
+        private global::System.Data.DataRelation relationFK__evaluatio__id_pr__0697FACD;
         
-        private global::System.Data.DataRelation relationFK__evaluatio__id_us__5F7E2DAC;
+        private global::System.Data.DataRelation relationFK__evaluatio__id_us__05A3D694;
         
-        private global::System.Data.DataRelation relationFK__final_res__id_pr__634EBE90;
+        private global::System.Data.DataRelation relationFK__final_res__id_pr__09746778;
         
-        private global::System.Data.DataRelation relationFK__project_t__id_ca__58D1301D;
+        private global::System.Data.DataRelation relationFK__project_c__id_ca__10216507;
         
-        private global::System.Data.DataRelation relationFK__project_t__id_co__57DD0BE4;
+        private global::System.Data.DataRelation relationFK__project_t__id_ca__7EF6D905;
+        
+        private global::System.Data.DataRelation relationFK__project_t__id_co__7E02B4CC;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -108,8 +114,14 @@ namespace BinCompeteSoft {
                 if ((ds.Tables["final_result_table"] != null)) {
                     base.Tables.Add(new final_result_tableDataTable(ds.Tables["final_result_table"]));
                 }
+                if ((ds.Tables["general_statistics"] != null)) {
+                    base.Tables.Add(new general_statisticsDataTable(ds.Tables["general_statistics"]));
+                }
                 if ((ds.Tables["project_category"] != null)) {
                     base.Tables.Add(new project_categoryDataTable(ds.Tables["project_category"]));
+                }
+                if ((ds.Tables["project_category_stats"] != null)) {
+                    base.Tables.Add(new project_category_statsDataTable(ds.Tables["project_category_stats"]));
                 }
                 if ((ds.Tables["project_table"] != null)) {
                     base.Tables.Add(new project_tableDataTable(ds.Tables["project_table"]));
@@ -199,9 +211,29 @@ namespace BinCompeteSoft {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public general_statisticsDataTable general_statistics {
+            get {
+                return this.tablegeneral_statistics;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public project_categoryDataTable project_category {
             get {
                 return this.tableproject_category;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public project_category_statsDataTable project_category_stats {
+            get {
+                return this.tableproject_category_stats;
             }
         }
         
@@ -310,8 +342,14 @@ namespace BinCompeteSoft {
                 if ((ds.Tables["final_result_table"] != null)) {
                     base.Tables.Add(new final_result_tableDataTable(ds.Tables["final_result_table"]));
                 }
+                if ((ds.Tables["general_statistics"] != null)) {
+                    base.Tables.Add(new general_statisticsDataTable(ds.Tables["general_statistics"]));
+                }
                 if ((ds.Tables["project_category"] != null)) {
                     base.Tables.Add(new project_categoryDataTable(ds.Tables["project_category"]));
+                }
+                if ((ds.Tables["project_category_stats"] != null)) {
+                    base.Tables.Add(new project_category_statsDataTable(ds.Tables["project_category_stats"]));
                 }
                 if ((ds.Tables["project_table"] != null)) {
                     base.Tables.Add(new project_tableDataTable(ds.Tables["project_table"]));
@@ -388,10 +426,22 @@ namespace BinCompeteSoft {
                     this.tablefinal_result_table.InitVars();
                 }
             }
+            this.tablegeneral_statistics = ((general_statisticsDataTable)(base.Tables["general_statistics"]));
+            if ((initTable == true)) {
+                if ((this.tablegeneral_statistics != null)) {
+                    this.tablegeneral_statistics.InitVars();
+                }
+            }
             this.tableproject_category = ((project_categoryDataTable)(base.Tables["project_category"]));
             if ((initTable == true)) {
                 if ((this.tableproject_category != null)) {
                     this.tableproject_category.InitVars();
+                }
+            }
+            this.tableproject_category_stats = ((project_category_statsDataTable)(base.Tables["project_category_stats"]));
+            if ((initTable == true)) {
+                if ((this.tableproject_category_stats != null)) {
+                    this.tableproject_category_stats.InitVars();
                 }
             }
             this.tableproject_table = ((project_tableDataTable)(base.Tables["project_table"]));
@@ -406,16 +456,17 @@ namespace BinCompeteSoft {
                     this.tableuser_table.InitVars();
                 }
             }
-            this.relationFK__contest_c__id_co__5D95E53A = this.Relations["FK__contest_c__id_co__5D95E53A"];
-            this.relationFK__contest_c__id_cr__5CA1C101 = this.Relations["FK__contest_c__id_cr__5CA1C101"];
-            this.relationFK__contest_j__id_co__5224328E = this.Relations["FK__contest_j__id_co__5224328E"];
-            this.relationFK__contest_j__id_us__531856C7 = this.Relations["FK__contest_j__id_us__531856C7"];
-            this.relationFK__evaluatio__id_cr__6166761E = this.Relations["FK__evaluatio__id_cr__6166761E"];
-            this.relationFK__evaluatio__id_pr__607251E5 = this.Relations["FK__evaluatio__id_pr__607251E5"];
-            this.relationFK__evaluatio__id_us__5F7E2DAC = this.Relations["FK__evaluatio__id_us__5F7E2DAC"];
-            this.relationFK__final_res__id_pr__634EBE90 = this.Relations["FK__final_res__id_pr__634EBE90"];
-            this.relationFK__project_t__id_ca__58D1301D = this.Relations["FK__project_t__id_ca__58D1301D"];
-            this.relationFK__project_t__id_co__57DD0BE4 = this.Relations["FK__project_t__id_co__57DD0BE4"];
+            this.relationFK__contest_c__id_co__03BB8E22 = this.Relations["FK__contest_c__id_co__03BB8E22"];
+            this.relationFK__contest_c__id_cr__02C769E9 = this.Relations["FK__contest_c__id_cr__02C769E9"];
+            this.relationFK__contest_j__id_co__7849DB76 = this.Relations["FK__contest_j__id_co__7849DB76"];
+            this.relationFK__contest_j__id_us__793DFFAF = this.Relations["FK__contest_j__id_us__793DFFAF"];
+            this.relationFK__evaluatio__id_cr__078C1F06 = this.Relations["FK__evaluatio__id_cr__078C1F06"];
+            this.relationFK__evaluatio__id_pr__0697FACD = this.Relations["FK__evaluatio__id_pr__0697FACD"];
+            this.relationFK__evaluatio__id_us__05A3D694 = this.Relations["FK__evaluatio__id_us__05A3D694"];
+            this.relationFK__final_res__id_pr__09746778 = this.Relations["FK__final_res__id_pr__09746778"];
+            this.relationFK__project_c__id_ca__10216507 = this.Relations["FK__project_c__id_ca__10216507"];
+            this.relationFK__project_t__id_ca__7EF6D905 = this.Relations["FK__project_t__id_ca__7EF6D905"];
+            this.relationFK__project_t__id_co__7E02B4CC = this.Relations["FK__project_t__id_co__7E02B4CC"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -438,52 +489,60 @@ namespace BinCompeteSoft {
             base.Tables.Add(this.tableevaluation_table);
             this.tablefinal_result_table = new final_result_tableDataTable();
             base.Tables.Add(this.tablefinal_result_table);
+            this.tablegeneral_statistics = new general_statisticsDataTable();
+            base.Tables.Add(this.tablegeneral_statistics);
             this.tableproject_category = new project_categoryDataTable();
             base.Tables.Add(this.tableproject_category);
+            this.tableproject_category_stats = new project_category_statsDataTable();
+            base.Tables.Add(this.tableproject_category_stats);
             this.tableproject_table = new project_tableDataTable();
             base.Tables.Add(this.tableproject_table);
             this.tableuser_table = new user_tableDataTable();
             base.Tables.Add(this.tableuser_table);
-            this.relationFK__contest_c__id_co__5D95E53A = new global::System.Data.DataRelation("FK__contest_c__id_co__5D95E53A", new global::System.Data.DataColumn[] {
+            this.relationFK__contest_c__id_co__03BB8E22 = new global::System.Data.DataRelation("FK__contest_c__id_co__03BB8E22", new global::System.Data.DataColumn[] {
                         this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_criteria_table.id_contestColumn}, false);
-            this.Relations.Add(this.relationFK__contest_c__id_co__5D95E53A);
-            this.relationFK__contest_c__id_cr__5CA1C101 = new global::System.Data.DataRelation("FK__contest_c__id_cr__5CA1C101", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_c__id_co__03BB8E22);
+            this.relationFK__contest_c__id_cr__02C769E9 = new global::System.Data.DataRelation("FK__contest_c__id_cr__02C769E9", new global::System.Data.DataColumn[] {
                         this.tablecriteria_data_table.id_criteriaColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_criteria_table.id_criteriaColumn}, false);
-            this.Relations.Add(this.relationFK__contest_c__id_cr__5CA1C101);
-            this.relationFK__contest_j__id_co__5224328E = new global::System.Data.DataRelation("FK__contest_j__id_co__5224328E", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_c__id_cr__02C769E9);
+            this.relationFK__contest_j__id_co__7849DB76 = new global::System.Data.DataRelation("FK__contest_j__id_co__7849DB76", new global::System.Data.DataColumn[] {
                         this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_juri_table.id_contestColumn}, false);
-            this.Relations.Add(this.relationFK__contest_j__id_co__5224328E);
-            this.relationFK__contest_j__id_us__531856C7 = new global::System.Data.DataRelation("FK__contest_j__id_us__531856C7", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_j__id_co__7849DB76);
+            this.relationFK__contest_j__id_us__793DFFAF = new global::System.Data.DataRelation("FK__contest_j__id_us__793DFFAF", new global::System.Data.DataColumn[] {
                         this.tableuser_table.id_userColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_juri_table.id_userColumn}, false);
-            this.Relations.Add(this.relationFK__contest_j__id_us__531856C7);
-            this.relationFK__evaluatio__id_cr__6166761E = new global::System.Data.DataRelation("FK__evaluatio__id_cr__6166761E", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_j__id_us__793DFFAF);
+            this.relationFK__evaluatio__id_cr__078C1F06 = new global::System.Data.DataRelation("FK__evaluatio__id_cr__078C1F06", new global::System.Data.DataColumn[] {
                         this.tablecriteria_data_table.id_criteriaColumn}, new global::System.Data.DataColumn[] {
                         this.tableevaluation_table.id_criteriaColumn}, false);
-            this.Relations.Add(this.relationFK__evaluatio__id_cr__6166761E);
-            this.relationFK__evaluatio__id_pr__607251E5 = new global::System.Data.DataRelation("FK__evaluatio__id_pr__607251E5", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__evaluatio__id_cr__078C1F06);
+            this.relationFK__evaluatio__id_pr__0697FACD = new global::System.Data.DataRelation("FK__evaluatio__id_pr__0697FACD", new global::System.Data.DataColumn[] {
                         this.tableproject_table.id_projectColumn}, new global::System.Data.DataColumn[] {
                         this.tableevaluation_table.id_projectColumn}, false);
-            this.Relations.Add(this.relationFK__evaluatio__id_pr__607251E5);
-            this.relationFK__evaluatio__id_us__5F7E2DAC = new global::System.Data.DataRelation("FK__evaluatio__id_us__5F7E2DAC", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__evaluatio__id_pr__0697FACD);
+            this.relationFK__evaluatio__id_us__05A3D694 = new global::System.Data.DataRelation("FK__evaluatio__id_us__05A3D694", new global::System.Data.DataColumn[] {
                         this.tableuser_table.id_userColumn}, new global::System.Data.DataColumn[] {
                         this.tableevaluation_table.id_userColumn}, false);
-            this.Relations.Add(this.relationFK__evaluatio__id_us__5F7E2DAC);
-            this.relationFK__final_res__id_pr__634EBE90 = new global::System.Data.DataRelation("FK__final_res__id_pr__634EBE90", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__evaluatio__id_us__05A3D694);
+            this.relationFK__final_res__id_pr__09746778 = new global::System.Data.DataRelation("FK__final_res__id_pr__09746778", new global::System.Data.DataColumn[] {
                         this.tableproject_table.id_projectColumn}, new global::System.Data.DataColumn[] {
                         this.tablefinal_result_table.id_projectColumn}, false);
-            this.Relations.Add(this.relationFK__final_res__id_pr__634EBE90);
-            this.relationFK__project_t__id_ca__58D1301D = new global::System.Data.DataRelation("FK__project_t__id_ca__58D1301D", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__final_res__id_pr__09746778);
+            this.relationFK__project_c__id_ca__10216507 = new global::System.Data.DataRelation("FK__project_c__id_ca__10216507", new global::System.Data.DataColumn[] {
+                        this.tableproject_category.id_categoryColumn}, new global::System.Data.DataColumn[] {
+                        this.tableproject_category_stats.id_categoryColumn}, false);
+            this.Relations.Add(this.relationFK__project_c__id_ca__10216507);
+            this.relationFK__project_t__id_ca__7EF6D905 = new global::System.Data.DataRelation("FK__project_t__id_ca__7EF6D905", new global::System.Data.DataColumn[] {
                         this.tableproject_category.id_categoryColumn}, new global::System.Data.DataColumn[] {
                         this.tableproject_table.id_categoryColumn}, false);
-            this.Relations.Add(this.relationFK__project_t__id_ca__58D1301D);
-            this.relationFK__project_t__id_co__57DD0BE4 = new global::System.Data.DataRelation("FK__project_t__id_co__57DD0BE4", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__project_t__id_ca__7EF6D905);
+            this.relationFK__project_t__id_co__7E02B4CC = new global::System.Data.DataRelation("FK__project_t__id_co__7E02B4CC", new global::System.Data.DataColumn[] {
                         this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
                         this.tableproject_table.id_contestColumn}, false);
-            this.Relations.Add(this.relationFK__project_t__id_co__57DD0BE4);
+            this.Relations.Add(this.relationFK__project_t__id_co__7E02B4CC);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -524,7 +583,19 @@ namespace BinCompeteSoft {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializegeneral_statistics() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeproject_category() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeproject_category_stats() {
             return false;
         }
         
@@ -614,7 +685,13 @@ namespace BinCompeteSoft {
         public delegate void final_result_tableRowChangeEventHandler(object sender, final_result_tableRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void general_statisticsRowChangeEventHandler(object sender, general_statisticsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void project_categoryRowChangeEventHandler(object sender, project_categoryRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void project_category_statsRowChangeEventHandler(object sender, project_category_statsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void project_tableRowChangeEventHandler(object sender, project_tableRowChangeEvent e);
@@ -719,16 +796,16 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public contest_criteria_tableRow Addcontest_criteria_tableRow(criteria_data_tableRow parentcriteria_data_tableRowByFK__contest_c__id_cr__5CA1C101, contest_tableRow parentcontest_tableRowByFK__contest_c__id_co__5D95E53A) {
+            public contest_criteria_tableRow Addcontest_criteria_tableRow(criteria_data_tableRow parentcriteria_data_tableRowByFK__contest_c__id_cr__02C769E9, contest_tableRow parentcontest_tableRowByFK__contest_c__id_co__03BB8E22) {
                 contest_criteria_tableRow rowcontest_criteria_tableRow = ((contest_criteria_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null};
-                if ((parentcriteria_data_tableRowByFK__contest_c__id_cr__5CA1C101 != null)) {
-                    columnValuesArray[0] = parentcriteria_data_tableRowByFK__contest_c__id_cr__5CA1C101[0];
+                if ((parentcriteria_data_tableRowByFK__contest_c__id_cr__02C769E9 != null)) {
+                    columnValuesArray[0] = parentcriteria_data_tableRowByFK__contest_c__id_cr__02C769E9[0];
                 }
-                if ((parentcontest_tableRowByFK__contest_c__id_co__5D95E53A != null)) {
-                    columnValuesArray[1] = parentcontest_tableRowByFK__contest_c__id_co__5D95E53A[0];
+                if ((parentcontest_tableRowByFK__contest_c__id_co__03BB8E22 != null)) {
+                    columnValuesArray[1] = parentcontest_tableRowByFK__contest_c__id_co__03BB8E22[0];
                 }
                 rowcontest_criteria_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcontest_criteria_tableRow);
@@ -1006,18 +1083,18 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public contest_juri_tableRow Addcontest_juri_tableRow(contest_tableRow parentcontest_tableRowByFK__contest_j__id_co__5224328E, user_tableRow parentuser_tableRowByFK__contest_j__id_us__531856C7, bool has_voted, bool president) {
+            public contest_juri_tableRow Addcontest_juri_tableRow(contest_tableRow parentcontest_tableRowByFK__contest_j__id_co__7849DB76, user_tableRow parentuser_tableRowByFK__contest_j__id_us__793DFFAF, bool has_voted, bool president) {
                 contest_juri_tableRow rowcontest_juri_tableRow = ((contest_juri_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         has_voted,
                         president};
-                if ((parentcontest_tableRowByFK__contest_j__id_co__5224328E != null)) {
-                    columnValuesArray[0] = parentcontest_tableRowByFK__contest_j__id_co__5224328E[0];
+                if ((parentcontest_tableRowByFK__contest_j__id_co__7849DB76 != null)) {
+                    columnValuesArray[0] = parentcontest_tableRowByFK__contest_j__id_co__7849DB76[0];
                 }
-                if ((parentuser_tableRowByFK__contest_j__id_us__531856C7 != null)) {
-                    columnValuesArray[1] = parentuser_tableRowByFK__contest_j__id_us__531856C7[0];
+                if ((parentuser_tableRowByFK__contest_j__id_us__793DFFAF != null)) {
+                    columnValuesArray[1] = parentuser_tableRowByFK__contest_j__id_us__793DFFAF[0];
                 }
                 rowcontest_juri_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcontest_juri_tableRow);
@@ -1941,21 +2018,21 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public evaluation_tableRow Addevaluation_tableRow(user_tableRow parentuser_tableRowByFK__evaluatio__id_us__5F7E2DAC, project_tableRow parentproject_tableRowByFK__evaluatio__id_pr__607251E5, criteria_data_tableRow parentcriteria_data_tableRowByFK__evaluatio__id_cr__6166761E, int evaluation) {
+            public evaluation_tableRow Addevaluation_tableRow(user_tableRow parentuser_tableRowByFK__evaluatio__id_us__05A3D694, project_tableRow parentproject_tableRowByFK__evaluatio__id_pr__0697FACD, criteria_data_tableRow parentcriteria_data_tableRowByFK__evaluatio__id_cr__078C1F06, int evaluation) {
                 evaluation_tableRow rowevaluation_tableRow = ((evaluation_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null,
                         evaluation};
-                if ((parentuser_tableRowByFK__evaluatio__id_us__5F7E2DAC != null)) {
-                    columnValuesArray[0] = parentuser_tableRowByFK__evaluatio__id_us__5F7E2DAC[0];
+                if ((parentuser_tableRowByFK__evaluatio__id_us__05A3D694 != null)) {
+                    columnValuesArray[0] = parentuser_tableRowByFK__evaluatio__id_us__05A3D694[0];
                 }
-                if ((parentproject_tableRowByFK__evaluatio__id_pr__607251E5 != null)) {
-                    columnValuesArray[1] = parentproject_tableRowByFK__evaluatio__id_pr__607251E5[0];
+                if ((parentproject_tableRowByFK__evaluatio__id_pr__0697FACD != null)) {
+                    columnValuesArray[1] = parentproject_tableRowByFK__evaluatio__id_pr__0697FACD[0];
                 }
-                if ((parentcriteria_data_tableRowByFK__evaluatio__id_cr__6166761E != null)) {
-                    columnValuesArray[2] = parentcriteria_data_tableRowByFK__evaluatio__id_cr__6166761E[0];
+                if ((parentcriteria_data_tableRowByFK__evaluatio__id_cr__078C1F06 != null)) {
+                    columnValuesArray[2] = parentcriteria_data_tableRowByFK__evaluatio__id_cr__078C1F06[0];
                 }
                 rowevaluation_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowevaluation_tableRow);
@@ -2219,13 +2296,13 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public final_result_tableRow Addfinal_result_tableRow(project_tableRow parentproject_tableRowByFK__final_res__id_pr__634EBE90, decimal final_evaluation) {
+            public final_result_tableRow Addfinal_result_tableRow(project_tableRow parentproject_tableRowByFK__final_res__id_pr__09746778, decimal final_evaluation) {
                 final_result_tableRow rowfinal_result_tableRow = ((final_result_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         final_evaluation};
-                if ((parentproject_tableRowByFK__final_res__id_pr__634EBE90 != null)) {
-                    columnValuesArray[0] = parentproject_tableRowByFK__final_res__id_pr__634EBE90[0];
+                if ((parentproject_tableRowByFK__final_res__id_pr__09746778 != null)) {
+                    columnValuesArray[0] = parentproject_tableRowByFK__final_res__id_pr__09746778[0];
                 }
                 rowfinal_result_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowfinal_result_tableRow);
@@ -2346,6 +2423,306 @@ namespace BinCompeteSoft {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "final_result_tableDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class general_statisticsDataTable : global::System.Data.TypedTableBase<general_statisticsRow> {
+            
+            private global::System.Data.DataColumn columnstatistic_year;
+            
+            private global::System.Data.DataColumn columnprojects_per_competition_avg;
+            
+            private global::System.Data.DataColumn columntotal_projects;
+            
+            private global::System.Data.DataColumn columntotal_competitions;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public general_statisticsDataTable() {
+                this.TableName = "general_statistics";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal general_statisticsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected general_statisticsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn statistic_yearColumn {
+                get {
+                    return this.columnstatistic_year;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn projects_per_competition_avgColumn {
+                get {
+                    return this.columnprojects_per_competition_avg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn total_projectsColumn {
+                get {
+                    return this.columntotal_projects;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn total_competitionsColumn {
+                get {
+                    return this.columntotal_competitions;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public general_statisticsRow this[int index] {
+                get {
+                    return ((general_statisticsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event general_statisticsRowChangeEventHandler general_statisticsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event general_statisticsRowChangeEventHandler general_statisticsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event general_statisticsRowChangeEventHandler general_statisticsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event general_statisticsRowChangeEventHandler general_statisticsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Addgeneral_statisticsRow(general_statisticsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public general_statisticsRow Addgeneral_statisticsRow(System.DateTime statistic_year, decimal projects_per_competition_avg, int total_projects, int total_competitions) {
+                general_statisticsRow rowgeneral_statisticsRow = ((general_statisticsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        statistic_year,
+                        projects_per_competition_avg,
+                        total_projects,
+                        total_competitions};
+                rowgeneral_statisticsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowgeneral_statisticsRow);
+                return rowgeneral_statisticsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public general_statisticsRow FindBystatistic_year(System.DateTime statistic_year) {
+                return ((general_statisticsRow)(this.Rows.Find(new object[] {
+                            statistic_year})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                general_statisticsDataTable cln = ((general_statisticsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new general_statisticsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnstatistic_year = base.Columns["statistic_year"];
+                this.columnprojects_per_competition_avg = base.Columns["projects_per_competition_avg"];
+                this.columntotal_projects = base.Columns["total_projects"];
+                this.columntotal_competitions = base.Columns["total_competitions"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnstatistic_year = new global::System.Data.DataColumn("statistic_year", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstatistic_year);
+                this.columnprojects_per_competition_avg = new global::System.Data.DataColumn("projects_per_competition_avg", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprojects_per_competition_avg);
+                this.columntotal_projects = new global::System.Data.DataColumn("total_projects", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntotal_projects);
+                this.columntotal_competitions = new global::System.Data.DataColumn("total_competitions", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntotal_competitions);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnstatistic_year}, true));
+                this.columnstatistic_year.AllowDBNull = false;
+                this.columnstatistic_year.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public general_statisticsRow Newgeneral_statisticsRow() {
+                return ((general_statisticsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new general_statisticsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(general_statisticsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.general_statisticsRowChanged != null)) {
+                    this.general_statisticsRowChanged(this, new general_statisticsRowChangeEvent(((general_statisticsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.general_statisticsRowChanging != null)) {
+                    this.general_statisticsRowChanging(this, new general_statisticsRowChangeEvent(((general_statisticsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.general_statisticsRowDeleted != null)) {
+                    this.general_statisticsRowDeleted(this, new general_statisticsRowChangeEvent(((general_statisticsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.general_statisticsRowDeleting != null)) {
+                    this.general_statisticsRowDeleting(this, new general_statisticsRowChangeEvent(((general_statisticsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Removegeneral_statisticsRow(general_statisticsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                BinCompeteSoftDataSet ds = new BinCompeteSoftDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "general_statisticsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2668,6 +3045,295 @@ namespace BinCompeteSoft {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class project_category_statsDataTable : global::System.Data.TypedTableBase<project_category_statsRow> {
+            
+            private global::System.Data.DataColumn columnstatistic_year;
+            
+            private global::System.Data.DataColumn columnid_category;
+            
+            private global::System.Data.DataColumn columntimes_used;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsDataTable() {
+                this.TableName = "project_category_stats";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal project_category_statsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected project_category_statsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn statistic_yearColumn {
+                get {
+                    return this.columnstatistic_year;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn id_categoryColumn {
+                get {
+                    return this.columnid_category;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn times_usedColumn {
+                get {
+                    return this.columntimes_used;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsRow this[int index] {
+                get {
+                    return ((project_category_statsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event project_category_statsRowChangeEventHandler project_category_statsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event project_category_statsRowChangeEventHandler project_category_statsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event project_category_statsRowChangeEventHandler project_category_statsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event project_category_statsRowChangeEventHandler project_category_statsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Addproject_category_statsRow(project_category_statsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsRow Addproject_category_statsRow(System.DateTime statistic_year, project_categoryRow parentproject_categoryRowByFK__project_c__id_ca__10216507, int times_used) {
+                project_category_statsRow rowproject_category_statsRow = ((project_category_statsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        statistic_year,
+                        null,
+                        times_used};
+                if ((parentproject_categoryRowByFK__project_c__id_ca__10216507 != null)) {
+                    columnValuesArray[1] = parentproject_categoryRowByFK__project_c__id_ca__10216507[0];
+                }
+                rowproject_category_statsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowproject_category_statsRow);
+                return rowproject_category_statsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsRow FindBystatistic_year(System.DateTime statistic_year) {
+                return ((project_category_statsRow)(this.Rows.Find(new object[] {
+                            statistic_year})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                project_category_statsDataTable cln = ((project_category_statsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new project_category_statsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnstatistic_year = base.Columns["statistic_year"];
+                this.columnid_category = base.Columns["id_category"];
+                this.columntimes_used = base.Columns["times_used"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnstatistic_year = new global::System.Data.DataColumn("statistic_year", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstatistic_year);
+                this.columnid_category = new global::System.Data.DataColumn("id_category", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_category);
+                this.columntimes_used = new global::System.Data.DataColumn("times_used", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntimes_used);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnstatistic_year}, true));
+                this.columnstatistic_year.AllowDBNull = false;
+                this.columnstatistic_year.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsRow Newproject_category_statsRow() {
+                return ((project_category_statsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new project_category_statsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(project_category_statsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.project_category_statsRowChanged != null)) {
+                    this.project_category_statsRowChanged(this, new project_category_statsRowChangeEvent(((project_category_statsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.project_category_statsRowChanging != null)) {
+                    this.project_category_statsRowChanging(this, new project_category_statsRowChangeEvent(((project_category_statsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.project_category_statsRowDeleted != null)) {
+                    this.project_category_statsRowDeleted(this, new project_category_statsRowChangeEvent(((project_category_statsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.project_category_statsRowDeleting != null)) {
+                    this.project_category_statsRowDeleting(this, new project_category_statsRowChangeEvent(((project_category_statsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Removeproject_category_statsRow(project_category_statsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                BinCompeteSoftDataSet ds = new BinCompeteSoftDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "project_category_statsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class project_tableDataTable : global::System.Data.TypedTableBase<project_tableRow> {
             
             private global::System.Data.DataColumn columnid_project;
@@ -2800,7 +3466,7 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public project_tableRow Addproject_tableRow(contest_tableRow parentcontest_tableRowByFK__project_t__id_co__57DD0BE4, project_categoryRow parentproject_categoryRowByFK__project_t__id_ca__58D1301D, string descript, string project_name, string promoter_name) {
+            public project_tableRow Addproject_tableRow(contest_tableRow parentcontest_tableRowByFK__project_t__id_co__7E02B4CC, project_categoryRow parentproject_categoryRowByFK__project_t__id_ca__7EF6D905, string descript, string project_name, string promoter_name) {
                 project_tableRow rowproject_tableRow = ((project_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2809,11 +3475,11 @@ namespace BinCompeteSoft {
                         descript,
                         project_name,
                         promoter_name};
-                if ((parentcontest_tableRowByFK__project_t__id_co__57DD0BE4 != null)) {
-                    columnValuesArray[1] = parentcontest_tableRowByFK__project_t__id_co__57DD0BE4[0];
+                if ((parentcontest_tableRowByFK__project_t__id_co__7E02B4CC != null)) {
+                    columnValuesArray[1] = parentcontest_tableRowByFK__project_t__id_co__7E02B4CC[0];
                 }
-                if ((parentproject_categoryRowByFK__project_t__id_ca__58D1301D != null)) {
-                    columnValuesArray[2] = parentproject_categoryRowByFK__project_t__id_ca__58D1301D[0];
+                if ((parentproject_categoryRowByFK__project_t__id_ca__7EF6D905 != null)) {
+                    columnValuesArray[2] = parentproject_categoryRowByFK__project_t__id_ca__7EF6D905[0];
                 }
                 rowproject_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowproject_tableRow);
@@ -3418,10 +4084,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_tableRow contest_tableRow {
                 get {
-                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_co__5D95E53A"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_co__03BB8E22"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_co__5D95E53A"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_co__03BB8E22"]);
                 }
             }
             
@@ -3429,10 +4095,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public criteria_data_tableRow criteria_data_tableRow {
                 get {
-                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_cr__5CA1C101"])));
+                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_cr__02C769E9"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_cr__5CA1C101"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_cr__02C769E9"]);
                 }
             }
             
@@ -3543,10 +4209,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_tableRow contest_tableRow {
                 get {
-                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_co__5224328E"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_co__7849DB76"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_co__5224328E"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_co__7849DB76"]);
                 }
             }
             
@@ -3554,10 +4220,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public user_tableRow user_tableRow {
                 get {
-                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_us__531856C7"])));
+                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_us__793DFFAF"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_us__531856C7"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_us__793DFFAF"]);
                 }
             }
             
@@ -3778,33 +4444,33 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_criteria_tableRow[] Getcontest_criteria_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_c__id_co__5D95E53A"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_c__id_co__03BB8E22"] == null)) {
                     return new contest_criteria_tableRow[0];
                 }
                 else {
-                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_co__5D95E53A"])));
+                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_co__03BB8E22"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_juri_tableRow[] Getcontest_juri_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_j__id_co__5224328E"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_j__id_co__7849DB76"] == null)) {
                     return new contest_juri_tableRow[0];
                 }
                 else {
-                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_co__5224328E"])));
+                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_co__7849DB76"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_tableRow[] Getproject_tableRows() {
-                if ((this.Table.ChildRelations["FK__project_t__id_co__57DD0BE4"] == null)) {
+                if ((this.Table.ChildRelations["FK__project_t__id_co__7E02B4CC"] == null)) {
                     return new project_tableRow[0];
                 }
                 else {
-                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_co__57DD0BE4"])));
+                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_co__7E02B4CC"])));
                 }
             }
         }
@@ -3921,22 +4587,22 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_criteria_tableRow[] Getcontest_criteria_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_c__id_cr__5CA1C101"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_c__id_cr__02C769E9"] == null)) {
                     return new contest_criteria_tableRow[0];
                 }
                 else {
-                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_cr__5CA1C101"])));
+                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_cr__02C769E9"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public evaluation_tableRow[] Getevaluation_tableRows() {
-                if ((this.Table.ChildRelations["FK__evaluatio__id_cr__6166761E"] == null)) {
+                if ((this.Table.ChildRelations["FK__evaluatio__id_cr__078C1F06"] == null)) {
                     return new evaluation_tableRow[0];
                 }
                 else {
-                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_cr__6166761E"])));
+                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_cr__078C1F06"])));
                 }
             }
         }
@@ -4023,10 +4689,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public criteria_data_tableRow criteria_data_tableRow {
                 get {
-                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_cr__6166761E"])));
+                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_cr__078C1F06"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_cr__6166761E"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_cr__078C1F06"]);
                 }
             }
             
@@ -4034,10 +4700,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_tableRow project_tableRow {
                 get {
-                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_pr__607251E5"])));
+                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_pr__0697FACD"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_pr__607251E5"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_pr__0697FACD"]);
                 }
             }
             
@@ -4045,10 +4711,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public user_tableRow user_tableRow {
                 get {
-                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_us__5F7E2DAC"])));
+                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_us__05A3D694"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_us__5F7E2DAC"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_us__05A3D694"]);
                 }
             }
             
@@ -4151,10 +4817,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_tableRow project_tableRow {
                 get {
-                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__final_res__id_pr__634EBE90"])));
+                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__final_res__id_pr__09746778"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__final_res__id_pr__634EBE90"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__final_res__id_pr__09746778"]);
                 }
             }
             
@@ -4180,6 +4846,118 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setfinal_evaluationNull() {
                 this[this.tablefinal_result_table.final_evaluationColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class general_statisticsRow : global::System.Data.DataRow {
+            
+            private general_statisticsDataTable tablegeneral_statistics;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal general_statisticsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablegeneral_statistics = ((general_statisticsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime statistic_year {
+                get {
+                    return ((global::System.DateTime)(this[this.tablegeneral_statistics.statistic_yearColumn]));
+                }
+                set {
+                    this[this.tablegeneral_statistics.statistic_yearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal projects_per_competition_avg {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablegeneral_statistics.projects_per_competition_avgColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'projects_per_competition_avg\' in table \'general_statistics\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablegeneral_statistics.projects_per_competition_avgColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int total_projects {
+                get {
+                    try {
+                        return ((int)(this[this.tablegeneral_statistics.total_projectsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'total_projects\' in table \'general_statistics\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablegeneral_statistics.total_projectsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int total_competitions {
+                get {
+                    try {
+                        return ((int)(this[this.tablegeneral_statistics.total_competitionsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'total_competitions\' in table \'general_statistics\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tablegeneral_statistics.total_competitionsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isprojects_per_competition_avgNull() {
+                return this.IsNull(this.tablegeneral_statistics.projects_per_competition_avgColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setprojects_per_competition_avgNull() {
+                this[this.tablegeneral_statistics.projects_per_competition_avgColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Istotal_projectsNull() {
+                return this.IsNull(this.tablegeneral_statistics.total_projectsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Settotal_projectsNull() {
+                this[this.tablegeneral_statistics.total_projectsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Istotal_competitionsNull() {
+                return this.IsNull(this.tablegeneral_statistics.total_competitionsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Settotal_competitionsNull() {
+                this[this.tablegeneral_statistics.total_competitionsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4238,13 +5016,117 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsRow[] Getproject_category_statsRows() {
+                if ((this.Table.ChildRelations["FK__project_c__id_ca__10216507"] == null)) {
+                    return new project_category_statsRow[0];
+                }
+                else {
+                    return ((project_category_statsRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_c__id_ca__10216507"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_tableRow[] Getproject_tableRows() {
-                if ((this.Table.ChildRelations["FK__project_t__id_ca__58D1301D"] == null)) {
+                if ((this.Table.ChildRelations["FK__project_t__id_ca__7EF6D905"] == null)) {
                     return new project_tableRow[0];
                 }
                 else {
-                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_ca__58D1301D"])));
+                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_ca__7EF6D905"])));
                 }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class project_category_statsRow : global::System.Data.DataRow {
+            
+            private project_category_statsDataTable tableproject_category_stats;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal project_category_statsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableproject_category_stats = ((project_category_statsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime statistic_year {
+                get {
+                    return ((global::System.DateTime)(this[this.tableproject_category_stats.statistic_yearColumn]));
+                }
+                set {
+                    this[this.tableproject_category_stats.statistic_yearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int id_category {
+                get {
+                    try {
+                        return ((int)(this[this.tableproject_category_stats.id_categoryColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'id_category\' in table \'project_category_stats\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableproject_category_stats.id_categoryColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int times_used {
+                get {
+                    try {
+                        return ((int)(this[this.tableproject_category_stats.times_usedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'times_used\' in table \'project_category_stats\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableproject_category_stats.times_usedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_categoryRow project_categoryRow {
+                get {
+                    return ((project_categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_c__id_ca__10216507"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_c__id_ca__10216507"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isid_categoryNull() {
+                return this.IsNull(this.tableproject_category_stats.id_categoryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setid_categoryNull() {
+                this[this.tableproject_category_stats.id_categoryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Istimes_usedNull() {
+                return this.IsNull(this.tableproject_category_stats.times_usedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Settimes_usedNull() {
+                this[this.tableproject_category_stats.times_usedColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4357,10 +5239,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_categoryRow project_categoryRow {
                 get {
-                    return ((project_categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_ca__58D1301D"])));
+                    return ((project_categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_ca__7EF6D905"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_ca__58D1301D"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_ca__7EF6D905"]);
                 }
             }
             
@@ -4368,10 +5250,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_tableRow contest_tableRow {
                 get {
-                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_co__57DD0BE4"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_co__7E02B4CC"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_co__57DD0BE4"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_co__7E02B4CC"]);
                 }
             }
             
@@ -4438,22 +5320,22 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public evaluation_tableRow[] Getevaluation_tableRows() {
-                if ((this.Table.ChildRelations["FK__evaluatio__id_pr__607251E5"] == null)) {
+                if ((this.Table.ChildRelations["FK__evaluatio__id_pr__0697FACD"] == null)) {
                     return new evaluation_tableRow[0];
                 }
                 else {
-                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_pr__607251E5"])));
+                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_pr__0697FACD"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public final_result_tableRow[] Getfinal_result_tableRows() {
-                if ((this.Table.ChildRelations["FK__final_res__id_pr__634EBE90"] == null)) {
+                if ((this.Table.ChildRelations["FK__final_res__id_pr__09746778"] == null)) {
                     return new final_result_tableRow[0];
                 }
                 else {
-                    return ((final_result_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__final_res__id_pr__634EBE90"])));
+                    return ((final_result_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__final_res__id_pr__09746778"])));
                 }
             }
         }
@@ -4682,22 +5564,22 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_juri_tableRow[] Getcontest_juri_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_j__id_us__531856C7"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_j__id_us__793DFFAF"] == null)) {
                     return new contest_juri_tableRow[0];
                 }
                 else {
-                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_us__531856C7"])));
+                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_us__793DFFAF"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public evaluation_tableRow[] Getevaluation_tableRows() {
-                if ((this.Table.ChildRelations["FK__evaluatio__id_us__5F7E2DAC"] == null)) {
+                if ((this.Table.ChildRelations["FK__evaluatio__id_us__05A3D694"] == null)) {
                     return new evaluation_tableRow[0];
                 }
                 else {
-                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_us__5F7E2DAC"])));
+                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_us__05A3D694"])));
                 }
             }
         }
@@ -4910,6 +5792,40 @@ namespace BinCompeteSoft {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class general_statisticsRowChangeEvent : global::System.EventArgs {
+            
+            private general_statisticsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public general_statisticsRowChangeEvent(general_statisticsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public general_statisticsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public class project_categoryRowChangeEvent : global::System.EventArgs {
             
             private project_categoryRow eventRow;
@@ -4926,6 +5842,40 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_categoryRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class project_category_statsRowChangeEvent : global::System.EventArgs {
+            
+            private project_category_statsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsRowChangeEvent(project_category_statsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_category_statsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -6857,6 +7807,401 @@ SELECT id_criteria, criteria_name, criteria_value, descript FROM criteria_data_t
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class general_statisticsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public general_statisticsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "general_statistics";
+            tableMapping.ColumnMappings.Add("statistic_year", "statistic_year");
+            tableMapping.ColumnMappings.Add("projects_per_competition_avg", "projects_per_competition_avg");
+            tableMapping.ColumnMappings.Add("total_projects", "total_projects");
+            tableMapping.ColumnMappings.Add("total_competitions", "total_competitions");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[general_statistics] WHERE (([statistic_year] = @Original_statistic_year) AND ((@IsNull_projects_per_competition_avg = 1 AND [projects_per_competition_avg] IS NULL) OR ([projects_per_competition_avg] = @Original_projects_per_competition_avg)) AND ((@IsNull_total_projects = 1 AND [total_projects] IS NULL) OR ([total_projects] = @Original_total_projects)) AND ((@IsNull_total_competitions = 1 AND [total_competitions] IS NULL) OR ([total_competitions] = @Original_total_competitions)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_projects_per_competition_avg", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "projects_per_competition_avg", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_projects_per_competition_avg", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "projects_per_competition_avg", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_total_projects", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_projects", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_total_projects", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_projects", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_total_competitions", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_competitions", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_total_competitions", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_competitions", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[general_statistics] ([statistic_year], [projects_per_competition_avg], [total_projects], [total_competitions]) VALUES (@statistic_year, @projects_per_competition_avg, @total_projects, @total_competitions);
+SELECT statistic_year, projects_per_competition_avg, total_projects, total_competitions FROM general_statistics WHERE (statistic_year = @statistic_year)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@projects_per_competition_avg", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "projects_per_competition_avg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@total_projects", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_projects", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@total_competitions", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_competitions", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[general_statistics] SET [statistic_year] = @statistic_year, [projects_per_competition_avg] = @projects_per_competition_avg, [total_projects] = @total_projects, [total_competitions] = @total_competitions WHERE (([statistic_year] = @Original_statistic_year) AND ((@IsNull_projects_per_competition_avg = 1 AND [projects_per_competition_avg] IS NULL) OR ([projects_per_competition_avg] = @Original_projects_per_competition_avg)) AND ((@IsNull_total_projects = 1 AND [total_projects] IS NULL) OR ([total_projects] = @Original_total_projects)) AND ((@IsNull_total_competitions = 1 AND [total_competitions] IS NULL) OR ([total_competitions] = @Original_total_competitions)));
+SELECT statistic_year, projects_per_competition_avg, total_projects, total_competitions FROM general_statistics WHERE (statistic_year = @statistic_year)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@projects_per_competition_avg", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "projects_per_competition_avg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@total_projects", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_projects", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@total_competitions", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_competitions", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_projects_per_competition_avg", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "projects_per_competition_avg", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_projects_per_competition_avg", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "projects_per_competition_avg", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_total_projects", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_projects", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_total_projects", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_projects", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_total_competitions", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_competitions", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_total_competitions", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "total_competitions", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::BinCompeteSoft.Properties.Settings.Default.BinCompeteSoftConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT statistic_year, projects_per_competition_avg, total_projects, total_compet" +
+                "itions FROM dbo.general_statistics";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(BinCompeteSoftDataSet.general_statisticsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual BinCompeteSoftDataSet.general_statisticsDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            BinCompeteSoftDataSet.general_statisticsDataTable dataTable = new BinCompeteSoftDataSet.general_statisticsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BinCompeteSoftDataSet.general_statisticsDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BinCompeteSoftDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "general_statistics");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(System.DateTime Original_statistic_year, global::System.Nullable<decimal> Original_projects_per_competition_avg, global::System.Nullable<int> Original_total_projects, global::System.Nullable<int> Original_total_competitions) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((System.DateTime)(Original_statistic_year));
+            if ((Original_projects_per_competition_avg.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_projects_per_competition_avg.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_total_projects.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_total_projects.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_total_competitions.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_total_competitions.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(System.DateTime statistic_year, global::System.Nullable<decimal> projects_per_competition_avg, global::System.Nullable<int> total_projects, global::System.Nullable<int> total_competitions) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(statistic_year));
+            if ((projects_per_competition_avg.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(projects_per_competition_avg.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((total_projects.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(total_projects.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((total_competitions.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(total_competitions.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(System.DateTime statistic_year, global::System.Nullable<decimal> projects_per_competition_avg, global::System.Nullable<int> total_projects, global::System.Nullable<int> total_competitions, System.DateTime Original_statistic_year, global::System.Nullable<decimal> Original_projects_per_competition_avg, global::System.Nullable<int> Original_total_projects, global::System.Nullable<int> Original_total_competitions) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(statistic_year));
+            if ((projects_per_competition_avg.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(projects_per_competition_avg.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((total_projects.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(total_projects.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((total_competitions.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(total_competitions.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(Original_statistic_year));
+            if ((Original_projects_per_competition_avg.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Original_projects_per_competition_avg.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_total_projects.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_total_projects.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Original_total_competitions.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_total_competitions.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<decimal> projects_per_competition_avg, global::System.Nullable<int> total_projects, global::System.Nullable<int> total_competitions, System.DateTime Original_statistic_year, global::System.Nullable<decimal> Original_projects_per_competition_avg, global::System.Nullable<int> Original_total_projects, global::System.Nullable<int> Original_total_competitions) {
+            return this.Update(Original_statistic_year, projects_per_competition_avg, total_projects, total_competitions, Original_statistic_year, Original_projects_per_competition_avg, Original_total_projects, Original_total_competitions);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class project_categoryTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -7170,6 +8515,365 @@ SELECT id_category, category_name FROM project_category WHERE (id_category = @id
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string category_name, int Original_id_category, string Original_category_name) {
             return this.Update(category_name, Original_id_category, Original_category_name, Original_id_category);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class project_category_statsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public project_category_statsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "project_category_stats";
+            tableMapping.ColumnMappings.Add("statistic_year", "statistic_year");
+            tableMapping.ColumnMappings.Add("id_category", "id_category");
+            tableMapping.ColumnMappings.Add("times_used", "times_used");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[project_category_stats] WHERE (([statistic_year] = @Original_statistic_year) AND ((@IsNull_id_category = 1 AND [id_category] IS NULL) OR ([id_category] = @Original_id_category)) AND ((@IsNull_times_used = 1 AND [times_used] IS NULL) OR ([times_used] = @Original_times_used)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_category", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_category", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_times_used", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "times_used", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_times_used", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "times_used", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[project_category_stats] ([statistic_year], [id_category], [times_used]) VALUES (@statistic_year, @id_category, @times_used);
+SELECT statistic_year, id_category, times_used FROM project_category_stats WHERE (statistic_year = @statistic_year)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_category", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@times_used", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "times_used", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[project_category_stats] SET [statistic_year] = @statistic_year, [id_category] = @id_category, [times_used] = @times_used WHERE (([statistic_year] = @Original_statistic_year) AND ((@IsNull_id_category = 1 AND [id_category] IS NULL) OR ([id_category] = @Original_id_category)) AND ((@IsNull_times_used = 1 AND [times_used] IS NULL) OR ([times_used] = @Original_times_used)));
+SELECT statistic_year, id_category, times_used FROM project_category_stats WHERE (statistic_year = @statistic_year)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_category", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@times_used", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "times_used", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_statistic_year", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "statistic_year", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_category", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_category", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_times_used", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "times_used", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_times_used", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "times_used", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::BinCompeteSoft.Properties.Settings.Default.BinCompeteSoftConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT statistic_year, id_category, times_used FROM dbo.project_category_stats";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(BinCompeteSoftDataSet.project_category_statsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual BinCompeteSoftDataSet.project_category_statsDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            BinCompeteSoftDataSet.project_category_statsDataTable dataTable = new BinCompeteSoftDataSet.project_category_statsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BinCompeteSoftDataSet.project_category_statsDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BinCompeteSoftDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "project_category_stats");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(System.DateTime Original_statistic_year, global::System.Nullable<int> Original_id_category, global::System.Nullable<int> Original_times_used) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((System.DateTime)(Original_statistic_year));
+            if ((Original_id_category.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_id_category.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_times_used.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_times_used.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(System.DateTime statistic_year, global::System.Nullable<int> id_category, global::System.Nullable<int> times_used) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(statistic_year));
+            if ((id_category.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_category.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((times_used.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(times_used.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(System.DateTime statistic_year, global::System.Nullable<int> id_category, global::System.Nullable<int> times_used, System.DateTime Original_statistic_year, global::System.Nullable<int> Original_id_category, global::System.Nullable<int> Original_times_used) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(statistic_year));
+            if ((id_category.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(id_category.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((times_used.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(times_used.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(Original_statistic_year));
+            if ((Original_id_category.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_id_category.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_times_used.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_times_used.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<int> id_category, global::System.Nullable<int> times_used, System.DateTime Original_statistic_year, global::System.Nullable<int> Original_id_category, global::System.Nullable<int> Original_times_used) {
+            return this.Update(Original_statistic_year, id_category, times_used, Original_statistic_year, Original_id_category, Original_times_used);
         }
     }
     
@@ -8209,7 +9913,11 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
         
         private final_result_tableTableAdapter _final_result_tableTableAdapter;
         
+        private general_statisticsTableAdapter _general_statisticsTableAdapter;
+        
         private project_categoryTableAdapter _project_categoryTableAdapter;
+        
+        private project_category_statsTableAdapter _project_category_statsTableAdapter;
         
         private project_tableTableAdapter _project_tableTableAdapter;
         
@@ -8319,12 +10027,40 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
+        public general_statisticsTableAdapter general_statisticsTableAdapter {
+            get {
+                return this._general_statisticsTableAdapter;
+            }
+            set {
+                this._general_statisticsTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
         public project_categoryTableAdapter project_categoryTableAdapter {
             get {
                 return this._project_categoryTableAdapter;
             }
             set {
                 this._project_categoryTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public project_category_statsTableAdapter project_category_statsTableAdapter {
+            get {
+                return this._project_category_statsTableAdapter;
+            }
+            set {
+                this._project_category_statsTableAdapter = value;
             }
         }
         
@@ -8399,9 +10135,17 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                             && (this._final_result_tableTableAdapter.Connection != null))) {
                     return this._final_result_tableTableAdapter.Connection;
                 }
+                if (((this._general_statisticsTableAdapter != null) 
+                            && (this._general_statisticsTableAdapter.Connection != null))) {
+                    return this._general_statisticsTableAdapter.Connection;
+                }
                 if (((this._project_categoryTableAdapter != null) 
                             && (this._project_categoryTableAdapter.Connection != null))) {
                     return this._project_categoryTableAdapter.Connection;
+                }
+                if (((this._project_category_statsTableAdapter != null) 
+                            && (this._project_category_statsTableAdapter.Connection != null))) {
+                    return this._project_category_statsTableAdapter.Connection;
                 }
                 if (((this._project_tableTableAdapter != null) 
                             && (this._project_tableTableAdapter.Connection != null))) {
@@ -8442,7 +10186,13 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                 if ((this._final_result_tableTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._general_statisticsTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 if ((this._project_categoryTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._project_category_statsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._project_tableTableAdapter != null)) {
@@ -8543,6 +10293,24 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._general_statisticsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.general_statistics.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._general_statisticsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._project_category_statsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.project_category_stats.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._project_category_statsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -8625,6 +10393,22 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._general_statisticsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.general_statistics.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._general_statisticsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._project_category_statsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.project_category_stats.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._project_category_statsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -8635,6 +10419,22 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(BinCompeteSoftDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._project_category_statsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.project_category_stats.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._project_category_statsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._general_statisticsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.general_statistics.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._general_statisticsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._final_result_tableTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.final_result_table.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -8776,8 +10576,18 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._general_statisticsTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._general_statisticsTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             if (((this._project_categoryTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._project_categoryTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._project_category_statsTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._project_category_statsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -8877,6 +10687,15 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                         adaptersWithAcceptChangesDuringUpdate.Add(this._final_result_tableTableAdapter.Adapter);
                     }
                 }
+                if ((this._general_statisticsTableAdapter != null)) {
+                    revertConnections.Add(this._general_statisticsTableAdapter, this._general_statisticsTableAdapter.Connection);
+                    this._general_statisticsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._general_statisticsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._general_statisticsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._general_statisticsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._general_statisticsTableAdapter.Adapter);
+                    }
+                }
                 if ((this._project_categoryTableAdapter != null)) {
                     revertConnections.Add(this._project_categoryTableAdapter, this._project_categoryTableAdapter.Connection);
                     this._project_categoryTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -8884,6 +10703,15 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                     if (this._project_categoryTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._project_categoryTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._project_categoryTableAdapter.Adapter);
+                    }
+                }
+                if ((this._project_category_statsTableAdapter != null)) {
+                    revertConnections.Add(this._project_category_statsTableAdapter, this._project_category_statsTableAdapter.Connection);
+                    this._project_category_statsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._project_category_statsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._project_category_statsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._project_category_statsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._project_category_statsTableAdapter.Adapter);
                     }
                 }
                 if ((this._project_tableTableAdapter != null)) {
@@ -8986,9 +10814,17 @@ SELECT id_user, username, email, pw, fullname, administrator, first_time_login, 
                     this._final_result_tableTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._final_result_tableTableAdapter]));
                     this._final_result_tableTableAdapter.Transaction = null;
                 }
+                if ((this._general_statisticsTableAdapter != null)) {
+                    this._general_statisticsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._general_statisticsTableAdapter]));
+                    this._general_statisticsTableAdapter.Transaction = null;
+                }
                 if ((this._project_categoryTableAdapter != null)) {
                     this._project_categoryTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._project_categoryTableAdapter]));
                     this._project_categoryTableAdapter.Transaction = null;
+                }
+                if ((this._project_category_statsTableAdapter != null)) {
+                    this._project_category_statsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._project_category_statsTableAdapter]));
+                    this._project_category_statsTableAdapter.Transaction = null;
                 }
                 if ((this._project_tableTableAdapter != null)) {
                     this._project_tableTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._project_tableTableAdapter]));

@@ -29,7 +29,7 @@ namespace BinCompeteSoft
             contestDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             // Fill out user informations
-            //usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.name;
+            usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.name;
 
             UpdateContestsDataGridView();
         }

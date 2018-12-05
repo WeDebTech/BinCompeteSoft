@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,27 +25,61 @@ namespace BinCompeteSoft
 
         private void AddJudge_Load(object sender, EventArgs e)
         {
-            judgesGridView.DataSource = Data._instance.JudgeMembers;
+            judgesGridView.DataSource = editContestForm.judgeMembersToAdd;
 
-            judgesGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            judgesGridView.Columns[0].Visible = false;
             judgesGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            judgesGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            judgesGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            judgesGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
             // Get currently selected judge in dataGridView
-            JudgeMember judgeMember = (JudgeMember)judgesGridView.Rows[judgesGridView.CurrentCell.RowIndex].DataBoundItem;
+            // Check if any judge is selected
+            if(judgesGridView.CurrentCell != null)
+            {
+                JudgeMember judgeMember = (JudgeMember)judgesGridView.Rows[judgesGridView.CurrentCell.RowIndex].DataBoundItem;
 
-            editContestForm.AddJudge(judgeMember);
+                editContestForm.AddJudge(judgeMember);
 
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(null, "You must select a judge.", "Error");
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void refreshJudgesButton_Click(object sender, EventArgs e)
+        {
+            if (!Data._instance.refreshJudges())
+            {
+                MessageBox.Show(null, "Couldn't retrieve judges list.", "Error");
+            }
+            else
+            {
+                editContestForm.judgeMembersToAdd = Data._instance.JudgeMembers;
+
+                foreach(JudgeMember judge in editContestForm.judgeMembers)
+                {
+                    editContestForm.judgeMembersToAdd.RemoveAll(j => j.Id == judge.Id);
+                }
+
+                judgesGridView.DataSource = null;
+                judgesGridView.DataSource = editContestForm.judgeMembersToAdd;
+
+                judgesGridView.Columns[0].Visible = false;
+                judgesGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                judgesGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                judgesGridView.Update();
+                judgesGridView.Refresh();
+            }
         }
     }
 }
