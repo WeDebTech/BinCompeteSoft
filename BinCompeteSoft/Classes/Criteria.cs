@@ -8,18 +8,17 @@ namespace BinCompeteSoft
 {
     public class Criteria
     {
-        int id, criteriaValue;
-        String name, description;
+        int id;
+        string name, description;
 
-        public Criteria(int id, String name, String description, int criteriaValue)
+        public Criteria(int id, string name, string description)
         {
             this.id = id;
             this.name = name;
             this.description = description;
-            this.criteriaValue = criteriaValue;
         }
 
-        public Criteria() : this(0, "", "", 1) { }
+        public Criteria() : this(0, "", "") { }
 
         public int Id
         {
@@ -27,22 +26,16 @@ namespace BinCompeteSoft
             set { id = value; }
         }
 
-        public String Name
+        public string Name
         {
             get { return name; }
             set { name = value; }
         }
 
-        public String Description
+        public string Description
         {
             get { return description; }
             set { description = value; }
-        }
-
-        public int CriteriaValue
-        {
-            get { return criteriaValue; }
-            set { criteriaValue = value; }
         }
     }
 }

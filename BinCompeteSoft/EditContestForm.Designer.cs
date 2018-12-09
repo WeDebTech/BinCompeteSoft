@@ -42,16 +42,13 @@
             this.addProjectButton = new System.Windows.Forms.Button();
             this.addDescriptionButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.acceptButton = new System.Windows.Forms.Button();
-            this.stepLabel = new System.Windows.Forms.Label();
-            this.contestStepNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.criteriaDataGridView = new System.Windows.Forms.DataGridView();
             this.addCriteriaButton = new System.Windows.Forms.Button();
             this.contestStartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.startDateLabel = new System.Windows.Forms.Label();
+            this.criteriaValuesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.judgesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contestStepNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criteriaDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,7 +119,7 @@
             // 
             this.limitDateLabel.AutoSize = true;
             this.limitDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.limitDateLabel.Location = new System.Drawing.Point(262, 108);
+            this.limitDateLabel.Location = new System.Drawing.Point(339, 108);
             this.limitDateLabel.Name = "limitDateLabel";
             this.limitDateLabel.Size = new System.Drawing.Size(131, 31);
             this.limitDateLabel.TabIndex = 13;
@@ -132,9 +129,9 @@
             // 
             this.contestLimitDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contestLimitDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.contestLimitDateTimePicker.Location = new System.Drawing.Point(392, 109);
+            this.contestLimitDateTimePicker.Location = new System.Drawing.Point(476, 109);
             this.contestLimitDateTimePicker.Name = "contestLimitDateTimePicker";
-            this.contestLimitDateTimePicker.Size = new System.Drawing.Size(122, 30);
+            this.contestLimitDateTimePicker.Size = new System.Drawing.Size(184, 30);
             this.contestLimitDateTimePicker.TabIndex = 16;
             // 
             // judgesDataGridView
@@ -190,9 +187,9 @@
             this.addDescriptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.addDescriptionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addDescriptionButton.Location = new System.Drawing.Point(820, 107);
+            this.addDescriptionButton.Location = new System.Drawing.Point(668, 107);
             this.addDescriptionButton.Name = "addDescriptionButton";
-            this.addDescriptionButton.Size = new System.Drawing.Size(168, 38);
+            this.addDescriptionButton.Size = new System.Drawing.Size(320, 38);
             this.addDescriptionButton.TabIndex = 21;
             this.addDescriptionButton.Text = "Add description";
             this.addDescriptionButton.UseVisualStyleBackColor = true;
@@ -208,47 +205,6 @@
             this.backButton.Text = "Go back";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
-            // 
-            // acceptButton
-            // 
-            this.acceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.acceptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acceptButton.Location = new System.Drawing.Point(820, 400);
-            this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(168, 38);
-            this.acceptButton.TabIndex = 23;
-            this.acceptButton.Text = "Accept";
-            this.acceptButton.UseVisualStyleBackColor = true;
-            this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
-            // 
-            // stepLabel
-            // 
-            this.stepLabel.AutoSize = true;
-            this.stepLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stepLabel.Location = new System.Drawing.Point(520, 108);
-            this.stepLabel.Name = "stepLabel";
-            this.stepLabel.Size = new System.Drawing.Size(168, 31);
-            this.stepLabel.TabIndex = 24;
-            this.stepLabel.Text = "Contest step";
-            // 
-            // contestStepNumericUpDown
-            // 
-            this.contestStepNumericUpDown.DecimalPlaces = 2;
-            this.contestStepNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contestStepNumericUpDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.contestStepNumericUpDown.Location = new System.Drawing.Point(694, 107);
-            this.contestStepNumericUpDown.Name = "contestStepNumericUpDown";
-            this.contestStepNumericUpDown.Size = new System.Drawing.Size(120, 38);
-            this.contestStepNumericUpDown.TabIndex = 25;
-            this.contestStepNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             // 
             // criteriaDataGridView
             // 
@@ -281,33 +237,43 @@
             // 
             this.contestStartDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contestStartDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.contestStartDateTimePicker.Location = new System.Drawing.Point(133, 110);
+            this.contestStartDateTimePicker.Location = new System.Drawing.Point(150, 109);
             this.contestStartDateTimePicker.Name = "contestStartDateTimePicker";
-            this.contestStartDateTimePicker.Size = new System.Drawing.Size(123, 30);
+            this.contestStartDateTimePicker.Size = new System.Drawing.Size(183, 30);
             this.contestStartDateTimePicker.TabIndex = 29;
             // 
             // startDateLabel
             // 
             this.startDateLabel.AutoSize = true;
             this.startDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDateLabel.Location = new System.Drawing.Point(6, 108);
+            this.startDateLabel.Location = new System.Drawing.Point(12, 111);
             this.startDateLabel.Name = "startDateLabel";
             this.startDateLabel.Size = new System.Drawing.Size(132, 31);
             this.startDateLabel.TabIndex = 28;
             this.startDateLabel.Text = "Start date";
+            // 
+            // criteriaValuesButton
+            // 
+            this.criteriaValuesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.criteriaValuesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.criteriaValuesButton.Location = new System.Drawing.Point(668, 400);
+            this.criteriaValuesButton.Name = "criteriaValuesButton";
+            this.criteriaValuesButton.Size = new System.Drawing.Size(320, 38);
+            this.criteriaValuesButton.TabIndex = 30;
+            this.criteriaValuesButton.Text = "Insert criteria values and finish";
+            this.criteriaValuesButton.UseVisualStyleBackColor = true;
+            this.criteriaValuesButton.Click += new System.EventHandler(this.criteriaValuesButton_Click);
             // 
             // EditContestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
+            this.Controls.Add(this.criteriaValuesButton);
             this.Controls.Add(this.contestStartDateTimePicker);
             this.Controls.Add(this.startDateLabel);
             this.Controls.Add(this.addCriteriaButton);
             this.Controls.Add(this.criteriaDataGridView);
-            this.Controls.Add(this.contestStepNumericUpDown);
-            this.Controls.Add(this.stepLabel);
-            this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.addDescriptionButton);
             this.Controls.Add(this.addProjectButton);
@@ -328,7 +294,6 @@
             this.Load += new System.EventHandler(this.EditContestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.judgesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contestStepNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.criteriaDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -351,12 +316,10 @@
         private System.Windows.Forms.Button addProjectButton;
         private System.Windows.Forms.Button addDescriptionButton;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Button acceptButton;
-        private System.Windows.Forms.Label stepLabel;
-        private System.Windows.Forms.NumericUpDown contestStepNumericUpDown;
         private System.Windows.Forms.DataGridView criteriaDataGridView;
         private System.Windows.Forms.Button addCriteriaButton;
         private System.Windows.Forms.DateTimePicker contestStartDateTimePicker;
         private System.Windows.Forms.Label startDateLabel;
+        private System.Windows.Forms.Button criteriaValuesButton;
     }
 }

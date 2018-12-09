@@ -85,6 +85,8 @@ namespace BinCompeteSoft
                 }
             }
 
+            // Start of real AHP method
+
             double[,] stepMatrix = new double[scoresMatrix.GetLength(0), scoresMatrix.GetLength(1)];
             criteriaArray = new double[criteriaMatrix.GetLength(1), criteriaMatrix.GetLength(2)];
 
@@ -124,6 +126,110 @@ namespace BinCompeteSoft
 
             return prioritiesArray;
         }
+
+        /// <summary>
+        /// Calculates the projects scores using only the AHP method
+        /// </summary>
+        /// <param name="projectsScores">A matrix containing the projects scores. All values must be positive.</param>
+        /// <param name="criteriaScores">An array containing the criteria scores. All values must be positive.</param>
+        /// <returns>The projects final score.</returns>
+        /*public double[] CalculateVanillaAHP(double[,,] projectsScores, double[] criteriaScores)
+        {
+            for (int i = 0; i < criteriaScores.Length; i++)
+            {
+                if (criteriaScores[i] < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Values cannot be negative.");
+                }
+            }
+
+            double[,,] criteriaMatrix = new double[projectsScores.GetLength(0), projectsScores.GetLength(1), projectsScores.GetLength(2)];
+            double[,] scoresMatrix = new double[projectsScores.GetLength(0), projectsScores.GetLength(1)];
+
+            for (int i = 0; i < projectsScores.GetLength(0); i++)
+            {
+                for (int j = 0; j < projectsScores.GetLength(1); j++)
+                {
+                    double sum = 0;
+
+                    for (int k = 0; k < projectsScores.GetLength(2); k++)
+                    {
+                        // Check for errors
+                        if (projectsScores[i, j, k] < 1 || projectsScores[i, j, k] > 10)
+                        {
+                            throw new ArgumentOutOfRangeException("Values must be between 1 and 10.");
+                        }
+
+                        sum += projectsScores[i, j, k];
+                    }
+
+                    scoresMatrix[i, j] = sum;
+                }
+            }
+
+            double[] scoreArrayTemp = new double[scoresMatrix.GetLength(1)];
+            double[,] criteriaArray;
+
+            // Calculate the criteria matrices
+            for (int i = 0; i < scoresMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < scoreArrayTemp.Length; j++)
+                {
+                    scoreArrayTemp[j] = scoresMatrix[i, j];
+                }
+
+                criteriaArray = CalculateCriteriaMatrix(scoreArrayTemp);
+
+                for (int j = 0; j < scoreArrayTemp.Length; j++)
+                {
+                    for (int k = 0; k < scoreArrayTemp.Length; k++)
+                    {
+                        criteriaMatrix[i, j, k] = criteriaArray[j, k];
+                    }
+                }
+            }
+
+            // Start of real AHP method
+
+            double[,] stepMatrix = new double[scoresMatrix.GetLength(0), scoresMatrix.GetLength(1)];
+            criteriaArray = new double[criteriaMatrix.GetLength(1), criteriaMatrix.GetLength(2)];
+
+            double[,] ratioMatrix = new double[scoresMatrix.GetLength(0), scoresMatrix.GetLength(1)];
+            double[] ratioArray = new double[scoresMatrix.GetLength(1)];
+
+            // Calculate the projects Step1 and Ratios
+            for (int i = 0; i < criteriaMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < criteriaMatrix.GetLength(1); j++)
+                {
+                    for (int k = 0; k < criteriaMatrix.GetLength(2); k++)
+                    {
+                        criteriaArray[j, k] = criteriaMatrix[i, j, k];
+                    }
+                }
+
+                double[] stepArray = CalculateStep(criteriaArray);
+
+                ratioArray = CalculateRatio(stepArray);
+
+                for (int j = 0; j < stepArray.Length; j++)
+                {
+                    stepMatrix[i, j] = stepArray[j];
+                    ratioMatrix[i, j] = ratioArray[j];
+                }
+            }
+
+            // Calculate the criteria scores matrix
+            double[,] criteriaScoresMatrix = CalculateCriteriaMatrix(criteriaScores);
+
+            double[] criteriaScoresStep = CalculateStep(criteriaScoresMatrix);
+
+            double[] criteriaScoresRatio = CalculateRatio(criteriaScoresStep);
+
+            double[] prioritiesArray = CalculatePriorities(ratioMatrix, criteriaScoresRatio);
+
+            return prioritiesArray;
+        }*/
 
         /// <summary>
         /// Calculates the score matrix for a given criteria.

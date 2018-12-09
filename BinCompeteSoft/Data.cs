@@ -184,7 +184,7 @@ namespace BinCompeteSoft
 
                     while (reader.Read())
                     {
-                        ContestPreview contest = new ContestPreview(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), decimal.ToDouble(reader.GetDecimal(3)), reader.GetDateTime(4), reader.GetDateTime(5));
+                        ContestPreview contest = new ContestPreview(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4));
                         contestPreviews.Add(contest);
                     }
 

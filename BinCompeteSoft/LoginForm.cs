@@ -35,7 +35,14 @@ namespace BinCompeteSoft
 
             double[] criteriaScores = new double[2] { 2, 5 };
 
-            double[] finalResults = testAHP.CalculateAHP(projectsScores, criteriaScores, 0.25f);
+            double[] finalResults = testAHP.CalculateAHP(projectsScores, criteriaScores, 0.5f);
+
+            projectsScores = new double[2, 3, 3] {
+                { { 1, 1/5, 1/5 }, { 5, 1, 1 }, { 5, 1, 1 } },
+                { { 1, 9, 9 }, { 1/9, 1, 1/9 }, { 1/9, 9, 1 } }
+            };
+
+            //finalResults = testAHP.CalculateVanillaAHP(projectsScores, criteriaScores);
 
             double average = 0;
 

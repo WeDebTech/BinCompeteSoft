@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,13 +19,20 @@ namespace BinCompeteSoft
         public List<Criteria> criterias { get; set; }
         [System.ComponentModel.DisplayName("Criterias count")]
         public int criteriasCount => criterias.Count;
+        public double[,] criteriaValues { get; set; }
 
-        public Contest(ContestPreview contest, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias)
+        public Contest(ContestPreview contest, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias, double[,] criteriaValues)
         {
             this.contest = contest;
             this.projects = projects;
             this.judgeMembers = judgeMembers;
             this.criterias = criterias;
+            this.criteriaValues = criteriaValues;
+        }
+
+        public string GetCriteriaValuesJSON()
+        {
+            return JsonConvert.SerializeObject(criteriaValues);
         }
     }
 }

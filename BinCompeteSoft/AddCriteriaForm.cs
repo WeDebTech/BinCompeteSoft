@@ -21,11 +21,6 @@ namespace BinCompeteSoft
             InitializeComponent();
         }
 
-        private void criteriaValueTrackBar_ValueChanged(object sender, EventArgs e)
-        {
-            criteriaActualValueLabel.Text = criteriaValueTrackBar.Value.ToString();
-        }
-
         private void acceptButton_Click(object sender, EventArgs e)
         {
             String criteriaName, criteriaDescription;
@@ -33,7 +28,6 @@ namespace BinCompeteSoft
 
             criteriaName = criteriaNameTextBox.Text;
             criteriaDescription = criteriaDescriptionTextBox.Text;
-            criteriaValue = criteriaValueTrackBar.Value;
 
             // Let's check if everything is filled out
             if (String.IsNullOrEmpty(criteriaName) || String.IsNullOrEmpty(criteriaDescription))
@@ -46,7 +40,6 @@ namespace BinCompeteSoft
 
                 criteria.Name = criteriaName;
                 criteria.Description = criteriaDescription;
-                criteria.CriteriaValue = criteriaValue;
 
                 editContestForm.AddCriteria(criteria);
 

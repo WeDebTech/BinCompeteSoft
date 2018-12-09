@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,7 +76,7 @@
     <Compile Include="Classes\Criteria.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="DBSqlHelper.cs" />
-    <Compile Include="Classes\Evaluation.cs" />
+    <Compile Include="Classes\ProjectEvaluation.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="EditContestDescriptionForm.cs">
       <SubType>Form</SubType>
@@ -86,6 +89,12 @@
     </Compile>
     <Compile Include="EditContestForm.Designer.cs">
       <DependentUpon>EditContestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditCriteriaValues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCriteriaValues.Designer.cs">
+      <DependentUpon>EditCriteriaValues.cs</DependentUpon>
     </Compile>
     <Compile Include="EditProjectForm.cs">
       <SubType>Form</SubType>
@@ -133,6 +142,9 @@
     <EmbeddedResource Include="EditContestForm.resx">
       <DependentUpon>EditContestForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditCriteriaValues.resx">
+      <DependentUpon>EditCriteriaValues.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditProjectForm.resx">
       <DependentUpon>EditProjectForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +177,7 @@
     <None Include="BinCompeteSoftDataSet.xss">
       <DependentUpon>BinCompeteSoftDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
