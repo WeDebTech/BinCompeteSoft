@@ -98,20 +98,30 @@ namespace BinCompeteSoft
                 User loggedUser = GetUserDataFromDB(username, password);
                 if (loggedUser != null)
                 {
-                    Data._instance.loggedInUser = loggedUser;
+                    // Verify if user is valid
+                    if (loggedUser.valid)
+                    {
+                        // Verify if user is logging in for the first time
+                        if (loggedUser.first_time_login)
+                        {
+                            ResetPasswordForm resetPasswordForm = new ResetPasswordForm(loggedUser, this);
+                            resetPasswordForm.Show();
 
-                    this.Hide();
-                    MainForm mainForm = new MainForm();
-
-                    // Make it so when the next form is closed, everything gets closed
-                    mainForm.FormClosed += (s, args) => this.Close();
-
-                    // Show the dashboard form
-                    mainForm.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            LoginUser(loggedUser);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(null, "User has it's account deactivated.\nPlease contact the administrator to reactivate your account.", "Error");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(null, "Login informations are incorrect.", "Error");
+                    MessageBox.Show(null, "Login informations are incorrect.\nIf you have forgotten your login details, please contact your administrator to get new login details.", "Error");
 
                     passwordTextBox.Text = "";
                 }
@@ -122,8 +132,12 @@ namespace BinCompeteSoft
         {
             try
             {
-                // TODO: Hash password with SHA-256 or 512
-                string query = "SELECT id_user, fullname, email, username, administrator, first_time_login, valid FROM user_table WHERE (username = @username OR email = @username) AND pw = @password";
+                // Hash the input password
+                string hashedPassword = DBSqlHelper.SHA512(password);
+
+                // Select user if username and password are correct OR first_time_login is set
+                string query = "SELECT id_user, fullname, email, username, administrator, first_time_login, valid FROM user_table " +
+                    "WHERE (username = @username OR email = @username) AND (pw = @password OR first_time_login = 1)";
 
                 SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
                 cmd.CommandText = query;
@@ -133,7 +147,7 @@ namespace BinCompeteSoft
                 cmd.Parameters.Add(sqlUsername);
 
                 SqlParameter sqlPassword = new SqlParameter("@password", SqlDbType.NVarChar);
-                sqlPassword.Value = password;
+                sqlPassword.Value = hashedPassword;
                 cmd.Parameters.Add(sqlPassword);
 
                 // Execute query
@@ -161,6 +175,20 @@ namespace BinCompeteSoft
 
                 return null;
             }
+        }
+
+        public void LoginUser(User userToLogin)
+        {
+            Data._instance.loggedInUser = userToLogin;
+
+            this.Hide();
+            MainForm mainForm = new MainForm();
+
+            // Make it so when the next form is closed, everything gets closed
+            mainForm.FormClosed += (s, args) => this.Close();
+
+            // Show the dashboard form
+            mainForm.Show();
         }
     }
 }

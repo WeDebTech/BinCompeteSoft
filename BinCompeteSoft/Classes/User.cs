@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
-    class User
+    public class User
     {
         public int id { get; }
         public string name { get; }
         string email { get; }
         string username { get; }
         bool administrator { get; }
-        bool first_time_login { get; }
-        bool valid { get; }
+        public bool first_time_login { get; set; }
+        public bool valid { get; set; }
 
         public User(int id, string name, string email, string username, bool administrator, bool first_time_login, bool valid)
         {
