@@ -28,21 +28,41 @@ namespace BinCompeteSoft
             Project[] projects = new Project[1];
             AHP testAHP = new AHP(projects);
 
-            double[,,] projectsScores = new double[2, 3, 4] {
-                { { 1, 8, 4, 5 }, { 4, 5, 7, 7 }, { 7, 3, 6, 9 } },
-                { { 9, 7, 8, 3 }, { 1, 5, 3, 2 }, { 6, 7, 4, 8 } }
+            double[,,,] judgesScores = new double[2, 2, 3, 3]
+            {
+                {
+                    {
+                        { 1, 1f / 5f, 1f / 5f },
+                        { 5, 1, 1 },
+                        { 5, 1, 1 }
+                    },
+                    {
+                        { 1, 9, 9 },
+                        { 1f / 9f, 1, 1f / 9f },
+                        { 1f / 9f, 9, 1 }
+                    }
+                },
+                {
+                    {
+                        { 1, 2, 5 },
+                        { 1f / 2f, 1, 1f / 6f },
+                        { 1f / 5f , 6, 1 }
+                    },
+                    {
+                        { 1, 1f / 8f, 1f / 3f },
+                        { 8, 1, 4 },
+                        { 3, 1f / 4f, 1 }
+                    }
+                }
             };
 
-            double[] criteriaScores = new double[2] { 2, 5 };
-
-            double[] finalResults = testAHP.CalculateAHP(projectsScores, criteriaScores, 0.5f);
-
-            projectsScores = new double[2, 3, 3] {
-                { { 1, 1/5, 1/5 }, { 5, 1, 1 }, { 5, 1, 1 } },
-                { { 1, 9, 9 }, { 1/9, 1, 1/9 }, { 1/9, 9, 1 } }
+            double[,] criteriaScores = new double[2,2]
+            {
+                { 1, 1f / 7f }, 
+                { 7, 1 }
             };
 
-            //finalResults = testAHP.CalculateVanillaAHP(projectsScores, criteriaScores);
+            double[] finalResults = testAHP.CalculateAHP(judgesScores, criteriaScores);
 
             double average = 0;
 
