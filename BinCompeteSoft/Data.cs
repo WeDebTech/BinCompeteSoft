@@ -116,7 +116,13 @@ namespace BinCompeteSoft
                     {
                         // Construct user information from database
                         JudgeMember judge = new JudgeMember(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
-                        judgeMembers.Add(judge);
+
+                        // Check if judge is not the current user
+                        if(judge.Id != loggedInUser.id)
+                        {
+                            // Add it to the list
+                            judgeMembers.Add(judge);
+                        }
                     }
 
                     return true;
