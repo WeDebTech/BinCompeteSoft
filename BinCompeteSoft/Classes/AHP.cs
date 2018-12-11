@@ -143,9 +143,11 @@ namespace BinCompeteSoft
             // Create the step array with the length of the criteria matrix
             double[] stepArray = new double[criteriaMatrix.GetLength(0)];
 
+            double temp;
+
             for(int i = 0; i < stepArray.Length; i++)
             {
-                double temp = 1;
+                temp = 1;
 
                 for(int j = 0; j < stepArray.Length; j++)
                 {

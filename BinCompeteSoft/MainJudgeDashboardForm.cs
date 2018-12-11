@@ -43,7 +43,7 @@ namespace BinCompeteSoft
         {
             if (!Data._instance.refreshContests())
             {
-                MessageBox.Show(null, "Couldn't retrieve contests list.", "Error");
+                MessageBox.Show(null, "Couldn't retrieve contests list or there are not any contests.", "Error");
             }
             else
             {

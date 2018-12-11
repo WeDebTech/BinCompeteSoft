@@ -182,6 +182,8 @@ namespace BinCompeteSoft
 
                 SqlParameter sqlContestId;
 
+                SqlParameter sqlProjectCategory, sqlProjectName, sqlPromoterName;
+
                 foreach (Project project in editContestForm.projects)
                 {
                     // Insert projects into database
@@ -195,7 +197,7 @@ namespace BinCompeteSoft
                     sqlContestId.Value = insertedId;
                     cmd.Parameters.Add(sqlContestId);
 
-                    SqlParameter sqlProjectCategory = new SqlParameter("@id_category", SqlDbType.Int);
+                    sqlProjectCategory = new SqlParameter("@id_category", SqlDbType.Int);
                     sqlProjectCategory.Value = project.category;
                     cmd.Parameters.Add(sqlProjectCategory);
 
@@ -203,11 +205,11 @@ namespace BinCompeteSoft
                     sqlDescript.Value = project.description;
                     cmd.Parameters.Add(sqlDescript);
 
-                    SqlParameter sqlProjectName = new SqlParameter("@project_name", SqlDbType.NVarChar);
+                    sqlProjectName = new SqlParameter("@project_name", SqlDbType.NVarChar);
                     sqlProjectName.Value = project.name;
                     cmd.Parameters.Add(sqlProjectName);
 
-                    SqlParameter sqlPromoterName = new SqlParameter("@promoter_name", SqlDbType.NVarChar);
+                    sqlPromoterName = new SqlParameter("@promoter_name", SqlDbType.NVarChar);
                     sqlPromoterName.Value = project.promoterName;
                     cmd.Parameters.Add(sqlPromoterName);
 
@@ -255,6 +257,10 @@ namespace BinCompeteSoft
                     cmd.ExecuteNonQuery();
                 }
 
+                SqlParameter sqlCriteriaName, sqlCriteriaDescription, sqlCriteriaId;
+
+                int insertedCriteriaId;
+
                 foreach (Criteria criteria in editContestForm.criterias)
                 {
                     // Insert criterias into database
@@ -265,16 +271,16 @@ namespace BinCompeteSoft
                     cmd = DBSqlHelper._instance.conn.CreateCommand();
                     cmd.CommandText = query;
 
-                    SqlParameter sqlCriteriaName = new SqlParameter("@criteria_name", SqlDbType.NVarChar);
+                    sqlCriteriaName = new SqlParameter("@criteria_name", SqlDbType.NVarChar);
                     sqlCriteriaName.Value = criteria.Name;
                     cmd.Parameters.Add(sqlCriteriaName);
 
-                    SqlParameter sqlCriteriaDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
-                    sqlCriteriaDescript.Value = criteria.Description;
-                    cmd.Parameters.Add(sqlCriteriaDescript);
+                    sqlCriteriaDescription = new SqlParameter("@descript", SqlDbType.NVarChar);
+                    sqlCriteriaDescription.Value = criteria.Description;
+                    cmd.Parameters.Add(sqlCriteriaDescription);
 
                     // Execute query
-                    int insertedCriteriaId = (int)cmd.ExecuteScalar();
+                    insertedCriteriaId = (int)cmd.ExecuteScalar();
 
                     // Insert criteria into relationship table
                     query = "INSERT INTO contest_criteria_table ([id_criteria], [id_contest]) " +
@@ -283,7 +289,7 @@ namespace BinCompeteSoft
                     cmd = DBSqlHelper._instance.conn.CreateCommand();
                     cmd.CommandText = query;
 
-                    SqlParameter sqlCriteriaId = new SqlParameter("@id_criteria", SqlDbType.Int);
+                    sqlCriteriaId = new SqlParameter("@id_criteria", SqlDbType.Int);
                     sqlCriteriaId.Value = insertedCriteriaId;
                     cmd.Parameters.Add(sqlCriteriaId);
 

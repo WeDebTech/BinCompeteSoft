@@ -102,7 +102,7 @@ namespace BinCompeteSoft
                     if (loggedUser.valid)
                     {
                         // Verify if user is logging in for the first time
-                        if (loggedUser.first_time_login)
+                        if (loggedUser.firstTimeLogin)
                         {
                             ResetPasswordForm resetPasswordForm = new ResetPasswordForm(loggedUser, this);
                             resetPasswordForm.Show();
