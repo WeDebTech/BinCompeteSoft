@@ -113,10 +113,11 @@
             // 
             // projectCategoryComboBox
             // 
+            this.projectCategoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.projectCategoryComboBox.FormattingEnabled = true;
-            this.projectCategoryComboBox.Location = new System.Drawing.Point(229, 367);
+            this.projectCategoryComboBox.Location = new System.Drawing.Point(229, 360);
             this.projectCategoryComboBox.Name = "projectCategoryComboBox";
-            this.projectCategoryComboBox.Size = new System.Drawing.Size(559, 21);
+            this.projectCategoryComboBox.Size = new System.Drawing.Size(559, 33);
             this.projectCategoryComboBox.TabIndex = 32;
             // 
             // projectPromoterTextBox

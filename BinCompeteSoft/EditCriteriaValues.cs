@@ -106,8 +106,14 @@ namespace BinCompeteSoft
             }
             else
             {
+                // Check if user inputed nothing
+                if(e.FormattedValue.ToString() == String.Empty)
+                {
+                    // Deselect the cell, as the user inputted nothing
+                    criteriaValuesDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = false;
+                }
                 // Check if user input is numeric
-                if (Regex.IsMatch(e.FormattedValue.ToString(), @"^\d+$"))
+                else if (Regex.IsMatch(e.FormattedValue.ToString(), @"^\d+$"))
                 {
                     // Now let's get an int from the string
                     int value = Convert.ToInt32(e.FormattedValue.ToString());
@@ -124,6 +130,7 @@ namespace BinCompeteSoft
                     {
                         // Now let's add the 1/value to the opposite cell and format it to show decimals
                         criteriaValuesDataGridView.Rows[e.ColumnIndex].Cells[e.RowIndex].Value = (double)1 / (double)value;
+                        criteriaValuesDataGridView.Rows[e.ColumnIndex].Cells[e.RowIndex].ErrorText = String.Empty;
                     }
                 }
                 else
