@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace BinCompeteSoft
 {
@@ -22,8 +23,21 @@ namespace BinCompeteSoft
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void LoginForm_Load(object sender, EventArgs e)
         {
+            // Load the connection string from the config.xml file.
+            XmlDocument doc = new XmlDocument();
+            doc.Load("config.xml");
+
+            XmlNode node = doc.DocumentElement.SelectSingleNode("/settings/connection");
+
+            string connectionString = node.InnerText;
+
+            // Assign the read string to the DBSqlHelper variable.
+            DBSqlHelper._instance.connectionString = connectionString;
+
+            DBSqlHelper._instance.InitializeConnection();
+
             // TODO: delete this, it's only for testing
             Project[] projects = new Project[1];
             AHP testAHP = new AHP(projects);

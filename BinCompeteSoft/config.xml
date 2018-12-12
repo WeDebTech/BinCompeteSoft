@@ -1,0 +1,3 @@
+﻿<settings>
+	<connection>Data Source=DESKTOP-T752OON\SQLEXPRESS;Initial Catalog=BinCompeteSoft;Persist Security Info=True;User ID=sa;Password=password123</connection>
+</settings>
