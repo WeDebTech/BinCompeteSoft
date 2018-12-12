@@ -22,7 +22,7 @@ namespace BinCompeteSoft
             UpdateContestDataGridview();
 
             // Fill out user informations
-            usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.name;
+            usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.Name;
         }
 
         private void createContestButton_Click(object sender, EventArgs e)

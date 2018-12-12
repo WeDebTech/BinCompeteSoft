@@ -57,7 +57,7 @@ namespace BinCompeteSoft
                     cmd.Parameters.Add(sqlPassword);
 
                     SqlParameter sqlUserId = new SqlParameter("id_user", DbType.Int32);
-                    sqlUserId.Value = loggedInUser.id;
+                    sqlUserId.Value = loggedInUser.Id;
                     cmd.Parameters.Add(sqlUserId);
 
                     // Execute query

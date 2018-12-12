@@ -6,16 +6,26 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
+    /// <summary>
+    /// This class contains the project data.
+    /// </summary>
     public class Project
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string promoterName { get; set; }
-        public int category { get; set; }
+        // Class variables.
+        private int id;
+        private string name;
+        private string description;
+        private string promoterName;
+        private int category;
 
-        public Project(): this(0, "", "", "", 0){}
-
+        /// <summary>
+        /// Project constructor that takes all arguments.
+        /// </summary>
+        /// <param name="id">The project id.</param>
+        /// <param name="name">The project name.</param>
+        /// <param name="description">The project description.</param>
+        /// <param name="promoterName">The project promoter's name.</param>
+        /// <param name="category">The project category.</param>
         public Project(int id, string name, string description, string promoterName, int category)
         {
             this.id = id;
@@ -23,6 +33,57 @@ namespace BinCompeteSoft
             this.description = description;
             this.promoterName = promoterName;
             this.category = category;
+        }
+
+        /// <summary>
+        /// Project constructor that takes no arguments.
+        /// This creates a project with id = 0, name = "", description = "", promoterName = "", category = 0.
+        /// </summary>
+        public Project() : this(0, "", "", "", 0) { }
+
+        /// <summary>
+        /// Gets or sets the project id.
+        /// </summary>
+        public int Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the project name.
+        /// </summary>
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the project description.
+        /// </summary>
+        public string Description
+        {
+            get { return this.description; }
+            set { this.description = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the project promoter's name.
+        /// </summary>
+        public string PromoterName
+        {
+            get { return this.promoterName; }
+            set { this.promoterName = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the project category.
+        /// </summary>
+        public int Category
+        {
+            get { return this.category; }
+            set { this.category = value; }
         }
     }
 }

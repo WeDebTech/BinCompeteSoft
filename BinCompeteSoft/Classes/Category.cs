@@ -6,17 +6,48 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
+    /// <summary>
+    /// This class contains the category data.
+    /// </summary>
     class Category
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        // Class variables.
+        private int id;
+        private string name;
 
+        /// <summary>
+        /// Category constructor that takes all arguments.
+        /// </summary>
+        /// <param name="id">The category id.</param>
+        /// <param name="name">The category name.</param>
         public Category(int id, string name)
         {
             this.id = id;
             this.name = name;
         }
 
+        /// <summary>
+        /// Gets or sets the category id.
+        /// </summary>
+        public int Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the category name.
+        /// </summary>
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
+
+        /// <summary>
+        /// Returns the category as a string.
+        /// </summary>
+        /// <returns>A string containing the category's name.</returns>
         public override string ToString()
         {
             return this.name;

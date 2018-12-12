@@ -99,10 +99,10 @@ namespace BinCompeteSoft
                 if (loggedUser != null)
                 {
                     // Verify if user is valid
-                    if (loggedUser.valid)
+                    if (loggedUser.Valid)
                     {
                         // Verify if user is logging in for the first time
-                        if (loggedUser.firstTimeLogin)
+                        if (loggedUser.FirstTimeLogin)
                         {
                             ResetPasswordForm resetPasswordForm = new ResetPasswordForm(loggedUser, this);
                             resetPasswordForm.Show();

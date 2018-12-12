@@ -228,7 +228,7 @@ namespace BinCompeteSoft
                 cmd.Parameters.Add(sqlContestId);
 
                 SqlParameter sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
-                sqlUserId.Value = Data._instance.loggedInUser.id;
+                sqlUserId.Value = Data._instance.loggedInUser.Id;
                 cmd.Parameters.Add(sqlUserId);
 
                 cmd.ExecuteNonQuery();

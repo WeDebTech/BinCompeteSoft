@@ -16,13 +16,13 @@ namespace BinCompeteSoft
 
         public User loggedInUser { get; set; }
 
-        List<JudgeMember> judgeMembers = new List<JudgeMember>();
-        List<Contest> contests = new List<Contest>();
-        List<ContestPreview> contestPreviews = new List<ContestPreview>();
-        List<Project> projects = new List<Project>();
-        List<Category> categories = new List<Category>();
+        private List<JudgeMember> judgeMembers = new List<JudgeMember>();
+        private List<Contest> contests = new List<Contest>();
+        private List<ContestDetails> contestPreviews = new List<ContestDetails>();
+        private List<Project> projects = new List<Project>();
+        private List<Category> categories = new List<Category>();
 
-        Data()
+        private Data()
         {
             // Well, nothing to do here
         }
@@ -39,7 +39,7 @@ namespace BinCompeteSoft
             set { contests = value; }
         }
 
-        public List<ContestPreview> ContestPreviews
+        public List<ContestDetails> ContestPreviews
         {
             get { return contestPreviews; }
             set { contestPreviews = value; }
@@ -61,45 +61,33 @@ namespace BinCompeteSoft
         /// Add a judge member to the judge members list.
         /// </summary>
         /// <param name="judgeMember"></param>
-        /// <returns>1 if successful, 0 if an error occured when inserting.</returns>
-        public int addJudgeMember(JudgeMember judgeMember)
+        public void addJudgeMember(JudgeMember judgeMember)
         {
             judgeMembers.Add(judgeMember);
-
-            // TODO: add actual error codes
-            return 1;
         }
 
         /// <summary>
         /// Add a contest to the contests list.
         /// </summary>
         /// <param name="contest"></param>
-        /// <returns>1 if successful, 0 if an error occured when inserting.</returns>
-        public int addContest(Contest contest)
+        public void addContest(Contest contest)
         {
             contests.Add(contest);
-
-            // TODO: add actual errors codes
-            return 1;
         }
 
         /// <summary>
         /// Add a project to the projects list.
         /// </summary>
         /// <param name="project"></param>
-        /// <returns>1 if successful, 0 if an error occured when inserting.</returns>
-        public int addProject(Project project)
+        public void addProject(Project project)
         {
             projects.Add(project);
-
-            // TODO: add actual errors codes
-            return 1;
         }
 
         public bool refreshJudges()
         {
             // Load the judges from the Database
-            string query = "SELECT id_user, fullname, email FROM user_table";
+            string query = "SELECT id_user, fullname, email FROM user_table WHERE valid = 1";
 
             SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
             cmd.CommandText = query;
@@ -118,7 +106,7 @@ namespace BinCompeteSoft
                         JudgeMember judge = new JudgeMember(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
 
                         // Check if judge is not the current user
-                        if(judge.Id != loggedInUser.id)
+                        if(judge.Id != loggedInUser.Id)
                         {
                             // Add it to the list
                             judgeMembers.Add(judge);
@@ -177,7 +165,7 @@ namespace BinCompeteSoft
             cmd.CommandText = query;
 
             SqlParameter sqlUserId = new SqlParameter("id_user", SqlDbType.Int);
-            sqlUserId.Value = Data._instance.loggedInUser.id;
+            sqlUserId.Value = Data._instance.loggedInUser.Id;
             cmd.Parameters.Add(sqlUserId);
 
             // Execute query
@@ -190,7 +178,7 @@ namespace BinCompeteSoft
 
                     while (reader.Read())
                     {
-                        ContestPreview contest = new ContestPreview(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4));
+                        ContestDetails contest = new ContestDetails(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4));
                         contestPreviews.Add(contest);
                     }
 

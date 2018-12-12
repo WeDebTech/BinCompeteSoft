@@ -34,7 +34,7 @@ namespace BinCompeteSoft
             // Verify if any project category has been selected
             if (projectCategoryComboBox.SelectedIndex > -1)
             {
-                categoryId = (projectCategoryComboBox.SelectedItem as Category).id;
+                categoryId = (projectCategoryComboBox.SelectedItem as Category).Id;
 
                 // Let's check if everything is filled out
                 if (String.IsNullOrEmpty(projectName) || String.IsNullOrEmpty(projectDescription) || String.IsNullOrEmpty(promoterName))
