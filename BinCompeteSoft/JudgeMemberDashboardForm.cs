@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BinCompeteSoft
 {
-    public partial class Form1 : Form
+    public partial class JudgeMemberDashboardForm : Form
     {
-        public Form1()
+        public JudgeMemberDashboardForm()
         {
             InitializeComponent();
         }

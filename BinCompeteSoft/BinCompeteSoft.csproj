@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,14 +49,120 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AddCriteriaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AddCriteriaForm.Designer.cs">
+      <DependentUpon>AddCriteriaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddJudgeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddJudgeForm.Designer.cs">
+      <DependentUpon>AddJudgeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BinCompeteSoftDataSet.cs">
+      <DependentUpon>BinCompeteSoftDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BinCompeteSoftDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BinCompeteSoftDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AHP.cs" />
+    <Compile Include="Classes\Category.cs" />
+    <Compile Include="Classes\Contest.cs" />
+    <Compile Include="Classes\ContestPreview.cs" />
+    <Compile Include="Classes\Criteria.cs" />
+    <Compile Include="Classes\User.cs" />
+    <Compile Include="DBSqlHelper.cs" />
+    <Compile Include="Classes\ProjectEvaluation.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="EditContestDescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditContestDescriptionForm.Designer.cs">
+      <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditContestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditContestForm.Designer.cs">
+      <DependentUpon>EditContestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditCriteriaValues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCriteriaValues.Designer.cs">
+      <DependentUpon>EditCriteriaValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProjectForm.Designer.cs">
+      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\JudgeMember.cs" />
+    <Compile Include="JudgeMemberDashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JudgeMemberDashboardForm.Designer.cs">
+      <DependentUpon>JudgeMemberDashboardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainJudgeDashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainJudgeDashboardForm.Designer.cs">
+      <DependentUpon>MainJudgeDashboardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Classes\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResetPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResetPasswordForm.Designer.cs">
+      <DependentUpon>ResetPasswordForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddCriteriaForm.resx">
+      <DependentUpon>AddCriteriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddJudgeForm.resx">
+      <DependentUpon>AddJudgeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditContestDescriptionForm.resx">
+      <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditContestForm.resx">
+      <DependentUpon>EditContestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCriteriaValues.resx">
+      <DependentUpon>EditCriteriaValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProjectForm.resx">
+      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainJudgeDashboardForm.resx">
+      <DependentUpon>MainJudgeDashboardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +172,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ResetPasswordForm.resx">
+      <DependentUpon>ResetPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="BinCompeteSoftDataSet.xsc">
+      <DependentUpon>BinCompeteSoftDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BinCompeteSoftDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BinCompeteSoftDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BinCompeteSoftDataSet.xss">
+      <DependentUpon>BinCompeteSoftDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
