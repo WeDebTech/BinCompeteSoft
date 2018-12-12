@@ -159,7 +159,7 @@ namespace BinCompeteSoft
         {
             projects.Add(project);
 
-            projectsDataGridView.Rows.Add(project.name);
+            projectsDataGridView.Rows.Add(project.Name);
 
             UpdateDataGridView(projectsDataGridView);
         }
@@ -242,7 +242,7 @@ namespace BinCompeteSoft
                                     // Check if there's any criteria
                                     if (criterias.Count > 0)
                                     {
-                                        ContestPreview contestPreview = new ContestPreview(0, contestName, description, contestStartDateTimePicker.Value, contestLimitDateTimePicker.Value);
+                                        ContestDetails contestPreview = new ContestDetails(0, contestName, description, contestStartDateTimePicker.Value, contestLimitDateTimePicker.Value);
                                         Contest contest = new Contest(contestPreview, projects, judgeMembers, criterias, new double[,] { });
 
                                         // Open criteria values form

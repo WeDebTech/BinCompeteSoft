@@ -74,7 +74,7 @@ namespace BinCompeteSoft
                 }
             }
 
-            contest.criteriaValues = criteriaValues;
+            contest.CriteriaValues = criteriaValues;
 
             if (InsertContestToDB(contest))
             {
@@ -158,19 +158,19 @@ namespace BinCompeteSoft
                 cmd.CommandText = query;
 
                 SqlParameter sqlContestName = new SqlParameter("@contest_name", SqlDbType.NVarChar);
-                sqlContestName.Value = contestToInsert.contest.name;
+                sqlContestName.Value = contestToInsert.ContestDetails.Name;
                 cmd.Parameters.Add(sqlContestName);
 
                 SqlParameter sqlDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
-                sqlDescript.Value = contestToInsert.contest.description;
+                sqlDescript.Value = contestToInsert.ContestDetails.Description;
                 cmd.Parameters.Add(sqlDescript);
 
                 SqlParameter sqlStartdate = new SqlParameter("@start_date", SqlDbType.DateTime);
-                sqlStartdate.Value = contestToInsert.contest.startDate;
+                sqlStartdate.Value = contestToInsert.ContestDetails.StartDate;
                 cmd.Parameters.Add(sqlStartdate);
 
                 SqlParameter sqlLimitdate = new SqlParameter("@limit_date", SqlDbType.DateTime);
-                sqlLimitdate.Value = contestToInsert.contest.limitDate;
+                sqlLimitdate.Value = contestToInsert.ContestDetails.LimitDate;
                 cmd.Parameters.Add(sqlLimitdate);
 
                 SqlParameter sqlCriteriaValues = new SqlParameter("@criteria_values", SqlDbType.NVarChar);
@@ -198,19 +198,19 @@ namespace BinCompeteSoft
                     cmd.Parameters.Add(sqlContestId);
 
                     sqlProjectCategory = new SqlParameter("@id_category", SqlDbType.Int);
-                    sqlProjectCategory.Value = project.category;
+                    sqlProjectCategory.Value = project.Category;
                     cmd.Parameters.Add(sqlProjectCategory);
 
                     sqlDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
-                    sqlDescript.Value = project.description;
+                    sqlDescript.Value = project.Description;
                     cmd.Parameters.Add(sqlDescript);
 
                     sqlProjectName = new SqlParameter("@project_name", SqlDbType.NVarChar);
-                    sqlProjectName.Value = project.name;
+                    sqlProjectName.Value = project.Name;
                     cmd.Parameters.Add(sqlProjectName);
 
                     sqlPromoterName = new SqlParameter("@promoter_name", SqlDbType.NVarChar);
-                    sqlPromoterName.Value = project.promoterName;
+                    sqlPromoterName.Value = project.PromoterName;
                     cmd.Parameters.Add(sqlPromoterName);
 
                     // Execute query
