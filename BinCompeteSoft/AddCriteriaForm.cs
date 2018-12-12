@@ -24,7 +24,6 @@ namespace BinCompeteSoft
         private void acceptButton_Click(object sender, EventArgs e)
         {
             String criteriaName, criteriaDescription;
-            int criteriaValue;
 
             criteriaName = criteriaNameTextBox.Text;
             criteriaDescription = criteriaDescriptionTextBox.Text;

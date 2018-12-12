@@ -89,7 +89,7 @@ namespace BinCompeteSoft
             // Load the judges from the Database
             string query = "SELECT id_user, fullname, email FROM user_table WHERE valid = 1";
 
-            SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
 
             // Execute query
@@ -127,7 +127,7 @@ namespace BinCompeteSoft
             // Load the categories from the Database
             string query = "SELECT id_category, category_name FROM project_category";
 
-            SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
 
             // Execute query
@@ -161,7 +161,7 @@ namespace BinCompeteSoft
                 "SELECT id_contest FROM contest_juri_table " +
                 "WHERE id_user = @id_user)";
 
-            SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
 
             SqlParameter sqlUserId = new SqlParameter("id_user", SqlDbType.Int);

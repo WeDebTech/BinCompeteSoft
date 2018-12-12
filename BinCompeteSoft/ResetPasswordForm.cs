@@ -49,7 +49,7 @@ namespace BinCompeteSoft
                         "SET pw = @password, first_time_login = 0 " +
                         "WHERE id_user = @id_user";
 
-                    SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
                     cmd.CommandText = query;
 
                     SqlParameter sqlPassword = new SqlParameter("password", SqlDbType.NVarChar);

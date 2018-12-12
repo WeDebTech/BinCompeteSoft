@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,40 +10,56 @@ using System.Windows.Forms;
 
 namespace BinCompeteSoft
 {
+    /// <summary>
+    /// This class is a helper so all database connections pass through here.
+    /// </summary>
     class DBSqlHelper
     {
-        // Make it so the class is a singleton
+        // Make it so the class is a singleton.
         public static readonly DBSqlHelper _instance = new DBSqlHelper();
 
-        public string connectionString;
-        public SqlConnection conn { get; set; }
+        // The connection object.
+        private SqlConnection connection;
 
-        public DBSqlHelper()
-        {
+        /// <summary>
+        /// The DBSqlHelper constructor.
+        /// Takes no arguments.
+        /// </summary>
+        public DBSqlHelper() { }
 
-        }
-
-        public bool InitializeConnection()
+        /// <summary>
+        /// Initializes the connection to the database with the provided connection string.
+        /// </summary>
+        /// <param name="connectionString">The string to connect to the database.</param>
+        /// <returns>True if the connection was successfull, false otherwise.</returns>
+        public bool InitializeConnection(string connectionString)
         {
             try
             {
-                conn = new SqlConnection(connectionString);
+                // Opens a new connection with the provided conection string.
+                connection = new SqlConnection(connectionString);
 
-                conn.Open();
+                connection.Open();
 
                 return true;
             }
             catch(Exception ex)
             {
-                MessageBox.Show(null, "Error: " + ex, "Error");
+                MessageBox.Show(null, "Couldn't connect to the server.\nEither the server is unreachable, configuration file is incorrect, or another error occured.\n\nError: " + ex, "Error");
 
                 return false;
             }
         }
 
-        public static string SHA512(string input)
+        /// <summary>
+        /// Hashes a provided password.
+        /// </summary>
+        /// <param name="password">The password to hash.</param>
+        /// <returns>The hashed password.</returns>
+        public static string SHA512(string password)
         {
-            var bytes = System.Text.Encoding.UTF8.GetBytes(input);
+            var bytes = System.Text.Encoding.UTF8.GetBytes(password);
+
             using(var hash = System.Security.Cryptography.SHA512.Create())
             {
                 var hashedInputBytes = hash.ComputeHash(bytes);
@@ -57,6 +74,15 @@ namespace BinCompeteSoft
 
                 return hashedInputStringBuilder.ToString();
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the connection object.
+        /// </summary>
+        public SqlConnection Connection
+        {
+            get { return this.connection; }
+            set { this.connection = value; }
         }
     }
 }

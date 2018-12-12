@@ -154,7 +154,7 @@ namespace BinCompeteSoft
                     "VALUES (@contest_name, @descript, @start_date, @limit_date, @criteria_values);" +
                     "SELECT CAST(scope_identity() AS int)";
 
-                SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+                SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
                 cmd.CommandText = query;
 
                 SqlParameter sqlContestName = new SqlParameter("@contest_name", SqlDbType.NVarChar);
@@ -190,7 +190,7 @@ namespace BinCompeteSoft
                     query = "INSERT INTO project_table ([id_contest], [id_category], [descript], [project_name], [promoter_name]) " +
                         "VALUES (@id_contest, @id_category, @descript, @project_name, @promoter_name)";
 
-                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd = DBSqlHelper._instance.Connection.CreateCommand();
                     cmd.CommandText = query;
 
                     sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
@@ -220,7 +220,7 @@ namespace BinCompeteSoft
                 // Insert main judge into database
                 query = "INSERT INTO contest_juri_table (id_contest, id_user, has_voted, president) VALUES (@id_contest, @id_user, 0, 1)";
 
-                cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd = DBSqlHelper._instance.Connection.CreateCommand();
                 cmd.CommandText = query;
 
                 sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
@@ -233,7 +233,7 @@ namespace BinCompeteSoft
 
                 cmd.ExecuteNonQuery();
 
-                cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd = DBSqlHelper._instance.Connection.CreateCommand();
                 cmd.CommandText = query;
 
                 // Now let's add the remaining judges
@@ -242,7 +242,7 @@ namespace BinCompeteSoft
                     // Insert judge into database
                     query = "INSERT INTO contest_juri_table (id_contest, id_user, has_voted, president) VALUES (@id_contest, @id_user, 0, 0)";
 
-                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd = DBSqlHelper._instance.Connection.CreateCommand();
                     cmd.CommandText = query;
 
                     sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
@@ -268,7 +268,7 @@ namespace BinCompeteSoft
                         "VALUES (@criteria_name, @descript); " +
                         "SELECT CAST(scope_identity() AS int)";
 
-                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd = DBSqlHelper._instance.Connection.CreateCommand();
                     cmd.CommandText = query;
 
                     sqlCriteriaName = new SqlParameter("@criteria_name", SqlDbType.NVarChar);
@@ -286,7 +286,7 @@ namespace BinCompeteSoft
                     query = "INSERT INTO contest_criteria_table ([id_criteria], [id_contest]) " +
                         "VALUES (@id_criteria, @id_contest)";
 
-                    cmd = DBSqlHelper._instance.conn.CreateCommand();
+                    cmd = DBSqlHelper._instance.Connection.CreateCommand();
                     cmd.CommandText = query;
 
                     sqlCriteriaId = new SqlParameter("@id_criteria", SqlDbType.Int);

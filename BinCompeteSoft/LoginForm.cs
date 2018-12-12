@@ -16,8 +16,6 @@ namespace BinCompeteSoft
 {
     public partial class LoginForm : Form
     {
-        int N = 1;
-
         public LoginForm()
         {
             InitializeComponent();
@@ -26,17 +24,75 @@ namespace BinCompeteSoft
         private void LoginForm_Load(object sender, EventArgs e)
         {
             // Load the connection string from the config.xml file.
-            XmlDocument doc = new XmlDocument();
-            doc.Load("config.xml");
+            using(XmlReader reader = XmlReader.Create(@"config.xml"))
+            {
+                // File contents will be stored here.
+                string ip = "";
+                string port = "";
+                string dbname = "";
+                string security = "";
+                string userId = "";
+                string password = "";
 
-            XmlNode node = doc.DocumentElement.SelectSingleNode("/settings/connection");
+                // This will be used to build the connection string.
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-            string connectionString = node.InnerText;
+                while (reader.Read())
+                {
+                    if (reader.IsStartElement())
+                    {
+                        switch (reader.Name.ToString())
+                        {
+                            case "ip":
+                                ip = reader.ReadElementContentAsString();
+                                break;
+                            case "port":
+                                port = reader.ReadElementContentAsString();
+                                break;
+                            case "dbname":
+                                dbname = reader.ReadElementContentAsString();
+                                break;
+                            case "security":
+                                security = reader.ReadElementContentAsString();
+                                break;
+                            case "user_id":
+                                userId = reader.ReadElementContentAsString();
+                                break;
+                            case "password":
+                                password = reader.ReadElementContentAsString();
+                                break;
+                        }
+                    }
+                }
 
-            // Assign the read string to the DBSqlHelper variable.
-            DBSqlHelper._instance.connectionString = connectionString;
-
-            DBSqlHelper._instance.InitializeConnection();
+                // Now let's construct our connection string.
+                if (!String.IsNullOrWhiteSpace(ip))
+                {
+                    builder["Data Source"] = ip;
+                }
+                if (!String.IsNullOrWhiteSpace(port))
+                {
+                    builder["Port"] = port;
+                }
+                if (!String.IsNullOrWhiteSpace(dbname))
+                {
+                    builder["Initial Catalog"] = dbname;
+                }
+                if (!String.IsNullOrWhiteSpace(security))
+                {
+                    builder["Persist Security Info"] = security;
+                }
+                if (!String.IsNullOrWhiteSpace(userId))
+                {
+                    builder["User ID"] = userId;
+                }
+                if (!String.IsNullOrWhiteSpace(password))
+                {
+                    builder["Password"] = password;
+                }
+                
+                DBSqlHelper._instance.InitializeConnection(builder.ConnectionString);
+            }
 
             // TODO: delete this, it's only for testing
             Project[] projects = new Project[1];
@@ -77,24 +133,6 @@ namespace BinCompeteSoft
             };
 
             double[] finalResults = testAHP.CalculateAHP(judgesScores, criteriaScores);
-
-            double average = 0;
-
-            average = CalculateAverage(average, 5);
-
-            average = CalculateAverage(average, 8);
-
-            average = CalculateAverage(average, 12);
-        }
-
-        private double CalculateAverage(double average, double new_value)
-        {
-            average -= average / N;
-            average += new_value / N;
-
-            N++;
-
-            return average;
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -108,14 +146,14 @@ namespace BinCompeteSoft
             }
             else
             {
-                // Ask database if user exists and data is correct
+                // Ask database if user exists and data is correct.
                 User loggedUser = GetUserDataFromDB(username, password);
                 if (loggedUser != null)
                 {
                     // Verify if user is valid
                     if (loggedUser.Valid)
                     {
-                        // Verify if user is logging in for the first time
+                        // Verify if user is logging in for the first time.
                         if (loggedUser.FirstTimeLogin)
                         {
                             ResetPasswordForm resetPasswordForm = new ResetPasswordForm(loggedUser, this);
@@ -142,35 +180,45 @@ namespace BinCompeteSoft
             }
         }
 
+        /// <summary>
+        /// Gets the user from the database with the inserted data.
+        /// </summary>
+        /// <param name="username">The User username.</param>
+        /// <param name="password">The User password.</param>
+        /// <returns>The User from the database.</returns>
         private User GetUserDataFromDB(string username, string password)
         {
+            SqlCommand cmd;
+            SqlParameter sqlUsername;
+            SqlParameter sqlPassword;
+
             try
             {
-                // Hash the input password
+                // Hash the input password.
                 string hashedPassword = DBSqlHelper.SHA512(password);
 
-                // Select user if username and password are correct OR first_time_login is set
+                // Select user if username and password are correct OR first_time_login is set.
                 string query = "SELECT id_user, fullname, email, username, administrator, first_time_login, valid FROM user_table " +
                     "WHERE (username = @username OR email = @username) AND (pw = @password OR first_time_login = 1)";
 
-                SqlCommand cmd = DBSqlHelper._instance.conn.CreateCommand();
+                cmd = DBSqlHelper._instance.Connection.CreateCommand();
                 cmd.CommandText = query;
 
-                SqlParameter sqlUsername = new SqlParameter("@username", SqlDbType.NVarChar);
+                sqlUsername = new SqlParameter("@username", SqlDbType.NVarChar);
                 sqlUsername.Value = username;
                 cmd.Parameters.Add(sqlUsername);
 
-                SqlParameter sqlPassword = new SqlParameter("@password", SqlDbType.NVarChar);
+                sqlPassword = new SqlParameter("@password", SqlDbType.NVarChar);
                 sqlPassword.Value = hashedPassword;
                 cmd.Parameters.Add(sqlPassword);
 
-                // Execute query
+                // Execute query.
                 using(DbDataReader reader = cmd.ExecuteReader())
                 {
-                    // Check if user exists
+                    // Check if user exists.
                     if (reader.HasRows)
                     {
-                        // Construct user information from database
+                        // Construct user information from database.
                         reader.Read();
 
                         User loggedUser = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetBoolean(4), reader.GetBoolean(5), reader.GetBoolean(6));
@@ -198,10 +246,10 @@ namespace BinCompeteSoft
             this.Hide();
             MainForm mainForm = new MainForm();
 
-            // Make it so when the next form is closed, everything gets closed
+            // Make it so when the next form is closed, everything gets closed.
             mainForm.FormClosed += (s, args) => this.Close();
 
-            // Show the dashboard form
+            // Show the dashboard form.
             mainForm.Show();
         }
     }

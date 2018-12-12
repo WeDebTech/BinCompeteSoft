@@ -1,3 +1,9 @@
-﻿<settings>
-	<connection>Data Source=DESKTOP-T752OON\SQLEXPRESS;Initial Catalog=BinCompeteSoft;Persist Security Info=True;User ID=sa;Password=password123</connection>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+	<ip>DESKTOP-T752OON</ip>
+	<port></port>
+	<dbname>BinCompeteSoft</dbname>
+	<security>True</security>
+	<user_id>sa</user_id>
+	<password>password123</password>
 </settings>
