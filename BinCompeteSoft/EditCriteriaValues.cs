@@ -182,13 +182,13 @@ namespace BinCompeteSoft
 
                 SqlParameter sqlContestId;
 
-                SqlParameter sqlProjectCategory, sqlProjectName, sqlPromoterName;
+                SqlParameter sqlProjectCategory, sqlProjectName, sqlPromoterName, sqlPromoterAge;
 
                 foreach (Project project in editContestForm.projects)
                 {
                     // Insert projects into database
-                    query = "INSERT INTO project_table ([id_contest], [id_category], [descript], [project_name], [promoter_name]) " +
-                        "VALUES (@id_contest, @id_category, @descript, @project_name, @promoter_name)";
+                    query = "INSERT INTO project_table ([id_contest], [id_category], [descript], [project_name], [promoter_name], [promoter_age]) " +
+                        "VALUES (@id_contest, @id_category, @descript, @project_name, @promoter_name, @promoter_age)";
 
                     cmd = DBSqlHelper._instance.Connection.CreateCommand();
                     cmd.CommandText = query;
@@ -212,6 +212,10 @@ namespace BinCompeteSoft
                     sqlPromoterName = new SqlParameter("@promoter_name", SqlDbType.NVarChar);
                     sqlPromoterName.Value = project.PromoterName;
                     cmd.Parameters.Add(sqlPromoterName);
+
+                    sqlPromoterAge = new SqlParameter("@promoter_age", SqlDbType.Int);
+                    sqlPromoterAge.Value = project.PromoterAge;
+                    cmd.Parameters.Add(sqlPromoterAge);
 
                     // Execute query
                     cmd.ExecuteNonQuery();

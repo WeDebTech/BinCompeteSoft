@@ -24,12 +24,14 @@ namespace BinCompeteSoft
         private void acceptButton_Click(object sender, EventArgs e)
         {
             string projectName, projectDescription, promoterName;
+            int promoterAge;
 
             int categoryId;
 
             projectName = projectNameTextBox.Text;
             projectDescription = projectDescriptionTextBox.Text;
             promoterName = projectPromoterTextBox.Text;
+            promoterAge = (int)promoterAgeNumericUpDown.Value;
 
             // Verify if any project category has been selected
             if (projectCategoryComboBox.SelectedIndex > -1)
@@ -44,7 +46,7 @@ namespace BinCompeteSoft
                 else
                 {
                     // TODO: get actual project category
-                    Project project = new Project(0, projectName, projectDescription, promoterName, categoryId);
+                    Project project = new Project(0, projectName, projectDescription, promoterName, promoterAge, categoryId);
 
                     editContestForm.AddProject(project);
 

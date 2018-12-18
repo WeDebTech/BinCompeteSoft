@@ -16,6 +16,7 @@ namespace BinCompeteSoft
         private string name;
         private string description;
         private string promoterName;
+        private int promoterAge;
         private int category;
 
         /// <summary>
@@ -26,12 +27,13 @@ namespace BinCompeteSoft
         /// <param name="description">The project description.</param>
         /// <param name="promoterName">The project promoter's name.</param>
         /// <param name="category">The project category.</param>
-        public Project(int id, string name, string description, string promoterName, int category)
+        public Project(int id, string name, string description, string promoterName, int promoterAge, int category)
         {
             this.id = id;
             this.name = name;
             this.description = description;
             this.promoterName = promoterName;
+            this.promoterAge = promoterAge;
             this.category = category;
         }
 
@@ -39,7 +41,7 @@ namespace BinCompeteSoft
         /// Project constructor that takes no arguments.
         /// This creates a project with id = 0, name = "", description = "", promoterName = "", category = 0.
         /// </summary>
-        public Project() : this(0, "", "", "", 0) { }
+        public Project() : this(0, "", "", "", 0, 0) { }
 
         /// <summary>
         /// Gets or sets the project id.
@@ -75,6 +77,15 @@ namespace BinCompeteSoft
         {
             get { return this.promoterName; }
             set { this.promoterName = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the project promoter's age.
+        /// </summary>
+        public int PromoterAge
+        {
+            get { return this.promoterAge; }
+            set { this.promoterAge = value; }
         }
 
         /// <summary>

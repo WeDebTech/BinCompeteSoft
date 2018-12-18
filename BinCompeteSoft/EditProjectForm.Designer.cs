@@ -38,6 +38,9 @@
             this.projectCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.projectPromoterTextBox = new System.Windows.Forms.TextBox();
             this.projectPromoterText = new System.Windows.Forms.Label();
+            this.promoterAgeLabel = new System.Windows.Forms.Label();
+            this.promoterAgeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.promoterAgeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // projectDescriptionTextBox
@@ -138,11 +141,31 @@
             this.projectPromoterText.TabIndex = 34;
             this.projectPromoterText.Text = "Project promoter";
             // 
+            // promoterAgeLabel
+            // 
+            this.promoterAgeLabel.AutoSize = true;
+            this.promoterAgeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.promoterAgeLabel.Location = new System.Drawing.Point(531, 91);
+            this.promoterAgeLabel.Name = "promoterAgeLabel";
+            this.promoterAgeLabel.Size = new System.Drawing.Size(177, 31);
+            this.promoterAgeLabel.TabIndex = 35;
+            this.promoterAgeLabel.Text = "Promoter age";
+            // 
+            // promoterAgeNumericUpDown
+            // 
+            this.promoterAgeNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.promoterAgeNumericUpDown.Location = new System.Drawing.Point(714, 92);
+            this.promoterAgeNumericUpDown.Name = "promoterAgeNumericUpDown";
+            this.promoterAgeNumericUpDown.Size = new System.Drawing.Size(74, 30);
+            this.promoterAgeNumericUpDown.TabIndex = 36;
+            // 
             // EditProjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.promoterAgeNumericUpDown);
+            this.Controls.Add(this.promoterAgeLabel);
             this.Controls.Add(this.projectPromoterTextBox);
             this.Controls.Add(this.projectPromoterText);
             this.Controls.Add(this.projectCategoryComboBox);
@@ -160,6 +183,7 @@
             this.ShowIcon = false;
             this.Text = "Edit Project";
             this.Load += new System.EventHandler(this.EditProjectForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.promoterAgeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +201,7 @@
         private System.Windows.Forms.ComboBox projectCategoryComboBox;
         private System.Windows.Forms.TextBox projectPromoterTextBox;
         private System.Windows.Forms.Label projectPromoterText;
+        private System.Windows.Forms.Label promoterAgeLabel;
+        private System.Windows.Forms.NumericUpDown promoterAgeNumericUpDown;
     }
 }

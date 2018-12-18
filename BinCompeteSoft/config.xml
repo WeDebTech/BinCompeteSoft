@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <settings>
-	<ip>DESKTOP-T752OON</ip>
+	<ip>DESKTOP-T752OON\SQLEXPRESS</ip>
 	<port></port>
 	<dbname>BinCompeteSoft</dbname>
 	<security>True</security>

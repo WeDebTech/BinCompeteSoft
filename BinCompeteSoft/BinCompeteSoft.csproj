@@ -74,6 +74,7 @@
     <Compile Include="Classes\Contest.cs" />
     <Compile Include="Classes\ContestDetails.cs" />
     <Compile Include="Classes\Criteria.cs" />
+    <Compile Include="Classes\Evaluation.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="DBSqlHelper.cs" />
     <Compile Include="Classes\ProjectEvaluation.cs" />
