@@ -1,6 +1,6 @@
 ﻿namespace BinCompeteSoft
 {
-    partial class MainJudgeDashboardForm
+    partial class JudgeContestsListForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             this.openContestButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.contestDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,11 +140,23 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
-            // MainJudgeDashboardForm
+            // backButton
+            // 
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(12, 12);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(97, 38);
+            this.backButton.TabIndex = 23;
+            this.backButton.Text = "Go back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // JudgeContestsListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.openContestButton);
@@ -155,9 +168,9 @@
             this.Controls.Add(this.softwareNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
-            this.Name = "MainJudgeDashboardForm";
+            this.Name = "JudgeContestsListForm";
             this.Text = "Dashboard";
-            this.Load += new System.EventHandler(this.MainJudgeDashboardForm_Load);
+            this.Load += new System.EventHandler(this.JudgeContestsListForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.contestDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,5 +188,6 @@
         private System.Windows.Forms.Button openContestButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Button backButton;
     }
 }

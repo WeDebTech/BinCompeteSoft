@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,16 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCriteriaForm.cs">
+    <Compile Include="Classes\CategoryStatistics.cs" />
+    <Compile Include="Classes\Statistic.cs" />
+    <Compile Include="Components\exListBox.cs" />
+    <Compile Include="Components\exListBox.Designer.cs">
+      <DependentUpon>exListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddCriteriaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCriteriaForm.Designer.cs">
+    <Compile Include="Forms\AddCriteriaForm.Designer.cs">
       <DependentUpon>AddCriteriaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddJudgeForm.cs">
+    <Compile Include="Forms\AddJudgeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddJudgeForm.Designer.cs">
+    <Compile Include="Forms\AddJudgeForm.Designer.cs">
       <DependentUpon>AddJudgeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BinCompeteSoftDataSet.cs">
@@ -79,90 +86,100 @@
     <Compile Include="DBSqlHelper.cs" />
     <Compile Include="Classes\ProjectEvaluation.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="EditContestDescriptionForm.cs">
+    <Compile Include="Forms\EditContestDescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditContestDescriptionForm.Designer.cs">
+    <Compile Include="Forms\EditContestDescriptionForm.Designer.cs">
       <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditContestForm.cs">
+    <Compile Include="Forms\EditContestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditContestForm.Designer.cs">
+    <Compile Include="Forms\EditContestForm.Designer.cs">
       <DependentUpon>EditContestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditCriteriaValues.cs">
+    <Compile Include="Forms\EditCriteriaValues.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditCriteriaValues.Designer.cs">
+    <Compile Include="Forms\EditCriteriaValues.Designer.cs">
       <DependentUpon>EditCriteriaValues.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditProjectForm.cs">
+    <Compile Include="Forms\EditProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditProjectForm.Designer.cs">
+    <Compile Include="Forms\EditProjectForm.Designer.cs">
       <DependentUpon>EditProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\JudgeMember.cs" />
-    <Compile Include="JudgeMemberDashboardForm.cs">
+    <Compile Include="Forms\JudgeDashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JudgeMemberDashboardForm.Designer.cs">
+    <Compile Include="Forms\JudgeDashboardForm.Designer.cs">
+      <DependentUpon>JudgeDashboardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\JudgeMemberDashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\JudgeMemberDashboardForm.Designer.cs">
       <DependentUpon>JudgeMemberDashboardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainJudgeDashboardForm.cs">
+    <Compile Include="Forms\JudgeContestsListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainJudgeDashboardForm.Designer.cs">
-      <DependentUpon>MainJudgeDashboardForm.cs</DependentUpon>
+    <Compile Include="Forms\JudgeContestsListForm.Designer.cs">
+      <DependentUpon>JudgeContestsListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResetPasswordForm.cs">
+    <Compile Include="Forms\ResetPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResetPasswordForm.Designer.cs">
+    <Compile Include="Forms\ResetPasswordForm.Designer.cs">
       <DependentUpon>ResetPasswordForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddCriteriaForm.resx">
+    <None Include="Resources\Logo-WeDeb.png" />
+    <EmbeddedResource Include="Forms\AddCriteriaForm.resx">
       <DependentUpon>AddCriteriaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddJudgeForm.resx">
+    <EmbeddedResource Include="Forms\AddJudgeForm.resx">
       <DependentUpon>AddJudgeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditContestDescriptionForm.resx">
+    <EmbeddedResource Include="Forms\EditContestDescriptionForm.resx">
       <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditContestForm.resx">
+    <EmbeddedResource Include="Forms\EditContestForm.resx">
       <DependentUpon>EditContestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditCriteriaValues.resx">
+    <EmbeddedResource Include="Forms\EditCriteriaValues.resx">
       <DependentUpon>EditCriteriaValues.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditProjectForm.resx">
+    <EmbeddedResource Include="Forms\EditProjectForm.resx">
       <DependentUpon>EditProjectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="Forms\JudgeDashboardForm.resx">
+      <DependentUpon>JudgeDashboardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainJudgeDashboardForm.resx">
-      <DependentUpon>MainJudgeDashboardForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\JudgeContestsListForm.resx">
+      <DependentUpon>JudgeContestsListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -172,8 +189,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ResetPasswordForm.resx">
+    <EmbeddedResource Include="Forms\ResetPasswordForm.resx">
       <DependentUpon>ResetPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="BinCompeteSoftDataSet.xsc">

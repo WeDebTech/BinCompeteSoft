@@ -15,13 +15,13 @@ namespace BinCompeteSoft
 {
     public partial class EditCriteriaValues : Form
     {
-        MainJudgeDashboardForm mainJudgeDashboardForm;
+        JudgeDashboardForm mainJudgeDashboardForm;
         EditContestForm editContestForm;
         Contest contest;
 
-        public EditCriteriaValues(MainJudgeDashboardForm mainJudgeDashboardForm, EditContestForm editContestForm, Contest contest) 
+        public EditCriteriaValues(JudgeDashboardForm judgeDashboardForm, EditContestForm editContestForm, Contest contest) 
         {
-            this.mainJudgeDashboardForm = mainJudgeDashboardForm;
+            this.mainJudgeDashboardForm = judgeDashboardForm;
             this.editContestForm = editContestForm;
             this.contest = contest;
 
@@ -81,7 +81,6 @@ namespace BinCompeteSoft
                 MessageBox.Show(null, "Contest created successfully.", "Success");
 
                 mainJudgeDashboardForm.Show();
-                mainJudgeDashboardForm.UpdateContestDataGridview();
 
                 this.Close();
             }

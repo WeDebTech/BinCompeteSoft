@@ -9,7 +9,7 @@ namespace BinCompeteSoft
     /// <summary>
     /// This class contains the category data.
     /// </summary>
-    class Category
+    public class Category
     {
         // Class variables.
         private int id;
@@ -25,6 +25,12 @@ namespace BinCompeteSoft
             this.id = id;
             this.name = name;
         }
+
+        /// <summary>
+        /// Category constructor with no arguments.
+        /// Creates a constructor with id 0, no name.
+        /// </summary>
+        public Category() : this(0, "") { }
 
         /// <summary>
         /// Gets or sets the category id.

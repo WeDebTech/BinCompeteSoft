@@ -14,7 +14,7 @@ namespace BinCompeteSoft
 {
     public partial class EditContestForm : Form
     {
-        MainJudgeDashboardForm mainJudgeDashboardForm;
+        JudgeDashboardForm mainJudgeDashboardForm;
 
         public List<Project> projects = new List<Project>();
         public List<JudgeMember> judgeMembers = new List<JudgeMember>();
@@ -23,9 +23,9 @@ namespace BinCompeteSoft
 
         string description;
 
-        public EditContestForm(MainJudgeDashboardForm mainJudgeDashboardForm)
+        public EditContestForm(JudgeDashboardForm judgeDashboardForm)
         {
-            this.mainJudgeDashboardForm = mainJudgeDashboardForm;
+            this.mainJudgeDashboardForm = judgeDashboardForm;
 
             description = "Sample contest description.";
 

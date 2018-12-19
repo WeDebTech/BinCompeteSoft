@@ -10,14 +10,18 @@ using System.Windows.Forms;
 
 namespace BinCompeteSoft
 {
-    public partial class MainJudgeDashboardForm : Form
+    public partial class JudgeContestsListForm : Form
     {
-        public MainJudgeDashboardForm()
+        JudgeDashboardForm judgeDashboardForm;
+
+        public JudgeContestsListForm(JudgeDashboardForm judgeDashboardForm)
         {
             InitializeComponent();
+
+            this.judgeDashboardForm = judgeDashboardForm;
         }
 
-        private void MainJudgeDashboardForm_Load(object sender, EventArgs e)
+        private void JudgeContestsListForm_Load(object sender, EventArgs e)
         {
             UpdateContestDataGridview();
 
@@ -27,7 +31,7 @@ namespace BinCompeteSoft
 
         private void createContestButton_Click(object sender, EventArgs e)
         {
-            EditContestForm editContestForm = new EditContestForm(this);
+            EditContestForm editContestForm = new EditContestForm(this.judgeDashboardForm);
             editContestForm.MdiParent = this.MdiParent;
             editContestForm.Dock = DockStyle.Fill;
             this.Hide();
@@ -48,7 +52,7 @@ namespace BinCompeteSoft
             else
             {
                 contestDataGridView.DataSource = null;
-                contestDataGridView.DataSource = Data._instance.ContestPreviews;
+                contestDataGridView.DataSource = Data._instance.ContestDetails;
 
                 contestDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -65,6 +69,12 @@ namespace BinCompeteSoft
         private void filterContestButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            judgeDashboardForm.Show();
+            this.Close();
         }
     }
 }
