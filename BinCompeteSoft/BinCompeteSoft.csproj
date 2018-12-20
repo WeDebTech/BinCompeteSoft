@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BestProjects.cs" />
     <Compile Include="Classes\CategoryStatistics.cs" />
     <Compile Include="Classes\Statistic.cs" />
     <Compile Include="Components\exListBox.cs" />

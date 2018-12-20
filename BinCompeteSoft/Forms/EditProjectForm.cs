@@ -26,7 +26,7 @@ namespace BinCompeteSoft
             string projectName, projectDescription, promoterName;
             int promoterAge;
 
-            int categoryId;
+            Category category;
 
             projectName = projectNameTextBox.Text;
             projectDescription = projectDescriptionTextBox.Text;
@@ -36,7 +36,7 @@ namespace BinCompeteSoft
             // Verify if any project category has been selected
             if (projectCategoryComboBox.SelectedIndex > -1)
             {
-                categoryId = (projectCategoryComboBox.SelectedItem as Category).Id;
+                category = projectCategoryComboBox.SelectedItem as Category;
 
                 // Let's check if everything is filled out
                 if (String.IsNullOrEmpty(projectName) || String.IsNullOrEmpty(projectDescription) || String.IsNullOrEmpty(promoterName))
@@ -45,8 +45,7 @@ namespace BinCompeteSoft
                 }
                 else
                 {
-                    // TODO: get actual project category
-                    Project project = new Project(0, projectName, projectDescription, promoterName, promoterAge, categoryId);
+                    Project project = new Project(0, projectName, projectDescription, promoterName, promoterAge, category, DateTime.Now.Year);
 
                     editContestForm.AddProject(project);
 

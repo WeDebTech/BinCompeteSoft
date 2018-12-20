@@ -181,13 +181,13 @@ namespace BinCompeteSoft
 
                 SqlParameter sqlContestId;
 
-                SqlParameter sqlProjectCategory, sqlProjectName, sqlPromoterName, sqlPromoterAge;
+                SqlParameter sqlProjectCategory, sqlProjectName, sqlPromoterName, sqlPromoterAge, sqlProjectYear;
 
                 foreach (Project project in editContestForm.projects)
                 {
                     // Insert projects into database
-                    query = "INSERT INTO project_table ([id_contest], [id_category], [descript], [project_name], [promoter_name], [promoter_age]) " +
-                        "VALUES (@id_contest, @id_category, @descript, @project_name, @promoter_name, @promoter_age)";
+                    query = "INSERT INTO project_table ([id_contest], [id_category], [descript], [project_name], [promoter_name], [promoter_age], [project_year]) " +
+                        "VALUES (@id_contest, @id_category, @descript, @project_name, @promoter_name, @promoter_age, @project_year)";
 
                     cmd = DBSqlHelper._instance.Connection.CreateCommand();
                     cmd.CommandText = query;
@@ -197,7 +197,7 @@ namespace BinCompeteSoft
                     cmd.Parameters.Add(sqlContestId);
 
                     sqlProjectCategory = new SqlParameter("@id_category", SqlDbType.Int);
-                    sqlProjectCategory.Value = project.Category;
+                    sqlProjectCategory.Value = project.Category.Id;
                     cmd.Parameters.Add(sqlProjectCategory);
 
                     sqlDescript = new SqlParameter("@descript", SqlDbType.NVarChar);
@@ -215,6 +215,10 @@ namespace BinCompeteSoft
                     sqlPromoterAge = new SqlParameter("@promoter_age", SqlDbType.Int);
                     sqlPromoterAge.Value = project.PromoterAge;
                     cmd.Parameters.Add(sqlPromoterAge);
+
+                    sqlProjectYear = new SqlParameter("@project_year", SqlDbType.Int);
+                    sqlProjectYear.Value = project.Year;
+                    cmd.Parameters.Add(sqlProjectYear);
 
                     // Execute query
                     cmd.ExecuteNonQuery();

@@ -252,7 +252,7 @@ namespace BinCompeteSoft
 
                     while (reader.Read())
                     {
-                        Statistic statistic = new Statistic(reader.GetInt32(0), (double)reader.GetDecimal(1), reader.GetInt32(2), reader.GetInt32(3), new List<CategoryStatistics>());
+                        Statistic statistic = new Statistic(reader.GetInt32(0), (double)reader.GetDecimal(1), reader.GetInt32(2), reader.GetInt32(3), new List<CategoryStatistics>(), new List<BestProjects>());
                         statistics.Add(statistic);
                     }
                 }

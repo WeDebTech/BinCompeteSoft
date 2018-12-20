@@ -17,7 +17,8 @@ namespace BinCompeteSoft
         private string description;
         private string promoterName;
         private int promoterAge;
-        private int category;
+        private Category category;
+        private int year;
 
         /// <summary>
         /// Project constructor that takes all arguments.
@@ -26,8 +27,10 @@ namespace BinCompeteSoft
         /// <param name="name">The project name.</param>
         /// <param name="description">The project description.</param>
         /// <param name="promoterName">The project promoter's name.</param>
+        /// <param name="promoterAge">The projject promoter's age.</param>
         /// <param name="category">The project category.</param>
-        public Project(int id, string name, string description, string promoterName, int promoterAge, int category)
+        /// <param name="year">The year the project was created.</param>
+        public Project(int id, string name, string description, string promoterName, int promoterAge, Category category, int year)
         {
             this.id = id;
             this.name = name;
@@ -35,13 +38,14 @@ namespace BinCompeteSoft
             this.promoterName = promoterName;
             this.promoterAge = promoterAge;
             this.category = category;
+            this.year = year;
         }
 
         /// <summary>
         /// Project constructor that takes no arguments.
         /// This creates a project with id = 0, name = "", description = "", promoterName = "", category = 0.
         /// </summary>
-        public Project() : this(0, "", "", "", 0, 0) { }
+        public Project() : this(0, "", "", "", 0, new Category(), DateTime.Now.Year) { }
 
         /// <summary>
         /// Gets or sets the project id.
@@ -91,10 +95,19 @@ namespace BinCompeteSoft
         /// <summary>
         /// Gets or sets the project category.
         /// </summary>
-        public int Category
+        public Category Category
         {
             get { return this.category; }
             set { this.category = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the project creation year.
+        /// </summary>
+        public int Year
+        {
+            get { return year; }
+            set { year = value; }
         }
     }
 }

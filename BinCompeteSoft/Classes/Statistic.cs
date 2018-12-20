@@ -17,6 +17,7 @@ namespace BinCompeteSoft
         private int totalProjects;
         private int totalCompetitions;
         private List<CategoryStatistics> categoryStatistics;
+        private List<BestProjects> bestProjects;
 
         /// <summary>
         /// Statistic constructor that takes all arguments.
@@ -26,20 +27,22 @@ namespace BinCompeteSoft
         /// <param name="totalProjects">The total of projects.</param>
         /// <param name="totalCompetitions">The total of competitions.</param>
         /// <param name="categoryStatistics">A list of category statistics.</param>
-        public Statistic(int year, double projectPerCompetitionAvg, int totalProjects, int totalCompetitions, List<CategoryStatistics> categoryStatistics)
+        /// <param name="bestProjects">A list of the best projects in this statistic.</param>
+        public Statistic(int year, double projectPerCompetitionAvg, int totalProjects, int totalCompetitions, List<CategoryStatistics> categoryStatistics, List<BestProjects> bestProjects)
         {
             this.year = year;
             this.projectPerCompetitionAvg = projectPerCompetitionAvg;
             this.totalProjects = totalProjects;
             this.totalCompetitions = totalCompetitions;
             this.categoryStatistics = categoryStatistics;
+            this.bestProjects = bestProjects;
         }
 
         /// <summary>
         /// Statistic constructor that takes no arguments.
         /// Creates a statistic with current year, average of 0, 0 projects, 0 competitions, and an empty list.
         /// </summary>
-        public Statistic() : this(DateTime.Now.Year, 0, 0, 0, new List<CategoryStatistics>()) { }
+        public Statistic() : this(DateTime.Now.Year, 0, 0, 0, new List<CategoryStatistics>(), new List<BestProjects>()) { }
 
         /// <summary>
         /// Gets or sets the statistic year.
@@ -84,6 +87,15 @@ namespace BinCompeteSoft
         {
             get { return categoryStatistics; }
             set { categoryStatistics = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the list of best projects of the statistic.
+        /// </summary>
+        public List<BestProjects> BestProjects
+        {
+            get { return bestProjects; }
+            set { bestProjects = value; }
         }
     }
 }
