@@ -20,6 +20,8 @@ namespace BinCompeteSoft
 
         public JudgeDashboardForm()
         {
+            Data._instance.currentForm = this;
+
             InitializeComponent();
         }
 
@@ -32,16 +34,16 @@ namespace BinCompeteSoft
             selectedYear = DateTime.Now.Year;
 
             // Update the categories list.
-            Data._instance.refreshCategories();
+            Data._instance.RefreshCategories();
 
             // Update the contests list.
-            Data._instance.refreshContests();
+            Data._instance.RefreshContests();
 
             // Update the judges list.
-            Data._instance.refreshJudges();
+            Data._instance.RefreshJudges();
 
             // Update the statistics.
-            Data._instance.refreshStatistics();
+            Data._instance.RefreshStatistics();
 
             // Fill list with all statistics years.
             foreach(Statistic statistic in Data._instance.Statistics)
@@ -69,16 +71,33 @@ namespace BinCompeteSoft
             // Make the current selected year the most recent one.
             selectedYear = statisticsYears.Count - 1;
 
+            int year;
+
+            // Check if the year index is valid.
+            if(selectedYear < 0)
+            {
+                // Just give it the current year, and as there's no data it'll just do nothing.
+                year = DateTime.Now.Year;
+            }
+            else
+            {
+                year = statisticsYears[selectedYear];
+            }
+
             // Update the year label to show the current selected year.
-            yearLabel.Text = statisticsYears[selectedYear].ToString();
+            yearLabel.Text = year.ToString();
 
             // Pass the selected year so it shows the most up-to-date statistics.
-            UpdateCategoryStatisticsChart(statisticsYears[selectedYear]);
-            UpdateTopProjects(statisticsYears[selectedYear]);
-            UpdateOtherStatistics(statisticsYears[selectedYear]);
+            UpdateCategoryStatisticsChart(year);
+            UpdateTopProjects(year);
+            UpdateOtherStatistics(year);
+
+
+            // Update the contests list.
+            UpdateContestsAndNotificationsList();
         }
 
-        private void listCompetitionsButton_Click(object sender, EventArgs e)
+        private void listContestsButton_Click(object sender, EventArgs e)
         {
             JudgeContestsListForm judgeContestsListForm = new JudgeContestsListForm(this);
             judgeContestsListForm.MdiParent = this.MdiParent;
@@ -87,7 +106,7 @@ namespace BinCompeteSoft
             judgeContestsListForm.Show();
         }
 
-        private void addCompetitionButton_Click(object sender, EventArgs e)
+        private void addContestButton_Click(object sender, EventArgs e)
         {
             EditContestForm editContestForm = new EditContestForm(this);
             editContestForm.MdiParent = this.MdiParent;
@@ -226,22 +245,84 @@ namespace BinCompeteSoft
 
         private void previousYearButton_Click(object sender, EventArgs e)
         {
-            // Check if we're on the first item of the list.
-            if(statisticsYears.First() != selectedYear)
+            // Check if there's any statistics at all.
+            if (statisticsYears.Count > 0)
             {
-                // Make the selected year the previous year.
-                selectedYear--;
+                // Check if we're on the first item of the list.
+                if (statisticsYears.First() != selectedYear)
+                {
+                    // Make the selected year the previous year.
+                    selectedYear--;
+                }
             }
         }
 
         private void nextYearButton_Click(object sender, EventArgs e)
         {
-            // Check if we're on the last item of the list.
-            if(statisticsYears.Last() != selectedYear)
+            // Check if there's any statistics at all.
+            if(statisticsYears.Count > 0)
             {
-                // Make the selected year the next year.
-                selectedYear++;
+                // Check if we're on the last item of the list.
+                if (statisticsYears.Last() != selectedYear)
+                {
+                    // Make the selected year the next year.
+                    selectedYear++;
+                }
             }
+        }
+
+        /// <summary>
+        /// Updates the contests list with only contests that are yet to come.
+        /// </summary>
+        public void UpdateContestsAndNotificationsList()
+        {
+            // Sets the DataGridView's columns.
+            contestsDataGridView.ColumnCount = 4;
+            contestsDataGridView.Columns[0].Name = "Name";
+            contestsDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            contestsDataGridView.Columns[1].Name = "Description";
+            contestsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            contestsDataGridView.Columns[2].Name = "Start Date";
+            contestsDataGridView.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
+            contestsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            contestsDataGridView.Columns[3].Name = "Limit Date";
+            contestsDataGridView.Columns[3].DefaultCellStyle.Format = "MM/dd/yyyy";
+            contestsDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+            // Clear all previous data in the DataGridView.
+            contestsDataGridView.Rows.Clear();
+
+            notificationsExListBox.Items.Clear();
+
+            // Get the current time.
+            DateTime currentDate = DateTime.Now;
+
+            // Loop through all contests, and if they are after today's date, show them.
+            foreach(ContestDetails contest in Data._instance.ContestDetails)
+            {
+                if(contest.LimitDate > currentDate)
+                {
+                    // Add contest to DataGridView.
+                    contestsDataGridView.Rows.Add(contest.Name, contest.Description, contest.StartDate, contest.LimitDate);
+
+                    // Check if contest is within 5 days of finishing.
+                    if(contest.LimitDate < currentDate.AddDays(5))
+                    {
+                        // Add a notification to the notification list.
+                        notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest " + contest.Name + " will end in " + (contest.LimitDate - currentDate).Days + " days."));
+                    }
+                }
+            }
+        }
+
+        private void refreshContestsButton_Click(object sender, EventArgs e)
+        {
+            UpdateContestsAndNotificationsList();
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            Data._instance.LogoutUser();
         }
     }
 }

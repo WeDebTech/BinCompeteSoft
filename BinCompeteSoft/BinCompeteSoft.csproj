@@ -118,12 +118,6 @@
     <Compile Include="Forms\JudgeDashboardForm.Designer.cs">
       <DependentUpon>JudgeDashboardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\JudgeMemberDashboardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\JudgeMemberDashboardForm.Designer.cs">
-      <DependentUpon>JudgeMemberDashboardForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

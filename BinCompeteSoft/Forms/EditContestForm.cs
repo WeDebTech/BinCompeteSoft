@@ -25,6 +25,8 @@ namespace BinCompeteSoft
 
         public EditContestForm(JudgeDashboardForm judgeDashboardForm)
         {
+            Data._instance.currentForm = this;
+
             this.mainJudgeDashboardForm = judgeDashboardForm;
 
             description = "Sample contest description.";
@@ -89,7 +91,7 @@ namespace BinCompeteSoft
             criteriaDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             criteriaDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-            if (Data._instance.refreshJudges())
+            if (Data._instance.RefreshJudges())
             {
                 judgeMembersToAdd = Data._instance.JudgeMembers;
             }
@@ -285,6 +287,11 @@ namespace BinCompeteSoft
             {
                 MessageBox.Show(null, "There must be projects to add.", "Error");
             }
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            // TODO: ask if the user really wants to cancel the current contest.
         }
     }
 }

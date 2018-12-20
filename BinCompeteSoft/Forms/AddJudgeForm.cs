@@ -57,7 +57,7 @@ namespace BinCompeteSoft
 
         private void refreshJudgesButton_Click(object sender, EventArgs e)
         {
-            if (!Data._instance.refreshJudges())
+            if (!Data._instance.RefreshJudges())
             {
                 MessageBox.Show(null, "Couldn't retrieve judges list.", "Error");
             }

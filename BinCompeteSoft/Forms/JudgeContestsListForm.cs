@@ -16,6 +16,8 @@ namespace BinCompeteSoft
 
         public JudgeContestsListForm(JudgeDashboardForm judgeDashboardForm)
         {
+            Data._instance.currentForm = this;
+
             InitializeComponent();
 
             this.judgeDashboardForm = judgeDashboardForm;
@@ -45,7 +47,7 @@ namespace BinCompeteSoft
 
         public void UpdateContestDataGridview()
         {
-            if (!Data._instance.refreshContests())
+            if (!Data._instance.RefreshContests())
             {
                 MessageBox.Show(null, "Couldn't retrieve contests list or there are not any contests.", "Error");
             }
@@ -57,7 +59,7 @@ namespace BinCompeteSoft
                 contestDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 contestDataGridView.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
-                contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 contestDataGridView.Columns[3].DefaultCellStyle.Format = "MM/dd/yyyy";
                 contestDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 

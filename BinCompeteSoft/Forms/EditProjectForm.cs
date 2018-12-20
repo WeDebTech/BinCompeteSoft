@@ -66,7 +66,7 @@ namespace BinCompeteSoft
 
         private void EditProjectForm_Load(object sender, EventArgs e)
         {
-            if (Data._instance.refreshCategories())
+            if (Data._instance.RefreshCategories())
             {
                 foreach(Category category in Data._instance.Categories)
                 {

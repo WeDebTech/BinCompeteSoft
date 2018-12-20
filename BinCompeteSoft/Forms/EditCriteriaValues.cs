@@ -21,6 +21,8 @@ namespace BinCompeteSoft
 
         public EditCriteriaValues(JudgeDashboardForm judgeDashboardForm, EditContestForm editContestForm, Contest contest) 
         {
+            Data._instance.currentForm = this;
+
             this.mainJudgeDashboardForm = judgeDashboardForm;
             this.editContestForm = editContestForm;
             this.contest = contest;
@@ -38,6 +40,9 @@ namespace BinCompeteSoft
                 criteriaValuesDataGridView.Columns.Add("criteria" + count, criteria.Name);
 
                 criteriaValuesDataGridView.Columns[count].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                // Make it so that the columns cannot be sorted.
+                criteriaValuesDataGridView.Columns[count].SortMode = DataGridViewColumnSortMode.NotSortable;
 
                 criteriaValuesDataGridView.Rows.Add();
 
@@ -307,6 +312,12 @@ namespace BinCompeteSoft
                     // Execute query
                     cmd.ExecuteNonQuery();
                 }
+
+                // Refresh contest list.
+                Data._instance.RefreshContests();
+
+                // Update contest list in dashboard form.
+                mainJudgeDashboardForm.UpdateContestsAndNotificationsList();
 
                 return true;
             }

@@ -18,6 +18,8 @@ namespace BinCompeteSoft
     {
         public LoginForm()
         {
+            Data._instance.loginform = this;
+
             InitializeComponent();
         }
 
@@ -241,16 +243,17 @@ namespace BinCompeteSoft
 
         public void LoginUser(User userToLogin)
         {
+            // Clear all textboxes in case the user logs out.
+            emailTextBox.Text = "";
+            passwordTextBox.Text = "";
+
             Data._instance.loggedInUser = userToLogin;
 
+            JudgeDashboardForm judgeDashboardForm = new JudgeDashboardForm();
+            judgeDashboardForm.MdiParent = this.MdiParent;
+            judgeDashboardForm.Dock = DockStyle.Fill;
             this.Hide();
-            MainForm mainForm = new MainForm();
-
-            // Make it so when the next form is closed, everything gets closed.
-            mainForm.FormClosed += (s, args) => this.Close();
-
-            // Show the dashboard form.
-            mainForm.Show();
+            judgeDashboardForm.Show();
         }
     }
 }

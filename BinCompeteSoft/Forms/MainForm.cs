@@ -19,12 +19,12 @@ namespace BinCompeteSoft
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Load dashboard and put it inside this form
-            JudgeDashboardForm judgeDashboardForm = new JudgeDashboardForm();
-            judgeDashboardForm.MdiParent = this;
-            judgeDashboardForm.Dock = DockStyle.Fill;
-            this.Text = "Dashboard";
-            judgeDashboardForm.Show();
+            // Load login form and put it inside this form.
+            LoginForm loginForm = new LoginForm();
+            loginForm.MdiParent = this;
+            loginForm.Dock = DockStyle.Fill;
+            this.Text = "Login";
+            loginForm.Show();
         }
     }
 }

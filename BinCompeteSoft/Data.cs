@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BinCompeteSoft
 {
@@ -18,6 +19,9 @@ namespace BinCompeteSoft
         public static readonly Data _instance = new Data();
 
         public User loggedInUser { get; set; }
+
+        public Form currentForm { get; set; }
+        public Form loginform { get; set; }
 
         private List<JudgeMember> judgeMembers = new List<JudgeMember>();
         private List<Contest> contests = new List<Contest>();
@@ -89,7 +93,7 @@ namespace BinCompeteSoft
         /// Add a judge member to the judge members list.
         /// </summary>
         /// <param name="judgeMember"></param>
-        public void addJudgeMember(JudgeMember judgeMember)
+        public void AddJudgeMember(JudgeMember judgeMember)
         {
             judgeMembers.Add(judgeMember);
         }
@@ -98,7 +102,7 @@ namespace BinCompeteSoft
         /// Add a contest to the contests list.
         /// </summary>
         /// <param name="contest"></param>
-        public void addContest(Contest contest)
+        public void AddContest(Contest contest)
         {
             contests.Add(contest);
         }
@@ -107,7 +111,7 @@ namespace BinCompeteSoft
         /// Add a project to the projects list.
         /// </summary>
         /// <param name="project"></param>
-        public void addProject(Project project)
+        public void AddProject(Project project)
         {
             projects.Add(project);
         }
@@ -116,7 +120,7 @@ namespace BinCompeteSoft
         /// This method retrieves the most up-to-date list of judges from the database.
         /// </summary>
         /// <returns>True if success, false otherwise.</returns>
-        public bool refreshJudges()
+        public bool RefreshJudges()
         {
             // Load the judges from the Database
             string query = "SELECT id_user, fullname, email FROM user_table WHERE valid = 1";
@@ -158,7 +162,7 @@ namespace BinCompeteSoft
         /// This method retrieves the most up-to-date list of categories from the database.
         /// </summary>
         /// <returns>True if success, false otherwise.</returns>
-        public bool refreshCategories()
+        public bool RefreshCategories()
         {
             // Load the categories from the Database
             string query = "SELECT id_category, category_name FROM project_category";
@@ -193,7 +197,7 @@ namespace BinCompeteSoft
         /// This method retrieves the most up-to-date list of contests from the database.
         /// </summary>
         /// <returns>True if success, false otherwise.</returns>
-        public bool refreshContests()
+        public bool RefreshContests()
         {
             // Load the contest that the users has part in from the Database
             string query = "SELECT * FROM contest_table " +
@@ -235,7 +239,7 @@ namespace BinCompeteSoft
         /// This method retrieves the most up-to-date list of statistics from the database.
         /// </summary>
         /// <returns>True if success, false otherwise.</returns>
-        public bool refreshStatistics()
+        public bool RefreshStatistics()
         {
             // Load the general statistics from the Database.
             string query = "SELECT * FROM general_statistics";
@@ -312,6 +316,32 @@ namespace BinCompeteSoft
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// This method show a messagebox asking the user if they really wanna logout, and if yes,
+        /// it will clear all variables and revert back to the login form.
+        /// </summary>
+        public void LogoutUser()
+        {
+            // Show MessageBox asking user for confirmation.
+            DialogResult dialogResult = MessageBox.Show("Do you really want to logout?", "Prompt", MessageBoxButtons.YesNo);
+
+            if(dialogResult == DialogResult.Yes)
+            {
+                // Clear all variables.
+                loggedInUser = null;
+                judgeMembers = new List<JudgeMember>();
+                contests = new List<Contest>();
+                contestDetails = new List<ContestDetails>();
+                projects = new List<Project>();
+                categories = new List<Category>();
+                statistics = new List<Statistic>();
+
+                // Close current form and go back to the login form.
+                loginform.Show();
+                currentForm.Close();
+            }
         }
     }
 }
