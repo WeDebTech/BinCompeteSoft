@@ -14,18 +14,22 @@ namespace BinCompeteSoft
 {
     public partial class AddJudgeForm : Form
     {
-        ContestForm editContestForm;
+        private ContestForm contestForm;
 
-        public AddJudgeForm(ContestForm editContestForm)
+        private List<JudgeMember> judgesToAdd = new List<JudgeMember>();
+
+        public AddJudgeForm(ContestForm contestForm)
         {
-            this.editContestForm = editContestForm;
+            this.contestForm = contestForm;
 
             InitializeComponent();
         }
 
         private void AddJudge_Load(object sender, EventArgs e)
         {
-            //judgesGridView.DataSource = editContestForm.JudgeMembersToAdd;
+            GetJudgesListToAdd();
+
+            judgesGridView.DataSource = judgesToAdd;
 
             judgesGridView.Columns[0].Visible = false;
             judgesGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -40,7 +44,7 @@ namespace BinCompeteSoft
             {
                 JudgeMember judgeMember = (JudgeMember)judgesGridView.Rows[judgesGridView.CurrentCell.RowIndex].DataBoundItem;
 
-                editContestForm.AddJudge(judgeMember);
+                contestForm.AddJudge(judgeMember);
 
                 this.Close();
             }
@@ -57,29 +61,25 @@ namespace BinCompeteSoft
 
         private void refreshJudgesButton_Click(object sender, EventArgs e)
         {
+            GetJudgesListToAdd();
+        }
+
+        /// <summary>
+        /// This method will create a list of judges that can be added.
+        /// </summary>
+        private void GetJudgesListToAdd()
+        {
             if (!Data._instance.RefreshJudges())
             {
                 MessageBox.Show(null, "Couldn't retrieve judges list.", "Error");
             }
-            else
-            {
-                /*editContestForm.JudgeMembersToAdd = Data._instance.JudgeMembers;
 
-                foreach(JudgeMember judge in editContestForm.JudgeMembers)
-                {
-                    editContestForm.JudgeMembersToAdd.RemoveAll(j => j.Id == judge.Id);
-                }
+            judgesToAdd = Data._instance.JudgeMembers;
 
-                judgesGridView.DataSource = null;
-                judgesGridView.DataSource = editContestForm.JudgeMembersToAdd;
+            List<JudgeMember> judgeMembers = contestForm.JudgeMembers;
 
-                judgesGridView.Columns[0].Visible = false;
-                judgesGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                judgesGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                judgesGridView.Update();
-                judgesGridView.Refresh();*/
-            }
+            // Remove judges that are added from the judges that can be added.
+            judgesToAdd = judgesToAdd.Where(judge => !judgeMembers.Any(judgeToRemove => judgeToRemove.Id == judge.Id)).ToList();
         }
     }
 }

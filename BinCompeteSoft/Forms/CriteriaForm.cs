@@ -39,8 +39,6 @@ namespace BinCompeteSoft
             }
             else
             {
-                criteria = new Criteria();
-
                 criteria.Name = criteriaName;
                 criteria.Description = criteriaDescription;
 

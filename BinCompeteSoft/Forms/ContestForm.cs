@@ -15,7 +15,7 @@ namespace BinCompeteSoft
     public partial class ContestForm : Form
     {
         #region Variable declarations
-        private JudgeDashboardForm judgeDashboardForm;
+        private Form judgeDashboardForm;
 
         private ContestDetails contestToLoad;
         private Contest contestToEdit;
@@ -97,7 +97,7 @@ namespace BinCompeteSoft
         #endregion
 
         #region Constructors
-        public ContestForm(JudgeDashboardForm judgeDashboardForm, ContestDetails contestToLoad, bool editingContest)
+        public ContestForm(Form judgeDashboardForm, ContestDetails contestToLoad, bool editingContest)
         {
             Data._instance.currentForm = this;
 
@@ -115,6 +115,10 @@ namespace BinCompeteSoft
             if (editingContest)
             {
                 LoadContest();
+            }
+            else
+            {
+                contestToEdit = new Contest(-1, contestToLoad, new List<Project>(), new List<JudgeMember>(), new List<Criteria>(), new double[0,0]);
             }
 
             judgeMembers = contestToEdit.JudgeMembers;

@@ -72,26 +72,7 @@ namespace BinCompeteSoft
             // Make the current selected year the most recent one.
             selectedYear = statisticsYears.Count - 1;
 
-            int year;
-
-            // Check if the year index is valid.
-            if(selectedYear < 0)
-            {
-                // Just give it the current year, and as there's no data it'll just do nothing.
-                year = DateTime.Now.Year;
-            }
-            else
-            {
-                year = statisticsYears[selectedYear];
-            }
-
-            // Update the year label to show the current selected year.
-            yearLabel.Text = year.ToString();
-
-            // Pass the selected year so it shows the most up-to-date statistics.
-            UpdateCategoryStatisticsChart(year);
-            UpdateTopProjects(year);
-            UpdateOtherStatistics(year);
+            ChangeStatisticsYear();
 
 
             // Update the contests list.
@@ -122,6 +103,8 @@ namespace BinCompeteSoft
         /// <param name="year">The year to get the data from.</param>
         private void UpdateCategoryStatisticsChart(int year)
         {
+            categoryStatisticsChart.Series["CategoryStatistics"].Points.Clear();
+
             // Fill the pie chart with all the category statistics.
             foreach(Statistic statistic in Data._instance.Statistics)
             {
@@ -250,10 +233,12 @@ namespace BinCompeteSoft
             if (statisticsYears.Count > 0)
             {
                 // Check if we're on the first item of the list.
-                if (statisticsYears.First() != selectedYear)
+                if (selectedYear > 0)
                 {
                     // Make the selected year the previous year.
                     selectedYear--;
+
+                    ChangeStatisticsYear();
                 }
             }
         }
@@ -264,12 +249,28 @@ namespace BinCompeteSoft
             if(statisticsYears.Count > 0)
             {
                 // Check if we're on the last item of the list.
-                if (statisticsYears.Last() != selectedYear)
+                if (selectedYear < statisticsYears.Count)
                 {
                     // Make the selected year the next year.
                     selectedYear++;
+
+                    ChangeStatisticsYear();
                 }
             }
+        }
+
+        /// <summary>
+        /// Changes the statistic year according to the selectedYear index.
+        /// </summary>
+        public void ChangeStatisticsYear()
+        {
+            // Update the year label to show the current selected year.
+            yearLabel.Text = statisticsYears[selectedYear].ToString();
+
+            // Pass the selected year so it shows the most up-to-date statistics.
+            UpdateCategoryStatisticsChart(statisticsYears[selectedYear]);
+            UpdateTopProjects(statisticsYears[selectedYear]);
+            UpdateOtherStatistics(statisticsYears[selectedYear]);
         }
 
         /// <summary>
@@ -343,10 +344,10 @@ namespace BinCompeteSoft
         private void contestDetailsButton_Click(object sender, EventArgs e)
         {
             // Check if any contest has been selected.
-            if(contestsDataGridView.SelectedRows.Count == 1)
+            if (contestsDataGridView.CurrentCell != null)
             {
                 // Get the selected contest.
-                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.SelectedCells[0].Value, contestsDataGridView.SelectedCells[1].Value.ToString(), contestsDataGridView.SelectedCells[2].Value.ToString(), (DateTime)contestsDataGridView.SelectedCells[3].Value, (DateTime)contestsDataGridView.SelectedCells[4].Value);
+                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value);
 
                 // Pass it to the EditContestForm and show it.
                 ContestForm contestForm = new ContestForm(this, selectedContest, true);

@@ -56,7 +56,7 @@ namespace BinCompeteSoft
                 contestDataGridView.DataSource = null;
                 contestDataGridView.DataSource = Data._instance.ContestDetails;
 
-                contestDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                contestDataGridView.Columns[0].Visible = false;
                 contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 contestDataGridView.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
                 contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -82,6 +82,23 @@ namespace BinCompeteSoft
         private void logoutButton_Click(object sender, EventArgs e)
         {
             Data._instance.LogoutUser();
+        }
+
+        private void contestDetailsButton_Click(object sender, EventArgs e)
+        {
+            // Check if any contest has been selected.
+            if (contestDataGridView.CurrentCell != null)
+            {
+                // Get the selected contest.
+                ContestDetails selectedContest = new ContestDetails((int)contestDataGridView.CurrentRow.Cells[0].Value, contestDataGridView.CurrentRow.Cells[1].Value.ToString(), contestDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestDataGridView.CurrentRow.Cells[4].Value);
+
+                // Pass it to the EditContestForm and show it.
+                ContestForm contestForm = new ContestForm(this, selectedContest, true);
+                contestForm.MdiParent = this.MdiParent;
+                contestForm.Dock = DockStyle.Fill;
+                this.Hide();
+                contestForm.Show();
+            }
         }
     }
 }

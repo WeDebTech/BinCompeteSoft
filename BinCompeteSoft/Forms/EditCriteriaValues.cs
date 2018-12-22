@@ -15,13 +15,13 @@ namespace BinCompeteSoft
 {
     public partial class EditCriteriaValues : Form
     {
-        JudgeDashboardForm mainJudgeDashboardForm;
+        Form mainJudgeDashboardForm;
         ContestForm editContestForm;
         Contest contest;
 
         bool editingContest;
 
-        public EditCriteriaValues(JudgeDashboardForm judgeDashboardForm, ContestForm editContestForm, Contest contest, bool editingContest) 
+        public EditCriteriaValues(Form judgeDashboardForm, ContestForm editContestForm, Contest contest, bool editingContest) 
         {
             Data._instance.currentForm = this;
 
@@ -338,7 +338,16 @@ namespace BinCompeteSoft
                 Data._instance.RefreshContests();
 
                 // Update contest list in dashboard form.
-                mainJudgeDashboardForm.UpdateContestsAndNotificationsList();
+                if (mainJudgeDashboardForm.GetType() == typeof(JudgeDashboardForm))
+                {
+                    JudgeDashboardForm judgeDashboardForm = (JudgeDashboardForm)mainJudgeDashboardForm;
+                    judgeDashboardForm.UpdateContestsAndNotificationsList();
+                }
+                else
+                {
+                    JudgeContestsListForm judgeContestsListForm = (JudgeContestsListForm)mainJudgeDashboardForm;
+                    judgeContestsListForm.UpdateContestDataGridview();
+                }
 
                 return true;
             }
@@ -592,7 +601,16 @@ namespace BinCompeteSoft
                 Data._instance.RefreshContests();
 
                 // Update contest list in dashboard form.
-                mainJudgeDashboardForm.UpdateContestsAndNotificationsList();
+                if (mainJudgeDashboardForm.GetType() == typeof(JudgeDashboardForm))
+                {
+                    JudgeDashboardForm judgeDashboardForm = (JudgeDashboardForm)mainJudgeDashboardForm;
+                    judgeDashboardForm.UpdateContestsAndNotificationsList();
+                }
+                else
+                {
+                    JudgeContestsListForm judgeContestsListForm = (JudgeContestsListForm)mainJudgeDashboardForm;
+                    judgeContestsListForm.UpdateContestDataGridview();
+                }
 
                 return true;
             }

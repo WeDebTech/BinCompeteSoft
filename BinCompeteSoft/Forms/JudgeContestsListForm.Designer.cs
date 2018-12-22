@@ -31,13 +31,11 @@
             this.softwareNameLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.separatorLabel = new System.Windows.Forms.Label();
-            this.createContestButton = new System.Windows.Forms.Button();
             this.contestDataGridView = new System.Windows.Forms.DataGridView();
-            this.filterContestButton = new System.Windows.Forms.Button();
-            this.openContestButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.contestDetailsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.contestDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,18 +70,6 @@
             this.separatorLabel.Size = new System.Drawing.Size(1000, 2);
             this.separatorLabel.TabIndex = 2;
             // 
-            // createContestButton
-            // 
-            this.createContestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.createContestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createContestButton.Location = new System.Drawing.Point(12, 400);
-            this.createContestButton.Name = "createContestButton";
-            this.createContestButton.Size = new System.Drawing.Size(191, 38);
-            this.createContestButton.TabIndex = 3;
-            this.createContestButton.Text = "Create new contest";
-            this.createContestButton.UseVisualStyleBackColor = true;
-            this.createContestButton.Click += new System.EventHandler(this.createContestButton_Click);
-            // 
             // contestDataGridView
             // 
             this.contestDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -92,31 +78,8 @@
             this.contestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.contestDataGridView.Location = new System.Drawing.Point(12, 104);
             this.contestDataGridView.Name = "contestDataGridView";
-            this.contestDataGridView.Size = new System.Drawing.Size(976, 290);
+            this.contestDataGridView.Size = new System.Drawing.Size(976, 334);
             this.contestDataGridView.TabIndex = 4;
-            // 
-            // filterContestButton
-            // 
-            this.filterContestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterContestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterContestButton.Location = new System.Drawing.Point(820, 60);
-            this.filterContestButton.Name = "filterContestButton";
-            this.filterContestButton.Size = new System.Drawing.Size(168, 38);
-            this.filterContestButton.TabIndex = 5;
-            this.filterContestButton.Text = "Filter Contests";
-            this.filterContestButton.UseVisualStyleBackColor = true;
-            this.filterContestButton.Click += new System.EventHandler(this.filterContestButton_Click);
-            // 
-            // openContestButton
-            // 
-            this.openContestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.openContestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openContestButton.Location = new System.Drawing.Point(820, 400);
-            this.openContestButton.Name = "openContestButton";
-            this.openContestButton.Size = new System.Drawing.Size(168, 38);
-            this.openContestButton.TabIndex = 6;
-            this.openContestButton.Text = "Open Contest";
-            this.openContestButton.UseVisualStyleBackColor = true;
             // 
             // logoutButton
             // 
@@ -152,18 +115,28 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // contestDetailsButton
+            // 
+            this.contestDetailsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.contestDetailsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contestDetailsButton.Location = new System.Drawing.Point(745, 60);
+            this.contestDetailsButton.Name = "contestDetailsButton";
+            this.contestDetailsButton.Size = new System.Drawing.Size(243, 38);
+            this.contestDetailsButton.TabIndex = 24;
+            this.contestDetailsButton.Text = "See contest details";
+            this.contestDetailsButton.UseVisualStyleBackColor = true;
+            this.contestDetailsButton.Click += new System.EventHandler(this.contestDetailsButton_Click);
+            // 
             // JudgeContestsListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
+            this.Controls.Add(this.contestDetailsButton);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.logoutButton);
-            this.Controls.Add(this.openContestButton);
-            this.Controls.Add(this.filterContestButton);
             this.Controls.Add(this.contestDataGridView);
-            this.Controls.Add(this.createContestButton);
             this.Controls.Add(this.separatorLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.softwareNameLabel);
@@ -183,12 +156,10 @@
         private System.Windows.Forms.Label softwareNameLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label separatorLabel;
-        private System.Windows.Forms.Button createContestButton;
         private System.Windows.Forms.DataGridView contestDataGridView;
-        private System.Windows.Forms.Button filterContestButton;
-        private System.Windows.Forms.Button openContestButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button contestDetailsButton;
     }
 }
