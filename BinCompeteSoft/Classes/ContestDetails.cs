@@ -36,6 +36,12 @@ namespace BinCompeteSoft
         }
 
         /// <summary>
+        /// Contest details constructor that takes no arguments.
+        /// Creates a contest details with id 0, no name, no description, and current day start and limit date.
+        /// </summary>
+        public ContestDetails() : this(0, "", "", DateTime.Now, DateTime.Now) { }
+
+        /// <summary>
         /// Gets or sets the contest id.
         /// </summary>
         public int Id

@@ -14,9 +14,9 @@ namespace BinCompeteSoft
 {
     public partial class AddJudgeForm : Form
     {
-        EditContestForm editContestForm;
+        ContestForm editContestForm;
 
-        public AddJudgeForm(EditContestForm editContestForm)
+        public AddJudgeForm(ContestForm editContestForm)
         {
             this.editContestForm = editContestForm;
 
@@ -25,7 +25,7 @@ namespace BinCompeteSoft
 
         private void AddJudge_Load(object sender, EventArgs e)
         {
-            judgesGridView.DataSource = editContestForm.judgeMembersToAdd;
+            //judgesGridView.DataSource = editContestForm.JudgeMembersToAdd;
 
             judgesGridView.Columns[0].Visible = false;
             judgesGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -63,22 +63,22 @@ namespace BinCompeteSoft
             }
             else
             {
-                editContestForm.judgeMembersToAdd = Data._instance.JudgeMembers;
+                /*editContestForm.JudgeMembersToAdd = Data._instance.JudgeMembers;
 
-                foreach(JudgeMember judge in editContestForm.judgeMembers)
+                foreach(JudgeMember judge in editContestForm.JudgeMembers)
                 {
-                    editContestForm.judgeMembersToAdd.RemoveAll(j => j.Id == judge.Id);
+                    editContestForm.JudgeMembersToAdd.RemoveAll(j => j.Id == judge.Id);
                 }
 
                 judgesGridView.DataSource = null;
-                judgesGridView.DataSource = editContestForm.judgeMembersToAdd;
+                judgesGridView.DataSource = editContestForm.JudgeMembersToAdd;
 
                 judgesGridView.Columns[0].Visible = false;
                 judgesGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 judgesGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 judgesGridView.Update();
-                judgesGridView.Refresh();
+                judgesGridView.Refresh();*/
             }
         }
     }

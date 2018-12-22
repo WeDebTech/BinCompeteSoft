@@ -1,6 +1,6 @@
 ﻿namespace BinCompeteSoft
 {
-    partial class EditProjectForm
+    partial class ProjectForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,8 +39,9 @@
             this.projectPromoterTextBox = new System.Windows.Forms.TextBox();
             this.projectPromoterText = new System.Windows.Forms.Label();
             this.promoterAgeLabel = new System.Windows.Forms.Label();
-            this.promoterAgeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.promoterAgeNumericUpDown)).BeginInit();
+            this.projectPromoterAgeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.refreshCategoriesButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.projectPromoterAgeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // projectDescriptionTextBox
@@ -87,18 +88,18 @@
             // projectNameTextBox
             // 
             this.projectNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.projectNameTextBox.Location = new System.Drawing.Point(191, 6);
+            this.projectNameTextBox.Location = new System.Drawing.Point(232, 6);
             this.projectNameTextBox.Name = "projectNameTextBox";
-            this.projectNameTextBox.Size = new System.Drawing.Size(597, 38);
+            this.projectNameTextBox.Size = new System.Drawing.Size(556, 38);
             this.projectNameTextBox.TabIndex = 1;
             // 
             // acceptButton
             // 
             this.acceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.acceptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acceptButton.Location = new System.Drawing.Point(620, 400);
+            this.acceptButton.Location = new System.Drawing.Point(603, 400);
             this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(168, 38);
+            this.acceptButton.Size = new System.Drawing.Size(185, 38);
             this.acceptButton.TabIndex = 3;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
@@ -120,7 +121,7 @@
             this.projectCategoryComboBox.FormattingEnabled = true;
             this.projectCategoryComboBox.Location = new System.Drawing.Point(229, 360);
             this.projectCategoryComboBox.Name = "projectCategoryComboBox";
-            this.projectCategoryComboBox.Size = new System.Drawing.Size(559, 33);
+            this.projectCategoryComboBox.Size = new System.Drawing.Size(368, 33);
             this.projectCategoryComboBox.TabIndex = 32;
             // 
             // projectPromoterTextBox
@@ -151,20 +152,33 @@
             this.promoterAgeLabel.TabIndex = 35;
             this.promoterAgeLabel.Text = "Promoter age";
             // 
-            // promoterAgeNumericUpDown
+            // projectPromoterAgeNumericUpDown
             // 
-            this.promoterAgeNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.promoterAgeNumericUpDown.Location = new System.Drawing.Point(714, 92);
-            this.promoterAgeNumericUpDown.Name = "promoterAgeNumericUpDown";
-            this.promoterAgeNumericUpDown.Size = new System.Drawing.Size(74, 30);
-            this.promoterAgeNumericUpDown.TabIndex = 36;
+            this.projectPromoterAgeNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.projectPromoterAgeNumericUpDown.Location = new System.Drawing.Point(714, 92);
+            this.projectPromoterAgeNumericUpDown.Name = "projectPromoterAgeNumericUpDown";
+            this.projectPromoterAgeNumericUpDown.Size = new System.Drawing.Size(74, 30);
+            this.projectPromoterAgeNumericUpDown.TabIndex = 36;
             // 
-            // EditProjectForm
+            // refreshCategoriesButton
+            // 
+            this.refreshCategoriesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshCategoriesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refreshCategoriesButton.Location = new System.Drawing.Point(603, 357);
+            this.refreshCategoriesButton.Name = "refreshCategoriesButton";
+            this.refreshCategoriesButton.Size = new System.Drawing.Size(185, 38);
+            this.refreshCategoriesButton.TabIndex = 37;
+            this.refreshCategoriesButton.Text = "Refresh categories";
+            this.refreshCategoriesButton.UseVisualStyleBackColor = true;
+            this.refreshCategoriesButton.Click += new System.EventHandler(this.refreshCategoriesButton_Click);
+            // 
+            // ProjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.promoterAgeNumericUpDown);
+            this.Controls.Add(this.refreshCategoriesButton);
+            this.Controls.Add(this.projectPromoterAgeNumericUpDown);
             this.Controls.Add(this.promoterAgeLabel);
             this.Controls.Add(this.projectPromoterTextBox);
             this.Controls.Add(this.projectPromoterText);
@@ -179,11 +193,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "EditProjectForm";
+            this.Name = "ProjectForm";
             this.ShowIcon = false;
             this.Text = "Edit Project";
             this.Load += new System.EventHandler(this.EditProjectForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.promoterAgeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectPromoterAgeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,6 +216,7 @@
         private System.Windows.Forms.TextBox projectPromoterTextBox;
         private System.Windows.Forms.Label projectPromoterText;
         private System.Windows.Forms.Label promoterAgeLabel;
-        private System.Windows.Forms.NumericUpDown promoterAgeNumericUpDown;
+        private System.Windows.Forms.NumericUpDown projectPromoterAgeNumericUpDown;
+        private System.Windows.Forms.Button refreshCategoriesButton;
     }
 }

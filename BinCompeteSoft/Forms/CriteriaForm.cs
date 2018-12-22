@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace BinCompeteSoft
 {
-    public partial class AddCriteriaForm : Form
+    public partial class CriteriaForm : Form
     {
-        EditContestForm editContestForm;
+        ContestForm editContestForm;
+        Criteria criteria;
+        bool editingCriteria;
 
-        public AddCriteriaForm(EditContestForm editContestForm)
+        public CriteriaForm(ContestForm editContestForm, Criteria criteria, bool editingCriteria)
         {
             this.editContestForm = editContestForm;
+            this.criteria = criteria;
+            this.editingCriteria = editingCriteria;
 
             InitializeComponent();
         }
@@ -35,12 +39,19 @@ namespace BinCompeteSoft
             }
             else
             {
-                Criteria criteria = new Criteria();
+                criteria = new Criteria();
 
                 criteria.Name = criteriaName;
                 criteria.Description = criteriaDescription;
 
-                editContestForm.AddCriteria(criteria);
+                if (editingCriteria)
+                {
+                    editContestForm.UpdateCriteria(criteria);
+                }
+                else
+                {
+                    editContestForm.AddCriteria(criteria);
+                }
 
                 this.Close();
             }
@@ -53,10 +64,10 @@ namespace BinCompeteSoft
             this.Close();
         }
 
-        private void AddCriteriaForm_Load(object sender, EventArgs e)
+        private void CriteriaForm_Load(object sender, EventArgs e)
         {
-            criteriaDescriptionTextBox.Text = "Sample criteria description.";
-            criteriaNameTextBox.Text = "Sample criteria name";
+            criteriaDescriptionTextBox.Text = criteria.Description;
+            criteriaNameTextBox.Text = criteria.Name;
         }
     }
 }

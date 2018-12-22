@@ -33,11 +33,11 @@ namespace BinCompeteSoft
 
         private void createContestButton_Click(object sender, EventArgs e)
         {
-            EditContestForm editContestForm = new EditContestForm(this.judgeDashboardForm);
+            /*ContestForm editContestForm = new ContestForm(this.judgeDashboardForm);
             editContestForm.MdiParent = this.MdiParent;
             editContestForm.Dock = DockStyle.Fill;
             this.Hide();
-            editContestForm.Show();
+            editContestForm.Show();*/
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -77,6 +77,11 @@ namespace BinCompeteSoft
         {
             judgeDashboardForm.Show();
             this.Close();
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            Data._instance.LogoutUser();
         }
     }
 }

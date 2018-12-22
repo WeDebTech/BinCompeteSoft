@@ -12,11 +12,11 @@ namespace BinCompeteSoft
 {
     public partial class EditContestDescriptionForm : Form
     {
-        EditContestForm editContestForm;
+        Form editContestForm;
 
         string description;
 
-        public EditContestDescriptionForm(EditContestForm editContestForm, string description)
+        public EditContestDescriptionForm(Form editContestForm, string description)
         {
             this.editContestForm = editContestForm;
 
@@ -41,8 +41,8 @@ namespace BinCompeteSoft
             }
             else
             {
-                editContestForm.ChangeDescription(description);
-
+                ContestForm contestForm = (ContestForm)editContestForm;
+                contestForm.ChangeDescription(description);
                 this.Close();
             }
         }

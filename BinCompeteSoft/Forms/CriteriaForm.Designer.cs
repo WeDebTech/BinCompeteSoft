@@ -1,6 +1,6 @@
 ﻿namespace BinCompeteSoft
 {
-    partial class AddCriteriaForm
+    partial class CriteriaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -113,7 +113,7 @@
             this.MinimizeBox = false;
             this.Name = "AddCriteriaForm";
             this.Text = "Add Criteria";
-            this.Load += new System.EventHandler(this.AddCriteriaForm_Load);
+            this.Load += new System.EventHandler(this.CriteriaForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

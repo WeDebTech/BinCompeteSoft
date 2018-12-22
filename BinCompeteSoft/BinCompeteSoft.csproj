@@ -57,11 +57,11 @@
     <Compile Include="Components\exListBox.Designer.cs">
       <DependentUpon>exListBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddCriteriaForm.cs">
+    <Compile Include="Forms\CriteriaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddCriteriaForm.Designer.cs">
-      <DependentUpon>AddCriteriaForm.cs</DependentUpon>
+    <Compile Include="Forms\CriteriaForm.Designer.cs">
+      <DependentUpon>CriteriaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddJudgeForm.cs">
       <SubType>Form</SubType>
@@ -93,11 +93,11 @@
     <Compile Include="Forms\EditContestDescriptionForm.Designer.cs">
       <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditContestForm.cs">
+    <Compile Include="Forms\ContestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditContestForm.Designer.cs">
-      <DependentUpon>EditContestForm.cs</DependentUpon>
+    <Compile Include="Forms\ContestForm.Designer.cs">
+      <DependentUpon>ContestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditCriteriaValues.cs">
       <SubType>Form</SubType>
@@ -105,11 +105,11 @@
     <Compile Include="Forms\EditCriteriaValues.Designer.cs">
       <DependentUpon>EditCriteriaValues.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditProjectForm.cs">
+    <Compile Include="Forms\ProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditProjectForm.Designer.cs">
-      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    <Compile Include="Forms\ProjectForm.Designer.cs">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\JudgeMember.cs" />
     <Compile Include="Forms\JudgeDashboardForm.cs">
@@ -146,8 +146,8 @@
       <DependentUpon>ResetPasswordForm.cs</DependentUpon>
     </Compile>
     <None Include="Resources\Logo-WeDeb.png" />
-    <EmbeddedResource Include="Forms\AddCriteriaForm.resx">
-      <DependentUpon>AddCriteriaForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CriteriaForm.resx">
+      <DependentUpon>CriteriaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddJudgeForm.resx">
       <DependentUpon>AddJudgeForm.cs</DependentUpon>
@@ -155,14 +155,14 @@
     <EmbeddedResource Include="Forms\EditContestDescriptionForm.resx">
       <DependentUpon>EditContestDescriptionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditContestForm.resx">
-      <DependentUpon>EditContestForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ContestForm.resx">
+      <DependentUpon>ContestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditCriteriaValues.resx">
       <DependentUpon>EditCriteriaValues.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditProjectForm.resx">
-      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ProjectForm.resx">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\JudgeDashboardForm.resx">
       <DependentUpon>JudgeDashboardForm.cs</DependentUpon>

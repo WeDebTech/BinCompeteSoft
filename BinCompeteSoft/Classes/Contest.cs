@@ -12,6 +12,8 @@ namespace BinCompeteSoft
     /// </summary>
     public class Contest
     {
+        // Class variables.
+        private int id;
         private ContestDetails contestDetails;
         private List<Project> projects;
         private List<JudgeMember> judgeMembers;
@@ -21,18 +23,35 @@ namespace BinCompeteSoft
         /// <summary>
         /// Contest constructor that takes all arguments.
         /// </summary>
+        /// <param name="id">The contest id.</param>
         /// <param name="contestDetails">Object that contains contest information like id, name, description, start date and limit date.</param>
         /// <param name="projects">The contest projects.</param>
         /// <param name="judgeMembers">The contest judge members.</param>
         /// <param name="criterias">The contest criterias.</param>
         /// <param name="criteriaValues">The contest criteria values for evaluation.</param>
-        public Contest(ContestDetails contestDetails, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias, double[,] criteriaValues)
+        public Contest(int id, ContestDetails contestDetails, List<Project> projects, List<JudgeMember> judgeMembers, List<Criteria> criterias, double[,] criteriaValues)
         {
+            this.id = id;
             this.contestDetails = contestDetails;
             this.projects = projects;
             this.judgeMembers = judgeMembers;
             this.criterias = criterias;
             this.criteriaValues = criteriaValues;
+        }
+
+        /// <summary>
+        /// Contest constructor that takes no arguments.
+        /// Creates contest with id 0, no contest details, no projects, no judges, no criterias and empty criteria values matrix.
+        /// </summary>
+        public Contest() : this(0, new ContestDetails(), new List<Project>(), new List<JudgeMember>(), new List<Criteria>(), new double[0, 0]) { }
+
+        /// <summary>
+        /// Gets or sets the contest id.
+        /// </summary>
+        public int Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
         }
 
         /// <summary>
@@ -78,6 +97,15 @@ namespace BinCompeteSoft
         {
             get { return this.criteriaValues; }
             set { this.criteriaValues = value; }
+        }
+
+        /// <summary>
+        /// Method to set the criteria values matrix with a json string.
+        /// </summary>
+        /// <param name="jsonCriteriaValues">The json string containing the criteria values.</param>
+        public void SetCriteriaValuesFromJSON(string jsonCriteriaValues)
+        {
+            this.criteriaValues = JsonConvert.DeserializeObject<double[,]>(jsonCriteriaValues);
         }
 
         /// <summary>

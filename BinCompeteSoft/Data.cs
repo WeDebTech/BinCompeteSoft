@@ -29,6 +29,7 @@ namespace BinCompeteSoft
         private List<Project> projects = new List<Project>();
         private List<Category> categories = new List<Category>();
         private List<Statistic> statistics = new List<Statistic>();
+        private List<Criteria> criterias = new List<Criteria>();
 
         private Data()
         {
@@ -87,6 +88,15 @@ namespace BinCompeteSoft
         {
             get { return statistics; }
             set { statistics = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the list of criterias.
+        /// </summary>
+        public List<Criteria> Criterias
+        {
+            get { return criterias; }
+            set { criterias = value; }
         }
 
         /// <summary>
@@ -200,7 +210,7 @@ namespace BinCompeteSoft
         public bool RefreshContests()
         {
             // Load the contest that the users has part in from the Database
-            string query = "SELECT * FROM contest_table " +
+            string query = "SELECT id_contest, contest_name, descript, start_date, limit_date FROM contest_table " +
                 "WHERE id_contest IN (" +
                 "SELECT id_contest FROM contest_juri_table " +
                 "WHERE id_user = @id_user)";
@@ -233,6 +243,229 @@ namespace BinCompeteSoft
                     return false;
                 }
             }
+        }
+
+        /// <summary>
+        /// This method retrieves the most up-to-date list of criterias from the database.
+        /// </summary>
+        /// <returns>True if success, false otherwise.</returns>
+        public bool RefreshCriterias()
+        {
+            // Load the criterias from the Database
+            string query = "SELECT id_criteria, criteria_name, descript FROM criteria_data_table";
+
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            // Execute query
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if criterias exists
+                if (reader.HasRows)
+                {
+                    criterias.Clear();
+
+                    while (reader.Read())
+                    {
+                        Criteria criteria = new Criteria(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+
+                        criterias.Add(criteria);
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the contest with all details filled out from the database.
+        /// </summary>
+        /// <param name="id">The contest id to retrieve.</param>
+        /// <returns>The contest object if it exists, null otherwise.</returns>
+        public Contest GetContest(int id)
+        {
+            // Varaiables declaration.
+            Contest contest;
+
+            SqlCommand cmd;
+
+            SqlParameter sqlContestId;
+
+            string query;
+
+            List<Project> contestProjects = new List<Project>();
+            List<JudgeMember> contestJudges = new List<JudgeMember>();
+            List<Criteria> contestCriterias = new List<Criteria>();
+
+            // Get the contest details from the database.
+            query = "SELECT * FROM contest_table WHERE id_contest = @id_contest";
+
+            cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            sqlContestId = new SqlParameter("id_contest", SqlDbType.Int);
+            sqlContestId.Value = id;
+            cmd.Parameters.Add(sqlContestId);
+
+            using(DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if the contest exists.
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    ContestDetails contestDetails = new ContestDetails(id, reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4));
+
+                    // Get the criteria values and convert them from a JSON string to a double matrix.
+                    string criteriaValues = reader.GetString(5);
+
+                    contest = new Contest(id, contestDetails, new List<Project>(), new List<JudgeMember>(), new List<Criteria>(), new double[0,0]);
+
+                    contest.SetCriteriaValuesFromJSON(criteriaValues);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            // Get the contest project list.
+            query = "SELECT id_project, project_name, descript, promoter_name, promoter_age, id_category, project_year FROM project_table WHERE id_contest = @id_contest";
+
+            cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            sqlContestId = new SqlParameter("id_contest", SqlDbType.Int);
+            sqlContestId.Value = id;
+            cmd.Parameters.Add(sqlContestId);
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if there's any projects in the contest.
+                if (reader.HasRows)
+                {
+                    // Read every project, and store it in a list.
+                    while (reader.Read())
+                    {
+                        Project project = new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), new Category(reader.GetInt32(5), ""), reader.GetInt32(6));
+
+                        contestProjects.Add(project);
+                    }
+                }
+            }
+
+            // Cycle through all projects and get the full category.
+            foreach(Project project in contestProjects)
+            {
+                foreach(Category category in this.Categories)
+                {
+                    // Check if the project category id is the same as the category id.
+                    if(project.Category.Id == category.Id)
+                    {
+                        // Assign the category to the project category.
+                        project.Category = category;
+                    }
+                }
+            }
+
+            contest.Projects = contestProjects;
+
+            // Get the contest judge list.
+            query = "SELECT id_user, president FROM contest_juri_table WHERE id_contest = @id_contest";
+
+            cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            sqlContestId = new SqlParameter("id_contest", SqlDbType.Int);
+            sqlContestId.Value = id;
+            cmd.Parameters.Add(sqlContestId);
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if there's any judges in the contest.
+                if (reader.HasRows)
+                {
+                    // Read every judge, and store it in a list.
+                    while (reader.Read())
+                    {
+                        // Check if it's not the president.
+                        if (!reader.GetBoolean(1))
+                        {
+                            JudgeMember judge = new JudgeMember(reader.GetInt32(0), "", "");
+
+                            contestJudges.Add(judge);
+                        }
+                    }
+                }
+            }
+
+            // Cycle through all judges and get the full details.
+            foreach (JudgeMember contestJudge in contestJudges)
+            {
+                foreach (JudgeMember judge in this.JudgeMembers)
+                {
+                    // Check if the contest judge id is the same as the stored judge id.
+                    if (contestJudge.Id == judge.Id)
+                    {
+                        // Assign the judge details to the contest judge.
+                        contestJudge.Name = judge.Name;
+                        contestJudge.Email = judge.Email;
+                    }
+                }
+            }
+
+            contest.JudgeMembers = contestJudges;
+
+            // Get the contest criteria list.
+            query = "SELECT id_criteria FROM contest_criteria_table WHERE id_contest = @id_contest";
+
+            cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            sqlContestId = new SqlParameter("id_contest", SqlDbType.Int);
+            sqlContestId.Value = id;
+            cmd.Parameters.Add(sqlContestId);
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if there's any criterias in the contest.
+                if (reader.HasRows)
+                {
+                    // Read every criteria, and store it in a list.
+                    while (reader.Read())
+                    {
+                        Criteria criteria = new Criteria(reader.GetInt32(0), "", "");
+
+                        contestCriterias.Add(criteria);
+                    }
+                }
+            }
+
+            // Refresh the criteria list.
+            this.RefreshCriterias();
+
+            // Cycle through all criteria and get the full details.
+            foreach (Criteria contestCriteria in contestCriterias)
+            {
+                foreach (Criteria criteria in this.criterias)
+                {
+                    // Check if the criteria judge id is the same as the stored judge id.
+                    if (contestCriteria.Id == criteria.Id)
+                    {
+                        // Assign the criteria details to the contest criteria.
+                        contestCriteria.Name = criteria.Name;
+                        contestCriteria.Description = criteria.Description;
+                    }
+                }
+            }
+
+            contest.Criterias = contestCriterias;
+
+            return contest;
         }
 
         /// <summary>

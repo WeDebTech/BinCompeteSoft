@@ -1,6 +1,6 @@
 ﻿namespace BinCompeteSoft
 {
-    partial class EditContestForm
+    partial class ContestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -151,8 +151,9 @@
             // projectsDataGridView
             // 
             this.projectsDataGridView.AllowUserToAddRows = false;
-            this.projectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.projectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.projectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectsDataGridView.Location = new System.Drawing.Point(340, 196);
             this.projectsDataGridView.Name = "projectsDataGridView";
@@ -174,6 +175,8 @@
             // 
             // addProjectButton
             // 
+            this.addProjectButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.addProjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addProjectButton.Location = new System.Drawing.Point(340, 152);
             this.addProjectButton.Name = "addProjectButton";
@@ -185,8 +188,7 @@
             // 
             // addDescriptionButton
             // 
-            this.addDescriptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.addDescriptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addDescriptionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addDescriptionButton.Location = new System.Drawing.Point(668, 107);
             this.addDescriptionButton.Name = "addDescriptionButton";
@@ -210,8 +212,7 @@
             // criteriaDataGridView
             // 
             this.criteriaDataGridView.AllowUserToAddRows = false;
-            this.criteriaDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.criteriaDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.criteriaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.criteriaDataGridView.Location = new System.Drawing.Point(668, 196);
@@ -223,8 +224,7 @@
             // 
             // addCriteriaButton
             // 
-            this.addCriteriaButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.addCriteriaButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addCriteriaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCriteriaButton.Location = new System.Drawing.Point(668, 152);
             this.addCriteriaButton.Name = "addCriteriaButton";
@@ -265,7 +265,7 @@
             this.criteriaValuesButton.UseVisualStyleBackColor = true;
             this.criteriaValuesButton.Click += new System.EventHandler(this.criteriaValuesButton_Click);
             // 
-            // EditContestForm
+            // ContestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -290,7 +290,7 @@
             this.Controls.Add(this.softwareNameLabel);
             this.Controls.Add(this.contestNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "EditContestForm";
+            this.Name = "ContestForm";
             this.Text = "Edit Contest";
             this.Load += new System.EventHandler(this.EditContestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.judgesDataGridView)).EndInit();

@@ -60,6 +60,7 @@ namespace BinCompeteSoft
                         if (statsYears != statistic.Year)
                         {
                             statisticsYears.Add(statistic.Year);
+                            break;
                         }
                     }
                 }
@@ -108,11 +109,11 @@ namespace BinCompeteSoft
 
         private void addContestButton_Click(object sender, EventArgs e)
         {
-            EditContestForm editContestForm = new EditContestForm(this);
-            editContestForm.MdiParent = this.MdiParent;
-            editContestForm.Dock = DockStyle.Fill;
+            ContestForm addContestForm = new ContestForm(this, new ContestDetails(), false);
+            addContestForm.MdiParent = this.MdiParent;
+            addContestForm.Dock = DockStyle.Fill;
             this.Hide();
-            editContestForm.Show();
+            addContestForm.Show();
         }
 
         /// <summary>
@@ -277,17 +278,19 @@ namespace BinCompeteSoft
         public void UpdateContestsAndNotificationsList()
         {
             // Sets the DataGridView's columns.
-            contestsDataGridView.ColumnCount = 4;
-            contestsDataGridView.Columns[0].Name = "Name";
-            contestsDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            contestsDataGridView.Columns[1].Name = "Description";
+            contestsDataGridView.ColumnCount = 5;
+            contestsDataGridView.Columns[0].Name = "Id";
+            contestsDataGridView.Columns[0].Visible = false;
+            contestsDataGridView.Columns[1].Name = "Name";
             contestsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            contestsDataGridView.Columns[2].Name = "Start Date";
-            contestsDataGridView.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
-            contestsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            contestsDataGridView.Columns[3].Name = "Limit Date";
+            contestsDataGridView.Columns[2].Name = "Description";
+            contestsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            contestsDataGridView.Columns[3].Name = "Start Date";
             contestsDataGridView.Columns[3].DefaultCellStyle.Format = "MM/dd/yyyy";
             contestsDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            contestsDataGridView.Columns[4].Name = "Limit Date";
+            contestsDataGridView.Columns[4].DefaultCellStyle.Format = "MM/dd/yyyy";
+            contestsDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             // Clear all previous data in the DataGridView.
             contestsDataGridView.Rows.Clear();
@@ -303,13 +306,25 @@ namespace BinCompeteSoft
                 if(contest.LimitDate > currentDate)
                 {
                     // Add contest to DataGridView.
-                    contestsDataGridView.Rows.Add(contest.Name, contest.Description, contest.StartDate, contest.LimitDate);
+                    contestsDataGridView.Rows.Add(contest.Id, contest.Name, contest.Description, contest.StartDate, contest.LimitDate);
 
                     // Check if contest is within 5 days of finishing.
                     if(contest.LimitDate < currentDate.AddDays(5))
                     {
+                        string notificationEnd;
+
+                        // Check if the contest ends today.
+                        if((contest.LimitDate - currentDate).Days <= 1)
+                        {
+                            notificationEnd = "' will end today.";
+                        }
+                        else
+                        {
+                            notificationEnd = "' will end in " + (contest.LimitDate - currentDate).Days + " days.";
+                        }
+
                         // Add a notification to the notification list.
-                        notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest " + contest.Name + " will end in " + (contest.LimitDate - currentDate).Days + " days."));
+                        notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest '" + contest.Name + notificationEnd));
                     }
                 }
             }
@@ -323,6 +338,23 @@ namespace BinCompeteSoft
         private void logoutButton_Click(object sender, EventArgs e)
         {
             Data._instance.LogoutUser();
+        }
+
+        private void contestDetailsButton_Click(object sender, EventArgs e)
+        {
+            // Check if any contest has been selected.
+            if(contestsDataGridView.SelectedRows.Count == 1)
+            {
+                // Get the selected contest.
+                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.SelectedCells[0].Value, contestsDataGridView.SelectedCells[1].Value.ToString(), contestsDataGridView.SelectedCells[2].Value.ToString(), (DateTime)contestsDataGridView.SelectedCells[3].Value, (DateTime)contestsDataGridView.SelectedCells[4].Value);
+
+                // Pass it to the EditContestForm and show it.
+                ContestForm contestForm = new ContestForm(this, selectedContest, true);
+                contestForm.MdiParent = this.MdiParent;
+                contestForm.Dock = DockStyle.Fill;
+                this.Hide();
+                contestForm.Show();
+            }
         }
     }
 }
