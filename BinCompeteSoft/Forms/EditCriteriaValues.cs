@@ -19,9 +19,10 @@ namespace BinCompeteSoft
         ContestForm editContestForm;
         Contest contest;
 
-        bool editingContest;
+        private bool editingContest;
+        private bool contestEnded;
 
-        public EditCriteriaValues(Form judgeDashboardForm, ContestForm editContestForm, Contest contest, bool editingContest) 
+        public EditCriteriaValues(Form judgeDashboardForm, ContestForm editContestForm, Contest contest, bool editingContest, bool contestEnded) 
         {
             Data._instance.currentForm = this;
 
@@ -29,6 +30,7 @@ namespace BinCompeteSoft
             this.editContestForm = editContestForm;
             this.contest = contest;
             this.editingContest = editingContest;
+            this.contestEnded = contestEnded;
 
             InitializeComponent();
 
@@ -57,6 +59,15 @@ namespace BinCompeteSoft
                 criteriaValuesDataGridView.Rows[count].Cells[count].Style.BackColor = Color.Gray;
 
                 count++;
+            }
+
+            // Disable save button if contest has ended.
+            acceptButton.Enabled = false;
+
+            // Disable all rows if contest has ended.
+            foreach(DataGridViewRow row in criteriaValuesDataGridView.Rows)
+            {
+                row.ReadOnly = true;
             }
         }
 

@@ -31,15 +31,6 @@ namespace BinCompeteSoft
             usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.Name;
         }
 
-        private void createContestButton_Click(object sender, EventArgs e)
-        {
-            /*ContestForm editContestForm = new ContestForm(this.judgeDashboardForm);
-            editContestForm.MdiParent = this.MdiParent;
-            editContestForm.Dock = DockStyle.Fill;
-            this.Hide();
-            editContestForm.Show();*/
-        }
-
         private void refreshButton_Click(object sender, EventArgs e)
         {
             UpdateContestDataGridview();
@@ -54,23 +45,20 @@ namespace BinCompeteSoft
             else
             {
                 contestDataGridView.DataSource = null;
-                contestDataGridView.DataSource = Data._instance.ContestDetails;
+
+                // Add the sortby here, so it sorts by limit date.
+                contestDataGridView.DataSource = Data._instance.ContestDetails.OrderByDescending(c => c.LimitDate).ToList();
 
                 contestDataGridView.Columns[0].Visible = false;
                 contestDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                contestDataGridView.Columns[2].DefaultCellStyle.Format = "MM/dd/yyyy";
+                contestDataGridView.Columns[2].DefaultCellStyle.Format = "dd/MM/yyyy";
                 contestDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                contestDataGridView.Columns[3].DefaultCellStyle.Format = "MM/dd/yyyy";
+                contestDataGridView.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
                 contestDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
                 contestDataGridView.Update();
                 contestDataGridView.Refresh();
             }
-        }
-
-        private void filterContestButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void backButton_Click(object sender, EventArgs e)

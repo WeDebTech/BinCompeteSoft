@@ -16,11 +16,15 @@ namespace BinCompeteSoft
 
         string description;
 
-        public EditContestDescriptionForm(Form editContestForm, string description)
+        private bool contestEnded = false;
+
+        public EditContestDescriptionForm(Form editContestForm, string description, bool contestEnded)
         {
             this.editContestForm = editContestForm;
 
             this.description = description;
+
+            this.contestEnded = contestEnded;
 
             InitializeComponent();
         }
@@ -50,6 +54,11 @@ namespace BinCompeteSoft
         private void EditContestDescriptionForm_Load(object sender, EventArgs e)
         {
             contestDescriptionTextBox.Text = description;
+
+            if (contestEnded)
+            {
+                contestDescriptionTextBox.Enabled = false;
+            }
         }
     }
 }

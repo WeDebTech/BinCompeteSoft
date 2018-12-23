@@ -38,6 +38,7 @@ namespace BinCompeteSoft
         private string contestDescription;
 
         private bool editingContest;
+        private bool contestEnded = false;
         #endregion
 
         #region Getters and setters
@@ -111,6 +112,14 @@ namespace BinCompeteSoft
 
         private void EditContestForm_Load(object sender, EventArgs e)
         {
+            // Check if contest has already ended.
+            if(editingContest && contestToLoad.LimitDate < DateTime.Now)
+            {
+                contestEnded = true;
+
+                DisableAllContestFields();
+            }
+
             // If in edit mode, load the contest from the database.
             if (editingContest)
             {
@@ -137,7 +146,7 @@ namespace BinCompeteSoft
         private void addDescriptionButton_Click(object sender, EventArgs e)
         {
             // Open description form
-            EditContestDescriptionForm editContestDescriptionForm = new EditContestDescriptionForm(this, contestDescription);
+            EditContestDescriptionForm editContestDescriptionForm = new EditContestDescriptionForm(this, contestDescription, contestEnded);
             editContestDescriptionForm.Show();
         }
 
@@ -198,7 +207,7 @@ namespace BinCompeteSoft
                                         Contest contest = new Contest(contestToEdit.Id, contestPreview, projects, judgeMembers, criterias, contestToEdit.CriteriaValues);
 
                                         // Open criteria values form
-                                        EditCriteriaValues editCriteriaValues = new EditCriteriaValues(judgeDashboardForm, this, contest, editingContest);
+                                        EditCriteriaValues editCriteriaValues = new EditCriteriaValues(judgeDashboardForm, this, contest, editingContest, contestEnded);
                                         editCriteriaValues.MdiParent = this.MdiParent;
                                         editCriteriaValues.Dock = DockStyle.Fill;
                                         editCriteriaValues.Show();
@@ -430,46 +439,56 @@ namespace BinCompeteSoft
             criteriaDataGridView.DataSource = BindingCriterias;
             UpdateDataGridView(criteriaDataGridView);
 
-            // Add button to the "Edit project" column
-            DataGridViewButtonColumn projEditBtn = new DataGridViewButtonColumn();
-            projectsDataGridView.Columns.Add(projEditBtn);
-            projEditBtn.HeaderText = "Edit";
-            projEditBtn.Text = "✎";
-            projEditBtn.UseColumnTextForButtonValue = true;
+            if (!contestEnded)
+            {
+                // Add button to the "Edit project" column
+                DataGridViewButtonColumn projEditBtn = new DataGridViewButtonColumn();
+                projectsDataGridView.Columns.Add(projEditBtn);
+                projEditBtn.HeaderText = "Edit";
+                projEditBtn.Text = "✎";
+                projEditBtn.UseColumnTextForButtonValue = true;
 
-            // Add button to the "Delete project" column
-            DataGridViewButtonColumn projDelBtn = new DataGridViewButtonColumn();
-            projectsDataGridView.Columns.Add(projDelBtn);
-            projDelBtn.HeaderText = "Delete";
-            projDelBtn.Text = "X";
-            projDelBtn.UseColumnTextForButtonValue = true;
+                // Add button to the "Delete project" column
+                DataGridViewButtonColumn projDelBtn = new DataGridViewButtonColumn();
+                projectsDataGridView.Columns.Add(projDelBtn);
+                projDelBtn.HeaderText = "Delete";
+                projDelBtn.Text = "X";
+                projDelBtn.UseColumnTextForButtonValue = true;
 
-            // Add button to the "Delete judge" column
-            DataGridViewButtonColumn contDelBtn = new DataGridViewButtonColumn();
-            judgesDataGridView.Columns.Add(contDelBtn);
-            contDelBtn.HeaderText = "Delete";
-            contDelBtn.Text = "X";
-            contDelBtn.UseColumnTextForButtonValue = true;
+                // Add button to the "Delete judge" column
+                DataGridViewButtonColumn contDelBtn = new DataGridViewButtonColumn();
+                judgesDataGridView.Columns.Add(contDelBtn);
+                contDelBtn.HeaderText = "Delete";
+                contDelBtn.Text = "X";
+                contDelBtn.UseColumnTextForButtonValue = true;
 
-            // Add button to the "Edit criteria" column
-            DataGridViewButtonColumn critEditBtn = new DataGridViewButtonColumn();
-            criteriaDataGridView.Columns.Add(critEditBtn);
-            critEditBtn.HeaderText = "Edit";
-            critEditBtn.Text = "✎";
-            critEditBtn.UseColumnTextForButtonValue = true;
+                // Add button to the "Edit criteria" column
+                DataGridViewButtonColumn critEditBtn = new DataGridViewButtonColumn();
+                criteriaDataGridView.Columns.Add(critEditBtn);
+                critEditBtn.HeaderText = "Edit";
+                critEditBtn.Text = "✎";
+                critEditBtn.UseColumnTextForButtonValue = true;
 
-            // Add button to the "Delete criteria" column
-            DataGridViewButtonColumn critDelBtn = new DataGridViewButtonColumn();
-            criteriaDataGridView.Columns.Add(critDelBtn);
-            critDelBtn.HeaderText = "Delete";
-            critDelBtn.Text = "X";
-            critDelBtn.UseColumnTextForButtonValue = true;
+                // Add button to the "Delete criteria" column
+                DataGridViewButtonColumn critDelBtn = new DataGridViewButtonColumn();
+                criteriaDataGridView.Columns.Add(critDelBtn);
+                critDelBtn.HeaderText = "Delete";
+                critDelBtn.Text = "X";
+                critDelBtn.UseColumnTextForButtonValue = true;
+
+                judgesDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+
+                projectsDataGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                projectsDataGridView.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+
+                criteriaDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                criteriaDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            }
 
             // Make it so the DataGridViews are filled horizontally
             judgesDataGridView.Columns[0].Visible = false;
             judgesDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             judgesDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            judgesDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
 
             projectsDataGridView.Columns[0].Visible = false;
             projectsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -478,14 +497,10 @@ namespace BinCompeteSoft
             projectsDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             projectsDataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             projectsDataGridView.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            projectsDataGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            projectsDataGridView.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
 
             criteriaDataGridView.Columns[0].Visible = false;
             criteriaDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             criteriaDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            criteriaDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            criteriaDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
 
         }
 
@@ -540,6 +555,16 @@ namespace BinCompeteSoft
             {
                 AddProject(project);
             }
+        }
+
+        public void DisableAllContestFields()
+        {
+            contestNameTextBox.Enabled = false;
+            contestStartDateTimePicker.Enabled = false;
+            contestLimitDateTimePicker.Enabled = false;
+            addJudgeButton.Enabled = false;
+            addProjectButton.Enabled = false;
+            addCriteriaButton.Enabled = false;
         }
         #endregion
     }

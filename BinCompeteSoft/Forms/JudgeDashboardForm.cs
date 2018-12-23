@@ -287,10 +287,10 @@ namespace BinCompeteSoft
             contestsDataGridView.Columns[2].Name = "Description";
             contestsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             contestsDataGridView.Columns[3].Name = "Start Date";
-            contestsDataGridView.Columns[3].DefaultCellStyle.Format = "MM/dd/yyyy";
+            contestsDataGridView.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
             contestsDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             contestsDataGridView.Columns[4].Name = "Limit Date";
-            contestsDataGridView.Columns[4].DefaultCellStyle.Format = "MM/dd/yyyy";
+            contestsDataGridView.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
             contestsDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             // Clear all previous data in the DataGridView.
@@ -329,6 +329,9 @@ namespace BinCompeteSoft
                     }
                 }
             }
+
+            // Sort the list by ascending limit date.
+            contestsDataGridView.Sort(contestsDataGridView.Columns[4], ListSortDirection.Ascending);
         }
 
         private void refreshContestsButton_Click(object sender, EventArgs e)
