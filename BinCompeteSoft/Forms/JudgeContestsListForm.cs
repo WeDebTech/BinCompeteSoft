@@ -64,6 +64,7 @@ namespace BinCompeteSoft
         private void backButton_Click(object sender, EventArgs e)
         {
             judgeDashboardForm.Show();
+            this.MdiParent.Text = "Dashboard";
             this.Close();
         }
 
@@ -84,8 +85,9 @@ namespace BinCompeteSoft
                 ContestForm contestForm = new ContestForm(this, selectedContest, true);
                 contestForm.MdiParent = this.MdiParent;
                 contestForm.Dock = DockStyle.Fill;
-                this.Hide();
                 contestForm.Show();
+                this.MdiParent.Text = "Contest details";
+                this.Hide();
             }
         }
     }

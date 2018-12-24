@@ -124,6 +124,8 @@
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.evaluationDataGridView);
             this.Name = "ContestCriteriaVotingForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ContestCriteriaVotingForm";
             this.Load += new System.EventHandler(this.ContestCriteriaVotingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.evaluationDataGridView)).EndInit();

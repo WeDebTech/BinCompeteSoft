@@ -127,6 +127,8 @@ namespace BinCompeteSoft
 
                     mainJudgeDashboardForm.Show();
 
+                    this.MdiParent.Text = "Dashboard";
+
                     this.Close();
                 }
                 else
@@ -142,6 +144,8 @@ namespace BinCompeteSoft
 
                     mainJudgeDashboardForm.Show();
 
+                    this.MdiParent.Text = "Dashboard";
+
                     this.Close();
                 }
                 else
@@ -154,6 +158,7 @@ namespace BinCompeteSoft
         private void cancelButton_Click(object sender, EventArgs e)
         {
             editContestForm.Show();
+            this.MdiParent.Text = "Contest details";
             this.Close();
         }
 

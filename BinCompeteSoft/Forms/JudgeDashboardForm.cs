@@ -84,8 +84,9 @@ namespace BinCompeteSoft
             JudgeContestsListForm judgeContestsListForm = new JudgeContestsListForm(this);
             judgeContestsListForm.MdiParent = this.MdiParent;
             judgeContestsListForm.Dock = DockStyle.Fill;
-            this.Hide();
             judgeContestsListForm.Show();
+            this.MdiParent.Text = "Contests list";
+            this.Hide();
         }
 
         private void addContestButton_Click(object sender, EventArgs e)
@@ -93,8 +94,9 @@ namespace BinCompeteSoft
             ContestForm addContestForm = new ContestForm(this, new ContestDetails(), false);
             addContestForm.MdiParent = this.MdiParent;
             addContestForm.Dock = DockStyle.Fill;
-            this.Hide();
             addContestForm.Show();
+            this.MdiParent.Text = "Contest details";
+            this.Hide();
         }
 
         /// <summary>
@@ -249,7 +251,7 @@ namespace BinCompeteSoft
             if(statisticsYears.Count > 0)
             {
                 // Check if we're on the last item of the list.
-                if (selectedYear < statisticsYears.Count)
+                if (selectedYear < statisticsYears.Count - 1)
                 {
                     // Make the selected year the next year.
                     selectedYear++;
@@ -360,8 +362,9 @@ namespace BinCompeteSoft
                     ContestForm contestForm = new ContestForm(this, selectedContest, true);
                     contestForm.MdiParent = this.MdiParent;
                     contestForm.Dock = DockStyle.Fill;
-                    this.Hide();
                     contestForm.Show();
+                    this.MdiParent.Text = "Contest details";
+                    this.Hide();
                 }
                 else
                 {
@@ -369,8 +372,9 @@ namespace BinCompeteSoft
                     ContestVotingForm contestVotingForm = new ContestVotingForm(this, selectedContest);
                     contestVotingForm.MdiParent = this.MdiParent;
                     contestVotingForm.Dock = DockStyle.Fill;
-                    this.Hide();
                     contestVotingForm.Show();
+                    this.MdiParent.Text = "Contest details";
+                    this.Hide();
                 }
             }
         }

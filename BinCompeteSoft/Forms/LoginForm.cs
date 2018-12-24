@@ -160,7 +160,6 @@ namespace BinCompeteSoft
                         {
                             ResetPasswordForm resetPasswordForm = new ResetPasswordForm(loggedUser, this, true);
                             resetPasswordForm.Show();
-
                             this.Hide();
                         }
                         else
@@ -252,8 +251,9 @@ namespace BinCompeteSoft
             JudgeDashboardForm judgeDashboardForm = new JudgeDashboardForm();
             judgeDashboardForm.MdiParent = this.MdiParent;
             judgeDashboardForm.Dock = DockStyle.Fill;
-            this.Hide();
             judgeDashboardForm.Show();
+            this.MdiParent.Text = "Dashboard";
+            this.Hide();
         }
     }
 }

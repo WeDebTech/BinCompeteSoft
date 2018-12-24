@@ -123,6 +123,8 @@ namespace BinCompeteSoft
 
         private void EditContestForm_Load(object sender, EventArgs e)
         {
+            usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.Name;
+
             // If in edit mode, load the contest from the database.
             if (editingContest)
             {
@@ -165,13 +167,14 @@ namespace BinCompeteSoft
         {
             // Open description form
             EditContestDescriptionForm editContestDescriptionForm = new EditContestDescriptionForm(this, contestDescription, contestEnded);
-            editContestDescriptionForm.Show();
+            editContestDescriptionForm.ShowDialog();
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
             // TODO: show messagebox asking if they really wanna leave
             judgeDashboardForm.Show();
+            this.MdiParent.Text = "Dashboard";
             this.Close();
         }
 
@@ -179,20 +182,20 @@ namespace BinCompeteSoft
         {
             // Open project form
             ProjectForm editProjectForm = new ProjectForm(this, new Project(projectId--, "", "", "", 0, new Category(), DateTime.Now.Year), false, false);
-            editProjectForm.Show();
+            editProjectForm.ShowDialog();
         }
 
         private void addJudgeButton_Click(object sender, EventArgs e)
         {
             // Open judges form
             AddJudgeForm addJudgeForm = new AddJudgeForm(this);
-            addJudgeForm.Show();
+            addJudgeForm.ShowDialog();
         }
 
         private void addCriteriaButton_Click(object sender, EventArgs e)
         {
             CriteriaForm addCriteriaForm = new CriteriaForm(this, new Criteria(criteriaId--, "", ""), false);
-            addCriteriaForm.Show();
+            addCriteriaForm.ShowDialog();
         }
 
         private void criteriaValuesButton_Click(object sender, EventArgs e)
@@ -228,6 +231,7 @@ namespace BinCompeteSoft
                                         EditCriteriaValues editCriteriaValues = new EditCriteriaValues(judgeDashboardForm, this, contest, editingContest, contestEnded, criteriasChanged);
                                         editCriteriaValues.MdiParent = this.MdiParent;
                                         editCriteriaValues.Dock = DockStyle.Fill;
+                                        editCriteriaValues.MdiParent.Text = "Edit criteria values";
                                         editCriteriaValues.Show();
                                     }
                                     else
@@ -297,7 +301,7 @@ namespace BinCompeteSoft
                 if (e.RowIndex < projectsDataGridView.RowCount)
                 {
                     ProjectForm projectForm = new ProjectForm(this, (Project)BindingProjects[e.RowIndex], true, false);
-                    projectForm.Show();
+                    projectForm.ShowDialog();
                 }
             }
             // Check if we're clicking the delete button column
@@ -322,7 +326,7 @@ namespace BinCompeteSoft
                 if (e.RowIndex < criteriaDataGridView.RowCount)
                 {
                     CriteriaForm criteriaForm = new CriteriaForm(this, (Criteria)BindingCriterias[e.RowIndex], true);
-                    criteriaForm.Show();
+                    criteriaForm.ShowDialog();
                 }
             }
             // Check if we're clicking the button column

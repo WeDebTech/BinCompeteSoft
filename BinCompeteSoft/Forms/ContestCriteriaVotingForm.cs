@@ -192,7 +192,7 @@ namespace BinCompeteSoft
 
                 ProjectForm projectForm = new ProjectForm(this, projectToView, true, true);
 
-                projectForm.Show();
+                projectForm.ShowDialog();
             }
         }
         #endregion

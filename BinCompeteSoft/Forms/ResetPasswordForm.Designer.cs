@@ -125,6 +125,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ResetPasswordForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reset password";
             this.Load += new System.EventHandler(this.ResetPasswordForm_Load);
             this.ResumeLayout(false);

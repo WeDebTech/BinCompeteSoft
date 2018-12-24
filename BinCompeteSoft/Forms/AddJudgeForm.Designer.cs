@@ -95,6 +95,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddJudgeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Judge";
             this.Load += new System.EventHandler(this.AddJudge_Load);
             ((System.ComponentModel.ISupportInitialize)(this.judgesGridView)).EndInit();

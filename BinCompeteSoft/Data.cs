@@ -610,6 +610,7 @@ namespace BinCompeteSoft
 
                 // Close current form and go back to the login form.
                 loginform.Show();
+                currentForm.MdiParent.Text = "Login";
                 currentForm.Close();
             }
         }

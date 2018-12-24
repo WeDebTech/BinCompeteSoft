@@ -88,6 +88,7 @@
             this.Controls.Add(this.acceptButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "EditContestDescriptionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Contest Description";
             this.Load += new System.EventHandler(this.EditContestDescriptionForm_Load);
             this.ResumeLayout(false);

@@ -50,7 +50,7 @@ namespace BinCompeteSoft
             if (InsertEvaluationListToDB(projectEvaluations))
             {
                 previousForm.Show();
-
+                this.MdiParent.Text = "Dashboard";
                 this.Close();
             }
         }
@@ -77,7 +77,7 @@ namespace BinCompeteSoft
                 if (e.RowIndex < criteriaDataGridView.RowCount)
                 {
                     ContestCriteriaVotingForm contestCriteriaVotingForm = new ContestCriteriaVotingForm(this, projectEvaluations[e.RowIndex], contestToVote, hasVoted);
-                    contestCriteriaVotingForm.Show();
+                    contestCriteriaVotingForm.ShowDialog();
                 }
             }
         }
@@ -86,6 +86,8 @@ namespace BinCompeteSoft
         #region Methods
         private void ContestVotingForm_Load(object sender, EventArgs e)
         {
+            usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.Name;
+
             // Load all the contest details.
             LoadContest();
 
