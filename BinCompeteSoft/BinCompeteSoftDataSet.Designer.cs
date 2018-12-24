@@ -68,8 +68,6 @@ namespace BinCompeteSoft {
         
         private global::System.Data.DataRelation relationFK__evaluatio__id_cr__1293BD5E;
         
-        private global::System.Data.DataRelation relationFK__evaluatio__id_pr__119F9925;
-        
         private global::System.Data.DataRelation relationFK__evaluatio__id_us__10AB74EC;
         
         private global::System.Data.DataRelation relationFK__final_res__id_pr__147C05D0;
@@ -500,7 +498,6 @@ namespace BinCompeteSoft {
             this.relationFK__contest_j__id_co__035179CE = this.Relations["FK__contest_j__id_co__035179CE"];
             this.relationFK__contest_j__id_us__04459E07 = this.Relations["FK__contest_j__id_us__04459E07"];
             this.relationFK__evaluatio__id_cr__1293BD5E = this.Relations["FK__evaluatio__id_cr__1293BD5E"];
-            this.relationFK__evaluatio__id_pr__119F9925 = this.Relations["FK__evaluatio__id_pr__119F9925"];
             this.relationFK__evaluatio__id_us__10AB74EC = this.Relations["FK__evaluatio__id_us__10AB74EC"];
             this.relationFK__final_res__id_pr__147C05D0 = this.Relations["FK__final_res__id_pr__147C05D0"];
             this.relationFK__project_c__id_ca__4242D080 = this.Relations["FK__project_c__id_ca__4242D080"];
@@ -580,10 +577,6 @@ namespace BinCompeteSoft {
                         this.tablecriteria_data_table.id_criteriaColumn}, new global::System.Data.DataColumn[] {
                         this.tableevaluation_table.id_criteriaColumn}, false);
             this.Relations.Add(this.relationFK__evaluatio__id_cr__1293BD5E);
-            this.relationFK__evaluatio__id_pr__119F9925 = new global::System.Data.DataRelation("FK__evaluatio__id_pr__119F9925", new global::System.Data.DataColumn[] {
-                        this.tableproject_table.id_projectColumn}, new global::System.Data.DataColumn[] {
-                        this.tableevaluation_table.id_projectColumn}, false);
-            this.Relations.Add(this.relationFK__evaluatio__id_pr__119F9925);
             this.relationFK__evaluatio__id_us__10AB74EC = new global::System.Data.DataRelation("FK__evaluatio__id_us__10AB74EC", new global::System.Data.DataColumn[] {
                         this.tableuser_table.id_userColumn}, new global::System.Data.DataColumn[] {
                         this.tableevaluation_table.id_userColumn}, false);
@@ -2313,8 +2306,6 @@ namespace BinCompeteSoft {
             
             private global::System.Data.DataColumn columnid_user;
             
-            private global::System.Data.DataColumn columnid_project;
-            
             private global::System.Data.DataColumn columnid_criteria;
             
             private global::System.Data.DataColumn columnevaluation;
@@ -2357,14 +2348,6 @@ namespace BinCompeteSoft {
             public global::System.Data.DataColumn id_userColumn {
                 get {
                     return this.columnid_user;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn id_projectColumn {
-                get {
-                    return this.columnid_project;
                 }
             }
             
@@ -2421,21 +2404,17 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public evaluation_tableRow Addevaluation_tableRow(user_tableRow parentuser_tableRowByFK__evaluatio__id_us__10AB74EC, project_tableRow parentproject_tableRowByFK__evaluatio__id_pr__119F9925, criteria_data_tableRow parentcriteria_data_tableRowByFK__evaluatio__id_cr__1293BD5E, string evaluation) {
+            public evaluation_tableRow Addevaluation_tableRow(user_tableRow parentuser_tableRowByFK__evaluatio__id_us__10AB74EC, criteria_data_tableRow parentcriteria_data_tableRowByFK__evaluatio__id_cr__1293BD5E, string evaluation) {
                 evaluation_tableRow rowevaluation_tableRow = ((evaluation_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         null,
                         null,
                         evaluation};
                 if ((parentuser_tableRowByFK__evaluatio__id_us__10AB74EC != null)) {
                     columnValuesArray[0] = parentuser_tableRowByFK__evaluatio__id_us__10AB74EC[0];
                 }
-                if ((parentproject_tableRowByFK__evaluatio__id_pr__119F9925 != null)) {
-                    columnValuesArray[1] = parentproject_tableRowByFK__evaluatio__id_pr__119F9925[0];
-                }
                 if ((parentcriteria_data_tableRowByFK__evaluatio__id_cr__1293BD5E != null)) {
-                    columnValuesArray[2] = parentcriteria_data_tableRowByFK__evaluatio__id_cr__1293BD5E[0];
+                    columnValuesArray[1] = parentcriteria_data_tableRowByFK__evaluatio__id_cr__1293BD5E[0];
                 }
                 rowevaluation_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowevaluation_tableRow);
@@ -2460,7 +2439,6 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnid_user = base.Columns["id_user"];
-                this.columnid_project = base.Columns["id_project"];
                 this.columnid_criteria = base.Columns["id_criteria"];
                 this.columnevaluation = base.Columns["evaluation"];
             }
@@ -2470,8 +2448,6 @@ namespace BinCompeteSoft {
             private void InitClass() {
                 this.columnid_user = new global::System.Data.DataColumn("id_user", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_user);
-                this.columnid_project = new global::System.Data.DataColumn("id_project", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_project);
                 this.columnid_criteria = new global::System.Data.DataColumn("id_criteria", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_criteria);
                 this.columnevaluation = new global::System.Data.DataColumn("evaluation", typeof(string), null, global::System.Data.MappingType.Element);
@@ -5284,22 +5260,6 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int id_project {
-                get {
-                    try {
-                        return ((int)(this[this.tableevaluation_table.id_projectColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'id_project\' in table \'evaluation_table\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableevaluation_table.id_projectColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int id_criteria {
                 get {
                     try {
@@ -5343,17 +5303,6 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public project_tableRow project_tableRow {
-                get {
-                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_pr__119F9925"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_pr__119F9925"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public user_tableRow user_tableRow {
                 get {
                     return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_us__10AB74EC"])));
@@ -5373,18 +5322,6 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setid_userNull() {
                 this[this.tableevaluation_table.id_userColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool Isid_projectNull() {
-                return this.IsNull(this.tableevaluation_table.id_projectColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Setid_projectNull() {
-                this[this.tableevaluation_table.id_projectColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6060,17 +5997,6 @@ namespace BinCompeteSoft {
                 }
                 else {
                     return ((best_projects_statsRow[])(base.GetChildRows(this.Table.ChildRelations["FK__best_proj__id_pr__4F9CCB9E"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public evaluation_tableRow[] Getevaluation_tableRows() {
-                if ((this.Table.ChildRelations["FK__evaluatio__id_pr__119F9925"] == null)) {
-                    return new evaluation_tableRow[0];
-                }
-                else {
-                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_pr__119F9925"])));
                 }
             }
             
@@ -8461,17 +8387,15 @@ SELECT id_criteria, criteria_name, criteria_value, descript FROM criteria_data_t
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "evaluation_table";
             tableMapping.ColumnMappings.Add("id_user", "id_user");
-            tableMapping.ColumnMappings.Add("id_project", "id_project");
             tableMapping.ColumnMappings.Add("id_criteria", "id_criteria");
             tableMapping.ColumnMappings.Add("evaluation", "evaluation");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[evaluation_table] ([id_user], [id_project], [id_criteria], [ev" +
-                "aluation]) VALUES (@id_user, @id_project, @id_criteria, @evaluation)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [evaluation_table] ([id_user], [id_criteria], [evaluation]) VALUES (@" +
+                "id_user, @id_criteria, @evaluation)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_user", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_user", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_project", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_project", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_criteria", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_criteria", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@evaluation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "evaluation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -8489,7 +8413,7 @@ SELECT id_criteria, criteria_name, criteria_value, descript FROM criteria_data_t
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id_user, id_project, id_criteria, evaluation FROM dbo.evaluation_table";
+            this._commandCollection[0].CommandText = "SELECT id_user, id_criteria, evaluation FROM evaluation_table";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -8550,30 +8474,24 @@ SELECT id_criteria, criteria_name, criteria_value, descript FROM criteria_data_t
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> id_user, global::System.Nullable<int> id_project, global::System.Nullable<int> id_criteria, string evaluation) {
+        public virtual int Insert(global::System.Nullable<int> id_user, global::System.Nullable<int> id_criteria, string evaluation) {
             if ((id_user.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(id_user.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((id_project.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_project.Value));
+            if ((id_criteria.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_criteria.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((id_criteria.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(id_criteria.Value));
-            }
-            else {
+            if ((evaluation == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((evaluation == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(evaluation));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(evaluation));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 

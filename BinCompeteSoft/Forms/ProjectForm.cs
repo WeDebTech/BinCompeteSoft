@@ -14,18 +14,20 @@ namespace BinCompeteSoft
     {
         #region Variables
         // Class variables.
-        ContestForm editContestForm;
+        Form previousForm;
 
         Project projectToEdit;
 
         bool editingProject;
+        bool justViewing;
         #endregion
 
-        public ProjectForm(ContestForm editContestForm, Project projectToEdit, bool editingProject)
+        public ProjectForm(Form previousForm, Project projectToEdit, bool editingProject, bool justViewing)
         {
-            this.editContestForm = editContestForm;
+            this.previousForm = previousForm;
             this.projectToEdit = projectToEdit;
             this.editingProject = editingProject;
+            this.justViewing = justViewing;
 
             InitializeComponent();
         }
@@ -35,6 +37,18 @@ namespace BinCompeteSoft
             FillCategoriesDropDown();
 
             FillProjectDetails();
+
+            // If the objective is just to view the project details, disable some controls.
+            if (justViewing)
+            {
+                acceptButton.Enabled = false;
+                refreshCategoriesButton.Enabled = false;
+                projectNameTextBox.Enabled = false;
+                projectDescriptionTextBox.Enabled = false;
+                projectPromoterTextBox.Enabled = false;
+                projectPromoterAgeNumericUpDown.Enabled = false;
+                projectCategoryComboBox.Enabled = false;
+            }
         }
 
         #region Button events
@@ -64,13 +78,18 @@ namespace BinCompeteSoft
                 {
                     Project project = new Project(projectToEdit.Id, projectName, projectDescription, promoterName, promoterAge, category, projectToEdit.Year);
 
-                    if (editingProject)
+                    if (previousForm.GetType() == typeof(ContestForm))
                     {
-                        editContestForm.UpdateProject(project);
-                    }
-                    else
-                    {
-                        editContestForm.AddProject(project);
+                        ContestForm contestForm = (ContestForm)previousForm;
+
+                        if (editingProject)
+                        {
+                            contestForm.UpdateProject(project);
+                        }
+                        else
+                        {
+                            contestForm.AddProject(project);
+                        }
                     }
 
                     this.Close();

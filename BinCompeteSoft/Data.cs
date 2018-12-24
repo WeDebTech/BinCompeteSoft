@@ -246,6 +246,43 @@ namespace BinCompeteSoft
         }
 
         /// <summary>
+        /// This method retrieves if the given contest has been created by the current user.
+        /// </summary>
+        /// <param name="contestId">The contest id to check.</param>
+        /// <returns>True if is created by current user, false otherwise.</returns>
+        public bool GetIfContestIsCreatedByCurrentUser(int contestId)
+        {
+            string query = "SELECT president FROM contest_juri_table WHERE id_contest = @id_contest AND id_user = @id_user";
+
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            SqlParameter sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+            sqlContestId.Value = contestId;
+            cmd.Parameters.Add(sqlContestId);
+
+            SqlParameter sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
+            sqlUserId.Value = loggedInUser.Id;
+            cmd.Parameters.Add(sqlUserId);
+
+            // Execute query.
+            using(DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if user exists in contest.
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    bool isContestCreatedByCurrentUser = reader.GetBoolean(0);
+
+                    return isContestCreatedByCurrentUser;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// This method retrieves the most up-to-date list of criterias from the database.
         /// </summary>
         /// <returns>True if success, false otherwise.</returns>

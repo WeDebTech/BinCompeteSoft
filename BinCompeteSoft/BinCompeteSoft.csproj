@@ -57,6 +57,18 @@
     <Compile Include="Components\exListBox.Designer.cs">
       <DependentUpon>exListBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ContestCriteriaVotingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ContestCriteriaVotingForm.Designer.cs">
+      <DependentUpon>ContestCriteriaVotingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ContestVotingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ContestVotingForm.Designer.cs">
+      <DependentUpon>ContestVotingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CriteriaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,12 @@
       <DependentUpon>ResetPasswordForm.cs</DependentUpon>
     </Compile>
     <None Include="Resources\Logo-WeDeb.png" />
+    <EmbeddedResource Include="Forms\ContestCriteriaVotingForm.resx">
+      <DependentUpon>ContestCriteriaVotingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ContestVotingForm.resx">
+      <DependentUpon>ContestVotingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CriteriaForm.resx">
       <DependentUpon>CriteriaForm.cs</DependentUpon>
     </EmbeddedResource>

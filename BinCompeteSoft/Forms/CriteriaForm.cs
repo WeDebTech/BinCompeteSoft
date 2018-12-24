@@ -51,6 +51,8 @@ namespace BinCompeteSoft
                     editContestForm.AddCriteria(criteria);
                 }
 
+                editContestForm.CriteriasChanged = true;
+
                 this.Close();
             }
         }

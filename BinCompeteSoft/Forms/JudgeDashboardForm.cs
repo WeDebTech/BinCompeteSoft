@@ -352,12 +352,26 @@ namespace BinCompeteSoft
                 // Get the selected contest.
                 ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value);
 
-                // Pass it to the EditContestForm and show it.
-                ContestForm contestForm = new ContestForm(this, selectedContest, true);
-                contestForm.MdiParent = this.MdiParent;
-                contestForm.Dock = DockStyle.Fill;
-                this.Hide();
-                contestForm.Show();
+                // Check if the contest has been created by the current user.
+                // If yes, show the edit interface, otherwise show the voting interface.
+                if (Data._instance.GetIfContestIsCreatedByCurrentUser(selectedContest.Id))
+                {
+                    // Pass it to the ContestForm and show it.
+                    ContestForm contestForm = new ContestForm(this, selectedContest, true);
+                    contestForm.MdiParent = this.MdiParent;
+                    contestForm.Dock = DockStyle.Fill;
+                    this.Hide();
+                    contestForm.Show();
+                }
+                else
+                {
+                    // Pass it to the ContestVotingForm and show it.
+                    ContestVotingForm contestVotingForm = new ContestVotingForm(this, selectedContest);
+                    contestVotingForm.MdiParent = this.MdiParent;
+                    contestVotingForm.Dock = DockStyle.Fill;
+                    this.Hide();
+                    contestVotingForm.Show();
+                }
             }
         }
 

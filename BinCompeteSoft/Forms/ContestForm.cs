@@ -14,7 +14,7 @@ namespace BinCompeteSoft
 {
     public partial class ContestForm : Form
     {
-        #region Variable declarations
+        #region Class variables
         private Form judgeDashboardForm;
 
         private ContestDetails contestToLoad;
@@ -39,6 +39,8 @@ namespace BinCompeteSoft
 
         private bool editingContest;
         private bool contestEnded = false;
+        private bool contestStarted = false;
+        private bool criteriasChanged = false;
         #endregion
 
         #region Getters and setters
@@ -95,6 +97,15 @@ namespace BinCompeteSoft
             get { return deletedJudgeMembers; }
             set { deletedJudgeMembers = value; }
         }
+        
+        /// <summary>
+        /// Gets or sets if any criteria has been changed.
+        /// </summary>
+        public bool CriteriasChanged
+        {
+            get { return criteriasChanged; }
+            set { criteriasChanged = value; }
+        }
         #endregion
 
         #region Constructors
@@ -112,17 +123,24 @@ namespace BinCompeteSoft
 
         private void EditContestForm_Load(object sender, EventArgs e)
         {
-            // Check if contest has already ended.
-            if(editingContest && contestToLoad.LimitDate < DateTime.Now)
-            {
-                contestEnded = true;
-
-                DisableAllContestFields();
-            }
-
             // If in edit mode, load the contest from the database.
             if (editingContest)
             {
+                // Check if contest has already ended.
+                if (contestToLoad.LimitDate < DateTime.Now)
+                {
+                    contestEnded = true;
+
+                    DisableAllContestFields();
+                }
+                // Check if the contest has already started.
+                else if(contestToLoad.StartDate < DateTime.Now)
+                {
+                    contestStarted = true;
+
+                    contestStartDateTimePicker.Enabled = false;
+                }
+
                 LoadContest();
             }
             else
@@ -160,7 +178,7 @@ namespace BinCompeteSoft
         private void addProjectButton_Click(object sender, EventArgs e)
         {
             // Open project form
-            ProjectForm editProjectForm = new ProjectForm(this, new Project(projectId--, "", "", "", 0, new Category(), DateTime.Now.Year), false);
+            ProjectForm editProjectForm = new ProjectForm(this, new Project(projectId--, "", "", "", 0, new Category(), DateTime.Now.Year), false, false);
             editProjectForm.Show();
         }
 
@@ -191,8 +209,8 @@ namespace BinCompeteSoft
                     // Check if the contest has a name
                     if (contestName != "")
                     {
-                        // Check if contest's start date is after today
-                        if (contestStartDateTimePicker.Value.Date >= DateTime.Today)
+                        // Check if contest's start date is after today or is already started.
+                        if (contestStartDateTimePicker.Value.Date >= DateTime.Today || contestStarted)
                         {
                             // Check if contest's limit date is after today and after the start date
                             if (contestLimitDateTimePicker.Value.Date > DateTime.Today && contestLimitDateTimePicker.Value.Date > contestStartDateTimePicker.Value.Date)
@@ -207,7 +225,7 @@ namespace BinCompeteSoft
                                         Contest contest = new Contest(contestToEdit.Id, contestPreview, projects, judgeMembers, criterias, contestToEdit.CriteriaValues);
 
                                         // Open criteria values form
-                                        EditCriteriaValues editCriteriaValues = new EditCriteriaValues(judgeDashboardForm, this, contest, editingContest, contestEnded);
+                                        EditCriteriaValues editCriteriaValues = new EditCriteriaValues(judgeDashboardForm, this, contest, editingContest, contestEnded, criteriasChanged);
                                         editCriteriaValues.MdiParent = this.MdiParent;
                                         editCriteriaValues.Dock = DockStyle.Fill;
                                         editCriteriaValues.Show();
@@ -278,7 +296,7 @@ namespace BinCompeteSoft
                 // Verify if we're editing a real row
                 if (e.RowIndex < projectsDataGridView.RowCount)
                 {
-                    ProjectForm projectForm = new ProjectForm(this, (Project)BindingProjects[e.RowIndex], true);
+                    ProjectForm projectForm = new ProjectForm(this, (Project)BindingProjects[e.RowIndex], true, false);
                     projectForm.Show();
                 }
             }
@@ -316,6 +334,8 @@ namespace BinCompeteSoft
                     deletedCriterias.Add((Criteria)BindingCriterias[e.RowIndex]);
                     BindingCriterias.RemoveAt(e.RowIndex);
                     UpdateDataGridView(criteriaDataGridView);
+
+                    criteriasChanged = true;
                 }
             }
         }
@@ -509,23 +529,7 @@ namespace BinCompeteSoft
         /// </summary>
         public void LoadContest()
         {
-            bool contestLoaded = false;
-
-            // Check if the full contest has already been loaded.
-            foreach (Contest contest in Data._instance.Contests)
-            {
-                if (contest.Id == contestToLoad.Id)
-                {
-                    contestLoaded = true;
-                    contestToEdit = contest;
-                    break;
-                }
-            }
-
-            if (!contestLoaded)
-            {
-                contestToEdit = Data._instance.GetContest(contestToLoad.Id);
-            }
+            contestToEdit = Data._instance.GetContest(contestToLoad.Id);
 
             FillContestDetails();
         }

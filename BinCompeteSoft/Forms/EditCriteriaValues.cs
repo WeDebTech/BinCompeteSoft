@@ -21,8 +21,9 @@ namespace BinCompeteSoft
 
         private bool editingContest;
         private bool contestEnded;
+        private bool criteriasChanged;
 
-        public EditCriteriaValues(Form judgeDashboardForm, ContestForm editContestForm, Contest contest, bool editingContest, bool contestEnded) 
+        public EditCriteriaValues(Form judgeDashboardForm, ContestForm editContestForm, Contest contest, bool editingContest, bool contestEnded, bool criteriasChanged) 
         {
             Data._instance.currentForm = this;
 
@@ -31,6 +32,7 @@ namespace BinCompeteSoft
             this.contest = contest;
             this.editingContest = editingContest;
             this.contestEnded = contestEnded;
+            this.criteriasChanged = criteriasChanged;
 
             InitializeComponent();
 
@@ -61,13 +63,28 @@ namespace BinCompeteSoft
                 count++;
             }
 
-            // Disable save button if contest has ended.
-            acceptButton.Enabled = false;
+            // If criterias haven't been changed, load those values.
+            if (!criteriasChanged)
+            {
+                for (int i = 0; i < contest.CriteriaValues.GetLength(0); i++)
+                {
+                    for (int j = 0; j < contest.CriteriaValues.GetLength(0); j++)
+                    {
+                        criteriaValuesDataGridView.Rows[i].Cells[j].Value = contest.CriteriaValues[i, j];
+                    }
+                }
+            }
 
             // Disable all rows if contest has ended.
-            foreach(DataGridViewRow row in criteriaValuesDataGridView.Rows)
+            if (contestEnded)
             {
-                row.ReadOnly = true;
+                foreach (DataGridViewRow row in criteriaValuesDataGridView.Rows)
+                {
+                    row.ReadOnly = true;
+                }
+
+                // Disable save button if contest has ended.
+                acceptButton.Enabled = false;
             }
         }
 
@@ -88,7 +105,14 @@ namespace BinCompeteSoft
                     }
                     else
                     {
-                        criteriaValues[i, j] = Convert.ToDouble(criteriaValuesDataGridView.Rows[i].Cells[j].Value.ToString());
+                        double.TryParse(criteriaValuesDataGridView.Rows[i].Cells[j].Value.ToString(), out criteriaValues[i, j]);
+
+                        // Check if it successfully converted to a double.
+                        if(criteriaValues[i, j] == 0)
+                        {
+                            MessageBox.Show(null, "All criteria values must be numbers!", "Error");
+                            return;
+                        }
                     }
                 }
             }
@@ -143,7 +167,7 @@ namespace BinCompeteSoft
             else
             {
                 // Check if user inputed nothing
-                if(e.FormattedValue.ToString() == String.Empty)
+                if(e.FormattedValue.ToString() == String.Empty || e.FormattedValue.ToString() == "0")
                 {
                     // Deselect the cell, as the user inputted nothing
                     criteriaValuesDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = false;
@@ -160,7 +184,6 @@ namespace BinCompeteSoft
                     if (value < 1 || value > 9)
                     {
                         criteriaValuesDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Value must be within 1 and 9";
-                        e.Cancel = true;
                     }
                     else
                     {
@@ -172,7 +195,6 @@ namespace BinCompeteSoft
                 else
                 {
                     criteriaValuesDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Value must be a number";
-                    e.Cancel = true;
                 }
             }
         }
