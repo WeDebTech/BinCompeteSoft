@@ -14,19 +14,28 @@ namespace BinCompeteSoft
     public partial class ResetPasswordForm : Form
     {
         User loggedInUser;
-        LoginForm loginForm;
+        Form previousForm;
+        bool fromLogin;
 
-        public ResetPasswordForm(User loggedInUser, LoginForm loginForm)
+        public ResetPasswordForm(User loggedInUser, Form previousForm, bool fromLogin)
         {
             this.loggedInUser = loggedInUser;
-            this.loginForm = loginForm;
+            this.previousForm = previousForm;
+            this.fromLogin = fromLogin;
 
             InitializeComponent();
         }
 
         private void ResetPasswordForm_Load(object sender, EventArgs e)
         {
-
+            if (fromLogin)
+            {
+                warningLabel.Text = "Your account has had it's password reset.\nPlease input your new password.";
+            }
+            else
+            {
+                warningLabel.Text = "Please insert the new password to use.";
+            }
         }
 
         private void acceptButton_Click(object sender, EventArgs e)
@@ -65,9 +74,23 @@ namespace BinCompeteSoft
 
                     MessageBox.Show(null, "User details updated successfully!", "Success");
 
-                    // Login the user afterwards
-                    loginForm.LoginUser(loggedInUser);
-                    this.Close();
+                    if (fromLogin)
+                    {
+                        // Login the user afterwards
+                        // Check if previous form is LoginForm
+                        if (previousForm.GetType() == typeof(LoginForm))
+                        {
+                            LoginForm loginForm = (LoginForm)previousForm;
+                            loginForm.LoginUser(loggedInUser);
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        previousForm.Show();
+
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -82,7 +105,7 @@ namespace BinCompeteSoft
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            loginForm.Show();
+            previousForm.Show();
 
             this.Close();
         }

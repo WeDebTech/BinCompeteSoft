@@ -360,5 +360,13 @@ namespace BinCompeteSoft
                 contestForm.Show();
             }
         }
+
+        private void resetPasswordButton_Click(object sender, EventArgs e)
+        {
+            ResetPasswordForm resetPasswordForm = new ResetPasswordForm(Data._instance.loggedInUser, this, false);
+            resetPasswordForm.Show();
+
+            this.Hide();
+        }
     }
 }

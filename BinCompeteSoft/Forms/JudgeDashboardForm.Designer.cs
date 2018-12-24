@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.navigationGroupBox = new System.Windows.Forms.GroupBox();
             this.refreshContestsButton = new System.Windows.Forms.Button();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
@@ -66,6 +62,7 @@
             this.bestProjectsLabel = new System.Windows.Forms.Label();
             this.categoriesStatisticsLabel = new System.Windows.Forms.Label();
             this.categoryStatisticsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.resetPasswordButton = new System.Windows.Forms.Button();
             this.navigationGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.notificationsGroupBox.SuspendLayout();
@@ -142,9 +139,9 @@
             // 
             this.logoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.logoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutButton.Location = new System.Drawing.Point(820, 12);
+            this.logoutButton.Location = new System.Drawing.Point(907, 12);
             this.logoutButton.Name = "logoutButton";
-            this.logoutButton.Size = new System.Drawing.Size(168, 38);
+            this.logoutButton.Size = new System.Drawing.Size(81, 38);
             this.logoutButton.TabIndex = 11;
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
@@ -166,7 +163,7 @@
             this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameLabel.Location = new System.Drawing.Point(276, 19);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(529, 25);
+            this.usernameLabel.Size = new System.Drawing.Size(459, 25);
             this.usernameLabel.TabIndex = 9;
             this.usernameLabel.Text = "Welcome username";
             this.usernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -231,23 +228,7 @@
             this.contestsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.contestsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.contestsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.contestsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.contestsDataGridView.Location = new System.Drawing.Point(6, 29);
             this.contestsDataGridView.Name = "contestsDataGridView";
             this.contestsDataGridView.ReadOnly = true;
@@ -426,23 +407,7 @@
             this.bestProjectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bestProjectsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.bestProjectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.bestProjectsDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.bestProjectsDataGridView.Location = new System.Drawing.Point(6, 216);
             this.bestProjectsDataGridView.Name = "bestProjectsDataGridView";
             this.bestProjectsDataGridView.ReadOnly = true;
@@ -484,26 +449,39 @@
             // 
             // categoryStatisticsChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.categoryStatisticsChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.categoryStatisticsChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.categoryStatisticsChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.categoryStatisticsChart.Legends.Add(legend2);
             this.categoryStatisticsChart.Location = new System.Drawing.Point(5, 74);
             this.categoryStatisticsChart.Name = "categoryStatisticsChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "CategoryStatistics";
-            this.categoryStatisticsChart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "CategoryStatistics";
+            this.categoryStatisticsChart.Series.Add(series2);
             this.categoryStatisticsChart.Size = new System.Drawing.Size(302, 115);
             this.categoryStatisticsChart.TabIndex = 0;
             this.categoryStatisticsChart.Text = "Projects by theme";
+            // 
+            // resetPasswordButton
+            // 
+            this.resetPasswordButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetPasswordButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetPasswordButton.Location = new System.Drawing.Point(741, 12);
+            this.resetPasswordButton.Name = "resetPasswordButton";
+            this.resetPasswordButton.Size = new System.Drawing.Size(160, 38);
+            this.resetPasswordButton.TabIndex = 18;
+            this.resetPasswordButton.Text = "Reset password";
+            this.resetPasswordButton.UseVisualStyleBackColor = true;
+            this.resetPasswordButton.Click += new System.EventHandler(this.resetPasswordButton_Click);
             // 
             // JudgeDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
+            this.Controls.Add(this.resetPasswordButton);
             this.Controls.Add(this.statisticsGroupBox);
             this.Controls.Add(this.contestsGroupBox);
             this.Controls.Add(this.notificationsGroupBox);
@@ -565,5 +543,6 @@
         private System.Windows.Forms.Button previousYearButton;
         private System.Windows.Forms.Button nextYearButton;
         private System.Windows.Forms.Button refreshContestsButton;
+        private System.Windows.Forms.Button resetPasswordButton;
     }
 }
