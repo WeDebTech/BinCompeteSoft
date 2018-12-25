@@ -47,6 +47,9 @@
             this.contestStartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.startDateLabel = new System.Windows.Forms.Label();
             this.criteriaValuesButton = new System.Windows.Forms.Button();
+            this.contestVotingDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.resultsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.judgesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criteriaDataGridView)).BeginInit();
@@ -87,14 +90,13 @@
             // usernameLabel
             // 
             this.usernameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.usernameLabel.AutoSize = true;
             this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLabel.Location = new System.Drawing.Point(627, 19);
+            this.usernameLabel.Location = new System.Drawing.Point(281, 19);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(187, 25);
+            this.usernameLabel.Size = new System.Drawing.Size(533, 25);
             this.usernameLabel.TabIndex = 9;
             this.usernameLabel.Text = "Welcome username";
-            this.usernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.usernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // softwareNameLabel
             // 
@@ -119,10 +121,10 @@
             // limitDateLabel
             // 
             this.limitDateLabel.AutoSize = true;
-            this.limitDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.limitDateLabel.Location = new System.Drawing.Point(339, 108);
+            this.limitDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.limitDateLabel.Location = new System.Drawing.Point(249, 120);
             this.limitDateLabel.Name = "limitDateLabel";
-            this.limitDateLabel.Size = new System.Drawing.Size(131, 31);
+            this.limitDateLabel.Size = new System.Drawing.Size(105, 25);
             this.limitDateLabel.TabIndex = 13;
             this.limitDateLabel.Text = "Limit date";
             // 
@@ -130,9 +132,9 @@
             // 
             this.contestLimitDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contestLimitDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.contestLimitDateTimePicker.Location = new System.Drawing.Point(476, 109);
+            this.contestLimitDateTimePicker.Location = new System.Drawing.Point(360, 115);
             this.contestLimitDateTimePicker.Name = "contestLimitDateTimePicker";
-            this.contestLimitDateTimePicker.Size = new System.Drawing.Size(184, 30);
+            this.contestLimitDateTimePicker.Size = new System.Drawing.Size(124, 30);
             this.contestLimitDateTimePicker.TabIndex = 16;
             // 
             // judgesDataGridView
@@ -190,9 +192,9 @@
             // 
             this.addDescriptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addDescriptionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addDescriptionButton.Location = new System.Drawing.Point(668, 107);
+            this.addDescriptionButton.Location = new System.Drawing.Point(747, 107);
             this.addDescriptionButton.Name = "addDescriptionButton";
-            this.addDescriptionButton.Size = new System.Drawing.Size(320, 38);
+            this.addDescriptionButton.Size = new System.Drawing.Size(241, 38);
             this.addDescriptionButton.TabIndex = 21;
             this.addDescriptionButton.Text = "Add description";
             this.addDescriptionButton.UseVisualStyleBackColor = true;
@@ -238,18 +240,18 @@
             // 
             this.contestStartDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contestStartDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.contestStartDateTimePicker.Location = new System.Drawing.Point(150, 109);
+            this.contestStartDateTimePicker.Location = new System.Drawing.Point(118, 115);
             this.contestStartDateTimePicker.Name = "contestStartDateTimePicker";
-            this.contestStartDateTimePicker.Size = new System.Drawing.Size(183, 30);
+            this.contestStartDateTimePicker.Size = new System.Drawing.Size(125, 30);
             this.contestStartDateTimePicker.TabIndex = 29;
             // 
             // startDateLabel
             // 
             this.startDateLabel.AutoSize = true;
-            this.startDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDateLabel.Location = new System.Drawing.Point(12, 111);
+            this.startDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDateLabel.Location = new System.Drawing.Point(7, 120);
             this.startDateLabel.Name = "startDateLabel";
-            this.startDateLabel.Size = new System.Drawing.Size(132, 31);
+            this.startDateLabel.Size = new System.Drawing.Size(105, 25);
             this.startDateLabel.TabIndex = 28;
             this.startDateLabel.Text = "Start date";
             // 
@@ -265,11 +267,45 @@
             this.criteriaValuesButton.UseVisualStyleBackColor = true;
             this.criteriaValuesButton.Click += new System.EventHandler(this.criteriaValuesButton_Click);
             // 
+            // contestVotingDateTimePicker
+            // 
+            this.contestVotingDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contestVotingDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.contestVotingDateTimePicker.Location = new System.Drawing.Point(617, 115);
+            this.contestVotingDateTimePicker.Name = "contestVotingDateTimePicker";
+            this.contestVotingDateTimePicker.Size = new System.Drawing.Size(124, 30);
+            this.contestVotingDateTimePicker.TabIndex = 32;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(490, 120);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 25);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Voting date";
+            // 
+            // resultsButton
+            // 
+            this.resultsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultsButton.Location = new System.Drawing.Point(12, 400);
+            this.resultsButton.Name = "resultsButton";
+            this.resultsButton.Size = new System.Drawing.Size(320, 38);
+            this.resultsButton.TabIndex = 33;
+            this.resultsButton.Text = "Get results";
+            this.resultsButton.UseVisualStyleBackColor = true;
+            this.resultsButton.Click += new System.EventHandler(this.resultsButton_Click);
+            // 
             // ContestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
+            this.Controls.Add(this.resultsButton);
+            this.Controls.Add(this.contestVotingDateTimePicker);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.criteriaValuesButton);
             this.Controls.Add(this.contestStartDateTimePicker);
             this.Controls.Add(this.startDateLabel);
@@ -322,5 +358,8 @@
         private System.Windows.Forms.DateTimePicker contestStartDateTimePicker;
         private System.Windows.Forms.Label startDateLabel;
         private System.Windows.Forms.Button criteriaValuesButton;
+        private System.Windows.Forms.DateTimePicker contestVotingDateTimePicker;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button resultsButton;
     }
 }

@@ -19,6 +19,8 @@ namespace BinCompeteSoft
         private Contest contestToVote;
         private bool hasVoted;
         private List<Evaluation> projectEvaluations = new List<Evaluation>();
+        private bool hasEnded;
+        private bool hasEndedVoting;
         #endregion
 
         #region Class constructors
@@ -70,15 +72,23 @@ namespace BinCompeteSoft
 
         private void criteriaDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Check if we're clicking the edit button column
-            if (e.ColumnIndex == 0)
+            // Check if the user can vote already.
+            if (hasEnded && !hasEndedVoting)
             {
-                // Verify if we're editing a real row
-                if (e.RowIndex < criteriaDataGridView.RowCount)
+                // Check if we're clicking the edit button column
+                if (e.ColumnIndex == 0)
                 {
-                    ContestCriteriaVotingForm contestCriteriaVotingForm = new ContestCriteriaVotingForm(this, projectEvaluations[e.RowIndex], contestToVote, hasVoted);
-                    contestCriteriaVotingForm.ShowDialog();
+                    // Verify if we're editing a real row
+                    if (e.RowIndex < criteriaDataGridView.RowCount)
+                    {
+                        ContestCriteriaVotingForm contestCriteriaVotingForm = new ContestCriteriaVotingForm(this, projectEvaluations[e.RowIndex], contestToVote, hasVoted);
+                        contestCriteriaVotingForm.ShowDialog();
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show(null, "Voting hasn't started yet, please come back when it has.", "Error");
             }
         }
         #endregion
@@ -87,6 +97,17 @@ namespace BinCompeteSoft
         private void ContestVotingForm_Load(object sender, EventArgs e)
         {
             usernameLabel.Text = "Welcome " + Data._instance.loggedInUser.Name;
+
+            // Check if the contest has already ended voting.
+            if(contestToLoad.VotingDate < DateTime.Now)
+            {
+                hasEndedVoting = true;
+                hasEnded = true;
+            }
+            else if(contestToLoad.LimitDate < DateTime.Now)
+            {
+                hasEnded = true;
+            }
 
             // Load all the contest details.
             LoadContest();
@@ -116,7 +137,7 @@ namespace BinCompeteSoft
             criteriaDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
 
             // Add column to show if criteria has already been voted for.
-            if (!hasVoted)
+            if (!hasVoted || hasEndedVoting)
             {
                 criteriaDataGridView.Columns.Add("voted", "Voted");
 

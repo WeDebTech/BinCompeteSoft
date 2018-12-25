@@ -72,8 +72,11 @@ namespace BinCompeteSoft
             // Make the current selected year the most recent one.
             selectedYear = statisticsYears.Count - 1;
 
-            ChangeStatisticsYear();
-
+            // Check if there's any statistic data.
+            if (selectedYear >= 0)
+            {
+                ChangeStatisticsYear();
+            }
 
             // Update the contests list.
             UpdateContestsAndNotificationsList();
@@ -281,24 +284,32 @@ namespace BinCompeteSoft
         public void UpdateContestsAndNotificationsList()
         {
             // Sets the DataGridView's columns.
-            contestsDataGridView.ColumnCount = 5;
+            contestsDataGridView.ColumnCount = 7;
             contestsDataGridView.Columns[0].Name = "Id";
             contestsDataGridView.Columns[0].Visible = false;
             contestsDataGridView.Columns[1].Name = "Name";
-            contestsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            contestsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             contestsDataGridView.Columns[2].Name = "Description";
-            contestsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            contestsDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             contestsDataGridView.Columns[3].Name = "Start Date";
             contestsDataGridView.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
             contestsDataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             contestsDataGridView.Columns[4].Name = "Limit Date";
             contestsDataGridView.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
             contestsDataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            contestsDataGridView.Columns[5].Name = "Voting Date";
+            contestsDataGridView.Columns[5].DefaultCellStyle.Format = "dd/MM/yyyy";
+            contestsDataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            contestsDataGridView.Columns[6].Name = "Has voted";
+            contestsDataGridView.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            contestsDataGridView.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Clear all previous data in the DataGridView.
             contestsDataGridView.Rows.Clear();
 
             notificationsExListBox.Items.Clear();
+
+            Data._instance.RefreshContests();
 
             // Get the current time.
             DateTime currentDate = DateTime.Now;
@@ -306,24 +317,34 @@ namespace BinCompeteSoft
             // Loop through all contests, and if they are after today's date, show them.
             foreach(ContestDetails contest in Data._instance.ContestDetails)
             {
-                if(contest.LimitDate > currentDate)
+                if(contest.VotingDate > currentDate)
                 {
                     // Add contest to DataGridView.
-                    contestsDataGridView.Rows.Add(contest.Id, contest.Name, contest.Description, contest.StartDate, contest.LimitDate);
+                    contestsDataGridView.Rows.Add(contest.Id, contest.Name, contest.Description, contest.StartDate, contest.LimitDate, contest.VotingDate, contest.HasVoted);
 
-                    // Check if contest is within 5 days of finishing.
-                    if(contest.LimitDate < currentDate.AddDays(5))
+                    // Set the has voted column properly.
+                    if (contest.HasVoted)
+                    {
+                        contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "✓";
+                    }
+                    else
+                    {
+                        contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "X";
+                    }
+
+                    // Check if contest is after the limit date and hasn't been voted yet.
+                    if(contest.LimitDate < DateTime.Now && !contest.HasVoted)
                     {
                         string notificationEnd;
 
                         // Check if the contest ends today.
-                        if((contest.LimitDate - currentDate).Days <= 1)
+                        if((contest.VotingDate - currentDate).Days <= 1)
                         {
                             notificationEnd = "' will end today.";
                         }
                         else
                         {
-                            notificationEnd = "' will end in " + (contest.LimitDate - currentDate).Days + " days.";
+                            notificationEnd = "' will end in " + (contest.VotingDate - currentDate).Days + " days.";
                         }
 
                         // Add a notification to the notification list.
@@ -352,7 +373,18 @@ namespace BinCompeteSoft
             if (contestsDataGridView.CurrentCell != null)
             {
                 // Get the selected contest.
-                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value);
+                bool hasVoted;
+
+                if(contestsDataGridView.CurrentRow.Cells[6].Value.ToString() == "X")
+                {
+                    hasVoted = false;
+                }
+                else
+                {
+                    hasVoted = true;
+                }
+
+                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[5].Value, hasVoted);
 
                 // Check if the contest has been created by the current user.
                 // If yes, show the edit interface, otherwise show the voting interface.
@@ -376,6 +408,10 @@ namespace BinCompeteSoft
                     this.MdiParent.Text = "Contest details";
                     this.Hide();
                 }
+            }
+            else
+            {
+                MessageBox.Show(null, "You must select a contest to view it.", "Error");
             }
         }
 

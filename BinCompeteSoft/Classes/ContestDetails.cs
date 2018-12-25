@@ -17,6 +17,8 @@ namespace BinCompeteSoft
         private string description;
         private DateTime startDate;
         private DateTime limitDate;
+        private DateTime votingDate;
+        private bool hasVoted;
 
         /// <summary>
         /// Contest details constructor that takes all arguments.
@@ -26,20 +28,24 @@ namespace BinCompeteSoft
         /// <param name="description">The contest description.</param>
         /// <param name="startDate">The contest start date.</param>
         /// <param name="limitDate">The contest limit date.</param>
-        public ContestDetails(int id, string name, string description, DateTime startDate, DateTime limitDate)
+        /// <param name="votingDate">The contest voting limit date.</param>
+        /// <param name="hasVoted">If the contest has already been voted by the current user.</param>
+        public ContestDetails(int id, string name, string description, DateTime startDate, DateTime limitDate, DateTime votingDate, bool hasVoted)
         {
             this.id = id;
             this.name = name;
             this.description = description;
             this.startDate = startDate;
             this.limitDate = limitDate;
+            this.votingDate = votingDate;
+            this.hasVoted = hasVoted;
         }
 
         /// <summary>
         /// Contest details constructor that takes no arguments.
-        /// Creates a contest details with id 0, no name, no description, and current day start and limit date.
+        /// Creates a contest details with id 0, no name, no description, and current day start, limit date, voting date and not yet voted.
         /// </summary>
-        public ContestDetails() : this(0, "", "", DateTime.Now, DateTime.Now) { }
+        public ContestDetails() : this(0, "", "", DateTime.Now, DateTime.Now, DateTime.Now, false) { }
 
         /// <summary>
         /// Gets or sets the contest id.
@@ -88,6 +94,26 @@ namespace BinCompeteSoft
         {
             get { return this.limitDate; }
             set { this.limitDate = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the contest voting limit date.
+        /// </summary>
+        [System.ComponentModel.DisplayName("Voting date")]
+        public DateTime VotingDate
+        {
+            get { return votingDate; }
+            set { votingDate = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets if the contest has been voted by the current user.
+        /// </summary>
+        [System.ComponentModel.DisplayName("Has voted")]
+        public bool HasVoted
+        {
+            get { return hasVoted; }
+            set { hasVoted = value; }
         }
     }
 }

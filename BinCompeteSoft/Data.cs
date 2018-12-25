@@ -210,9 +210,15 @@ namespace BinCompeteSoft
         public bool RefreshContests()
         {
             // Load the contest that the users has part in from the Database
-            string query = "SELECT id_contest, contest_name, descript, start_date, limit_date FROM contest_table " +
-                "WHERE id_contest IN (" +
-                "SELECT id_contest FROM contest_juri_table " +
+            string query = "SELECT contest.id_contest, contest.contest_name, contest.descript, contest.start_date, contest.limit_date, contest.voting_limit_date, juri.has_voted " +
+                "FROM contest_table contest " +
+                "INNER JOIN( " +
+                "SELECT id_contest, id_user, has_voted " +
+                "FROM contest_juri_table " +
+                "WHERE id_user = @id_user) AS juri " +
+                "ON contest.id_contest = juri.id_contest " +
+                "WHERE contest.id_contest IN( " +
+                "SELECT id_contest FROM contest_juri_table contest " +
                 "WHERE id_user = @id_user)";
 
             SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
@@ -232,7 +238,7 @@ namespace BinCompeteSoft
 
                     while (reader.Read())
                     {
-                        ContestDetails contest = new ContestDetails(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4));
+                        ContestDetails contest = new ContestDetails(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDateTime(5), reader.GetBoolean(6));
                         contestDetails.Add(contest);
                     }
 
@@ -330,7 +336,7 @@ namespace BinCompeteSoft
 
             SqlCommand cmd;
 
-            SqlParameter sqlContestId;
+            SqlParameter sqlContestId, sqlUserId;
 
             string query;
 
@@ -339,10 +345,21 @@ namespace BinCompeteSoft
             List<Criteria> contestCriterias = new List<Criteria>();
 
             // Get the contest details from the database.
-            query = "SELECT * FROM contest_table WHERE id_contest = @id_contest";
+            query = "SELECT contest.*, juri.has_voted " +
+                "FROM contest_table contest " +
+                "INNER JOIN( " +
+                "SELECT id_contest, id_user, has_voted " +
+                "FROM contest_juri_table  " +
+                "WHERE id_user = @id_user) AS juri " +
+                "ON contest.id_contest = juri.id_contest " +
+                "WHERE contest.id_contest = @id_contest";
 
             cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
+
+            sqlUserId = new SqlParameter("id_user", SqlDbType.Int);
+            sqlUserId.Value = loggedInUser.Id;
+            cmd.Parameters.Add(sqlUserId);
 
             sqlContestId = new SqlParameter("id_contest", SqlDbType.Int);
             sqlContestId.Value = id;
@@ -355,10 +372,10 @@ namespace BinCompeteSoft
                 {
                     reader.Read();
 
-                    ContestDetails contestDetails = new ContestDetails(id, reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4));
+                    ContestDetails contestDetails = new ContestDetails(id, reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDateTime(5), reader.GetBoolean(7));
 
                     // Get the criteria values and convert them from a JSON string to a double matrix.
-                    string criteriaValues = reader.GetString(5);
+                    string criteriaValues = reader.GetString(6);
 
                     contest = new Contest(id, contestDetails, new List<Project>(), new List<JudgeMember>(), new List<Criteria>(), new double[0,0]);
 
@@ -610,7 +627,7 @@ namespace BinCompeteSoft
 
                 // Close current form and go back to the login form.
                 loginform.Show();
-                currentForm.MdiParent.Text = "Login";
+                loginform.MdiParent.Text = "Login";
                 currentForm.Close();
             }
         }

@@ -213,8 +213,8 @@ namespace BinCompeteSoft
         {
             try
             {
-                string query = "INSERT INTO contest_table ([contest_name], [descript], [start_date], [limit_date], [criteria_values]) " +
-                    "VALUES (@contest_name, @descript, @start_date, @limit_date, @criteria_values);" +
+                string query = "INSERT INTO contest_table ([contest_name], [descript], [start_date], [limit_date], [voting_limit_date], [criteria_values]) " +
+                    "VALUES (@contest_name, @descript, @start_date, @limit_date, @voting_limit_date, @criteria_values);" +
                     "SELECT CAST(scope_identity() AS int)";
 
                 SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
@@ -235,6 +235,10 @@ namespace BinCompeteSoft
                 SqlParameter sqlLimitdate = new SqlParameter("@limit_date", SqlDbType.DateTime);
                 sqlLimitdate.Value = contestToInsert.ContestDetails.LimitDate;
                 cmd.Parameters.Add(sqlLimitdate);
+
+                SqlParameter sqlVotingLimitDate = new SqlParameter("@voting_limit_date", SqlDbType.DateTime);
+                sqlVotingLimitDate.Value = contestToInsert.ContestDetails.VotingDate;
+                cmd.Parameters.Add(sqlVotingLimitDate);
 
                 SqlParameter sqlCriteriaValues = new SqlParameter("@criteria_values", SqlDbType.NVarChar);
                 sqlCriteriaValues.Value = contestToInsert.GetCriteriaValuesJSON();
@@ -406,7 +410,7 @@ namespace BinCompeteSoft
         {
             try
             {
-                string query = "UPDATE contest_table SET [contest_name] = @contest_name, [descript] = @descript, [start_date] = @start_date, [limit_date] = @limit_date, [criteria_values] = @criteria_values " +
+                string query = "UPDATE contest_table SET [contest_name] = @contest_name, [descript] = @descript, [start_date] = @start_date, [limit_date] = @limit_date, [voting_limit_date] = @voting_limit_date, [criteria_values] = @criteria_values " +
                     "WHERE [id_contest] = @id_contest";
 
                 SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
@@ -427,6 +431,10 @@ namespace BinCompeteSoft
                 SqlParameter sqlLimitdate = new SqlParameter("@limit_date", SqlDbType.DateTime);
                 sqlLimitdate.Value = contestToUpdate.ContestDetails.LimitDate;
                 cmd.Parameters.Add(sqlLimitdate);
+
+                SqlParameter sqlVotingLimitDate = new SqlParameter("@voting_limit_date", SqlDbType.DateTime);
+                sqlVotingLimitDate.Value = contestToUpdate.ContestDetails.VotingDate;
+                cmd.Parameters.Add(sqlVotingLimitDate);
 
                 SqlParameter sqlCriteriaValues = new SqlParameter("@criteria_values", SqlDbType.NVarChar);
                 sqlCriteriaValues.Value = contestToUpdate.GetCriteriaValuesJSON();
@@ -552,8 +560,6 @@ namespace BinCompeteSoft
                 }
 
                 SqlParameter sqlCriteriaName, sqlCriteriaDescription, sqlCriteriaId;
-
-                int insertedCriteriaId;
 
                 foreach (Criteria criteria in editContestForm.Criterias)
                 {

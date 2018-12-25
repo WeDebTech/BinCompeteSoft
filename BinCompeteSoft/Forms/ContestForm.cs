@@ -218,30 +218,38 @@ namespace BinCompeteSoft
                             // Check if contest's limit date is after today and after the start date
                             if (contestLimitDateTimePicker.Value.Date > DateTime.Today && contestLimitDateTimePicker.Value.Date > contestStartDateTimePicker.Value.Date)
                             {
-                                // Check if there's any judge member
-                                if (judgeMembers.Count > 0)
+                                // Check if contest's voting date is after the limit date.
+                                if (contestVotingDateTimePicker.Value.Date > contestLimitDateTimePicker.Value.Date)
                                 {
-                                    // Check if there's any criteria
-                                    if (criterias.Count > 0)
+                                    // Check if there's any judge member
+                                    if (judgeMembers.Count > 0)
                                     {
-                                        ContestDetails contestPreview = new ContestDetails(contestToEdit.Id, contestName, contestDescription, contestStartDateTimePicker.Value, contestLimitDateTimePicker.Value);
-                                        Contest contest = new Contest(contestToEdit.Id, contestPreview, projects, judgeMembers, criterias, contestToEdit.CriteriaValues);
+                                        // Check if there's any criteria
+                                        if (criterias.Count > 0)
+                                        {
+                                            ContestDetails contestPreview = new ContestDetails(contestToEdit.Id, contestName, contestDescription, contestStartDateTimePicker.Value.Date, contestLimitDateTimePicker.Value.Date, contestVotingDateTimePicker.Value.Date, false);
+                                            Contest contest = new Contest(contestToEdit.Id, contestPreview, projects, judgeMembers, criterias, contestToEdit.CriteriaValues);
 
-                                        // Open criteria values form
-                                        EditCriteriaValues editCriteriaValues = new EditCriteriaValues(judgeDashboardForm, this, contest, editingContest, contestEnded, criteriasChanged);
-                                        editCriteriaValues.MdiParent = this.MdiParent;
-                                        editCriteriaValues.Dock = DockStyle.Fill;
-                                        editCriteriaValues.MdiParent.Text = "Edit criteria values";
-                                        editCriteriaValues.Show();
+                                            // Open criteria values form
+                                            EditCriteriaValues editCriteriaValues = new EditCriteriaValues(judgeDashboardForm, this, contest, editingContest, contestEnded, criteriasChanged);
+                                            editCriteriaValues.MdiParent = this.MdiParent;
+                                            editCriteriaValues.Dock = DockStyle.Fill;
+                                            editCriteriaValues.MdiParent.Text = "Edit criteria values";
+                                            editCriteriaValues.Show();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(null, "There must be criterias assigned to the contest.", "Error");
+                                        }
                                     }
                                     else
                                     {
-                                        MessageBox.Show(null, "There must be criterias assigned to the contest.", "Error");
+                                        MessageBox.Show(null, "There must be judges assigned to the contest.", "Error");
                                     }
                                 }
                                 else
                                 {
-                                    MessageBox.Show(null, "There must be judges assigned to the contest.", "Error");
+                                    MessageBox.Show(null, "Voting date must be after the limit date.", "Error");
                                 }
                             }
                             else
@@ -273,6 +281,11 @@ namespace BinCompeteSoft
         private void logoutButton_Click(object sender, EventArgs e)
         {
             Data._instance.LogoutUser();
+        }
+
+        private void resultsButton_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -547,6 +560,7 @@ namespace BinCompeteSoft
             contestNameTextBox.Text = contestToEdit.ContestDetails.Name;
             contestStartDateTimePicker.Value = contestToEdit.ContestDetails.StartDate;
             contestLimitDateTimePicker.Value = contestToEdit.ContestDetails.LimitDate;
+            contestVotingDateTimePicker.Value = contestToEdit.ContestDetails.VotingDate;
             contestDescription = contestToEdit.ContestDetails.Description;
 
             // Fill lists with contest details.
