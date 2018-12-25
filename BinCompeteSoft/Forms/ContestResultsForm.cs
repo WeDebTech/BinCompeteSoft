@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace BinCompeteSoft
 {
@@ -58,7 +59,7 @@ namespace BinCompeteSoft
         
         private void exportResultsButton_Click(object sender, EventArgs e)
         {
-            // TODO: generate XML file with contest results.
+            WriteResultsToXML();
         }
         #endregion
 
@@ -244,6 +245,35 @@ namespace BinCompeteSoft
 
                 count++;
             }
+        }
+
+        /// <summary>
+        /// This method will write the results to and XML file.
+        /// </summary>
+        private void WriteResultsToXML()
+        {
+            int count = 0;
+
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlElement root = xmlDoc.DocumentElement;
+            xmlDoc.InsertBefore(xmlDeclaration, root);
+
+            XmlElement rootNode = xmlDoc.CreateElement("projects");
+            xmlDoc.AppendChild(rootNode);
+
+            foreach (Project project in contest.Projects) {
+                XmlElement projectNode = xmlDoc.CreateElement("project");
+                XmlAttribute attribute = xmlDoc.CreateAttribute("name");
+                attribute.Value = project.Name;
+                projectNode.Attributes.Append(attribute);
+                projectNode.InnerText = results[count].ToString();
+                rootNode.AppendChild(projectNode);
+
+                count++;
+            }
+
+            xmlDoc.Save(contest.ContestDetails.Name + "_results.xml");
         }
         #endregion
     }

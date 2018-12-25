@@ -92,7 +92,7 @@
             this.Name = "ContestResultsForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ContestResultsForm";
+            this.Text = "Contest results";
             this.Load += new System.EventHandler(this.ContestResultsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.resultsDataGridView)).EndInit();
             this.ResumeLayout(false);
