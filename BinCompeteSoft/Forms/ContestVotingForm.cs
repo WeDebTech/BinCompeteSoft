@@ -51,6 +51,10 @@ namespace BinCompeteSoft
             // Insert evaluations into database.
             if (InsertEvaluationListToDB(projectEvaluations))
             {
+                MessageBox.Show(null, "Votes have been submitted successfully.", "Success");
+
+                Data._instance.RefreshContests();
+
                 previousForm.Show();
                 this.MdiParent.Text = "Dashboard";
                 this.Close();
@@ -199,8 +203,8 @@ namespace BinCompeteSoft
         {
             try
             {
-                string query = "INSERT INTO evaluation_table ([id_user], [id_criteria], [evaluation]) " +
-                    "VALUES (@id_user, @id_criteria, @evaluation)";
+                string query = "INSERT INTO evaluation_table ([id_user], [id_contest], [id_criteria], [evaluation]) " +
+                    "VALUES (@id_user, @id_contest, @id_criteria, @evaluation)";
 
                 SqlCommand cmd;
 
@@ -214,6 +218,10 @@ namespace BinCompeteSoft
                     sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
                     sqlUserId.Value = Data._instance.loggedInUser.Id;
                     cmd.Parameters.Add(sqlUserId);
+
+                    sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+                    sqlContestId.Value = contestToVote.Id;
+                    cmd.Parameters.Add(sqlContestId);
 
                     sqlCriteriaId = new SqlParameter("@id_criteria", SqlDbType.Int);
                     sqlCriteriaId.Value = evaluation.Criteria.Id;

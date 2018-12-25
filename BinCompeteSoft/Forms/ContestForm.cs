@@ -40,6 +40,7 @@ namespace BinCompeteSoft
         private bool editingContest;
         private bool contestEnded = false;
         private bool contestStarted = false;
+        private bool contestEndedVoting = false;
         private bool criteriasChanged = false;
         #endregion
 
@@ -128,9 +129,22 @@ namespace BinCompeteSoft
             // If in edit mode, load the contest from the database.
             if (editingContest)
             {
-                // Check if contest has already ended.
-                if (contestToLoad.LimitDate < DateTime.Now)
+                // Check if contest has already ended it's voting time.
+                if(contestToLoad.VotingDate < DateTime.Now)
                 {
+                    contestStarted = true;
+                    contestEnded = true;
+                    contestEndedVoting = true;
+
+                    DisableAllContestFields();
+                    contestVotingDateTimePicker.Enabled = false;
+
+                    resultsButton.Enabled = true;
+                }
+                // Check if contest has already ended.
+                else if (contestToLoad.LimitDate < DateTime.Now)
+                {
+                    contestStarted = true;
                     contestEnded = true;
 
                     DisableAllContestFields();
@@ -206,7 +220,7 @@ namespace BinCompeteSoft
             if (projects.Count > 0)
             {
                 // Check if there is a description
-                if (contestDescription != "")
+                if (!String.IsNullOrWhiteSpace(contestDescription))
                 {
                     contestName = contestNameTextBox.Text;
                     // Check if the contest has a name
@@ -215,11 +229,11 @@ namespace BinCompeteSoft
                         // Check if contest's start date is after today or is already started.
                         if (contestStartDateTimePicker.Value.Date >= DateTime.Today || contestStarted)
                         {
-                            // Check if contest's limit date is after today and after the start date
-                            if (contestLimitDateTimePicker.Value.Date > DateTime.Today && contestLimitDateTimePicker.Value.Date > contestStartDateTimePicker.Value.Date)
+                            // Check if contest's limit date is after today and after the start date or is already ended.
+                            if ((contestLimitDateTimePicker.Value.Date > DateTime.Today && contestLimitDateTimePicker.Value.Date > contestStartDateTimePicker.Value.Date) || contestEnded)
                             {
-                                // Check if contest's voting date is after the limit date.
-                                if (contestVotingDateTimePicker.Value.Date > contestLimitDateTimePicker.Value.Date)
+                                // Check if contest's voting date is after the limit date or it's already past it's vote date.
+                                if (contestVotingDateTimePicker.Value.Date > contestLimitDateTimePicker.Value.Date || contestEndedVoting)
                                 {
                                     // Check if there's any judge member
                                     if (judgeMembers.Count > 0)
@@ -227,7 +241,7 @@ namespace BinCompeteSoft
                                         // Check if there's any criteria
                                         if (criterias.Count > 0)
                                         {
-                                            ContestDetails contestPreview = new ContestDetails(contestToEdit.Id, contestName, contestDescription, contestStartDateTimePicker.Value.Date, contestLimitDateTimePicker.Value.Date, contestVotingDateTimePicker.Value.Date, false);
+                                            ContestDetails contestPreview = new ContestDetails(contestToEdit.Id, contestName, contestDescription, contestStartDateTimePicker.Value.Date, contestLimitDateTimePicker.Value.Date, contestVotingDateTimePicker.Value.Date, false, false, true);
                                             Contest contest = new Contest(contestToEdit.Id, contestPreview, projects, judgeMembers, criterias, contestToEdit.CriteriaValues);
 
                                             // Open criteria values form
@@ -285,7 +299,8 @@ namespace BinCompeteSoft
 
         private void resultsButton_Click(object sender, EventArgs e)
         {
-
+            ContestResultsForm contestResultsForm = new ContestResultsForm(contestToEdit);
+            contestResultsForm.ShowDialog();
         }
         #endregion
 

@@ -19,6 +19,8 @@ namespace BinCompeteSoft
         private DateTime limitDate;
         private DateTime votingDate;
         private bool hasVoted;
+        private bool hasResultsCalculated;
+        private bool hasBeenCreatedByCurrentUser;
 
         /// <summary>
         /// Contest details constructor that takes all arguments.
@@ -30,7 +32,9 @@ namespace BinCompeteSoft
         /// <param name="limitDate">The contest limit date.</param>
         /// <param name="votingDate">The contest voting limit date.</param>
         /// <param name="hasVoted">If the contest has already been voted by the current user.</param>
-        public ContestDetails(int id, string name, string description, DateTime startDate, DateTime limitDate, DateTime votingDate, bool hasVoted)
+        /// <param name="hasResultsCalculated">If the contest has already had it's results calculated.</param>
+        /// <param name="hasBeenCreatedByCurrentUser">If the contest has been created by the currently logged on user.</param>
+        public ContestDetails(int id, string name, string description, DateTime startDate, DateTime limitDate, DateTime votingDate, bool hasVoted, bool hasResultsCalculated, bool hasBeenCreatedByCurrentUser)
         {
             this.id = id;
             this.name = name;
@@ -39,13 +43,15 @@ namespace BinCompeteSoft
             this.limitDate = limitDate;
             this.votingDate = votingDate;
             this.hasVoted = hasVoted;
+            this.hasResultsCalculated = hasResultsCalculated;
+            this.hasBeenCreatedByCurrentUser = hasBeenCreatedByCurrentUser;
         }
 
         /// <summary>
         /// Contest details constructor that takes no arguments.
         /// Creates a contest details with id 0, no name, no description, and current day start, limit date, voting date and not yet voted.
         /// </summary>
-        public ContestDetails() : this(0, "", "", DateTime.Now, DateTime.Now, DateTime.Now, false) { }
+        public ContestDetails() : this(0, "", "", DateTime.Now, DateTime.Now, DateTime.Now, false, false, false) { }
 
         /// <summary>
         /// Gets or sets the contest id.
@@ -114,6 +120,26 @@ namespace BinCompeteSoft
         {
             get { return hasVoted; }
             set { hasVoted = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets if the contest has had it's results calculated.
+        /// </summary>
+        [System.ComponentModel.DisplayName("Results calculated")]
+        public bool HasResultsCalculated
+        {
+            get { return hasResultsCalculated; }
+            set { hasResultsCalculated = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets if the contest has been created by the currently logged on user.
+        /// </summary>
+        [System.ComponentModel.DisplayName("Created by user")]
+        public bool HasBeenCreatedByCurrentUser
+        {
+            get { return hasBeenCreatedByCurrentUser; }
+            set { hasBeenCreatedByCurrentUser = value; }
         }
     }
 }

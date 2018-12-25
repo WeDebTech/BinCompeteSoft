@@ -37,7 +37,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.navigationGroupBox = new System.Windows.Forms.GroupBox();
             this.refreshContestsButton = new System.Windows.Forms.Button();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.listContestsButton = new System.Windows.Forms.Button();
             this.addContestButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
@@ -45,7 +44,6 @@
             this.usernameLabel = new System.Windows.Forms.Label();
             this.softwareNameLabel = new System.Windows.Forms.Label();
             this.notificationsGroupBox = new System.Windows.Forms.GroupBox();
-            this.notificationsExListBox = new BinCompeteSoft.exListBox();
             this.contestsGroupBox = new System.Windows.Forms.GroupBox();
             this.contestsDataGridView = new System.Windows.Forms.DataGridView();
             this.contestDetailsButton = new System.Windows.Forms.Button();
@@ -67,14 +65,16 @@
             this.categoriesStatisticsLabel = new System.Windows.Forms.Label();
             this.categoryStatisticsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.resetPasswordButton = new System.Windows.Forms.Button();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.notificationsExListBox = new BinCompeteSoft.exListBox();
             this.navigationGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.notificationsGroupBox.SuspendLayout();
             this.contestsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestsDataGridView)).BeginInit();
             this.statisticsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bestProjectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryStatisticsChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // navigationGroupBox
@@ -104,16 +104,6 @@
             this.refreshContestsButton.Text = "Refresh contests";
             this.refreshContestsButton.UseVisualStyleBackColor = true;
             this.refreshContestsButton.Click += new System.EventHandler(this.refreshContestsButton_Click);
-            // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.Image = global::BinCompeteSoft.Properties.Resources.Logo_WeDeb;
-            this.logoPictureBox.Location = new System.Drawing.Point(6, 174);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(169, 92);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logoPictureBox.TabIndex = 12;
-            this.logoPictureBox.TabStop = false;
             // 
             // listContestsButton
             // 
@@ -194,21 +184,6 @@
             this.notificationsGroupBox.TabIndex = 15;
             this.notificationsGroupBox.TabStop = false;
             this.notificationsGroupBox.Text = "Notifications";
-            // 
-            // notificationsExListBox
-            // 
-            this.notificationsExListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.notificationsExListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.notificationsExListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notificationsExListBox.FormattingEnabled = true;
-            this.notificationsExListBox.IntegralHeight = false;
-            this.notificationsExListBox.ItemHeight = 60;
-            this.notificationsExListBox.Location = new System.Drawing.Point(6, 29);
-            this.notificationsExListBox.Name = "notificationsExListBox";
-            this.notificationsExListBox.Size = new System.Drawing.Size(197, 341);
-            this.notificationsExListBox.TabIndex = 16;
             // 
             // contestsGroupBox
             // 
@@ -512,6 +487,31 @@
             this.resetPasswordButton.UseVisualStyleBackColor = true;
             this.resetPasswordButton.Click += new System.EventHandler(this.resetPasswordButton_Click);
             // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.Image = global::BinCompeteSoft.Properties.Resources.Logo_WeDeb;
+            this.logoPictureBox.Location = new System.Drawing.Point(6, 174);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(169, 92);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPictureBox.TabIndex = 12;
+            this.logoPictureBox.TabStop = false;
+            // 
+            // notificationsExListBox
+            // 
+            this.notificationsExListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.notificationsExListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.notificationsExListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notificationsExListBox.FormattingEnabled = true;
+            this.notificationsExListBox.IntegralHeight = false;
+            this.notificationsExListBox.ItemHeight = 80;
+            this.notificationsExListBox.Location = new System.Drawing.Point(6, 29);
+            this.notificationsExListBox.Name = "notificationsExListBox";
+            this.notificationsExListBox.Size = new System.Drawing.Size(197, 341);
+            this.notificationsExListBox.TabIndex = 16;
+            // 
             // JudgeDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,7 +533,6 @@
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.JudgeDashboardForm_Load);
             this.navigationGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.notificationsGroupBox.ResumeLayout(false);
             this.contestsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contestsDataGridView)).EndInit();
@@ -541,6 +540,7 @@
             this.statisticsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bestProjectsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryStatisticsChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

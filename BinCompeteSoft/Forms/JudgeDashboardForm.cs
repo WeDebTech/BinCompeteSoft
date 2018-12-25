@@ -161,33 +161,7 @@ namespace BinCompeteSoft
                 // Check if the best projects have already been loaded.
                 if (statistic.BestProjects.Count <= 0)
                 {
-                    // Get the best projects from the database.
-                    string query = "SELECT TOP 5 proj.project_name, eval.final_evaluation " +
-                        "FROM project_table proj " +
-                        "INNER JOIN final_result_table eval " +
-                        "ON proj.id_project = eval.id_project " +
-                        "WHERE proj.project_year = @selected_year " +
-                        "ORDER BY eval.final_evaluation DESC";
-
-                    SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
-                    cmd.CommandText = query;
-
-                    SqlParameter sqlProjectYear = new SqlParameter("@selected_year", SqlDbType.Int);
-                    sqlProjectYear.Value = year;
-                    cmd.Parameters.Add(sqlProjectYear);
-
-                    using (DbDataReader reader = cmd.ExecuteReader())
-                    {
-                        // Check if statistics exist.
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                BestProjects bestProjects = new BestProjects(reader.GetString(0), (double)reader.GetDecimal(1));
-                                statistic.BestProjects.Add(bestProjects);
-                            }
-                        }
-                    }
+                    RefreshTopProjects(year);
                 }
                 
                 // Update the DataGridView with the selected year's best projects.
@@ -199,6 +173,51 @@ namespace BinCompeteSoft
             else
             {
                 MessageBox.Show(null, "Unable to find the selected year statistics.", "Error");
+            }
+        }
+
+        /// <summary>
+        /// This method will ge the top projects from the database within the given year.
+        /// </summary>
+        /// <param name="year">The year to search for.</param>
+        /// <param name="statistic">The statistic object to update.</param>
+        private void RefreshTopProjects(int year)
+        {
+            // Get the best projects from the database.
+            string query = "SELECT TOP 5 proj.project_name, eval.final_evaluation " +
+                "FROM project_table proj " +
+                "INNER JOIN final_result_table eval " +
+                "ON proj.id_project = eval.id_project " +
+                "WHERE proj.project_year = @selected_year " +
+                "ORDER BY eval.final_evaluation DESC";
+
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            SqlParameter sqlProjectYear = new SqlParameter("@selected_year", SqlDbType.Int);
+            sqlProjectYear.Value = year;
+            cmd.Parameters.Add(sqlProjectYear);
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if statistics exist.
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        // Get the correct statistic year.
+                        foreach(Statistic statistic in Data._instance.Statistics)
+                        {
+                            if(statistic.Year == year)
+                            {
+                                BestProjects bestProjects = new BestProjects(reader.GetString(0), (double)reader.GetDecimal(1));
+                                statistic.BestProjects.Add(bestProjects);
+
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -284,7 +303,7 @@ namespace BinCompeteSoft
         public void UpdateContestsAndNotificationsList()
         {
             // Sets the DataGridView's columns.
-            contestsDataGridView.ColumnCount = 7;
+            contestsDataGridView.ColumnCount = 8;
             contestsDataGridView.Columns[0].Name = "Id";
             contestsDataGridView.Columns[0].Visible = false;
             contestsDataGridView.Columns[1].Name = "Name";
@@ -303,6 +322,9 @@ namespace BinCompeteSoft
             contestsDataGridView.Columns[6].Name = "Has voted";
             contestsDataGridView.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             contestsDataGridView.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            contestsDataGridView.Columns[7].Name = "Results calculated";
+            contestsDataGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            contestsDataGridView.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Clear all previous data in the DataGridView.
             contestsDataGridView.Rows.Clear();
@@ -311,44 +333,98 @@ namespace BinCompeteSoft
 
             Data._instance.RefreshContests();
 
+            // Cycle through all contests.
+            foreach (ContestDetails contest in Data._instance.ContestDetails)
+            {
+                // Check if the contest is created by the current user.
+                if (Data._instance.GetIfContestIsCreatedByCurrentUser(contest.Id))
+                {
+                    contest.HasBeenCreatedByCurrentUser = true;
+
+                    // Check if the contest has already had it's results calculated.
+                    if (Data._instance.GetContestResultsCalculatedStatus(contest.Id))
+                    {
+                        contest.HasResultsCalculated = true;
+                    }
+                }
+                else
+                {
+                    // Check if the contest has already been voted by the current user.
+                    if (Data._instance.GetContestVoteStatus(contest.Id))
+                    {
+                        contest.HasVoted = true;
+                    }
+                }
+            }
+
             // Get the current time.
             DateTime currentDate = DateTime.Now;
 
             // Loop through all contests, and if they are after today's date, show them.
+            // Also show contests that have finished, but haven't had their results calculated.
             foreach(ContestDetails contest in Data._instance.ContestDetails)
             {
-                if(contest.VotingDate > currentDate)
+                if(contest.VotingDate > currentDate || !contest.HasResultsCalculated)
                 {
                     // Add contest to DataGridView.
                     contestsDataGridView.Rows.Add(contest.Id, contest.Name, contest.Description, contest.StartDate, contest.LimitDate, contest.VotingDate, contest.HasVoted);
 
                     // Set the has voted column properly.
-                    if (contest.HasVoted)
+                    if (contest.HasBeenCreatedByCurrentUser)
                     {
-                        contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "✓";
+                        contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "-";
                     }
                     else
                     {
-                        contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "X";
-                    }
-
-                    // Check if contest is after the limit date and hasn't been voted yet.
-                    if(contest.LimitDate < DateTime.Now && !contest.HasVoted)
-                    {
-                        string notificationEnd;
-
-                        // Check if the contest ends today.
-                        if((contest.VotingDate - currentDate).Days <= 1)
+                        if (contest.HasVoted)
                         {
-                            notificationEnd = "' will end today.";
+                            contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "✓";
                         }
                         else
                         {
-                            notificationEnd = "' will end in " + (contest.VotingDate - currentDate).Days + " days.";
+                            contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "X";
                         }
+                    }
 
+                    // Set the results calculated properly.
+                    if (contest.HasBeenCreatedByCurrentUser)
+                    {
+                        if (contest.HasResultsCalculated)
+                        {
+                            contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "✓";
+                        }
+                        else
+                        {
+                            contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[6].Value = "X";
+                        }
+                    }
+                    else
+                    {
+                        contestsDataGridView.Rows[contestsDataGridView.RowCount - 1].Cells[7].Value = "-";
+                    }
+
+                    // Check if contest is after the limit date and hasn't been voted yet, or hasn't had it's results calculated yets.
+                    if(!contest.HasBeenCreatedByCurrentUser && contest.LimitDate < DateTime.Now && !contest.HasVoted)
+                    {
+                            string notificationEnd;
+
+                            // Check if the contest ends today.
+                            if ((contest.VotingDate - currentDate).Days <= 1)
+                            {
+                                notificationEnd = "' will end in less than a day.";
+                            }
+                            else
+                            {
+                                notificationEnd = "' will end in " + (contest.VotingDate - currentDate).Days + " days.";
+                            }
+
+                            // Add a notification to the notification list.
+                            notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest '" + contest.Name + notificationEnd));
+                    }
+                    else if(contest.HasBeenCreatedByCurrentUser && contest.VotingDate < DateTime.Now && !contest.HasResultsCalculated)
+                    {
                         // Add a notification to the notification list.
-                        notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest '" + contest.Name + notificationEnd));
+                        notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest '" + contest.Name + "' has ended it's voting period, but hasn't had it's results calculated yet."));
                     }
                 }
             }
@@ -384,7 +460,7 @@ namespace BinCompeteSoft
                     hasVoted = true;
                 }
 
-                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[5].Value, hasVoted);
+                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[5].Value, hasVoted, false, false);
 
                 // Check if the contest has been created by the current user.
                 // If yes, show the edit interface, otherwise show the voting interface.
@@ -408,6 +484,11 @@ namespace BinCompeteSoft
                     this.MdiParent.Text = "Contest details";
                     this.Hide();
                 }
+
+                UpdateContestsAndNotificationsList();
+                UpdateCategoryStatisticsChart(statisticsYears[selectedYear]);
+                UpdateTopProjects(statisticsYears[selectedYear]);
+                UpdateOtherStatistics(statisticsYears[selectedYear]);
             }
             else
             {

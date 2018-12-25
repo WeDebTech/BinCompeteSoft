@@ -79,7 +79,7 @@ namespace BinCompeteSoft
             if (contestDataGridView.CurrentCell != null)
             {
                 // Get the selected contest.
-                ContestDetails selectedContest = new ContestDetails((int)contestDataGridView.CurrentRow.Cells[0].Value, contestDataGridView.CurrentRow.Cells[1].Value.ToString(), contestDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestDataGridView.CurrentRow.Cells[5].Value, (bool)contestDataGridView.CurrentRow.Cells[6].Value);
+                ContestDetails selectedContest = new ContestDetails((int)contestDataGridView.CurrentRow.Cells[0].Value, contestDataGridView.CurrentRow.Cells[1].Value.ToString(), contestDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestDataGridView.CurrentRow.Cells[5].Value, (bool)contestDataGridView.CurrentRow.Cells[6].Value, false, false);
 
                 // Pass it to the EditContestForm and show it.
                 ContestForm contestForm = new ContestForm(this, selectedContest, true);

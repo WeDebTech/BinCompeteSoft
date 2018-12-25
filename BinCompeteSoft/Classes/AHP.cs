@@ -6,30 +6,22 @@ using System.Threading.Tasks;
 
 namespace BinCompeteSoft
 {
-    public class AHP
+    public static class AHP
     {
-        private Project[] projects;
-
-
-        public AHP(Project[] projects)
-        {
-            this.projects = projects;
-        }
-
         /// <summary>
         /// Calculates the projects scores using the AHP method
         /// </summary>
-        /// <param name="projectsScores">A matrix containing the projects scores. All values must be positive.</param>
+        /// <param name="contestEvaluation">A ContestEvaluation object containing all evaluations for the contest. All values must be positive.</param>
         /// <param name="criteriaScores">A matrix containing the criteria scores. All values must be positive.</param>
         /// <returns>The projects final score.</returns>
-        public double[] CalculateAHP(double[,,,] projectsScores, double[,] criteriaScores)
+        public static double[] CalculateAHP(ContestEvaluation contestEvaluation, double[,] criteriaScores)
         {
             // Check criteria values matrix for errors
-            for(int i = 0; i < criteriaScores.GetLength(0); i++)
+            for (int i = 0; i < criteriaScores.GetLength(0); i++)
             {
-                for(int j = 0; j < criteriaScores.GetLength(1); j++)
+                for (int j = 0; j < criteriaScores.GetLength(1); j++)
                 {
-                    if (criteriaScores[i,j] < 0 || criteriaScores[i,j] > 9)
+                    if (criteriaScores[i, j] < 0 || criteriaScores[i, j] > 9)
                     {
                         throw new ArgumentOutOfRangeException("Criteria values must be between 1/9 and 9.");
                     }
@@ -37,15 +29,15 @@ namespace BinCompeteSoft
             }
 
             // Check project score values matrix for errors
-            for (int i = 0; i < projectsScores.GetLength(0); i++)
+            foreach (JudgeEvaluation judgeEvaluation in contestEvaluation.JudgeEvaluations)
             {
-                for (int j = 0; j < projectsScores.GetLength(1); j++)
+                foreach (Evaluation evaluation in judgeEvaluation.CriteriaEvaluation)
                 {
-                    for (int k = 0; k < projectsScores.GetLength(2); k++)
+                    for (int i = 0; i < evaluation.EvaluationMatrix.GetLength(0); i++)
                     {
-                        for(int l = 0; l < projectsScores.GetLength(3); l++)
+                        for (int j = 0; j < evaluation.EvaluationMatrix.GetLength(0); j++)
                         {
-                            if (projectsScores[i, j, k, l] < 0 || projectsScores[i, j, k, l] > 9)
+                            if (evaluation.EvaluationMatrix[i, j] < 0 || evaluation.EvaluationMatrix[i, j] > 9)
                             {
                                 throw new ArgumentOutOfRangeException("Project values must be between 1/9 and 9.");
                             }
@@ -70,48 +62,57 @@ namespace BinCompeteSoft
             double[,] projectsRatioTemp;
 
             // Temporary matrix to hold the criteria final values, size is (number of judges * number of projects)
-            double[,] projectsFinalValues = new double[projectsScores.GetLength(0), projectsScores.GetLength(2)];
+            double[,] projectsFinalValues = new double[contestEvaluation.JudgeEvaluations.Count, contestEvaluation.JudgeEvaluations[0].CriteriaEvaluation[0].EvaluationMatrix.GetLength(0)];
+
+            int m = 0;
+            int n = 0;
 
             // Calculate projects step for each criteria and judge
             // Here we cycle through judges
-            for (int i = 0; i < projectsScores.GetLength(0); i++)
+            foreach(JudgeEvaluation judgeEvaluation in contestEvaluation.JudgeEvaluations)
             {
-                // Final values matrix size is (number of criteria * number of projects)
-                projectsRatioTemp = new double[projectsScores.GetLength(1), projectsScores.GetLength(2)];
+                // Final values matrix size is (number of criteria * number of projects).
+                projectsRatioTemp = new double[judgeEvaluation.CriteriaEvaluation.Count, judgeEvaluation.CriteriaEvaluation[0].EvaluationMatrix.GetLength(0)];
 
-                // Here we cycles through criterias
-                for (int j = 0; j < projectsScores.GetLength(1); j++)
+                m = 0;
+
+                // Here we cycle through criterias.
+                foreach(Evaluation evaluation in judgeEvaluation.CriteriaEvaluation)
                 {
-                    projectsScoresTemp = new double[projectsScores.GetLength(2), projectsScores.GetLength(3)];
+                    projectsScoresTemp = new double[evaluation.EvaluationMatrix.GetLength(0), evaluation.EvaluationMatrix.GetLength(1)];
 
-                    for (int k = 0; k < projectsScores.GetLength(2); k++)
+                    for(int i = 0; i < evaluation.EvaluationMatrix.GetLength(0); i++)
                     {
-                        for(int l = 0; l < projectsScores.GetLength(3); l++)
+                        for(int j = 0; j < evaluation.EvaluationMatrix.GetLength(1); j++)
                         {
-                            // Assign a single judge criteria values to a smalled matrix so it can be more easily evaluated
-                            projectsScoresTemp[k, l] = projectsScores[i, j, k, l];
+                            // Assign a single judg criteria values to a smaller matrix so it can be more easily evaluated.
+                            projectsScoresTemp[i, j] = evaluation.EvaluationMatrix[i, j];
                         }
                     }
 
-                    // Calculate criteria step
+                    // Calculate criteria step.
                     projectsStepTemp = CalculateStep(projectsScoresTemp);
 
-                    // Calculate criteria ratio
+                    // Calculate criteria ratio.
                     double[] projectRatioArrayTemp = CalculateRatio(projectsStepTemp);
 
-                    for(int m = 0; m < projectRatioArrayTemp.Length; m++)
+                    for(int k = 0; k < projectRatioArrayTemp.Length; k++)
                     {
-                        projectsRatioTemp[j, m] = projectRatioArrayTemp[m];
+                        projectsRatioTemp[m, k] = projectRatioArrayTemp[k];
                     }
+
+                    m++;
                 }
 
-                // Calculate final values with all previous calculates final values for this judge
+                // Calculate final values with all previous calculated final values for this judge.
                 double[] projectFinalValuesTemp = CalculateFinalValues(projectsRatioTemp, criteriaScoresRatio);
 
-                for(int n = 0; n < projectFinalValuesTemp.Length; n++)
+                for(int l = 0; l < projectFinalValuesTemp.Length; l++)
                 {
-                    projectsFinalValues[i, n] = projectFinalValuesTemp[n];
+                    projectsFinalValues[n, l] = projectFinalValuesTemp[l];
                 }
+
+                n++;
             }
 
             // Array that will hold all the projects final values
@@ -138,7 +139,7 @@ namespace BinCompeteSoft
         /// <returns>Returns the calculated step array.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when a value in the criteriaMatrix matrix
         /// is negative.</exception>
-        public double[] CalculateStep(double[,] criteriaMatrix)
+        public static double[] CalculateStep(double[,] criteriaMatrix)
         {
             // Create the step array with the length of the criteria matrix
             double[] stepArray = new double[criteriaMatrix.GetLength(0)];
@@ -175,7 +176,7 @@ namespace BinCompeteSoft
         /// <returns>The calculated ratios array.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when a value in the criteriaStep array
         /// is negative.</exception>
-        public double[] CalculateRatio(double[] criteriaStep)
+        public static double[] CalculateRatio(double[] criteriaStep)
         {
             double sum = 0;
 
@@ -208,7 +209,7 @@ namespace BinCompeteSoft
         /// <returns>The calculated final values array.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when a value in the criteriaRatios or criteriaFinalRatios
         /// array is negative.</exception>
-        public double[] CalculateFinalValues(double[,] criteriaRatios, double[] criteriaFinalRatios)
+        public static double[] CalculateFinalValues(double[,] criteriaRatios, double[] criteriaFinalRatios)
         {
             double[] priorities = new double[criteriaRatios.GetLength(1)];
 

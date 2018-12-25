@@ -46,27 +46,29 @@ namespace BinCompeteSoft {
         
         private user_tableDataTable tableuser_table;
         
-        private global::System.Data.DataRelation relationFK__contest_c__id_co__3A6CA48E;
+        private global::System.Data.DataRelation relationFK__contest_c__id_co__57FD0775;
         
-        private global::System.Data.DataRelation relationFK__contest_c__id_cr__39788055;
+        private global::System.Data.DataRelation relationFK__contest_c__id_cr__5708E33C;
         
-        private global::System.Data.DataRelation relationFK__contest_j__id_co__2EFAF1E2;
+        private global::System.Data.DataRelation relationFK__contest_j__id_co__4C8B54C9;
         
-        private global::System.Data.DataRelation relationFK__contest_j__id_us__2FEF161B;
+        private global::System.Data.DataRelation relationFK__contest_j__id_us__4D7F7902;
         
-        private global::System.Data.DataRelation relationFK__evaluatio__id_cr__3E3D3572;
+        private global::System.Data.DataRelation relationFK__evaluatio__id_co__5AD97420;
         
-        private global::System.Data.DataRelation relationFK__evaluatio__id_pr__3D491139;
+        private global::System.Data.DataRelation relationFK__evaluatio__id_cr__5BCD9859;
         
-        private global::System.Data.DataRelation relationFK__evaluatio__id_us__3C54ED00;
+        private global::System.Data.DataRelation relationFK__evaluatio__id_us__59E54FE7;
         
-        private global::System.Data.DataRelation relationFK__final_res__id_pr__40257DE4;
+        private global::System.Data.DataRelation relationFK__final_res__id_co__5DB5E0CB;
         
-        private global::System.Data.DataRelation relationFK__project_c__id_ca__420DC656;
+        private global::System.Data.DataRelation relationFK__final_res__id_pr__5EAA0504;
         
-        private global::System.Data.DataRelation relationFK__project_t__id_ca__35A7EF71;
+        private global::System.Data.DataRelation relationFK__project_c__id_ca__60924D76;
         
-        private global::System.Data.DataRelation relationFK__project_t__id_co__34B3CB38;
+        private global::System.Data.DataRelation relationFK__project_t__id_ca__53385258;
+        
+        private global::System.Data.DataRelation relationFK__project_t__id_co__52442E1F;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -456,17 +458,18 @@ namespace BinCompeteSoft {
                     this.tableuser_table.InitVars();
                 }
             }
-            this.relationFK__contest_c__id_co__3A6CA48E = this.Relations["FK__contest_c__id_co__3A6CA48E"];
-            this.relationFK__contest_c__id_cr__39788055 = this.Relations["FK__contest_c__id_cr__39788055"];
-            this.relationFK__contest_j__id_co__2EFAF1E2 = this.Relations["FK__contest_j__id_co__2EFAF1E2"];
-            this.relationFK__contest_j__id_us__2FEF161B = this.Relations["FK__contest_j__id_us__2FEF161B"];
-            this.relationFK__evaluatio__id_cr__3E3D3572 = this.Relations["FK__evaluatio__id_cr__3E3D3572"];
-            this.relationFK__evaluatio__id_pr__3D491139 = this.Relations["FK__evaluatio__id_pr__3D491139"];
-            this.relationFK__evaluatio__id_us__3C54ED00 = this.Relations["FK__evaluatio__id_us__3C54ED00"];
-            this.relationFK__final_res__id_pr__40257DE4 = this.Relations["FK__final_res__id_pr__40257DE4"];
-            this.relationFK__project_c__id_ca__420DC656 = this.Relations["FK__project_c__id_ca__420DC656"];
-            this.relationFK__project_t__id_ca__35A7EF71 = this.Relations["FK__project_t__id_ca__35A7EF71"];
-            this.relationFK__project_t__id_co__34B3CB38 = this.Relations["FK__project_t__id_co__34B3CB38"];
+            this.relationFK__contest_c__id_co__57FD0775 = this.Relations["FK__contest_c__id_co__57FD0775"];
+            this.relationFK__contest_c__id_cr__5708E33C = this.Relations["FK__contest_c__id_cr__5708E33C"];
+            this.relationFK__contest_j__id_co__4C8B54C9 = this.Relations["FK__contest_j__id_co__4C8B54C9"];
+            this.relationFK__contest_j__id_us__4D7F7902 = this.Relations["FK__contest_j__id_us__4D7F7902"];
+            this.relationFK__evaluatio__id_co__5AD97420 = this.Relations["FK__evaluatio__id_co__5AD97420"];
+            this.relationFK__evaluatio__id_cr__5BCD9859 = this.Relations["FK__evaluatio__id_cr__5BCD9859"];
+            this.relationFK__evaluatio__id_us__59E54FE7 = this.Relations["FK__evaluatio__id_us__59E54FE7"];
+            this.relationFK__final_res__id_co__5DB5E0CB = this.Relations["FK__final_res__id_co__5DB5E0CB"];
+            this.relationFK__final_res__id_pr__5EAA0504 = this.Relations["FK__final_res__id_pr__5EAA0504"];
+            this.relationFK__project_c__id_ca__60924D76 = this.Relations["FK__project_c__id_ca__60924D76"];
+            this.relationFK__project_t__id_ca__53385258 = this.Relations["FK__project_t__id_ca__53385258"];
+            this.relationFK__project_t__id_co__52442E1F = this.Relations["FK__project_t__id_co__52442E1F"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -499,50 +502,54 @@ namespace BinCompeteSoft {
             base.Tables.Add(this.tableproject_table);
             this.tableuser_table = new user_tableDataTable();
             base.Tables.Add(this.tableuser_table);
-            this.relationFK__contest_c__id_co__3A6CA48E = new global::System.Data.DataRelation("FK__contest_c__id_co__3A6CA48E", new global::System.Data.DataColumn[] {
+            this.relationFK__contest_c__id_co__57FD0775 = new global::System.Data.DataRelation("FK__contest_c__id_co__57FD0775", new global::System.Data.DataColumn[] {
                         this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_criteria_table.id_contestColumn}, false);
-            this.Relations.Add(this.relationFK__contest_c__id_co__3A6CA48E);
-            this.relationFK__contest_c__id_cr__39788055 = new global::System.Data.DataRelation("FK__contest_c__id_cr__39788055", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_c__id_co__57FD0775);
+            this.relationFK__contest_c__id_cr__5708E33C = new global::System.Data.DataRelation("FK__contest_c__id_cr__5708E33C", new global::System.Data.DataColumn[] {
                         this.tablecriteria_data_table.id_criteriaColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_criteria_table.id_criteriaColumn}, false);
-            this.Relations.Add(this.relationFK__contest_c__id_cr__39788055);
-            this.relationFK__contest_j__id_co__2EFAF1E2 = new global::System.Data.DataRelation("FK__contest_j__id_co__2EFAF1E2", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_c__id_cr__5708E33C);
+            this.relationFK__contest_j__id_co__4C8B54C9 = new global::System.Data.DataRelation("FK__contest_j__id_co__4C8B54C9", new global::System.Data.DataColumn[] {
                         this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_juri_table.id_contestColumn}, false);
-            this.Relations.Add(this.relationFK__contest_j__id_co__2EFAF1E2);
-            this.relationFK__contest_j__id_us__2FEF161B = new global::System.Data.DataRelation("FK__contest_j__id_us__2FEF161B", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_j__id_co__4C8B54C9);
+            this.relationFK__contest_j__id_us__4D7F7902 = new global::System.Data.DataRelation("FK__contest_j__id_us__4D7F7902", new global::System.Data.DataColumn[] {
                         this.tableuser_table.id_userColumn}, new global::System.Data.DataColumn[] {
                         this.tablecontest_juri_table.id_userColumn}, false);
-            this.Relations.Add(this.relationFK__contest_j__id_us__2FEF161B);
-            this.relationFK__evaluatio__id_cr__3E3D3572 = new global::System.Data.DataRelation("FK__evaluatio__id_cr__3E3D3572", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__contest_j__id_us__4D7F7902);
+            this.relationFK__evaluatio__id_co__5AD97420 = new global::System.Data.DataRelation("FK__evaluatio__id_co__5AD97420", new global::System.Data.DataColumn[] {
+                        this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
+                        this.tableevaluation_table.id_contestColumn}, false);
+            this.Relations.Add(this.relationFK__evaluatio__id_co__5AD97420);
+            this.relationFK__evaluatio__id_cr__5BCD9859 = new global::System.Data.DataRelation("FK__evaluatio__id_cr__5BCD9859", new global::System.Data.DataColumn[] {
                         this.tablecriteria_data_table.id_criteriaColumn}, new global::System.Data.DataColumn[] {
                         this.tableevaluation_table.id_criteriaColumn}, false);
-            this.Relations.Add(this.relationFK__evaluatio__id_cr__3E3D3572);
-            this.relationFK__evaluatio__id_pr__3D491139 = new global::System.Data.DataRelation("FK__evaluatio__id_pr__3D491139", new global::System.Data.DataColumn[] {
-                        this.tableproject_table.id_projectColumn}, new global::System.Data.DataColumn[] {
-                        this.tableevaluation_table.id_projectColumn}, false);
-            this.Relations.Add(this.relationFK__evaluatio__id_pr__3D491139);
-            this.relationFK__evaluatio__id_us__3C54ED00 = new global::System.Data.DataRelation("FK__evaluatio__id_us__3C54ED00", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__evaluatio__id_cr__5BCD9859);
+            this.relationFK__evaluatio__id_us__59E54FE7 = new global::System.Data.DataRelation("FK__evaluatio__id_us__59E54FE7", new global::System.Data.DataColumn[] {
                         this.tableuser_table.id_userColumn}, new global::System.Data.DataColumn[] {
                         this.tableevaluation_table.id_userColumn}, false);
-            this.Relations.Add(this.relationFK__evaluatio__id_us__3C54ED00);
-            this.relationFK__final_res__id_pr__40257DE4 = new global::System.Data.DataRelation("FK__final_res__id_pr__40257DE4", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__evaluatio__id_us__59E54FE7);
+            this.relationFK__final_res__id_co__5DB5E0CB = new global::System.Data.DataRelation("FK__final_res__id_co__5DB5E0CB", new global::System.Data.DataColumn[] {
+                        this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
+                        this.tablefinal_result_table.id_contestColumn}, false);
+            this.Relations.Add(this.relationFK__final_res__id_co__5DB5E0CB);
+            this.relationFK__final_res__id_pr__5EAA0504 = new global::System.Data.DataRelation("FK__final_res__id_pr__5EAA0504", new global::System.Data.DataColumn[] {
                         this.tableproject_table.id_projectColumn}, new global::System.Data.DataColumn[] {
                         this.tablefinal_result_table.id_projectColumn}, false);
-            this.Relations.Add(this.relationFK__final_res__id_pr__40257DE4);
-            this.relationFK__project_c__id_ca__420DC656 = new global::System.Data.DataRelation("FK__project_c__id_ca__420DC656", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__final_res__id_pr__5EAA0504);
+            this.relationFK__project_c__id_ca__60924D76 = new global::System.Data.DataRelation("FK__project_c__id_ca__60924D76", new global::System.Data.DataColumn[] {
                         this.tableproject_category.id_categoryColumn}, new global::System.Data.DataColumn[] {
                         this.tableproject_category_stats.id_categoryColumn}, false);
-            this.Relations.Add(this.relationFK__project_c__id_ca__420DC656);
-            this.relationFK__project_t__id_ca__35A7EF71 = new global::System.Data.DataRelation("FK__project_t__id_ca__35A7EF71", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__project_c__id_ca__60924D76);
+            this.relationFK__project_t__id_ca__53385258 = new global::System.Data.DataRelation("FK__project_t__id_ca__53385258", new global::System.Data.DataColumn[] {
                         this.tableproject_category.id_categoryColumn}, new global::System.Data.DataColumn[] {
                         this.tableproject_table.id_categoryColumn}, false);
-            this.Relations.Add(this.relationFK__project_t__id_ca__35A7EF71);
-            this.relationFK__project_t__id_co__34B3CB38 = new global::System.Data.DataRelation("FK__project_t__id_co__34B3CB38", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__project_t__id_ca__53385258);
+            this.relationFK__project_t__id_co__52442E1F = new global::System.Data.DataRelation("FK__project_t__id_co__52442E1F", new global::System.Data.DataColumn[] {
                         this.tablecontest_table.id_contestColumn}, new global::System.Data.DataColumn[] {
                         this.tableproject_table.id_contestColumn}, false);
-            this.Relations.Add(this.relationFK__project_t__id_co__34B3CB38);
+            this.Relations.Add(this.relationFK__project_t__id_co__52442E1F);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -796,16 +803,16 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public contest_criteria_tableRow Addcontest_criteria_tableRow(criteria_data_tableRow parentcriteria_data_tableRowByFK__contest_c__id_cr__39788055, contest_tableRow parentcontest_tableRowByFK__contest_c__id_co__3A6CA48E) {
+            public contest_criteria_tableRow Addcontest_criteria_tableRow(criteria_data_tableRow parentcriteria_data_tableRowByFK__contest_c__id_cr__5708E33C, contest_tableRow parentcontest_tableRowByFK__contest_c__id_co__57FD0775) {
                 contest_criteria_tableRow rowcontest_criteria_tableRow = ((contest_criteria_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null};
-                if ((parentcriteria_data_tableRowByFK__contest_c__id_cr__39788055 != null)) {
-                    columnValuesArray[0] = parentcriteria_data_tableRowByFK__contest_c__id_cr__39788055[0];
+                if ((parentcriteria_data_tableRowByFK__contest_c__id_cr__5708E33C != null)) {
+                    columnValuesArray[0] = parentcriteria_data_tableRowByFK__contest_c__id_cr__5708E33C[0];
                 }
-                if ((parentcontest_tableRowByFK__contest_c__id_co__3A6CA48E != null)) {
-                    columnValuesArray[1] = parentcontest_tableRowByFK__contest_c__id_co__3A6CA48E[0];
+                if ((parentcontest_tableRowByFK__contest_c__id_co__57FD0775 != null)) {
+                    columnValuesArray[1] = parentcontest_tableRowByFK__contest_c__id_co__57FD0775[0];
                 }
                 rowcontest_criteria_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcontest_criteria_tableRow);
@@ -1083,18 +1090,18 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public contest_juri_tableRow Addcontest_juri_tableRow(contest_tableRow parentcontest_tableRowByFK__contest_j__id_co__2EFAF1E2, user_tableRow parentuser_tableRowByFK__contest_j__id_us__2FEF161B, bool has_voted, bool president) {
+            public contest_juri_tableRow Addcontest_juri_tableRow(contest_tableRow parentcontest_tableRowByFK__contest_j__id_co__4C8B54C9, user_tableRow parentuser_tableRowByFK__contest_j__id_us__4D7F7902, bool has_voted, bool president) {
                 contest_juri_tableRow rowcontest_juri_tableRow = ((contest_juri_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         has_voted,
                         president};
-                if ((parentcontest_tableRowByFK__contest_j__id_co__2EFAF1E2 != null)) {
-                    columnValuesArray[0] = parentcontest_tableRowByFK__contest_j__id_co__2EFAF1E2[0];
+                if ((parentcontest_tableRowByFK__contest_j__id_co__4C8B54C9 != null)) {
+                    columnValuesArray[0] = parentcontest_tableRowByFK__contest_j__id_co__4C8B54C9[0];
                 }
-                if ((parentuser_tableRowByFK__contest_j__id_us__2FEF161B != null)) {
-                    columnValuesArray[1] = parentuser_tableRowByFK__contest_j__id_us__2FEF161B[0];
+                if ((parentuser_tableRowByFK__contest_j__id_us__4D7F7902 != null)) {
+                    columnValuesArray[1] = parentuser_tableRowByFK__contest_j__id_us__4D7F7902[0];
                 }
                 rowcontest_juri_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcontest_juri_tableRow);
@@ -1911,7 +1918,7 @@ namespace BinCompeteSoft {
             
             private global::System.Data.DataColumn columnid_user;
             
-            private global::System.Data.DataColumn columnid_project;
+            private global::System.Data.DataColumn columnid_contest;
             
             private global::System.Data.DataColumn columnid_criteria;
             
@@ -1960,9 +1967,9 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn id_projectColumn {
+            public global::System.Data.DataColumn id_contestColumn {
                 get {
-                    return this.columnid_project;
+                    return this.columnid_contest;
                 }
             }
             
@@ -2019,21 +2026,21 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public evaluation_tableRow Addevaluation_tableRow(user_tableRow parentuser_tableRowByFK__evaluatio__id_us__3C54ED00, project_tableRow parentproject_tableRowByFK__evaluatio__id_pr__3D491139, criteria_data_tableRow parentcriteria_data_tableRowByFK__evaluatio__id_cr__3E3D3572, string evaluation) {
+            public evaluation_tableRow Addevaluation_tableRow(user_tableRow parentuser_tableRowByFK__evaluatio__id_us__59E54FE7, contest_tableRow parentcontest_tableRowByFK__evaluatio__id_co__5AD97420, criteria_data_tableRow parentcriteria_data_tableRowByFK__evaluatio__id_cr__5BCD9859, string evaluation) {
                 evaluation_tableRow rowevaluation_tableRow = ((evaluation_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null,
                         evaluation};
-                if ((parentuser_tableRowByFK__evaluatio__id_us__3C54ED00 != null)) {
-                    columnValuesArray[0] = parentuser_tableRowByFK__evaluatio__id_us__3C54ED00[0];
+                if ((parentuser_tableRowByFK__evaluatio__id_us__59E54FE7 != null)) {
+                    columnValuesArray[0] = parentuser_tableRowByFK__evaluatio__id_us__59E54FE7[0];
                 }
-                if ((parentproject_tableRowByFK__evaluatio__id_pr__3D491139 != null)) {
-                    columnValuesArray[1] = parentproject_tableRowByFK__evaluatio__id_pr__3D491139[0];
+                if ((parentcontest_tableRowByFK__evaluatio__id_co__5AD97420 != null)) {
+                    columnValuesArray[1] = parentcontest_tableRowByFK__evaluatio__id_co__5AD97420[0];
                 }
-                if ((parentcriteria_data_tableRowByFK__evaluatio__id_cr__3E3D3572 != null)) {
-                    columnValuesArray[2] = parentcriteria_data_tableRowByFK__evaluatio__id_cr__3E3D3572[0];
+                if ((parentcriteria_data_tableRowByFK__evaluatio__id_cr__5BCD9859 != null)) {
+                    columnValuesArray[2] = parentcriteria_data_tableRowByFK__evaluatio__id_cr__5BCD9859[0];
                 }
                 rowevaluation_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowevaluation_tableRow);
@@ -2058,7 +2065,7 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnid_user = base.Columns["id_user"];
-                this.columnid_project = base.Columns["id_project"];
+                this.columnid_contest = base.Columns["id_contest"];
                 this.columnid_criteria = base.Columns["id_criteria"];
                 this.columnevaluation = base.Columns["evaluation"];
             }
@@ -2068,8 +2075,8 @@ namespace BinCompeteSoft {
             private void InitClass() {
                 this.columnid_user = new global::System.Data.DataColumn("id_user", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_user);
-                this.columnid_project = new global::System.Data.DataColumn("id_project", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_project);
+                this.columnid_contest = new global::System.Data.DataColumn("id_contest", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_contest);
                 this.columnid_criteria = new global::System.Data.DataColumn("id_criteria", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_criteria);
                 this.columnevaluation = new global::System.Data.DataColumn("evaluation", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2208,6 +2215,8 @@ namespace BinCompeteSoft {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class final_result_tableDataTable : global::System.Data.TypedTableBase<final_result_tableRow> {
             
+            private global::System.Data.DataColumn columnid_contest;
+            
             private global::System.Data.DataColumn columnid_project;
             
             private global::System.Data.DataColumn columnfinal_evaluation;
@@ -2243,6 +2252,14 @@ namespace BinCompeteSoft {
             protected final_result_tableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn id_contestColumn {
+                get {
+                    return this.columnid_contest;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2298,13 +2315,17 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public final_result_tableRow Addfinal_result_tableRow(project_tableRow parentproject_tableRowByFK__final_res__id_pr__40257DE4, decimal final_evaluation) {
+            public final_result_tableRow Addfinal_result_tableRow(contest_tableRow parentcontest_tableRowByFK__final_res__id_co__5DB5E0CB, project_tableRow parentproject_tableRowByFK__final_res__id_pr__5EAA0504, decimal final_evaluation) {
                 final_result_tableRow rowfinal_result_tableRow = ((final_result_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
+                        null,
                         final_evaluation};
-                if ((parentproject_tableRowByFK__final_res__id_pr__40257DE4 != null)) {
-                    columnValuesArray[0] = parentproject_tableRowByFK__final_res__id_pr__40257DE4[0];
+                if ((parentcontest_tableRowByFK__final_res__id_co__5DB5E0CB != null)) {
+                    columnValuesArray[0] = parentcontest_tableRowByFK__final_res__id_co__5DB5E0CB[0];
+                }
+                if ((parentproject_tableRowByFK__final_res__id_pr__5EAA0504 != null)) {
+                    columnValuesArray[1] = parentproject_tableRowByFK__final_res__id_pr__5EAA0504[0];
                 }
                 rowfinal_result_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowfinal_result_tableRow);
@@ -2328,6 +2349,7 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
+                this.columnid_contest = base.Columns["id_contest"];
                 this.columnid_project = base.Columns["id_project"];
                 this.columnfinal_evaluation = base.Columns["final_evaluation"];
             }
@@ -2335,6 +2357,8 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
+                this.columnid_contest = new global::System.Data.DataColumn("id_contest", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_contest);
                 this.columnid_project = new global::System.Data.DataColumn("id_project", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_project);
                 this.columnfinal_evaluation = new global::System.Data.DataColumn("final_evaluation", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -3149,14 +3173,14 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public project_category_statsRow Addproject_category_statsRow(int statistic_year, project_categoryRow parentproject_categoryRowByFK__project_c__id_ca__420DC656, int times_used) {
+            public project_category_statsRow Addproject_category_statsRow(int statistic_year, project_categoryRow parentproject_categoryRowByFK__project_c__id_ca__60924D76, int times_used) {
                 project_category_statsRow rowproject_category_statsRow = ((project_category_statsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         statistic_year,
                         null,
                         times_used};
-                if ((parentproject_categoryRowByFK__project_c__id_ca__420DC656 != null)) {
-                    columnValuesArray[1] = parentproject_categoryRowByFK__project_c__id_ca__420DC656[0];
+                if ((parentproject_categoryRowByFK__project_c__id_ca__60924D76 != null)) {
+                    columnValuesArray[1] = parentproject_categoryRowByFK__project_c__id_ca__60924D76[0];
                 }
                 rowproject_category_statsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowproject_category_statsRow);
@@ -3477,7 +3501,7 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public project_tableRow Addproject_tableRow(contest_tableRow parentcontest_tableRowByFK__project_t__id_co__34B3CB38, project_categoryRow parentproject_categoryRowByFK__project_t__id_ca__35A7EF71, string descript, string project_name, string promoter_name, int promoter_age, int project_year) {
+            public project_tableRow Addproject_tableRow(contest_tableRow parentcontest_tableRowByFK__project_t__id_co__52442E1F, project_categoryRow parentproject_categoryRowByFK__project_t__id_ca__53385258, string descript, string project_name, string promoter_name, int promoter_age, int project_year) {
                 project_tableRow rowproject_tableRow = ((project_tableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3488,11 +3512,11 @@ namespace BinCompeteSoft {
                         promoter_name,
                         promoter_age,
                         project_year};
-                if ((parentcontest_tableRowByFK__project_t__id_co__34B3CB38 != null)) {
-                    columnValuesArray[1] = parentcontest_tableRowByFK__project_t__id_co__34B3CB38[0];
+                if ((parentcontest_tableRowByFK__project_t__id_co__52442E1F != null)) {
+                    columnValuesArray[1] = parentcontest_tableRowByFK__project_t__id_co__52442E1F[0];
                 }
-                if ((parentproject_categoryRowByFK__project_t__id_ca__35A7EF71 != null)) {
-                    columnValuesArray[2] = parentproject_categoryRowByFK__project_t__id_ca__35A7EF71[0];
+                if ((parentproject_categoryRowByFK__project_t__id_ca__53385258 != null)) {
+                    columnValuesArray[2] = parentproject_categoryRowByFK__project_t__id_ca__53385258[0];
                 }
                 rowproject_tableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowproject_tableRow);
@@ -4103,10 +4127,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_tableRow contest_tableRow {
                 get {
-                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_co__3A6CA48E"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_co__57FD0775"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_co__3A6CA48E"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_co__57FD0775"]);
                 }
             }
             
@@ -4114,10 +4138,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public criteria_data_tableRow criteria_data_tableRow {
                 get {
-                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_cr__39788055"])));
+                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_c__id_cr__5708E33C"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_cr__39788055"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_c__id_cr__5708E33C"]);
                 }
             }
             
@@ -4228,10 +4252,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_tableRow contest_tableRow {
                 get {
-                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_co__2EFAF1E2"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_co__4C8B54C9"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_co__2EFAF1E2"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_co__4C8B54C9"]);
                 }
             }
             
@@ -4239,10 +4263,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public user_tableRow user_tableRow {
                 get {
-                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_us__2FEF161B"])));
+                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__contest_j__id_us__4D7F7902"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_us__2FEF161B"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__contest_j__id_us__4D7F7902"]);
                 }
             }
             
@@ -4491,33 +4515,55 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_criteria_tableRow[] Getcontest_criteria_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_c__id_co__3A6CA48E"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_c__id_co__57FD0775"] == null)) {
                     return new contest_criteria_tableRow[0];
                 }
                 else {
-                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_co__3A6CA48E"])));
+                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_co__57FD0775"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_juri_tableRow[] Getcontest_juri_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_j__id_co__2EFAF1E2"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_j__id_co__4C8B54C9"] == null)) {
                     return new contest_juri_tableRow[0];
                 }
                 else {
-                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_co__2EFAF1E2"])));
+                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_co__4C8B54C9"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public evaluation_tableRow[] Getevaluation_tableRows() {
+                if ((this.Table.ChildRelations["FK__evaluatio__id_co__5AD97420"] == null)) {
+                    return new evaluation_tableRow[0];
+                }
+                else {
+                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_co__5AD97420"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public final_result_tableRow[] Getfinal_result_tableRows() {
+                if ((this.Table.ChildRelations["FK__final_res__id_co__5DB5E0CB"] == null)) {
+                    return new final_result_tableRow[0];
+                }
+                else {
+                    return ((final_result_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__final_res__id_co__5DB5E0CB"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_tableRow[] Getproject_tableRows() {
-                if ((this.Table.ChildRelations["FK__project_t__id_co__34B3CB38"] == null)) {
+                if ((this.Table.ChildRelations["FK__project_t__id_co__52442E1F"] == null)) {
                     return new project_tableRow[0];
                 }
                 else {
-                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_co__34B3CB38"])));
+                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_co__52442E1F"])));
                 }
             }
         }
@@ -4606,22 +4652,22 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_criteria_tableRow[] Getcontest_criteria_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_c__id_cr__39788055"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_c__id_cr__5708E33C"] == null)) {
                     return new contest_criteria_tableRow[0];
                 }
                 else {
-                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_cr__39788055"])));
+                    return ((contest_criteria_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_c__id_cr__5708E33C"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public evaluation_tableRow[] Getevaluation_tableRows() {
-                if ((this.Table.ChildRelations["FK__evaluatio__id_cr__3E3D3572"] == null)) {
+                if ((this.Table.ChildRelations["FK__evaluatio__id_cr__5BCD9859"] == null)) {
                     return new evaluation_tableRow[0];
                 }
                 else {
-                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_cr__3E3D3572"])));
+                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_cr__5BCD9859"])));
                 }
             }
         }
@@ -4658,17 +4704,17 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int id_project {
+            public int id_contest {
                 get {
                     try {
-                        return ((int)(this[this.tableevaluation_table.id_projectColumn]));
+                        return ((int)(this[this.tableevaluation_table.id_contestColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'id_project\' in table \'evaluation_table\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'id_contest\' in table \'evaluation_table\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableevaluation_table.id_projectColumn] = value;
+                    this[this.tableevaluation_table.id_contestColumn] = value;
                 }
             }
             
@@ -4706,23 +4752,23 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public criteria_data_tableRow criteria_data_tableRow {
+            public contest_tableRow contest_tableRow {
                 get {
-                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_cr__3E3D3572"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_co__5AD97420"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_cr__3E3D3572"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_co__5AD97420"]);
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public project_tableRow project_tableRow {
+            public criteria_data_tableRow criteria_data_tableRow {
                 get {
-                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_pr__3D491139"])));
+                    return ((criteria_data_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_cr__5BCD9859"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_pr__3D491139"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_cr__5BCD9859"]);
                 }
             }
             
@@ -4730,10 +4776,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public user_tableRow user_tableRow {
                 get {
-                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_us__3C54ED00"])));
+                    return ((user_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__evaluatio__id_us__59E54FE7"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_us__3C54ED00"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__evaluatio__id_us__59E54FE7"]);
                 }
             }
             
@@ -4751,14 +4797,14 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool Isid_projectNull() {
-                return this.IsNull(this.tableevaluation_table.id_projectColumn);
+            public bool Isid_contestNull() {
+                return this.IsNull(this.tableevaluation_table.id_contestColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Setid_projectNull() {
-                this[this.tableevaluation_table.id_projectColumn] = global::System.Convert.DBNull;
+            public void Setid_contestNull() {
+                this[this.tableevaluation_table.id_contestColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4802,6 +4848,22 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int id_contest {
+                get {
+                    try {
+                        return ((int)(this[this.tablefinal_result_table.id_contestColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'id_contest\' in table \'final_result_table\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablefinal_result_table.id_contestColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int id_project {
                 get {
                     try {
@@ -4834,13 +4896,36 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public project_tableRow project_tableRow {
+            public contest_tableRow contest_tableRow {
                 get {
-                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__final_res__id_pr__40257DE4"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__final_res__id_co__5DB5E0CB"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__final_res__id_pr__40257DE4"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__final_res__id_co__5DB5E0CB"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public project_tableRow project_tableRow {
+                get {
+                    return ((project_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__final_res__id_pr__5EAA0504"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__final_res__id_pr__5EAA0504"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isid_contestNull() {
+                return this.IsNull(this.tablefinal_result_table.id_contestColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setid_contestNull() {
+                this[this.tablefinal_result_table.id_contestColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5036,22 +5121,22 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_category_statsRow[] Getproject_category_statsRows() {
-                if ((this.Table.ChildRelations["FK__project_c__id_ca__420DC656"] == null)) {
+                if ((this.Table.ChildRelations["FK__project_c__id_ca__60924D76"] == null)) {
                     return new project_category_statsRow[0];
                 }
                 else {
-                    return ((project_category_statsRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_c__id_ca__420DC656"])));
+                    return ((project_category_statsRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_c__id_ca__60924D76"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_tableRow[] Getproject_tableRows() {
-                if ((this.Table.ChildRelations["FK__project_t__id_ca__35A7EF71"] == null)) {
+                if ((this.Table.ChildRelations["FK__project_t__id_ca__53385258"] == null)) {
                     return new project_tableRow[0];
                 }
                 else {
-                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_ca__35A7EF71"])));
+                    return ((project_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__project_t__id_ca__53385258"])));
                 }
             }
         }
@@ -5123,10 +5208,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_categoryRow project_categoryRow {
                 get {
-                    return ((project_categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_c__id_ca__420DC656"])));
+                    return ((project_categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_c__id_ca__60924D76"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_c__id_ca__420DC656"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_c__id_ca__60924D76"]);
                 }
             }
             
@@ -5308,10 +5393,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public project_categoryRow project_categoryRow {
                 get {
-                    return ((project_categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_ca__35A7EF71"])));
+                    return ((project_categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_ca__53385258"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_ca__35A7EF71"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_ca__53385258"]);
                 }
             }
             
@@ -5319,10 +5404,10 @@ namespace BinCompeteSoft {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_tableRow contest_tableRow {
                 get {
-                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_co__34B3CB38"])));
+                    return ((contest_tableRow)(this.GetParentRow(this.Table.ParentRelations["FK__project_t__id_co__52442E1F"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_co__34B3CB38"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__project_t__id_co__52442E1F"]);
                 }
             }
             
@@ -5412,23 +5497,12 @@ namespace BinCompeteSoft {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public evaluation_tableRow[] Getevaluation_tableRows() {
-                if ((this.Table.ChildRelations["FK__evaluatio__id_pr__3D491139"] == null)) {
-                    return new evaluation_tableRow[0];
-                }
-                else {
-                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_pr__3D491139"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public final_result_tableRow[] Getfinal_result_tableRows() {
-                if ((this.Table.ChildRelations["FK__final_res__id_pr__40257DE4"] == null)) {
+                if ((this.Table.ChildRelations["FK__final_res__id_pr__5EAA0504"] == null)) {
                     return new final_result_tableRow[0];
                 }
                 else {
-                    return ((final_result_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__final_res__id_pr__40257DE4"])));
+                    return ((final_result_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__final_res__id_pr__5EAA0504"])));
                 }
             }
         }
@@ -5657,22 +5731,22 @@ namespace BinCompeteSoft {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public contest_juri_tableRow[] Getcontest_juri_tableRows() {
-                if ((this.Table.ChildRelations["FK__contest_j__id_us__2FEF161B"] == null)) {
+                if ((this.Table.ChildRelations["FK__contest_j__id_us__4D7F7902"] == null)) {
                     return new contest_juri_tableRow[0];
                 }
                 else {
-                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_us__2FEF161B"])));
+                    return ((contest_juri_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__contest_j__id_us__4D7F7902"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public evaluation_tableRow[] Getevaluation_tableRows() {
-                if ((this.Table.ChildRelations["FK__evaluatio__id_us__3C54ED00"] == null)) {
+                if ((this.Table.ChildRelations["FK__evaluatio__id_us__59E54FE7"] == null)) {
                     return new evaluation_tableRow[0];
                 }
                 else {
-                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_us__3C54ED00"])));
+                    return ((evaluation_tableRow[])(base.GetChildRows(this.Table.ChildRelations["FK__evaluatio__id_us__59E54FE7"])));
                 }
             }
         }
@@ -7503,17 +7577,17 @@ SELECT id_criteria, criteria_name, descript FROM criteria_data_table WHERE (id_c
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "evaluation_table";
             tableMapping.ColumnMappings.Add("id_user", "id_user");
-            tableMapping.ColumnMappings.Add("id_project", "id_project");
+            tableMapping.ColumnMappings.Add("id_contest", "id_contest");
             tableMapping.ColumnMappings.Add("id_criteria", "id_criteria");
             tableMapping.ColumnMappings.Add("evaluation", "evaluation");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[evaluation_table] ([id_user], [id_project], [id_criteria], [ev" +
-                "aluation]) VALUES (@id_user, @id_project, @id_criteria, @evaluation)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[evaluation_table] ([id_user], [id_contest], [id_criteria], [ev" +
+                "aluation]) VALUES (@id_user, @id_contest, @id_criteria, @evaluation)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_user", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_user", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_project", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_project", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_contest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_contest", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_criteria", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_criteria", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@evaluation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "evaluation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -7531,7 +7605,7 @@ SELECT id_criteria, criteria_name, descript FROM criteria_data_table WHERE (id_c
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id_user, id_project, id_criteria, evaluation FROM dbo.evaluation_table";
+            this._commandCollection[0].CommandText = "SELECT id_user, id_contest, id_criteria, evaluation FROM dbo.evaluation_table";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7592,15 +7666,15 @@ SELECT id_criteria, criteria_name, descript FROM criteria_data_table WHERE (id_c
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> id_user, global::System.Nullable<int> id_project, global::System.Nullable<int> id_criteria, string evaluation) {
+        public virtual int Insert(global::System.Nullable<int> id_user, global::System.Nullable<int> id_contest, global::System.Nullable<int> id_criteria, string evaluation) {
             if ((id_user.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(id_user.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((id_project.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_project.Value));
+            if ((id_contest.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_contest.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -7755,14 +7829,16 @@ SELECT id_criteria, criteria_name, descript FROM criteria_data_table WHERE (id_c
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "final_result_table";
+            tableMapping.ColumnMappings.Add("id_contest", "id_contest");
             tableMapping.ColumnMappings.Add("id_project", "id_project");
             tableMapping.ColumnMappings.Add("final_evaluation", "final_evaluation");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[final_result_table] ([id_project], [final_evaluation]) VALUES " +
-                "(@id_project, @final_evaluation)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[final_result_table] ([id_contest], [id_project], [final_evalua" +
+                "tion]) VALUES (@id_contest, @id_project, @final_evaluation)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_contest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_contest", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_project", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_project", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@final_evaluation", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 38, 16, "final_evaluation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -7780,7 +7856,7 @@ SELECT id_criteria, criteria_name, descript FROM criteria_data_table WHERE (id_c
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id_project, final_evaluation FROM dbo.final_result_table";
+            this._commandCollection[0].CommandText = "SELECT id_contest, id_project, final_evaluation FROM dbo.final_result_table";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7841,18 +7917,24 @@ SELECT id_criteria, criteria_name, descript FROM criteria_data_table WHERE (id_c
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> id_project, global::System.Nullable<decimal> final_evaluation) {
-            if ((id_project.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(id_project.Value));
+        public virtual int Insert(global::System.Nullable<int> id_contest, global::System.Nullable<int> id_project, global::System.Nullable<decimal> final_evaluation) {
+            if ((id_contest.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(id_contest.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((final_evaluation.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(final_evaluation.Value));
+            if ((id_project.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_project.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((final_evaluation.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(final_evaluation.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 

@@ -210,14 +210,9 @@ namespace BinCompeteSoft
         public bool RefreshContests()
         {
             // Load the contest that the users has part in from the Database
-            string query = "SELECT contest.id_contest, contest.contest_name, contest.descript, contest.start_date, contest.limit_date, contest.voting_limit_date, juri.has_voted " +
-                "FROM contest_table contest " +
-                "INNER JOIN( " +
-                "SELECT id_contest, id_user, has_voted " +
-                "FROM contest_juri_table " +
-                "WHERE id_user = @id_user) AS juri " +
-                "ON contest.id_contest = juri.id_contest " +
-                "WHERE contest.id_contest IN( " +
+            string query = "SELECT id_contest, contest_name, descript, start_date, limit_date, voting_limit_date " +
+                "FROM contest_table " +
+                "WHERE id_contest IN( " +
                 "SELECT id_contest FROM contest_juri_table contest " +
                 "WHERE id_user = @id_user)";
 
@@ -238,7 +233,7 @@ namespace BinCompeteSoft
 
                     while (reader.Read())
                     {
-                        ContestDetails contest = new ContestDetails(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDateTime(5), reader.GetBoolean(6));
+                        ContestDetails contest = new ContestDetails(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDateTime(5), false, false, false);
                         contestDetails.Add(contest);
                     }
 
@@ -249,6 +244,73 @@ namespace BinCompeteSoft
                     return false;
                 }
             }
+        }
+
+        /// <summary>
+        /// This method retrieves if the given contest has has it's results calculated already.
+        /// </summary>
+        /// <param name="contestId">The contest id to check.</param>
+        /// <returns>True if results have been calculated, false otherwise.</returns>
+        public bool GetContestResultsCalculatedStatus(int contestId)
+        {
+            string query = "SELECT id_contest FROM final_result_table WHERE id_contest = @id_contest";
+
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            SqlParameter sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+            sqlContestId.Value = contestId;
+            cmd.Parameters.Add(sqlContestId);
+
+            // Execute query.
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    
+                    // If it reads data it means that it has been calculated already.
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// This method retrieves if the given contest has been voted for already by the current user.
+        /// </summary>
+        /// <param name="contestId">The contest id to check.</param>
+        /// <returns>True if is voted, false otherwise.</returns>
+        public bool GetContestVoteStatus(int contestId)
+        {
+            string query = "SELECT has_voted FROM contest_juri_table WHERE id_contest = @id_contest AND id_user = @id_user";
+
+            SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
+            cmd.CommandText = query;
+
+            SqlParameter sqlContestId = new SqlParameter("@id_contest", SqlDbType.Int);
+            sqlContestId.Value = contestId;
+            cmd.Parameters.Add(sqlContestId);
+
+            SqlParameter sqlUserId = new SqlParameter("@id_user", SqlDbType.Int);
+            sqlUserId.Value = loggedInUser.Id;
+            cmd.Parameters.Add(sqlUserId);
+
+            // Execute query.
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if user exists in contest.
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    bool isVotedByCurrentUser = reader.GetBoolean(0);
+
+                    return isVotedByCurrentUser;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -345,14 +407,9 @@ namespace BinCompeteSoft
             List<Criteria> contestCriterias = new List<Criteria>();
 
             // Get the contest details from the database.
-            query = "SELECT contest.*, juri.has_voted " +
-                "FROM contest_table contest " +
-                "INNER JOIN( " +
-                "SELECT id_contest, id_user, has_voted " +
-                "FROM contest_juri_table  " +
-                "WHERE id_user = @id_user) AS juri " +
-                "ON contest.id_contest = juri.id_contest " +
-                "WHERE contest.id_contest = @id_contest";
+            query = "SELECT * " +
+                "FROM contest_table " +
+                "WHERE id_contest = @id_contest";
 
             cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
@@ -372,7 +429,7 @@ namespace BinCompeteSoft
                 {
                     reader.Read();
 
-                    ContestDetails contestDetails = new ContestDetails(id, reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDateTime(5), reader.GetBoolean(7));
+                    ContestDetails contestDetails = new ContestDetails(id, reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDateTime(5), false, false, false);
 
                     // Get the criteria values and convert them from a JSON string to a double matrix.
                     string criteriaValues = reader.GetString(6);
@@ -388,7 +445,7 @@ namespace BinCompeteSoft
             }
 
             // Get the contest project list.
-            query = "SELECT id_project, project_name, descript, promoter_name, promoter_age, id_category, project_year FROM project_table WHERE id_contest = @id_contest";
+            query = "SELECT id_project, project_name, descript, promoter_name, promoter_age, id_category, project_year FROM project_table WHERE id_contest = @id_contest ORDER BY id_project";
 
             cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
@@ -429,7 +486,7 @@ namespace BinCompeteSoft
             contest.Projects = contestProjects;
 
             // Get the contest judge list.
-            query = "SELECT id_user, president FROM contest_juri_table WHERE id_contest = @id_contest";
+            query = "SELECT id_user, president FROM contest_juri_table WHERE id_contest = @id_contest ORDER BY id_user";
 
             cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
@@ -475,7 +532,7 @@ namespace BinCompeteSoft
             contest.JudgeMembers = contestJudges;
 
             // Get the contest criteria list.
-            query = "SELECT id_criteria FROM contest_criteria_table WHERE id_contest = @id_contest";
+            query = "SELECT id_criteria FROM contest_criteria_table WHERE id_contest = @id_contest ORDER BY id_criteria";
 
             cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
