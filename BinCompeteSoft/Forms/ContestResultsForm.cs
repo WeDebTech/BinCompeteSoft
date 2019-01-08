@@ -133,10 +133,10 @@ namespace BinCompeteSoft
             }
 
             // Sort project results by result.
-            projectResults.OrderBy(o => o.Result).ToList();
+            projectResults = projectResults.OrderBy(x => x.Result).ToList();
 
             // Check if any projects are tied.
-            for(int i = 0; i < projectResults.Count; i++)
+            for(int i = 0; i < projectResults.Count - 1; i++)
             {
                 if(projectResults[i].Result == projectResults[i + 1].Result)
                 {
@@ -351,7 +351,7 @@ namespace BinCompeteSoft
                 writer.WriteEndDocument();
             }
 
-            MessageBox.Show(null, "Resuults exported successfully", "Success");
+            MessageBox.Show(null, "Results exported successfully", "Success");
 
             this.Close();
         }
