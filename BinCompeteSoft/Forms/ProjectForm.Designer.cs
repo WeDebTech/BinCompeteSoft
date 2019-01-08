@@ -51,7 +51,7 @@
             this.projectDescriptionTextBox.Multiline = true;
             this.projectDescriptionTextBox.Name = "projectDescriptionTextBox";
             this.projectDescriptionTextBox.Size = new System.Drawing.Size(776, 229);
-            this.projectDescriptionTextBox.TabIndex = 2;
+            this.projectDescriptionTextBox.TabIndex = 3;
             // 
             // projectDescriptionLabel
             // 
@@ -70,7 +70,7 @@
             this.cancelButton.Location = new System.Drawing.Point(12, 400);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(168, 38);
-            this.cancelButton.TabIndex = 4;
+            this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -91,7 +91,7 @@
             this.projectNameTextBox.Location = new System.Drawing.Point(232, 6);
             this.projectNameTextBox.Name = "projectNameTextBox";
             this.projectNameTextBox.Size = new System.Drawing.Size(556, 38);
-            this.projectNameTextBox.TabIndex = 1;
+            this.projectNameTextBox.TabIndex = 0;
             // 
             // acceptButton
             // 
@@ -100,7 +100,7 @@
             this.acceptButton.Location = new System.Drawing.Point(603, 400);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(185, 38);
-            this.acceptButton.TabIndex = 3;
+            this.acceptButton.TabIndex = 6;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -122,7 +122,7 @@
             this.projectCategoryComboBox.Location = new System.Drawing.Point(229, 360);
             this.projectCategoryComboBox.Name = "projectCategoryComboBox";
             this.projectCategoryComboBox.Size = new System.Drawing.Size(368, 33);
-            this.projectCategoryComboBox.TabIndex = 32;
+            this.projectCategoryComboBox.TabIndex = 4;
             // 
             // projectPromoterTextBox
             // 
@@ -130,7 +130,7 @@
             this.projectPromoterTextBox.Location = new System.Drawing.Point(232, 50);
             this.projectPromoterTextBox.Name = "projectPromoterTextBox";
             this.projectPromoterTextBox.Size = new System.Drawing.Size(556, 38);
-            this.projectPromoterTextBox.TabIndex = 33;
+            this.projectPromoterTextBox.TabIndex = 1;
             // 
             // projectPromoterText
             // 
@@ -158,7 +158,7 @@
             this.projectPromoterAgeNumericUpDown.Location = new System.Drawing.Point(714, 92);
             this.projectPromoterAgeNumericUpDown.Name = "projectPromoterAgeNumericUpDown";
             this.projectPromoterAgeNumericUpDown.Size = new System.Drawing.Size(74, 30);
-            this.projectPromoterAgeNumericUpDown.TabIndex = 36;
+            this.projectPromoterAgeNumericUpDown.TabIndex = 2;
             // 
             // refreshCategoriesButton
             // 
@@ -167,7 +167,7 @@
             this.refreshCategoriesButton.Location = new System.Drawing.Point(603, 357);
             this.refreshCategoriesButton.Name = "refreshCategoriesButton";
             this.refreshCategoriesButton.Size = new System.Drawing.Size(185, 38);
-            this.refreshCategoriesButton.TabIndex = 37;
+            this.refreshCategoriesButton.TabIndex = 5;
             this.refreshCategoriesButton.Text = "Refresh categories";
             this.refreshCategoriesButton.UseVisualStyleBackColor = true;
             this.refreshCategoriesButton.Click += new System.EventHandler(this.refreshCategoriesButton_Click);

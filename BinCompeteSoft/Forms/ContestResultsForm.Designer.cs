@@ -44,6 +44,7 @@
             this.resultsDataGridView.Name = "resultsDataGridView";
             this.resultsDataGridView.ReadOnly = true;
             this.resultsDataGridView.Size = new System.Drawing.Size(775, 351);
+            this.resultsDataGridView.StandardTab = true;
             this.resultsDataGridView.TabIndex = 0;
             // 
             // acceptButton
@@ -53,7 +54,7 @@
             this.acceptButton.Location = new System.Drawing.Point(620, 400);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(168, 38);
-            this.acceptButton.TabIndex = 35;
+            this.acceptButton.TabIndex = 1;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -75,7 +76,7 @@
             this.exportResultsButton.Location = new System.Drawing.Point(13, 400);
             this.exportResultsButton.Name = "exportResultsButton";
             this.exportResultsButton.Size = new System.Drawing.Size(168, 38);
-            this.exportResultsButton.TabIndex = 38;
+            this.exportResultsButton.TabIndex = 2;
             this.exportResultsButton.Text = "Export results";
             this.exportResultsButton.UseVisualStyleBackColor = true;
             this.exportResultsButton.Click += new System.EventHandler(this.exportResultsButton_Click);

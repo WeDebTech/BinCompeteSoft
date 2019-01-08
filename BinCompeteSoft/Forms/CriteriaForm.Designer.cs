@@ -42,7 +42,7 @@
             this.criteriaNameTextBox.Location = new System.Drawing.Point(191, 9);
             this.criteriaNameTextBox.Name = "criteriaNameTextBox";
             this.criteriaNameTextBox.Size = new System.Drawing.Size(597, 38);
-            this.criteriaNameTextBox.TabIndex = 31;
+            this.criteriaNameTextBox.TabIndex = 0;
             // 
             // criteriaNameText
             // 
@@ -61,7 +61,7 @@
             this.criteriaDescriptionTextBox.Multiline = true;
             this.criteriaDescriptionTextBox.Name = "criteriaDescriptionTextBox";
             this.criteriaDescriptionTextBox.Size = new System.Drawing.Size(776, 313);
-            this.criteriaDescriptionTextBox.TabIndex = 32;
+            this.criteriaDescriptionTextBox.TabIndex = 1;
             // 
             // criteriaDescriptionLabel
             // 
@@ -80,7 +80,7 @@
             this.cancelButton.Location = new System.Drawing.Point(12, 403);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(168, 38);
-            this.cancelButton.TabIndex = 34;
+            this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -92,7 +92,7 @@
             this.acceptButton.Location = new System.Drawing.Point(620, 403);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(168, 38);
-            this.acceptButton.TabIndex = 33;
+            this.acceptButton.TabIndex = 2;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);

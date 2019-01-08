@@ -71,7 +71,7 @@
             this.emailTextBox.Location = new System.Drawing.Point(319, 199);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(572, 38);
-            this.emailTextBox.TabIndex = 2;
+            this.emailTextBox.TabIndex = 0;
             // 
             // passwordTextBox
             // 
@@ -81,7 +81,7 @@
             this.passwordTextBox.Location = new System.Drawing.Point(319, 243);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(572, 38);
-            this.passwordTextBox.TabIndex = 3;
+            this.passwordTextBox.TabIndex = 1;
             this.passwordTextBox.UseSystemPasswordChar = true;
             // 
             // copyrightLabel
@@ -102,7 +102,7 @@
             this.loginButton.Location = new System.Drawing.Point(105, 349);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(786, 50);
-            this.loginButton.TabIndex = 5;
+            this.loginButton.TabIndex = 2;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);

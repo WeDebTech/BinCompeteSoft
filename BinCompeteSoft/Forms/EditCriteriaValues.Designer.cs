@@ -47,6 +47,7 @@
             this.criteriaValuesDataGridView.Location = new System.Drawing.Point(12, 43);
             this.criteriaValuesDataGridView.Name = "criteriaValuesDataGridView";
             this.criteriaValuesDataGridView.Size = new System.Drawing.Size(976, 321);
+            this.criteriaValuesDataGridView.StandardTab = true;
             this.criteriaValuesDataGridView.TabIndex = 0;
             this.criteriaValuesDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.criteriaValuesDataGridView_CellValidating);
             // 
@@ -67,7 +68,7 @@
             this.cancelButton.Location = new System.Drawing.Point(12, 400);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(168, 38);
-            this.cancelButton.TabIndex = 36;
+            this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -79,7 +80,7 @@
             this.acceptButton.Location = new System.Drawing.Point(818, 400);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(168, 38);
-            this.acceptButton.TabIndex = 35;
+            this.acceptButton.TabIndex = 1;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);

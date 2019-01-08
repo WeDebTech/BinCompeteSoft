@@ -72,14 +72,19 @@
             // 
             // contestDataGridView
             // 
+            this.contestDataGridView.AllowUserToAddRows = false;
+            this.contestDataGridView.AllowUserToDeleteRows = false;
             this.contestDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.contestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.contestDataGridView.Location = new System.Drawing.Point(12, 104);
             this.contestDataGridView.Name = "contestDataGridView";
+            this.contestDataGridView.ReadOnly = true;
             this.contestDataGridView.Size = new System.Drawing.Size(976, 334);
-            this.contestDataGridView.TabIndex = 4;
+            this.contestDataGridView.StandardTab = true;
+            this.contestDataGridView.TabIndex = 0;
+            this.contestDataGridView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.contestDataGridView_PreviewKeyDown);
             // 
             // logoutButton
             // 
@@ -88,7 +93,7 @@
             this.logoutButton.Location = new System.Drawing.Point(820, 12);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(168, 38);
-            this.logoutButton.TabIndex = 7;
+            this.logoutButton.TabIndex = 4;
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
@@ -99,7 +104,7 @@
             this.refreshButton.Location = new System.Drawing.Point(12, 60);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(168, 38);
-            this.refreshButton.TabIndex = 8;
+            this.refreshButton.TabIndex = 2;
             this.refreshButton.Text = "Refresh";
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
@@ -110,7 +115,7 @@
             this.backButton.Location = new System.Drawing.Point(12, 12);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(97, 38);
-            this.backButton.TabIndex = 23;
+            this.backButton.TabIndex = 3;
             this.backButton.Text = "Go back";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
@@ -122,7 +127,7 @@
             this.contestDetailsButton.Location = new System.Drawing.Point(745, 60);
             this.contestDetailsButton.Name = "contestDetailsButton";
             this.contestDetailsButton.Size = new System.Drawing.Size(243, 38);
-            this.contestDetailsButton.TabIndex = 24;
+            this.contestDetailsButton.TabIndex = 1;
             this.contestDetailsButton.Text = "See contest details";
             this.contestDetailsButton.UseVisualStyleBackColor = true;
             this.contestDetailsButton.Click += new System.EventHandler(this.contestDetailsButton_Click);

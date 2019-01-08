@@ -45,7 +45,7 @@
             this.backButton.Location = new System.Drawing.Point(17, 12);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(97, 38);
-            this.backButton.TabIndex = 27;
+            this.backButton.TabIndex = 2;
             this.backButton.Text = "Go back";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
@@ -57,7 +57,7 @@
             this.logoutButton.Location = new System.Drawing.Point(820, 12);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(168, 38);
-            this.logoutButton.TabIndex = 26;
+            this.logoutButton.TabIndex = 3;
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
@@ -105,7 +105,8 @@
             this.criteriaDataGridView.Name = "criteriaDataGridView";
             this.criteriaDataGridView.ReadOnly = true;
             this.criteriaDataGridView.Size = new System.Drawing.Size(976, 306);
-            this.criteriaDataGridView.TabIndex = 28;
+            this.criteriaDataGridView.StandardTab = true;
+            this.criteriaDataGridView.TabIndex = 0;
             this.criteriaDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.criteriaDataGridView_CellContentClick);
             // 
             // warningLabel
@@ -125,7 +126,7 @@
             this.acceptButton.Location = new System.Drawing.Point(820, 400);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(168, 38);
-            this.acceptButton.TabIndex = 37;
+            this.acceptButton.TabIndex = 1;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);

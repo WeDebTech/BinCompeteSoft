@@ -54,7 +54,7 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(420, 38);
-            this.passwordTextBox.TabIndex = 26;
+            this.passwordTextBox.TabIndex = 0;
             // 
             // retypePasswordTextBox
             // 
@@ -63,7 +63,7 @@
             this.retypePasswordTextBox.Name = "retypePasswordTextBox";
             this.retypePasswordTextBox.PasswordChar = '*';
             this.retypePasswordTextBox.Size = new System.Drawing.Size(420, 38);
-            this.retypePasswordTextBox.TabIndex = 28;
+            this.retypePasswordTextBox.TabIndex = 1;
             // 
             // retypePasswordLabel
             // 
@@ -82,7 +82,7 @@
             this.acceptButton.Location = new System.Drawing.Point(620, 168);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(168, 38);
-            this.acceptButton.TabIndex = 29;
+            this.acceptButton.TabIndex = 2;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -104,7 +104,7 @@
             this.cancelButton.Location = new System.Drawing.Point(18, 168);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(168, 38);
-            this.cancelButton.TabIndex = 31;
+            this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);

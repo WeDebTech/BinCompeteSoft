@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.navigationGroupBox = new System.Windows.Forms.GroupBox();
             this.refreshContestsButton = new System.Windows.Forms.Button();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.listContestsButton = new System.Windows.Forms.Button();
             this.addContestButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
@@ -65,16 +62,15 @@
             this.categoriesStatisticsLabel = new System.Windows.Forms.Label();
             this.categoryStatisticsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.resetPasswordButton = new System.Windows.Forms.Button();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.notificationsExListBox = new BinCompeteSoft.exListBox();
             this.navigationGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.notificationsGroupBox.SuspendLayout();
             this.contestsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestsDataGridView)).BeginInit();
             this.statisticsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bestProjectsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryStatisticsChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // navigationGroupBox
@@ -100,10 +96,20 @@
             this.refreshContestsButton.Location = new System.Drawing.Point(6, 117);
             this.refreshContestsButton.Name = "refreshContestsButton";
             this.refreshContestsButton.Size = new System.Drawing.Size(169, 38);
-            this.refreshContestsButton.TabIndex = 15;
+            this.refreshContestsButton.TabIndex = 2;
             this.refreshContestsButton.Text = "Refresh contests";
             this.refreshContestsButton.UseVisualStyleBackColor = true;
             this.refreshContestsButton.Click += new System.EventHandler(this.refreshContestsButton_Click);
+            // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.Image = global::BinCompeteSoft.Properties.Resources.Logo_WeDeb;
+            this.logoPictureBox.Location = new System.Drawing.Point(6, 174);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(169, 92);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPictureBox.TabIndex = 12;
+            this.logoPictureBox.TabStop = false;
             // 
             // listContestsButton
             // 
@@ -112,7 +118,7 @@
             this.listContestsButton.Location = new System.Drawing.Point(6, 73);
             this.listContestsButton.Name = "listContestsButton";
             this.listContestsButton.Size = new System.Drawing.Size(169, 38);
-            this.listContestsButton.TabIndex = 14;
+            this.listContestsButton.TabIndex = 1;
             this.listContestsButton.Text = "List contests";
             this.listContestsButton.UseVisualStyleBackColor = true;
             this.listContestsButton.Click += new System.EventHandler(this.listContestsButton_Click);
@@ -124,7 +130,7 @@
             this.addContestButton.Location = new System.Drawing.Point(6, 29);
             this.addContestButton.Name = "addContestButton";
             this.addContestButton.Size = new System.Drawing.Size(169, 38);
-            this.addContestButton.TabIndex = 13;
+            this.addContestButton.TabIndex = 0;
             this.addContestButton.Text = "Add contest";
             this.addContestButton.UseVisualStyleBackColor = true;
             this.addContestButton.Click += new System.EventHandler(this.addContestButton_Click);
@@ -136,7 +142,7 @@
             this.logoutButton.Location = new System.Drawing.Point(907, 12);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(81, 38);
-            this.logoutButton.TabIndex = 11;
+            this.logoutButton.TabIndex = 9;
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
@@ -181,7 +187,7 @@
             this.notificationsGroupBox.Location = new System.Drawing.Point(199, 60);
             this.notificationsGroupBox.Name = "notificationsGroupBox";
             this.notificationsGroupBox.Size = new System.Drawing.Size(209, 378);
-            this.notificationsGroupBox.TabIndex = 15;
+            this.notificationsGroupBox.TabIndex = 1;
             this.notificationsGroupBox.TabStop = false;
             this.notificationsGroupBox.Text = "Notifications";
             // 
@@ -196,7 +202,7 @@
             this.contestsGroupBox.Location = new System.Drawing.Point(414, 60);
             this.contestsGroupBox.Name = "contestsGroupBox";
             this.contestsGroupBox.Size = new System.Drawing.Size(255, 378);
-            this.contestsGroupBox.TabIndex = 17;
+            this.contestsGroupBox.TabIndex = 2;
             this.contestsGroupBox.TabStop = false;
             this.contestsGroupBox.Text = "Contests yet to happen";
             // 
@@ -207,28 +213,14 @@
             this.contestsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.contestsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.contestsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.contestsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.contestsDataGridView.Location = new System.Drawing.Point(6, 29);
             this.contestsDataGridView.Name = "contestsDataGridView";
             this.contestsDataGridView.ReadOnly = true;
             this.contestsDataGridView.Size = new System.Drawing.Size(243, 299);
-            this.contestsDataGridView.TabIndex = 16;
+            this.contestsDataGridView.StandardTab = true;
+            this.contestsDataGridView.TabIndex = 4;
+            this.contestsDataGridView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.contestsDataGridView_PreviewKeyDown);
             // 
             // contestDetailsButton
             // 
@@ -238,7 +230,7 @@
             this.contestDetailsButton.Location = new System.Drawing.Point(6, 334);
             this.contestDetailsButton.Name = "contestDetailsButton";
             this.contestDetailsButton.Size = new System.Drawing.Size(243, 38);
-            this.contestDetailsButton.TabIndex = 15;
+            this.contestDetailsButton.TabIndex = 5;
             this.contestDetailsButton.Text = "See contest details";
             this.contestDetailsButton.UseVisualStyleBackColor = true;
             this.contestDetailsButton.Click += new System.EventHandler(this.contestDetailsButton_Click);
@@ -267,7 +259,7 @@
             this.statisticsGroupBox.Location = new System.Drawing.Point(675, 60);
             this.statisticsGroupBox.Name = "statisticsGroupBox";
             this.statisticsGroupBox.Size = new System.Drawing.Size(313, 378);
-            this.statisticsGroupBox.TabIndex = 17;
+            this.statisticsGroupBox.TabIndex = 3;
             this.statisticsGroupBox.TabStop = false;
             this.statisticsGroupBox.Text = "Statistics";
             // 
@@ -278,7 +270,7 @@
             this.nextYearButton.Location = new System.Drawing.Point(185, 24);
             this.nextYearButton.Name = "nextYearButton";
             this.nextYearButton.Size = new System.Drawing.Size(20, 20);
-            this.nextYearButton.TabIndex = 29;
+            this.nextYearButton.TabIndex = 7;
             this.nextYearButton.Text = "▶";
             this.nextYearButton.UseVisualStyleBackColor = true;
             this.nextYearButton.Click += new System.EventHandler(this.nextYearButton_Click);
@@ -290,7 +282,7 @@
             this.previousYearButton.Location = new System.Drawing.Point(100, 24);
             this.previousYearButton.Name = "previousYearButton";
             this.previousYearButton.Size = new System.Drawing.Size(20, 20);
-            this.previousYearButton.TabIndex = 18;
+            this.previousYearButton.TabIndex = 6;
             this.previousYearButton.Text = "◀";
             this.previousYearButton.UseVisualStyleBackColor = true;
             this.previousYearButton.Click += new System.EventHandler(this.previousYearButton_Click);
@@ -402,29 +394,14 @@
             this.bestProjectsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bestProjectsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.bestProjectsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.bestProjectsDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.bestProjectsDataGridView.Location = new System.Drawing.Point(6, 216);
             this.bestProjectsDataGridView.Name = "bestProjectsDataGridView";
             this.bestProjectsDataGridView.ReadOnly = true;
             this.bestProjectsDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bestProjectsDataGridView.Size = new System.Drawing.Size(301, 94);
-            this.bestProjectsDataGridView.TabIndex = 21;
+            this.bestProjectsDataGridView.StandardTab = true;
+            this.bestProjectsDataGridView.TabIndex = 8;
             // 
             // totalProjectsLabel
             // 
@@ -482,20 +459,10 @@
             this.resetPasswordButton.Location = new System.Drawing.Point(741, 12);
             this.resetPasswordButton.Name = "resetPasswordButton";
             this.resetPasswordButton.Size = new System.Drawing.Size(160, 38);
-            this.resetPasswordButton.TabIndex = 18;
+            this.resetPasswordButton.TabIndex = 10;
             this.resetPasswordButton.Text = "Reset password";
             this.resetPasswordButton.UseVisualStyleBackColor = true;
             this.resetPasswordButton.Click += new System.EventHandler(this.resetPasswordButton_Click);
-            // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.Image = global::BinCompeteSoft.Properties.Resources.Logo_WeDeb;
-            this.logoPictureBox.Location = new System.Drawing.Point(6, 174);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(169, 92);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logoPictureBox.TabIndex = 12;
-            this.logoPictureBox.TabStop = false;
             // 
             // notificationsExListBox
             // 
@@ -510,7 +477,7 @@
             this.notificationsExListBox.Location = new System.Drawing.Point(6, 29);
             this.notificationsExListBox.Name = "notificationsExListBox";
             this.notificationsExListBox.Size = new System.Drawing.Size(197, 341);
-            this.notificationsExListBox.TabIndex = 16;
+            this.notificationsExListBox.TabIndex = 3;
             // 
             // JudgeDashboardForm
             // 
@@ -533,6 +500,7 @@
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.JudgeDashboardForm_Load);
             this.navigationGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.notificationsGroupBox.ResumeLayout(false);
             this.contestsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contestsDataGridView)).EndInit();
@@ -540,7 +508,6 @@
             this.statisticsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bestProjectsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryStatisticsChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

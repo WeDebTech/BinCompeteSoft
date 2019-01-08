@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace BinCompeteSoft
     {
         #region Class variables
         private Contest contest;
-        private double[] results;
+        private List<ProjectResults> projectResults = new List<ProjectResults>();
         #endregion
 
         #region Class constructors
@@ -71,7 +72,7 @@ namespace BinCompeteSoft
         /// <returns></returns>
         private bool CheckIfResultsAreCalculatedAndGetThem()
         {
-            string query = "SELECT final_evaluation FROM final_result_table WHERE id_contest = @id_contest ORDER BY id_project ASC";
+            string query = "SELECT final_evaluation, id_project FROM final_result_table WHERE id_contest = @id_contest ORDER BY id_project ASC";
 
             SqlCommand cmd = DBSqlHelper._instance.Connection.CreateCommand();
             cmd.CommandText = query;
@@ -82,28 +83,33 @@ namespace BinCompeteSoft
 
             List<double> resultList = new List<double>();
 
+            projectResults.Clear();
+
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 // Try to read from the database.
                 while (reader.Read())
                 {
-                    resultList.Add((double)reader.GetDecimal(0));
+                    int projectId = reader.GetInt32(1);
+
+                    foreach(Project project in contest.Projects)
+                    {
+                        if (project.Id == projectId)
+                        {
+                            projectResults.Add(new ProjectResults((double)reader.GetDecimal(0), project));
+                            break;
+                        }
+                    }
+                    
                 }
 
                 // Check if there's anything returned.
-                if (resultList.Count <= 0)
+                if (projectResults.Count <= 0)
                 {
                     return false;
                 }
                 else
                 {
-                    results = new double[resultList.Count];
-
-                    for(int i = 0; i < resultList.Count; i++)
-                    {
-                        results[i] = resultList[i];
-                    }
-
                     return true;
                 }
             }
@@ -112,14 +118,37 @@ namespace BinCompeteSoft
         /// <summary>
         /// This method will calculate the contest results.
         /// </summary>
-        /// <returns>Double array</returns>
         private void CalculateContestResults()
         {
             ContestEvaluation contestEvaluation;
 
             contestEvaluation = GetJudgeVotes();
 
-            results = AHP.CalculateAHP(contestEvaluation, contest.CriteriaValues);
+            double[] results = AHP.CalculateAHP(contestEvaluation, contest.CriteriaValues);
+            
+            // Populate list with all project results.
+            for(int i = 0; i < contest.Projects.Count; i++)
+            {
+                projectResults.Add(new ProjectResults(results[i], contest.Projects[i]));
+            }
+
+            // Sort project results by result.
+            projectResults.OrderBy(o => o.Result).ToList();
+
+            // Check if any projects are tied.
+            for(int i = 0; i < projectResults.Count; i++)
+            {
+                if(projectResults[i].Result == projectResults[i + 1].Result)
+                {
+                    // The project with the youngest promoter wins.
+                    if(projectResults[i].Project.PromoterAge > projectResults[i + 1].Project.PromoterAge)
+                    {
+                        ProjectResults temp = projectResults[i];
+                        projectResults[i] = projectResults[i + 1];
+                        projectResults[i + 1] = temp;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -200,10 +229,10 @@ namespace BinCompeteSoft
             resultsDataGridView.Rows.Clear();
             int count = 0;
 
-            // Cycle through all projects and fill the DataGridView with their results.
-            foreach(Project project in contest.Projects)
+            // Cycle through all projects results and fill the DataGridView with their results.
+            foreach(ProjectResults projectResult in projectResults)
             {
-                resultsDataGridView.Rows.Add(project.Name, results[count], count + 1);
+                resultsDataGridView.Rows.Add(projectResult.Project.Name, projectResult.Result, count + 1);
 
                 count++;
             }
@@ -223,7 +252,7 @@ namespace BinCompeteSoft
             int count = 0;
 
             // Cycle through all projects and add their final evaluation to the database.
-            foreach(Project project in contest.Projects)
+            foreach(ProjectResults projectResult in projectResults)
             {
                 cmd = DBSqlHelper._instance.Connection.CreateCommand();
                 cmd.CommandText = query;
@@ -233,11 +262,11 @@ namespace BinCompeteSoft
                 cmd.Parameters.Add(sqlContestId);
 
                 sqlProjectId = new SqlParameter("@id_project", SqlDbType.Int);
-                sqlProjectId.Value = project.Id;
+                sqlProjectId.Value = projectResult.Project.Id;
                 cmd.Parameters.Add(sqlProjectId);
 
                 sqlFinalEvaluation = new SqlParameter("@final_evaluation", SqlDbType.Decimal);
-                sqlFinalEvaluation.Value = results[count];
+                sqlFinalEvaluation.Value = projectResult.Result;
                 cmd.Parameters.Add(sqlFinalEvaluation);
 
                 // Execute the query.
@@ -252,28 +281,98 @@ namespace BinCompeteSoft
         /// </summary>
         private void WriteResultsToXML()
         {
-            int count = 0;
+            int count = 1;
 
-            XmlDocument xmlDoc = new XmlDocument();
-            XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement root = xmlDoc.DocumentElement;
-            xmlDoc.InsertBefore(xmlDeclaration, root);
+            // Strip contest name of dots.
+            string fileName = contest.ContestDetails.Name.Replace(".", String.Empty);
 
-            XmlElement rootNode = xmlDoc.CreateElement("projects");
-            xmlDoc.AppendChild(rootNode);
+            // Create directory to store results if it doesn't exist.
+            Directory.CreateDirectory("Results");
 
-            foreach (Project project in contest.Projects) {
-                XmlElement projectNode = xmlDoc.CreateElement("project");
-                XmlAttribute attribute = xmlDoc.CreateAttribute("name");
-                attribute.Value = project.Name;
-                projectNode.Attributes.Append(attribute);
-                projectNode.InnerText = results[count].ToString();
-                rootNode.AppendChild(projectNode);
+            using(XmlWriter writer = XmlWriter.Create(Directory.GetCurrentDirectory() + "\\Results\\" + fileName + "_results.xml"))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Results");
 
-                count++;
+                // Write the contest details.
+                writer.WriteStartElement("Contest");
+                writer.WriteElementString("Id", contest.Id.ToString());
+                writer.WriteElementString("StartDate", contest.ContestDetails.StartDate.ToString());
+                writer.WriteElementString("LimitDate", contest.ContestDetails.LimitDate.ToString());
+                writer.WriteElementString("VotingDate", contest.ContestDetails.VotingDate.ToString());
+                writer.WriteEndElement();
+
+                // Write the criterias details.
+                writer.WriteStartElement("Criterias");
+
+                foreach(Criteria criteria in contest.Criterias)
+                {
+                    writer.WriteStartElement("Criteria");
+                    writer.WriteElementString("Id", criteria.Id.ToString());
+                    writer.WriteElementString("Name", criteria.Name);
+                    writer.WriteElementString("Description", criteria.Description);
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
+
+                // Write the criteria values array.
+                writer.WriteStartElement("CriteriaValues");
+                writer.WriteStartAttribute("size", contest.CriteriaValues.Length.ToString());
+
+                foreach(double criteriaValue in contest.CriteriaValues)
+                {
+                    writer.WriteStartElement("Value", criteriaValue.ToString());
+                }
+
+                writer.WriteEndElement();
+
+                // Write the projects details.
+                writer.WriteStartElement("Projects");
+
+                foreach(ProjectResults projectResult in projectResults)
+                {
+                    writer.WriteStartElement("Project");
+
+                    writer.WriteStartElement("Id", projectResult.Project.Id.ToString());
+                    writer.WriteStartElement("Name", projectResult.Project.Name);
+                    writer.WriteStartElement("Description", projectResult.Project.Description);
+                    writer.WriteStartElement("Score", projectResult.Result.ToString());
+                    writer.WriteStartElement("Position", count.ToString());
+
+                    writer.WriteEndElement();
+
+                    count++;
+                }
+
+                writer.WriteEndElement();
+
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
             }
 
-            xmlDoc.Save(contest.ContestDetails.Name + "_results.xml");
+            MessageBox.Show(null, "Resuults exported successfully", "Success");
+
+            this.Close();
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// This class will hold the project results to be displayed.
+    /// </summary>
+    class ProjectResults
+    {
+        #region Class variables
+        public double Result { get; set; }
+        public Project Project { get; set; }
+        #endregion
+
+        #region Class constructors
+        public ProjectResults(double result, Project project)
+        {
+            Result = result;
+            Project = project;
         }
         #endregion
     }

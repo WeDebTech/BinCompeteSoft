@@ -72,7 +72,7 @@
             this.logoutButton.Location = new System.Drawing.Point(820, 12);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(168, 38);
-            this.logoutButton.TabIndex = 11;
+            this.logoutButton.TabIndex = 14;
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
@@ -116,7 +116,7 @@
             this.contestNameTextBox.Location = new System.Drawing.Point(195, 65);
             this.contestNameTextBox.Name = "contestNameTextBox";
             this.contestNameTextBox.Size = new System.Drawing.Size(793, 38);
-            this.contestNameTextBox.TabIndex = 12;
+            this.contestNameTextBox.TabIndex = 0;
             // 
             // limitDateLabel
             // 
@@ -135,7 +135,7 @@
             this.contestLimitDateTimePicker.Location = new System.Drawing.Point(360, 115);
             this.contestLimitDateTimePicker.Name = "contestLimitDateTimePicker";
             this.contestLimitDateTimePicker.Size = new System.Drawing.Size(124, 30);
-            this.contestLimitDateTimePicker.TabIndex = 16;
+            this.contestLimitDateTimePicker.TabIndex = 2;
             // 
             // judgesDataGridView
             // 
@@ -147,7 +147,8 @@
             this.judgesDataGridView.Name = "judgesDataGridView";
             this.judgesDataGridView.ReadOnly = true;
             this.judgesDataGridView.Size = new System.Drawing.Size(320, 198);
-            this.judgesDataGridView.TabIndex = 17;
+            this.judgesDataGridView.StandardTab = true;
+            this.judgesDataGridView.TabIndex = 6;
             this.judgesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.judgesDataGridView_CellContentClick);
             // 
             // projectsDataGridView
@@ -161,7 +162,8 @@
             this.projectsDataGridView.Name = "projectsDataGridView";
             this.projectsDataGridView.ReadOnly = true;
             this.projectsDataGridView.Size = new System.Drawing.Size(320, 198);
-            this.projectsDataGridView.TabIndex = 18;
+            this.projectsDataGridView.StandardTab = true;
+            this.projectsDataGridView.TabIndex = 8;
             this.projectsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectsDataGridView_CellContentClick);
             // 
             // addJudgeButton
@@ -170,7 +172,7 @@
             this.addJudgeButton.Location = new System.Drawing.Point(12, 152);
             this.addJudgeButton.Name = "addJudgeButton";
             this.addJudgeButton.Size = new System.Drawing.Size(320, 38);
-            this.addJudgeButton.TabIndex = 19;
+            this.addJudgeButton.TabIndex = 5;
             this.addJudgeButton.Text = "Add judge";
             this.addJudgeButton.UseVisualStyleBackColor = true;
             this.addJudgeButton.Click += new System.EventHandler(this.addJudgeButton_Click);
@@ -183,7 +185,7 @@
             this.addProjectButton.Location = new System.Drawing.Point(340, 152);
             this.addProjectButton.Name = "addProjectButton";
             this.addProjectButton.Size = new System.Drawing.Size(320, 38);
-            this.addProjectButton.TabIndex = 20;
+            this.addProjectButton.TabIndex = 7;
             this.addProjectButton.Text = "Add project";
             this.addProjectButton.UseVisualStyleBackColor = true;
             this.addProjectButton.Click += new System.EventHandler(this.addProjectButton_Click);
@@ -195,7 +197,7 @@
             this.addDescriptionButton.Location = new System.Drawing.Point(747, 107);
             this.addDescriptionButton.Name = "addDescriptionButton";
             this.addDescriptionButton.Size = new System.Drawing.Size(241, 38);
-            this.addDescriptionButton.TabIndex = 21;
+            this.addDescriptionButton.TabIndex = 4;
             this.addDescriptionButton.Text = "Add description";
             this.addDescriptionButton.UseVisualStyleBackColor = true;
             this.addDescriptionButton.Click += new System.EventHandler(this.addDescriptionButton_Click);
@@ -206,7 +208,7 @@
             this.backButton.Location = new System.Drawing.Point(17, 12);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(97, 38);
-            this.backButton.TabIndex = 22;
+            this.backButton.TabIndex = 13;
             this.backButton.Text = "Go back";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
@@ -221,7 +223,8 @@
             this.criteriaDataGridView.Name = "criteriaDataGridView";
             this.criteriaDataGridView.ReadOnly = true;
             this.criteriaDataGridView.Size = new System.Drawing.Size(320, 198);
-            this.criteriaDataGridView.TabIndex = 26;
+            this.criteriaDataGridView.StandardTab = true;
+            this.criteriaDataGridView.TabIndex = 10;
             this.criteriaDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.criteriaDataGridView_CellContentClick);
             // 
             // addCriteriaButton
@@ -231,7 +234,7 @@
             this.addCriteriaButton.Location = new System.Drawing.Point(668, 152);
             this.addCriteriaButton.Name = "addCriteriaButton";
             this.addCriteriaButton.Size = new System.Drawing.Size(320, 38);
-            this.addCriteriaButton.TabIndex = 27;
+            this.addCriteriaButton.TabIndex = 9;
             this.addCriteriaButton.Text = "Add criteria";
             this.addCriteriaButton.UseVisualStyleBackColor = true;
             this.addCriteriaButton.Click += new System.EventHandler(this.addCriteriaButton_Click);
@@ -243,7 +246,7 @@
             this.contestStartDateTimePicker.Location = new System.Drawing.Point(118, 115);
             this.contestStartDateTimePicker.Name = "contestStartDateTimePicker";
             this.contestStartDateTimePicker.Size = new System.Drawing.Size(125, 30);
-            this.contestStartDateTimePicker.TabIndex = 29;
+            this.contestStartDateTimePicker.TabIndex = 1;
             // 
             // startDateLabel
             // 
@@ -262,7 +265,7 @@
             this.criteriaValuesButton.Location = new System.Drawing.Point(668, 400);
             this.criteriaValuesButton.Name = "criteriaValuesButton";
             this.criteriaValuesButton.Size = new System.Drawing.Size(320, 38);
-            this.criteriaValuesButton.TabIndex = 30;
+            this.criteriaValuesButton.TabIndex = 11;
             this.criteriaValuesButton.Text = "Insert criteria values and finish";
             this.criteriaValuesButton.UseVisualStyleBackColor = true;
             this.criteriaValuesButton.Click += new System.EventHandler(this.criteriaValuesButton_Click);
@@ -274,7 +277,7 @@
             this.contestVotingDateTimePicker.Location = new System.Drawing.Point(617, 115);
             this.contestVotingDateTimePicker.Name = "contestVotingDateTimePicker";
             this.contestVotingDateTimePicker.Size = new System.Drawing.Size(124, 30);
-            this.contestVotingDateTimePicker.TabIndex = 32;
+            this.contestVotingDateTimePicker.TabIndex = 3;
             // 
             // label1
             // 
@@ -294,7 +297,7 @@
             this.resultsButton.Location = new System.Drawing.Point(12, 400);
             this.resultsButton.Name = "resultsButton";
             this.resultsButton.Size = new System.Drawing.Size(320, 38);
-            this.resultsButton.TabIndex = 33;
+            this.resultsButton.TabIndex = 12;
             this.resultsButton.Text = "Get results";
             this.resultsButton.UseVisualStyleBackColor = true;
             this.resultsButton.Click += new System.EventHandler(this.resultsButton_Click);

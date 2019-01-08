@@ -44,6 +44,7 @@
             this.judgesGridView.Name = "judgesGridView";
             this.judgesGridView.ReadOnly = true;
             this.judgesGridView.Size = new System.Drawing.Size(776, 338);
+            this.judgesGridView.StandardTab = true;
             this.judgesGridView.TabIndex = 0;
             // 
             // acceptButton
@@ -53,7 +54,7 @@
             this.acceptButton.Location = new System.Drawing.Point(620, 400);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(168, 38);
-            this.acceptButton.TabIndex = 4;
+            this.acceptButton.TabIndex = 1;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -65,7 +66,7 @@
             this.cancelButton.Location = new System.Drawing.Point(12, 400);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(168, 38);
-            this.cancelButton.TabIndex = 5;
+            this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -77,7 +78,7 @@
             this.refreshJudgesButton.Location = new System.Drawing.Point(12, 12);
             this.refreshJudgesButton.Name = "refreshJudgesButton";
             this.refreshJudgesButton.Size = new System.Drawing.Size(191, 38);
-            this.refreshJudgesButton.TabIndex = 6;
+            this.refreshJudgesButton.TabIndex = 4;
             this.refreshJudgesButton.Text = "Refresh judges list";
             this.refreshJudgesButton.UseVisualStyleBackColor = true;
             this.refreshJudgesButton.Click += new System.EventHandler(this.refreshJudgesButton_Click);

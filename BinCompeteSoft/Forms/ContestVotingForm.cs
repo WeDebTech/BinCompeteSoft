@@ -92,7 +92,7 @@ namespace BinCompeteSoft
             }
             else
             {
-                MessageBox.Show(null, "Voting hasn't started yet, please come back when it has.", "Error");
+                MessageBox.Show(null, "Voting hasn't started yet, or has already ended.", "Error");
             }
         }
         #endregion

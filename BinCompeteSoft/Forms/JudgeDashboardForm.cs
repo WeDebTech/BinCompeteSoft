@@ -14,17 +14,25 @@ namespace BinCompeteSoft
 {
     public partial class JudgeDashboardForm : Form
     {
+        #region Class variables
         private List<int> statisticsYears = new List<int>();
 
         private int selectedYear;
+        #endregion
 
+        #region Class constructors
         public JudgeDashboardForm()
         {
             Data._instance.currentForm = this;
 
             InitializeComponent();
-        }
 
+            this.contestsDataGridView.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular);
+            this.bestProjectsDataGridView.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular);
+        }
+        #endregion
+
+        #region Event handlers
         private void JudgeDashboardForm_Load(object sender, EventArgs e)
         {
             // Update the label with the user's name.
@@ -102,6 +110,152 @@ namespace BinCompeteSoft
             this.Hide();
         }
 
+        private void previousYearButton_Click(object sender, EventArgs e)
+        {
+            // Check if there's any statistics at all.
+            if (statisticsYears.Count > 0)
+            {
+                // Check if we're on the first item of the list.
+                if (selectedYear > 0)
+                {
+                    // Make the selected year the previous year.
+                    selectedYear--;
+
+                    ChangeStatisticsYear();
+                }
+            }
+        }
+
+        private void nextYearButton_Click(object sender, EventArgs e)
+        {
+            // Check if there's any statistics at all.
+            if (statisticsYears.Count > 0)
+            {
+                // Check if we're on the last item of the list.
+                if (selectedYear < statisticsYears.Count - 1)
+                {
+                    // Make the selected year the next year.
+                    selectedYear++;
+
+                    ChangeStatisticsYear();
+                }
+            }
+        }
+
+        private void refreshContestsButton_Click(object sender, EventArgs e)
+        {
+            UpdateContestsAndNotificationsList();
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            Data._instance.LogoutUser();
+        }
+
+        private void contestDetailsButton_Click(object sender, EventArgs e)
+        {
+            // Check if any contest has been selected.
+            if (contestsDataGridView.CurrentCell != null)
+            {
+                // Get the selected contest.
+                bool hasVoted;
+
+                if (contestsDataGridView.CurrentRow.Cells[6].Value.ToString() == "X")
+                {
+                    hasVoted = false;
+                }
+                else
+                {
+                    hasVoted = true;
+                }
+
+                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[5].Value, hasVoted, false, false);
+
+                ShowContest(selectedContest);
+
+                UpdateContestsAndNotificationsList();
+                UpdateCategoryStatisticsChart(statisticsYears[selectedYear]);
+                UpdateTopProjects(statisticsYears[selectedYear]);
+                UpdateOtherStatistics(statisticsYears[selectedYear]);
+            }
+            else
+            {
+                MessageBox.Show(null, "You must select a contest to view it.", "Error");
+            }
+        }
+
+        private void resetPasswordButton_Click(object sender, EventArgs e)
+        {
+            ResetPasswordForm resetPasswordForm = new ResetPasswordForm(Data._instance.loggedInUser, this, false);
+            resetPasswordForm.Show();
+
+            this.Hide();
+        }
+
+        private void contestsDataGridView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            // Check if Enter key has been pressed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Check if any contest has been selected.
+                if (contestsDataGridView.CurrentCell != null)
+                {
+                    // Get the selected contest.
+                    bool hasVoted;
+
+                    if (contestsDataGridView.CurrentRow.Cells[6].Value.ToString() == "X")
+                    {
+                        hasVoted = false;
+                    }
+                    else
+                    {
+                        hasVoted = true;
+                    }
+
+                    ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[5].Value, hasVoted, false, false);
+
+                    ShowContest(selectedContest);
+
+                    UpdateContestsAndNotificationsList();
+                    UpdateCategoryStatisticsChart(statisticsYears[selectedYear]);
+                    UpdateTopProjects(statisticsYears[selectedYear]);
+                    UpdateOtherStatistics(statisticsYears[selectedYear]);
+                }
+                else
+                {
+                    MessageBox.Show(null, "You must select a contest to view it.", "Error");
+                }
+            }
+        }
+        #endregion
+
+        #region Class methods
+        private void ShowContest(ContestDetails selectedContest)
+        {
+            // Check if the contest has been created by the current user.
+            // If yes, show the edit interface, otherwise show the voting interface.
+            if (Data._instance.GetIfContestIsCreatedByCurrentUser(selectedContest.Id))
+            {
+                // Pass it to the ContestForm and show it.
+                ContestForm contestForm = new ContestForm(this, selectedContest, true);
+                contestForm.MdiParent = this.MdiParent;
+                contestForm.Dock = DockStyle.Fill;
+                contestForm.Show();
+                this.MdiParent.Text = "Contest details";
+                this.Hide();
+            }
+            else
+            {
+                // Pass it to the ContestVotingForm and show it.
+                ContestVotingForm contestVotingForm = new ContestVotingForm(this, selectedContest);
+                contestVotingForm.MdiParent = this.MdiParent;
+                contestVotingForm.Dock = DockStyle.Fill;
+                contestVotingForm.Show();
+                this.MdiParent.Text = "Contest details";
+                this.Hide();
+            }
+        }
+
         /// <summary>
         /// Inputs the most up-to-date category statistics data in the category statistics pie chart.
         /// </summary>
@@ -134,6 +288,9 @@ namespace BinCompeteSoft
         /// <param name="year">The year to get the data from.</param>
         private void UpdateTopProjects(int year)
         {
+            // Clear the DataGridView so all entries are erased for the new ones to take their place.
+            bestProjectsDataGridView.Rows.Clear();
+
             // Give the DataGridView 2 columns.
             bestProjectsDataGridView.ColumnCount = 2;
 
@@ -251,38 +408,6 @@ namespace BinCompeteSoft
             }
         }
 
-        private void previousYearButton_Click(object sender, EventArgs e)
-        {
-            // Check if there's any statistics at all.
-            if (statisticsYears.Count > 0)
-            {
-                // Check if we're on the first item of the list.
-                if (selectedYear > 0)
-                {
-                    // Make the selected year the previous year.
-                    selectedYear--;
-
-                    ChangeStatisticsYear();
-                }
-            }
-        }
-
-        private void nextYearButton_Click(object sender, EventArgs e)
-        {
-            // Check if there's any statistics at all.
-            if(statisticsYears.Count > 0)
-            {
-                // Check if we're on the last item of the list.
-                if (selectedYear < statisticsYears.Count - 1)
-                {
-                    // Make the selected year the next year.
-                    selectedYear++;
-
-                    ChangeStatisticsYear();
-                }
-            }
-        }
-
         /// <summary>
         /// Changes the statistic year according to the selectedYear index.
         /// </summary>
@@ -333,7 +458,11 @@ namespace BinCompeteSoft
 
             Data._instance.RefreshContests();
 
-            // Cycle through all contests.
+            // Get the current time.
+            DateTime currentDate = DateTime.Now;
+
+            // Loop through all contests, and if they are after today's date, show them.
+            // Also show contests that have finished, but haven't had their results calculated.
             foreach (ContestDetails contest in Data._instance.ContestDetails)
             {
                 // Check if the contest is created by the current user.
@@ -355,16 +484,10 @@ namespace BinCompeteSoft
                         contest.HasVoted = true;
                     }
                 }
-            }
 
-            // Get the current time.
-            DateTime currentDate = DateTime.Now;
-
-            // Loop through all contests, and if they are after today's date, show them.
-            // Also show contests that have finished, but haven't had their results calculated.
-            foreach(ContestDetails contest in Data._instance.ContestDetails)
-            {
-                if(contest.VotingDate > currentDate || !contest.HasResultsCalculated)
+                // Check if contest has already ended it's voting date, or if it's created by the current user
+                // its results have already been calculated.
+                if (contest.VotingDate > currentDate || (contest.HasBeenCreatedByCurrentUser && !contest.HasResultsCalculated))
                 {
                     // Add contest to DataGridView.
                     contestsDataGridView.Rows.Add(contest.Id, contest.Name, contest.Description, contest.StartDate, contest.LimitDate, contest.VotingDate, contest.HasVoted);
@@ -404,24 +527,24 @@ namespace BinCompeteSoft
                     }
 
                     // Check if contest is after the limit date and hasn't been voted yet, or hasn't had it's results calculated yets.
-                    if(!contest.HasBeenCreatedByCurrentUser && contest.LimitDate < DateTime.Now && !contest.HasVoted)
+                    if (!contest.HasBeenCreatedByCurrentUser && contest.LimitDate < DateTime.Now && !contest.HasVoted)
                     {
-                            string notificationEnd;
+                        string notificationEnd;
 
-                            // Check if the contest ends today.
-                            if ((contest.VotingDate - currentDate).Days <= 1)
-                            {
-                                notificationEnd = "' will end in less than a day.";
-                            }
-                            else
-                            {
-                                notificationEnd = "' will end in " + (contest.VotingDate - currentDate).Days + " days.";
-                            }
+                        // Check if the contest ends today.
+                        if ((contest.VotingDate - currentDate).Days <= 1)
+                        {
+                            notificationEnd = "' will end in less than a day.";
+                        }
+                        else
+                        {
+                            notificationEnd = "' will end in " + (contest.VotingDate - currentDate).Days + " days.";
+                        }
 
-                            // Add a notification to the notification list.
-                            notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest '" + contest.Name + notificationEnd));
+                        // Add a notification to the notification list.
+                        notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest '" + contest.Name + notificationEnd));
                     }
-                    else if(contest.HasBeenCreatedByCurrentUser && contest.VotingDate < DateTime.Now && !contest.HasResultsCalculated)
+                    else if (contest.HasBeenCreatedByCurrentUser && contest.VotingDate < DateTime.Now && !contest.HasResultsCalculated)
                     {
                         // Add a notification to the notification list.
                         notificationsExListBox.Items.Add(new exListBoxItem(contest.Id, "Attention!", "Contest '" + contest.Name + "' has ended it's voting period, but hasn't had it's results calculated yet."));
@@ -432,76 +555,6 @@ namespace BinCompeteSoft
             // Sort the list by ascending limit date.
             contestsDataGridView.Sort(contestsDataGridView.Columns[4], ListSortDirection.Ascending);
         }
-
-        private void refreshContestsButton_Click(object sender, EventArgs e)
-        {
-            UpdateContestsAndNotificationsList();
-        }
-
-        private void logoutButton_Click(object sender, EventArgs e)
-        {
-            Data._instance.LogoutUser();
-        }
-
-        private void contestDetailsButton_Click(object sender, EventArgs e)
-        {
-            // Check if any contest has been selected.
-            if (contestsDataGridView.CurrentCell != null)
-            {
-                // Get the selected contest.
-                bool hasVoted;
-
-                if(contestsDataGridView.CurrentRow.Cells[6].Value.ToString() == "X")
-                {
-                    hasVoted = false;
-                }
-                else
-                {
-                    hasVoted = true;
-                }
-
-                ContestDetails selectedContest = new ContestDetails((int)contestsDataGridView.CurrentRow.Cells[0].Value, contestsDataGridView.CurrentRow.Cells[1].Value.ToString(), contestsDataGridView.CurrentRow.Cells[2].Value.ToString(), (DateTime)contestsDataGridView.CurrentRow.Cells[3].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[4].Value, (DateTime)contestsDataGridView.CurrentRow.Cells[5].Value, hasVoted, false, false);
-
-                // Check if the contest has been created by the current user.
-                // If yes, show the edit interface, otherwise show the voting interface.
-                if (Data._instance.GetIfContestIsCreatedByCurrentUser(selectedContest.Id))
-                {
-                    // Pass it to the ContestForm and show it.
-                    ContestForm contestForm = new ContestForm(this, selectedContest, true);
-                    contestForm.MdiParent = this.MdiParent;
-                    contestForm.Dock = DockStyle.Fill;
-                    contestForm.Show();
-                    this.MdiParent.Text = "Contest details";
-                    this.Hide();
-                }
-                else
-                {
-                    // Pass it to the ContestVotingForm and show it.
-                    ContestVotingForm contestVotingForm = new ContestVotingForm(this, selectedContest);
-                    contestVotingForm.MdiParent = this.MdiParent;
-                    contestVotingForm.Dock = DockStyle.Fill;
-                    contestVotingForm.Show();
-                    this.MdiParent.Text = "Contest details";
-                    this.Hide();
-                }
-
-                UpdateContestsAndNotificationsList();
-                UpdateCategoryStatisticsChart(statisticsYears[selectedYear]);
-                UpdateTopProjects(statisticsYears[selectedYear]);
-                UpdateOtherStatistics(statisticsYears[selectedYear]);
-            }
-            else
-            {
-                MessageBox.Show(null, "You must select a contest to view it.", "Error");
-            }
-        }
-
-        private void resetPasswordButton_Click(object sender, EventArgs e)
-        {
-            ResetPasswordForm resetPasswordForm = new ResetPasswordForm(Data._instance.loggedInUser, this, false);
-            resetPasswordForm.Show();
-
-            this.Hide();
-        }
+        #endregion
     }
 }
