@@ -318,11 +318,14 @@ namespace BinCompeteSoft
 
                 // Write the criteria values array.
                 writer.WriteStartElement("CriteriaValues");
-                writer.WriteStartAttribute("size", contest.CriteriaValues.Length.ToString());
+                writer.WriteElementString("Size", contest.CriteriaValues.Length.ToString());
 
-                foreach(double criteriaValue in contest.CriteriaValues)
+                for(int i = 0; i < contest.CriteriaValues.GetLength(0); i++)
                 {
-                    writer.WriteStartElement("Value", criteriaValue.ToString());
+                    for(int j = 0; j < contest.CriteriaValues.GetLength(0); j++)
+                    {
+                        writer.WriteElementString("Value", contest.CriteriaValues[i, j].ToString());
+                    }
                 }
 
                 writer.WriteEndElement();
@@ -334,11 +337,11 @@ namespace BinCompeteSoft
                 {
                     writer.WriteStartElement("Project");
 
-                    writer.WriteStartElement("Id", projectResult.Project.Id.ToString());
-                    writer.WriteStartElement("Name", projectResult.Project.Name);
-                    writer.WriteStartElement("Description", projectResult.Project.Description);
-                    writer.WriteStartElement("Score", projectResult.Result.ToString());
-                    writer.WriteStartElement("Position", count.ToString());
+                    writer.WriteElementString("Id", projectResult.Project.Id.ToString());
+                    writer.WriteElementString("Name", projectResult.Project.Name);
+                    writer.WriteElementString("Description", projectResult.Project.Description);
+                    writer.WriteElementString("Score", projectResult.Result.ToString());
+                    writer.WriteElementString("Position", count.ToString());
 
                     writer.WriteEndElement();
 
